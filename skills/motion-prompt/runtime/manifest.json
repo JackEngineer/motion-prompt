@@ -35,20 +35,20 @@
       "sha256": "7e382043466a92dce3e55ec378dd341c344482a39bb16ace72dc6efc88b33b55"
     },
     "README.md": {
-      "bytes": 14722,
-      "sha256": "0a35ba132b42d9103d61555ca61797513d264c06feb32a4c9bcc91c2409ab863"
+      "bytes": 15634,
+      "sha256": "ba0e35b4b785f1412ec77ca2f4eed38c858179b8dda2e0bba0835ee6afa03e19"
     },
     "README.zh-Hans.md": {
-      "bytes": 14722,
-      "sha256": "0a35ba132b42d9103d61555ca61797513d264c06feb32a4c9bcc91c2409ab863"
+      "bytes": 15634,
+      "sha256": "ba0e35b4b785f1412ec77ca2f4eed38c858179b8dda2e0bba0835ee6afa03e19"
     },
     "THIRD-PARTY-NOTICES.md": {
       "bytes": 2868,
       "sha256": "e540ab5f741b893ec90d4d8e54a38dba750e959f47a01c7c4f6a5dbccfeaa02f"
     },
     "THIRD-PARTY-NOTICES.zh-Hans.md": {
-      "bytes": 1509,
-      "sha256": "c31b00cf999d4c8d1dba7cc0ef2ef914a6ebce31805b33bb1ddd18e7f76e5808"
+      "bytes": 1953,
+      "sha256": "0cd89da042e3f62e5cfe465419c9d5d4823ac647d4021c1c6d734da88e7f6bbf"
     },
     "api/v1/catalog.json": {
       "bytes": 1055712,
@@ -6487,8 +6487,8 @@
       "sha256": "ad525ee4a3ad8a18c10f70e85f495d99532d13ad6b5a0ffd1d11024a37b58f76"
     },
     "skills/motion-prompt/README.zh-Hans.md": {
-      "bytes": 1272,
-      "sha256": "7af9e912ce2c744603e7095dc3acaa75a667c377991f77af66c47e5352aa0acf"
+      "bytes": 1584,
+      "sha256": "63a39089bdfc337858c7f4d8c8190650a66db1c33bbdca01c3b3179cdd657a97"
     },
     "skills/motion-prompt/SKILL.md": {
       "bytes": 10037,

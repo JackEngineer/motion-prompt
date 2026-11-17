@@ -1,5 +1,7 @@
 # 安装 Motion Prompt 技能
 
+本技能随 [JackEngineer/motion-prompt](https://github.com/JackEngineer/motion-prompt) 简体中文汉化版交付，原项目为 Shohei Ohtaki 创建的 [showheyohtaki/motion-prompt](https://github.com/showheyohtaki/motion-prompt)。原作者署名及 MIT 许可证保留，汉化修改由本仓库维护。
+
 将本地工作区中的整个 `skills/motion-prompt/` 复制到 Claude Code 的 `.claude/skills/` 或 Codex 的 `.agents/skills/`。保留同目录中的 `runtime/`、`scripts/` 和 `references/`。放在项目根目录仅对该项目生效，放在用户主目录可在多个项目中使用。
 
 需要 Node.js 18 或更高版本。将 `<技能目录>` 替换为复制后的实际路径，确认查询可在本地运行。

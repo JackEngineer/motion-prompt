@@ -2,6 +2,10 @@
 
 第三方许可证原文保留在[第三方声明原文（英文）](THIRD-PARTY-NOTICES.md)。项目许可证另见 [MIT 许可证（英文）](LICENSE)。
 
+## 原项目来源
+
+本仓库是 [showheyohtaki/motion-prompt](https://github.com/showheyohtaki/motion-prompt) 的简体中文汉化版。原作者为 Shohei Ohtaki，原项目的术语库、动态示例和基础实现采用 MIT 许可证。本仓库由 [JackEngineer](https://github.com/JackEngineer/motion-prompt) 维护汉化与中文离线交付修改，保留原版权声明和许可证全文。本版不代表原作者发布或背书。
+
 ## Lucian UX/UI Prompt
 
 将动态示例库与代理技能结合的想法，以及技能文档的大体结构（命令表、工作流、规则、故障排查）、CLI 命令集合（`search`、`list`、`get`、`info`、退出码和三个环境变量）、静态数据文件布局，参考了 [Lucian UX/UI Prompt](https://lucianlabs.dev/uxui-prompt/) 及其技能 [Seokwoooo/lucian-uxui](https://github.com/Seokwoooo/lucian-uxui)。仓库未包含 Lucian 的元素、样式或脚本。原文件保留其 MIT 许可证全文以示致谢。
