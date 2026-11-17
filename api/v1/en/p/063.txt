@@ -1,4 +1,4 @@
-Please use "Stepper (+/−)" (ステッパー), one of the names in "UI component names".
+Please use "Stepper (+/−)", one of the names in "UI component names".
 Motion Prompt #063
 
 What it is: Plus and minus buttons that change a number by one

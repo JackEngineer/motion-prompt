@@ -1,4 +1,4 @@
-Please use "Motion path" (モーションパス), one of the names in "Motion graphics moves, part 2".
+Please use "Motion path", one of the names in "Motion graphics moves, part 2".
 Motion Prompt #126
 
 What it is: Moves along a curve that you define

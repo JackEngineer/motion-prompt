@@ -1,4 +1,4 @@
-Please use "Sticky header" (追従ヘッダー), one of the names in "Landing page & web effects".
+Please use "Sticky header", one of the names in "Landing page & web effects".
 Motion Prompt #075
 
 What it is: The header stays at the top while the page scrolls

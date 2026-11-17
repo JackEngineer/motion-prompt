@@ -1,4 +1,4 @@
-Please use "Breadcrumbs" (パンくずリスト), one of the names in "UI component names".
+Please use "Breadcrumbs", one of the names in "UI component names".
 Motion Prompt #066
 
 What it is: A trail of links showing where the page sits in the site

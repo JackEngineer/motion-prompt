@@ -1,4 +1,4 @@
-Please use "Zoom on scroll" (スクロールで拡大), one of the names in "Landing page & web effects, part 2".
+Please use "Zoom on scroll", one of the names in "Landing page & web effects, part 2".
 Motion Prompt #152
 
 What it is: An image grows to fill the screen as you scroll

@@ -1,4 +1,4 @@
-Please use "Scatter plot" (散布図), one of the names in "Diagrams and charts for slides".
+Please use "Scatter plot", one of the names in "Diagrams and charts for slides".
 Motion Prompt #225
 
 What it is: Dots that show how two numbers relate

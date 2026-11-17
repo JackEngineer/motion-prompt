@@ -1,4 +1,4 @@
-Please use "Morph cut" (モーフカット), one of the names in "Camera moves & transitions, part 2".
+Please use "Morph cut", one of the names in "Camera moves & transitions, part 2".
 Motion Prompt #186
 
 What it is: Blend two takes so the join disappears

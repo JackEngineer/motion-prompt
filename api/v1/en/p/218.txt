@@ -1,4 +1,4 @@
-Please use "2x2 matrix" (4象限マトリクス（2×2）), one of the names in "Diagrams and charts for slides".
+Please use "2x2 matrix", one of the names in "Diagrams and charts for slides".
 Motion Prompt #218
 
 What it is: Two axes that split items into four quadrants

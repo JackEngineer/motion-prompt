@@ -1,6 +1,6 @@
 // Motion Prompt #091 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#091
 //
-// Infinite scroll / 無限スクロール
+// Infinite scroll
 // Pack: lp (Landing page & web effects) · element 19 · Category: Loading, navigation & ambient loops
 // What happens: Scrolling down to the end of the list brings up a spinner, then three new items are added so reading can go on.
 // Motion spec:

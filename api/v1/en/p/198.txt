@@ -1,4 +1,4 @@
-Please use "Colored pencil drawing" (色鉛筆画), one of the names in "Art styles for image generation".
+Please use "Colored pencil drawing", one of the names in "Art styles for image generation".
 Motion Prompt #198
 
 What it is: Fine pencil strokes layered over textured paper

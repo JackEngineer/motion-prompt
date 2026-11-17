@@ -1,6 +1,6 @@
 // Motion Prompt #205 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#205
 //
-// Risograph print / リソグラフ
+// Risograph print
 // Pack: artstyle (Art styles for image generation) · element 13 · Category: Graphic styles
 // What happens: The same line drawing becomes a print in two inks, yellow and teal; the two layers overlap slightly out of register, with ink grain and paper texture visible.
 // Motion spec:

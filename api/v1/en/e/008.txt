@@ -1,6 +1,6 @@
 // Motion Prompt #008 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#008
 //
-// Kinetic typography / キネティックタイポグラフィ
+// Kinetic typography
 // Pack: motion (Motion graphics moves) · element 08 · Category: Entrances & text
 // What happens: Words move the way they mean: one stretches, one bounces, one spins, one slams down.
 // Motion spec:

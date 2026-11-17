@@ -1,6 +1,6 @@
 // Motion Prompt #203 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#203
 //
-// Art Deco / アールデコ
+// Art Deco
 // Pack: artstyle (Art styles for image generation) · element 11 · Category: Graphic styles
 // What happens: The same line drawing becomes a gold-and-black poster: straight rays spread out from the sun, and geometric straight-line ornament is arranged almost symmetrically.
 // Motion spec:

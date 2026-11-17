@@ -1,6 +1,6 @@
 // Motion Prompt #020 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#020
 //
-// Zoom through / ズームスルー
+// Zoom through
 // Pack: motion (Motion graphics moves) · element 20 · Category: Transitions & highlights
 // What happens: The camera pushes into the hole of a letter O and comes out in the next scene.
 // Motion spec:

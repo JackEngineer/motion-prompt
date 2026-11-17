@@ -1,4 +1,4 @@
-Please use "Step indicator" (ステップインジケーター), one of the names in "UI component names".
+Please use "Step indicator", one of the names in "UI component names".
 Motion Prompt #068
 
 What it is: Shows which step of a process you are on

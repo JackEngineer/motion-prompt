@@ -1,6 +1,6 @@
 // Motion Prompt #072 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#072
 //
-// Empty state / エンプティステート
+// Empty state
 // Pack: ui (UI component names) · element 24 · Category: Navigation & status
 // What happens: Deleting the two list rows with their trash icons brings up an empty-box drawing, "Nothing here yet" and an "Add" button.
 // Motion spec:

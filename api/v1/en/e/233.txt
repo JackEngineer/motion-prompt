@@ -1,6 +1,6 @@
 // Motion Prompt #233 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#233
 //
-// Gantt chart / ガントチャート
+// Gantt chart
 // Pack: diagram (Diagrams and charts for slides) · element 17 · Category: Diagrams of flow and the whole picture
 // What happens: A date scale (1–8) on top and tasks A–E on the left; bars start at staggered columns and grow to the right one after another.
 // Motion spec:

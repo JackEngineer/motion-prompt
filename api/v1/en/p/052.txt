@@ -1,4 +1,4 @@
-Please use "Accordion" (アコーディオン), one of the names in "UI component names".
+Please use "Accordion", one of the names in "UI component names".
 Motion Prompt #052
 
 What it is: Click a heading to show or hide its content

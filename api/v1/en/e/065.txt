@@ -1,6 +1,6 @@
 // Motion Prompt #065 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#065
 //
-// Hamburger menu / ハンバーガーメニュー
+// Hamburger menu
 // Pack: ui (UI component names) · element 17 · Category: Navigation & status
 // What happens: Clicking the three-line icon at the header's right turns it into ×, and a menu drops down from under the header; clicking again closes it.
 // Motion spec:

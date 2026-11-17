@@ -1,6 +1,6 @@
 // Motion Prompt #002 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#002
 //
-// Stagger / スタガー
+// Stagger
 // Pack: motion (Motion graphics moves) · element 02 · Category: Entrances & text
 // What happens: Chart bars rise one after another from the left, each slightly delayed.
 // Motion spec:

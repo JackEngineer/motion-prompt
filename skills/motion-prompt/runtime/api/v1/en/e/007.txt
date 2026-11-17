@@ -1,6 +1,6 @@
 // Motion Prompt #007 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#007
 //
-// Count-up / カウントアップ
+// Count-up
 // Pack: motion (Motion graphics moves) · element 07 · Category: Entrances & text
 // What happens: A number races upward and locks onto its final value.
 // Motion spec:

@@ -1,6 +1,6 @@
 // Motion Prompt #227 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#227
 //
-// Heatmap / ヒートマップ
+// Heatmap
 // Pack: diagram (Diagrams and charts for slides) · element 11 · Category: Charts that show numbers
 // What happens: The cells of a 12 × 5 table fill with shades of blue in a wave from top-left to bottom-right, then turn back to gray the same way.
 // Motion spec:

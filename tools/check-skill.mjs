@@ -119,6 +119,83 @@ async function withHttpServer(server, run) {
   }
 }
 
+async function browserLanguages(page, galleryUrl, catalog) {
+  for (const [pathname, heading, en, zh] of [
+    ['index.html', '#hero-h', /For the creative directors who direct AI/, /让 AI 理解你的创意/],
+    ['found.html', '#f-h', /People building a common language/, /用术语和示例建立共同语言/],
+  ]) {
+    const url = new URL(pathname, galleryUrl);
+    url.searchParams.set('source', 'test');
+    url.hash = pathname === 'index.html' ? '#how' : '#list';
+    const legacy = new URL(url);
+    legacy.searchParams.set('lang', 'ja');
+    const buttons = page.locator('[data-lang]');
+    const english = page.getByRole('button', { name: 'English', exact: true });
+    const chinese = page.getByRole('button', { name: '简体中文', exact: true });
+
+    await page.evaluate(() => localStorage.setItem('mp-lang', 'en'));
+    await page.goto(legacy.href);
+    assert.deepEqual(await buttons.evaluateAll((nodes) => nodes.map((node) => node.getAttribute('data-lang'))), ['zh-Hans', 'en']);
+    assert.equal(await page.locator('html').getAttribute('lang'), 'zh-Hans');
+    assert.equal(await chinese.getAttribute('aria-pressed'), 'true');
+    assert.match(await page.locator(heading).textContent(), zh);
+    const normalized = new URL(page.url());
+    assert.equal(normalized.searchParams.get('lang'), 'zh-Hans');
+    assert.equal(normalized.searchParams.get('source'), 'test');
+    assert.equal(normalized.hash, url.hash);
+
+    await english.click();
+    assert.equal(new URL(page.url()).searchParams.get('lang'), 'en');
+    assert.equal(await english.getAttribute('aria-pressed'), 'true');
+    assert.match(await page.locator(heading).textContent(), en);
+    await page.reload();
+    assert.equal(await page.locator('html').getAttribute('lang'), 'en');
+
+    await page.evaluate(() => localStorage.setItem('mp-lang', 'ja'));
+    await page.goto(url.href);
+    assert.equal(await page.locator('html').getAttribute('lang'), 'zh-Hans');
+    assert.match(await page.locator(heading).textContent(), zh);
+    if (pathname === 'found.html') {
+      const intro = page.locator('.ex-intro').first();
+      await intro.waitFor();
+      assert.match(await intro.textContent(), /六种随页面滚动/);
+      assert.equal(await page.locator('.ex-x').first().getAttribute('href'), 'https://x.com/gabriell_lab/status/2107443057805476100');
+    }
+    await english.click();
+    await page.reload();
+    assert.equal(await page.locator('html').getAttribute('lang'), 'en');
+    if (pathname === 'found.html') {
+      const intro = page.locator('.ex-intro').first();
+      await intro.waitFor();
+      assert.match(await intro.textContent(), /Six scroll-driven effects/);
+    }
+    await chinese.click();
+    assert.equal(await page.locator('html').getAttribute('lang'), 'zh-Hans');
+  }
+
+  const element = catalog.elements[0];
+  for (const lang of ['en', 'zh-Hans']) {
+    const detail = new URL(galleryUrl);
+    detail.searchParams.set('lang', lang);
+    detail.hash = element.id;
+    await page.goto(detail.href);
+    await page.locator('#d-copy-prompt').waitFor();
+    assert.equal(await page.locator('#d-name').textContent(), element.name[lang]);
+    const subtitle = await page.locator('#d-sub').textContent();
+    if (lang === 'zh-Hans') assert.ok(subtitle.includes('英文名：' + element.name.en));
+    else assert.ok(!subtitle.includes(element.name.ja));
+    const prompt = await page.locator('#d-prompt').textContent();
+    assert.ok(prompt.includes(element.name[lang]) && !prompt.includes(element.name.ja));
+    await page.locator('#d-copy-prompt').click();
+    assert.equal(await page.evaluate(() => window.__copiedValues.at(-1)), prompt);
+    await page.locator('#d-copy-code').click();
+    await page.waitForFunction(() => window.__copiedValues.length === 2);
+    const code = await page.evaluate(() => window.__copiedValues.at(-1));
+    assert.ok(code.includes(element.name[lang]) && !code.includes(element.name.ja));
+    assert.equal(await page.locator('#d-txt').getAttribute('href'), `api/v1/${lang}/e/${element.id}.txt`);
+  }
+}
+
 async function browserPick(base) {
   const pick = await startPick(base);
   const context = await browser.newContext({ viewport: { width: 1440, height: 1000 } });
@@ -130,6 +207,7 @@ async function browserPick(base) {
   });
   await context.addInitScript(() => {
     window.__copiedValues = [];
+    window.twttr = { widgets: { createTweet: async () => null } };
     Object.defineProperty(navigator, 'clipboard', { value: { writeText: async (text) => { window.__copiedValues.push(text); } } });
   });
   const page = await context.newPage();
@@ -139,6 +217,7 @@ async function browserPick(base) {
   await page.locator('.tile:visible').first().waitFor();
   assert.equal(await page.locator('html').getAttribute('lang'), 'zh-Hans');
   const catalog = await page.evaluate(() => window.MP_CATALOG);
+  await browserLanguages(page, pick.url, catalog);
   for (const pack of catalog.packs) {
     const url = new URL(pick.url); url.searchParams.set('pack', pack.pack);
     await page.goto(url.href); await page.locator('.tile:visible').first().waitFor();
@@ -165,7 +244,7 @@ async function browserPick(base) {
   }
   await page.locator('#q').fill('');
   const selectedIds = [...catalog.elements.slice(0, 59).map((item) => item.id), catalog.elements.find((item) => item.pack === 'artstyle').id];
-  for (const lang of ['en', 'ja']) {
+  for (const lang of ['en', 'zh-Hans']) {
     const selected = new URL(pick.url); selected.searchParams.set('pick', selectedIds.join(',')); selected.searchParams.set('lang', lang);
     await page.goto(selected.href); await page.locator('#tray-copy').waitFor({ state: 'visible' });
     await page.locator('#tray-note').fill('复制链接不得携带此备注');
@@ -244,7 +323,7 @@ async function browserPick(base) {
   await assert.rejects(request(new URL(pick.url).origin));
   assert.deepEqual(external, []); assert.deepEqual(errors, []); assert.deepEqual(badResponses, []);
   await context.close();
-  passed(`${base === installed ? '复制技能' : '完整仓库'}浏览器：十包预览、27张图、双语搜索、60项日英复制分批和无令牌分享、第61项限制与375px超量恢复、跨包乱序中文备注真实回传`);
+  passed(`${base === installed ? '复制技能' : '完整仓库'}浏览器：两页中英切换、日语旧链接与缓存回退、双语详情复制、十包预览、27张图、双语搜索、60项中英复制分批和无令牌分享、第61项限制与375px超量恢复、跨包乱序中文备注真实回传`);
 }
 
 try {

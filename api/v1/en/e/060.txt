@@ -1,6 +1,6 @@
 // Motion Prompt #060 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#060
 //
-// Segmented control / セグメントコントロール
+// Segmented control
 // Pack: ui (UI component names) · element 12 · Category: Choosing & switching
 // What happens: Clicking Day, Week or Month slides a blue highlight across and the bar chart below changes height.
 // Motion spec:

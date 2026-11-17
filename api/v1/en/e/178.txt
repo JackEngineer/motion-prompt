@@ -1,6 +1,6 @@
 // Motion Prompt #178 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#178
 //
-// High angle / ハイアングル
+// High angle
 // Pack: camera2 (Camera moves & transitions, part 2) · element 10 · Category: Angles & Framing
 // What happens: The camera rises and looks down; the person looks small and the ground fills most of the frame.
 // Motion spec:

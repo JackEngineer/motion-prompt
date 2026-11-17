@@ -1,4 +1,4 @@
-Please use "Steadicam" (ステディカム), one of the names in "Camera moves & transitions, part 2".
+Please use "Steadicam", one of the names in "Camera moves & transitions, part 2".
 Motion Prompt #173
 
 What it is: Smooth, floating movement with no shake

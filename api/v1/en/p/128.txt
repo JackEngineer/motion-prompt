@@ -1,4 +1,4 @@
-Please use "Stop-motion style" (ストップモーション風), one of the names in "Motion graphics moves, part 2".
+Please use "Stop-motion style", one of the names in "Motion graphics moves, part 2".
 Motion Prompt #128
 
 What it is: Moves in choppy steps, with frames dropped

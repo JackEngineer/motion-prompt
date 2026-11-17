@@ -1,4 +1,4 @@
-Please use "Tracking shot" (トラッキング), one of the names in "Camera moves & transitions".
+Please use "Tracking shot", one of the names in "Camera moves & transitions".
 Motion Prompt #029
 
 What it is: Move along with the subject

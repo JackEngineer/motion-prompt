@@ -1,6 +1,6 @@
 // Motion Prompt #019 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#019
 //
-// Liquid transition / リキッドトランジション
+// Liquid transition
 // Pack: motion (Motion graphics moves) · element 19 · Category: Transitions & highlights
 // What happens: Paint-like liquid drips down from the top and fills the frame, becoming the next scene.
 // Motion spec:

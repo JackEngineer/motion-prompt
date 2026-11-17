@@ -1,4 +1,4 @@
-Please use "Deep focus" (ディープフォーカス), one of the names in "Camera moves & transitions, part 2".
+Please use "Deep focus", one of the names in "Camera moves & transitions, part 2".
 Motion Prompt #182
 
 What it is: Near and far all in sharp focus

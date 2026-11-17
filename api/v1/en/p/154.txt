@@ -1,4 +1,4 @@
-Please use "Spotlight hover" (スポットライトホバー), one of the names in "Landing page & web effects, part 2".
+Please use "Spotlight hover", one of the names in "Landing page & web effects, part 2".
 Motion Prompt #154
 
 What it is: Only the area around the cursor lights up

@@ -1,4 +1,4 @@
-Please use "Particles" (パーティクル), one of the names in "Motion graphics moves".
+Please use "Particles", one of the names in "Motion graphics moves".
 Motion Prompt #015
 
 What it is: Many small pieces fly out and scatter

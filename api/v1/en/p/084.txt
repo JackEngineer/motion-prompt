@@ -1,4 +1,4 @@
-Please use "Magnetic button" (マグネティックボタン), one of the names in "Landing page & web effects".
+Please use "Magnetic button", one of the names in "Landing page & web effects".
 Motion Prompt #084
 
 What it is: The button is pulled toward a nearby cursor

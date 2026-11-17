@@ -1,6 +1,6 @@
 // Motion Prompt #040 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#040
 //
-// Freeze frame / フリーズフレーム
+// Freeze frame
 // Pack: camera (Camera moves & transitions) · element 16 · Category: Shooting Style & Time
 // What happens: The picture stops at the moment a jumping person reaches the top, then resumes from the same frame 1.4 s later.
 // Motion spec:

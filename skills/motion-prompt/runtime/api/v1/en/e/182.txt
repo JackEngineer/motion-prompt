@@ -1,6 +1,6 @@
 // Motion Prompt #182 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#182
 //
-// Deep focus / ディープフォーカス
+// Deep focus
 // Pack: camera2 (Camera moves & transitions, part 2) · element 14 · Category: Angles & Framing
 // What happens: From the flower in front to the person and buildings behind, everything comes into sharp focus at the same time.
 // Motion spec:

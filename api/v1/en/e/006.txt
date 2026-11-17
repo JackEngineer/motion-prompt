@@ -1,6 +1,6 @@
 // Motion Prompt #006 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#006
 //
-// Typewriter / タイプライター
+// Typewriter
 // Pack: motion (Motion graphics moves) · element 06 · Category: Entrances & text
 // What happens: Text is typed into an input field one character at a time, then the send button lights up and is pressed.
 // Motion spec:

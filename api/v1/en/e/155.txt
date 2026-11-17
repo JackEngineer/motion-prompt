@@ -1,6 +1,6 @@
 // Motion Prompt #155 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#155
 //
-// Image swap on hover / ホバーで画像切り替え
+// Image swap on hover
 // Pack: lp2 (Landing page & web effects, part 2) · element 11 · Category: Mouse & input interactions
 // What happens: With the cursor on a product card, the front photo of the T-shirt cross-fades to a back view; it returns to the front when the cursor leaves.
 // Motion spec:

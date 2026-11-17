@@ -1,6 +1,6 @@
 // Motion Prompt #052 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#052
 //
-// Accordion / アコーディオン
+// Accordion
 // Pack: ui (UI component names) · element 04 · Category: Opening & overlays
 // What happens: Clicking the first of three headings opens its content and pushes the rows below down; clicking again closes it.
 // Motion spec:

@@ -1,6 +1,6 @@
 // Motion Prompt #152 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#152
 //
-// Zoom on scroll / スクロールで拡大
+// Zoom on scroll
 // Pack: lp2 (Landing page & web effects, part 2) · element 08 · Category: Scroll effects
 // What happens: As the page scrolls, a small photo in the middle grows to fill the window, the text around it fades away and a headline appears over the photo.
 // Motion spec:

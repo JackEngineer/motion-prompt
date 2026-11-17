@@ -1,4 +1,4 @@
-Please use "Preloader" (ローディング画面), one of the names in "Landing page & web effects".
+Please use "Preloader", one of the names in "Landing page & web effects".
 Motion Prompt #089
 
 What it is: A screen shown while the page loads

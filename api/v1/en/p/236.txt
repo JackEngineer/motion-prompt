@@ -1,4 +1,4 @@
-Please use "Customer journey map" (カスタマージャーニーマップ), one of the names in "Diagrams and charts for slides".
+Please use "Customer journey map", one of the names in "Diagrams and charts for slides".
 Motion Prompt #236
 
 What it is: Actions and feelings at each stage

@@ -1,6 +1,6 @@
 // Motion Prompt #103 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#103
 //
-// Golden hour / ゴールデンアワー
+// Golden hour
 // Pack: photo (Photo looks, lighting & styles) · element 07 · Category: Lighting & time of day
 // What happens: The sun drops to just above the horizon; sky and ground turn orange, the left side of the person lights up and the shadows of the lamp and tree stretch far to the right.
 // Motion spec:

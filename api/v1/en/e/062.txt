@@ -1,6 +1,6 @@
 // Motion Prompt #062 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#062
 //
-// Range slider / レンジスライダー
+// Range slider
 // Pack: ui (UI component names) · element 14 · Category: Choosing & switching
 // What happens: On a price slider, the left handle is dragged right and the right handle left to narrow the range, then both go back.
 // Motion spec:

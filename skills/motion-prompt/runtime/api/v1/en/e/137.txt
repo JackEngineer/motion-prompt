@@ -1,6 +1,6 @@
 // Motion Prompt #137 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#137
 //
-// Push transition / プッシュ
+// Push transition
 // Pack: motion2 (Motion graphics moves, part 2) · element 17 · Category: Transitions & highlights
 // What happens: The next scene slides in from the side and pushes the current one out with it.
 // Motion spec:

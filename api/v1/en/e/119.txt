@@ -1,6 +1,6 @@
 // Motion Prompt #119 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#119
 //
-// Light leak / ライトリーク
+// Light leak
 // Pack: photo (Photo looks, lighting & styles) · element 23 · Category: Tones & finishing looks
 // What happens: From the right edge of the same landscape a band of leaked light comes in, pale yellow on the inside and red at the edge, swaying slowly.
 // Motion spec:

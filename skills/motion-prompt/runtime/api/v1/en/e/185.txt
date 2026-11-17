@@ -1,6 +1,6 @@
 // Motion Prompt #185 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#185
 //
-// Insert shot / インサートショット
+// Insert shot
 // Pack: camera2 (Camera moves & transitions, part 2) · element 17 · Category: Transitions & Editing
 // What happens: A big close-up of the watch on the person's wrist is cut into the scene for 1.3 s, then it returns to the same shot.
 // Motion spec:

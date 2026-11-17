@@ -1,6 +1,6 @@
 // Motion Prompt #174 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#174
 //
-// Follow shot / フォローショット
+// Follow shot
 // Pack: camera2 (Camera moves & transitions, part 2) · element 06 · Category: Camera Movement
 // What happens: The camera trails a weaving walker along the same path a few metres behind; the person stays near the centre, seen from the back.
 // Motion spec:

@@ -1,4 +1,4 @@
-Please use "Light leak" (ライトリーク), one of the names in "Photo looks, lighting & styles".
+Please use "Light leak", one of the names in "Photo looks, lighting & styles".
 Motion Prompt #119
 
 What it is: Red-orange glow as if light leaked onto the film

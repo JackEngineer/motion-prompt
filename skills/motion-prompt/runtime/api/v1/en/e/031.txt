@@ -1,6 +1,6 @@
 // Motion Prompt #031 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#031
 //
-// Crane up / クレーンアップ
+// Crane up
 // Pack: camera (Camera moves & transitions) · element 07 · Category: Camera Movement
 // What happens: The camera rises while tilting down until it looks down on the person.
 // Motion spec:

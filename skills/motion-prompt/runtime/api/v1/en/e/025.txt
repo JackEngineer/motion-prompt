@@ -1,6 +1,6 @@
 // Motion Prompt #025 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#025
 //
-// Pan / パン
+// Pan
 // Pack: camera (Camera moves & transitions) · element 01 · Category: Camera Movement
 // What happens: The camera stays in place and pivots from left to right; because it is a rotation, near and far layers slide sideways by the same amount.
 // Motion spec:

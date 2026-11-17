@@ -1,4 +1,4 @@
-Please use "Logic tree (issue tree)" (ロジックツリー), one of the names in "Diagrams and charts for slides".
+Please use "Logic tree (issue tree)", one of the names in "Diagrams and charts for slides".
 Motion Prompt #219
 
 What it is: One question broken down into branches

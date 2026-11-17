@@ -1,6 +1,6 @@
 // Motion Prompt #128 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#128
 //
-// Stop-motion style / ストップモーション風
+// Stop-motion style
 // Pack: motion2 (Motion graphics moves, part 2) · element 08 · Category: Motion techniques
 // What happens: A star hops across in choppy steps at about 8 frames per second, each frame slightly off.
 // Motion spec:

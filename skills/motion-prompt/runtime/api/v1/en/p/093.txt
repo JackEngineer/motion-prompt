@@ -1,4 +1,4 @@
-Please use "Smooth scroll" (スムーススクロール), one of the names in "Landing page & web effects".
+Please use "Smooth scroll", one of the names in "Landing page & web effects".
 Motion Prompt #093
 
 What it is: In-page links glide to their target instead of jumping

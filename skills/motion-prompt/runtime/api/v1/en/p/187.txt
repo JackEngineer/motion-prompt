@@ -1,4 +1,4 @@
-Please use "Fade to black" (フェードアウト), one of the names in "Camera moves & transitions, part 2".
+Please use "Fade to black", one of the names in "Camera moves & transitions, part 2".
 Motion Prompt #187
 
 What it is: The picture darkens to black

@@ -1,4 +1,4 @@
-Please use "Animated shape divider" (シェイプディバイダー), one of the names in "Landing page & web effects, part 2".
+Please use "Animated shape divider", one of the names in "Landing page & web effects, part 2".
 Motion Prompt #165
 
 What it is: A wavy section divider that keeps moving

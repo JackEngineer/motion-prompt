@@ -1,6 +1,6 @@
 // Motion Prompt #069 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#069
 //
-// Skeleton screen / スケルトン
+// Skeleton screen
 // Pack: ui (UI component names) · element 21 · Category: Navigation & status
 // What happens: Clicking reload turns the list into grey blocks of the same shape with a sweeping shine; the content returns when loading ends.
 // Motion spec:

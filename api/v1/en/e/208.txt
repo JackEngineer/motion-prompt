@@ -1,6 +1,6 @@
 // Motion Prompt #208 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#208
 //
-// Line art / ラインアート
+// Line art
 // Pack: artstyle (Art styles for image generation) · element 16 · Category: Graphic styles
 // What happens: The same line drawing becomes a detailed drawing in one dark navy pen on cream paper, with every roof tile, leaf, blade of grass and sun ray drawn in line.
 // Motion spec:

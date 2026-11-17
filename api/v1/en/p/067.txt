@@ -1,4 +1,4 @@
-Please use "Mega menu" (メガメニュー), one of the names in "UI component names".
+Please use "Mega menu", one of the names in "UI component names".
 Motion Prompt #067
 
 What it is: A wide panel of grouped links that opens from the main menu

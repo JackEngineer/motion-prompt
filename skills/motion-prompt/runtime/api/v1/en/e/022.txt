@@ -1,6 +1,6 @@
 // Motion Prompt #022 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#022
 //
-// Light sweep / ライトスイープ
+// Light sweep
 // Pack: motion (Motion graphics moves) · element 22 · Category: Transitions & highlights
 // What happens: A band of light crosses the surface of a logo badge at an angle.
 // Motion spec:

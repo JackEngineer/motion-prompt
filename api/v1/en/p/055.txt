@@ -1,4 +1,4 @@
-Please use "Popover" (ポップオーバー), one of the names in "UI component names".
+Please use "Popover", one of the names in "UI component names".
 Motion Prompt #055
 
 What it is: Click a button to open a small panel pointing at it

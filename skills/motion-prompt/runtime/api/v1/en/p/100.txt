@@ -1,4 +1,4 @@
-Please use "Split lighting" (スプリットライティング), one of the names in "Photo looks, lighting & styles".
+Please use "Split lighting", one of the names in "Photo looks, lighting & styles".
 Motion Prompt #100
 
 What it is: Light from the side splits the face into lit and dark halves

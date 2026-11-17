@@ -1,4 +1,4 @@
-Please use "Pagination" (ページネーション), one of the names in "UI component names".
+Please use "Pagination", one of the names in "UI component names".
 Motion Prompt #064
 
 What it is: Numbered buttons that move between pages

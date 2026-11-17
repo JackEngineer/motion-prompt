@@ -1,4 +1,4 @@
-Please use "Speed ramp" (スピードランプ), one of the names in "Camera moves & transitions".
+Please use "Speed ramp", one of the names in "Camera moves & transitions".
 Motion Prompt #038
 
 What it is: Change speed mid-shot

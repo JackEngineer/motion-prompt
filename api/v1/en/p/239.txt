@@ -1,4 +1,4 @@
-Please use "Chevron process" (矢羽根図（シェブロン）), one of the names in "Diagrams and charts for slides".
+Please use "Chevron process", one of the names in "Diagrams and charts for slides".
 Motion Prompt #239
 
 What it is: Arrow-shaped steps in a row

@@ -1,6 +1,6 @@
 // Motion Prompt #037 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#037
 //
-// Slow motion / スローモーション
+// Slow motion
 // Pack: camera (Camera moves & transitions) · element 13 · Category: Shooting Style & Time
 // What happens: In front of a fixed camera a person rises and falls slowly through a jump while leaves drift down slowly; the whole action is stretched out.
 // Motion spec:

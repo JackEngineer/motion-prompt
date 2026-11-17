@@ -1,6 +1,6 @@
 // Motion Prompt #151 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#151
 //
-// Back-to-top button / トップへ戻るボタン
+// Back-to-top button
 // Pack: lp2 (Landing page & web effects, part 2) · element 07 · Category: Scroll effects
 // What happens: After scrolling down, a round arrow button appears at the bottom right; clicking it takes the page straight back to the top.
 // Motion spec:

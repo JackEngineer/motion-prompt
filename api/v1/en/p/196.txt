@@ -1,4 +1,4 @@
-Please use "Ukiyo-e woodblock print" (浮世絵), one of the names in "Art styles for image generation".
+Please use "Ukiyo-e woodblock print", one of the names in "Art styles for image generation".
 Motion Prompt #196
 
 What it is: A woodblock print with outlines and flat colors

@@ -1,4 +1,4 @@
-Please use "Carousel" (カルーセル), one of the names in "UI component names".
+Please use "Carousel", one of the names in "UI component names".
 Motion Prompt #058
 
 What it is: Slides that move sideways to show one item at a time

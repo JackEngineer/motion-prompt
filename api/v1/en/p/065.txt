@@ -1,4 +1,4 @@
-Please use "Hamburger menu" (ハンバーガーメニュー), one of the names in "UI component names".
+Please use "Hamburger menu", one of the names in "UI component names".
 Motion Prompt #065
 
 What it is: A three-line icon that opens the menu

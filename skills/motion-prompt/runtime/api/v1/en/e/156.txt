@@ -1,6 +1,6 @@
 // Motion Prompt #156 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#156
 //
-// Text roll on hover / テキストロール
+// Text roll on hover
 // Pack: lp2 (Landing page & web effects, part 2) · element 12 · Category: Mouse & input interactions
 // What happens: With the cursor on a menu word, its letters roll up and out one by one while the same word rolls in from below in orange; it rolls back when the cursor leaves.
 // Motion spec:

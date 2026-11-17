@@ -1,6 +1,6 @@
 // Motion Prompt #042 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#042
 //
-// Match cut / マッチカット
+// Match cut
 // Pack: camera (Camera moves & transitions) · element 18 · Category: Transitions
 // What happens: A thrown ball becomes, in the next shot, a sun at the same position and size; two different scenes are joined on a matching shape.
 // Motion spec:

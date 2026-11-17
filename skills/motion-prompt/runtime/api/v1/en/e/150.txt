@@ -1,6 +1,6 @@
 // Motion Prompt #150 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#150
 //
-// Scrollspy / スクロールスパイ
+// Scrollspy
 // Pack: lp2 (Landing page & web effects, part 2) · element 06 · Category: Scroll effects
 // What happens: As the article scrolls, the table-of-contents item for the section being read lights up, and the highlight moves on when the next heading comes in.
 // Motion spec:

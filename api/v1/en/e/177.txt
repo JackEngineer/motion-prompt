@@ -1,6 +1,6 @@
 // Motion Prompt #177 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#177
 //
-// Low angle / ローアングル
+// Low angle
 // Pack: camera2 (Camera moves & transitions, part 2) · element 09 · Category: Angles & Framing
 // What happens: The camera drops to near the ground and looks up; the person looks big and the buildings tower.
 // Motion spec:

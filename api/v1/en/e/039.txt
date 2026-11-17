@@ -1,6 +1,6 @@
 // Motion Prompt #039 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#039
 //
-// Time-lapse / タイムラプス
+// Time-lapse
 // Pack: camera (Camera moves & transitions) · element 15 · Category: Shooting Style & Time
 // What happens: With a fixed camera, 06:00 to 18:00 is compressed into a few seconds; sun, clouds, people and shadows move in fast forward.
 // Motion spec:

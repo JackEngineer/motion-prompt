@@ -1,6 +1,6 @@
 // Motion Prompt #098 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#098
 //
-// Rim light / リムライト
+// Rim light
 // Pack: photo (Photo looks, lighting & styles) · element 02 · Category: Lighting & time of day
 // What happens: The surroundings go dark and two lights behind the person, left and right, draw thin bright edges only along both sides of the head and shoulders; the plan at the bottom right shows where the two lights are.
 // Motion spec:

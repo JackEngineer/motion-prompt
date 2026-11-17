@@ -1,6 +1,6 @@
 // Motion Prompt #162 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#162
 //
-// Lightbox / ライトボックス
+// Lightbox
 // Pack: lp2 (Landing page & web effects, part 2) · element 18 · Category: Showcase effects
 // What happens: Clicking a thumbnail in the gallery dims the page and shows that photo large in the center; the × shrinks it back into its thumbnail.
 // Motion spec:

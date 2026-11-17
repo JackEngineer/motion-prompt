@@ -1,4 +1,4 @@
-Please use "Tilt" (ティルト), one of the names in "Camera moves & transitions".
+Please use "Tilt", one of the names in "Camera moves & transitions".
 Motion Prompt #026
 
 What it is: Pivot the camera up or down

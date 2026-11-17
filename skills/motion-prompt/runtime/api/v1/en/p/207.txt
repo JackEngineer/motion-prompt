@@ -1,4 +1,4 @@
-Please use "Flat illustration" (フラットイラスト), one of the names in "Art styles for image generation".
+Please use "Flat illustration", one of the names in "Art styles for image generation".
 Motion Prompt #207
 
 What it is: Flat fills only, with no outlines or shading

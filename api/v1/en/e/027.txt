@@ -1,6 +1,6 @@
 // Motion Prompt #027 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#027
 //
-// Dolly in / ドリーイン
+// Dolly in
 // Pack: camera (Camera moves & transitions) · element 03 · Category: Camera Movement
 // What happens: The camera itself moves toward the subject; near objects grow and pass quickly while the distant mountains barely change.
 // Motion spec:

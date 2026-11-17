@@ -1,4 +1,4 @@
-Please use "Bottom sheet" (ボトムシート), one of the names in "UI component names".
+Please use "Bottom sheet", one of the names in "UI component names".
 Motion Prompt #051
 
 What it is: A panel slides up from the bottom of the screen

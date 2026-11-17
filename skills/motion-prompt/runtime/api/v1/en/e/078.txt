@@ -1,6 +1,6 @@
 // Motion Prompt #078 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#078
 //
-// Scroll snap / スクロールスナップ
+// Scroll snap
 // Pack: lp (Landing page & web effects) · element 06 · Category: Scroll effects
 // What happens: After a small scroll, the page carries itself the rest of the way until the next section's top lines up with the top of the view.
 // Motion spec:

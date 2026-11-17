@@ -1,4 +1,4 @@
-Please use "Toast notification" (トースト), one of the names in "UI component names".
+Please use "Toast notification", one of the names in "UI component names".
 Motion Prompt #056
 
 What it is: A short message appears in a corner and goes away on its own

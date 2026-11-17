@@ -1,4 +1,4 @@
-Please use "Mask transition" (マスクトランジション), one of the names in "Motion graphics moves".
+Please use "Mask transition", one of the names in "Motion graphics moves".
 Motion Prompt #017
 
 What it is: The next scene appears inside a growing shape

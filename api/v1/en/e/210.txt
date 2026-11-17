@@ -1,6 +1,6 @@
 // Motion Prompt #210 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#210
 //
-// Voxel art / ボクセルアート
+// Voxel art
 // Pack: artstyle (Art styles for image generation) · element 18 · Category: Digital, 3D & materials
 // What happens: The same line drawing becomes a 3D diorama of stacked small cubes; the house, tree, sun and hill are all made of cubes with light on top and shade on the sides.
 // Motion spec:

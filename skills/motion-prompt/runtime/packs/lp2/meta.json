@@ -523,7 +523,7 @@
           "入力位置の縦線は0.9秒ごとに点滅（打っている間は点けたまま）"
         ],
         "en": [
-          "A 511 × 168 viewport with a 300 × 46 field (radius 8) holding the label \"メールアドレス\" (email address, 15 px). The field is clicked at 0.65 s, and a click outside at 3.95 s removes focus. One pass takes 4.7 s (twice per 9.4 s pack cycle).",
+          "A 511 × 168 viewport with a 300 × 46 field (radius 8) holding the label \"Email address\" (15 px). The field is clicked at 0.65 s, and a click outside at 3.95 s removes focus. One pass takes 4.7 s (twice per 9.4 s pack cycle).",
           "While focused or not empty, over 0.24 s (cubic ease-out) the label shrinks 15 → 11.5 px and moves from the middle of the field onto the top border (left padding 14 → 10 px); the border is masked in white behind it.",
           "While focused, over 0.15 s (cubic ease-out) the border turns from gray to orange and 1.5 → 2.2 px wide, and the label turns orange.",
           "\"hello@example.com\" is typed one character per 0.075 s from 1.0 s and deleted one per 0.03 s from 3.2 s. Once empty and unfocused, the label moves back inside over the same 0.24 s.",
@@ -563,7 +563,7 @@
         ],
         "en": [
           "A 511 × 168 viewport with a 300 × 44 email field (radius 8). Clicked at 0.45 s, clicked away at 4.2 s. \"hana@example.com\" (16 characters) is typed one character per 0.115 s from 0.75 s and deleted one per 0.03 s from 3.6 s. One pass takes 4.7 s (twice per 9.4 s pack cycle).",
-          "From the second character until the last one is typed it is invalid: over 0.15 s (cubic ease-out) the border turns red (#E5383B), the fill pale red (#FFF1F1), and a red \"!\" circle with \"形式が正しくありません\" (invalid format, 13 px) appears below.",
+          "From the second character until the last one is typed it is invalid: over 0.15 s (cubic ease-out) the border turns red (#E5383B), the fill pale red (#FFF1F1), and a red \"!\" circle with \"Invalid format\" (13 px) appears below.",
           "When the last character makes it valid, over 0.25 s the border turns green (#1E9E5A), a green circle (radius 11, bouncing in with GSAP elastic.out(1, 0.3)) with a white check appears at the right end, and \"OK\" appears below.",
           "While focused, the border turns from gray to navy and 1.5 → 2.2 px wide over 0.15 s. Once deletion starts, the messages go away."
         ],
@@ -600,11 +600,11 @@
           "3.9〜4.1秒で消え、4.1〜4.4秒で元の「送信する」が6px下から戻る（easeOut 3乗）"
         ],
         "en": [
-          "A 511 × 168 viewport with an orange pill button, 220 × 36, labeled \"送信する\" (Send). It is clicked at 0.8 s. One pass takes 4.7 s (twice per 9.4 s pack cycle).",
+          "A 511 × 168 viewport with an orange pill button, 220 × 36, labeled \"Send\". It is clicked at 0.8 s. One pass takes 4.7 s (twice per 9.4 s pack cycle).",
           "Over 0.85–1.15 s (0.3 s, cubic ease-in-out) it shrinks from 220 to 36 px wide, a circle; the label fades in the first third of the shrink.",
           "From 1.1 to 2.3 s a white spinner (radius 10, line width 3, 0.7π arc) turns once every 0.7 s inside the circle.",
-          "Over 2.25–2.45 s the color goes orange → green (#1E9E5A) and a white check draws over 2.25–2.5 s; over 2.45–2.8 s (cubic ease-in-out) it widens 36 → 150 px, the check moves 26 px left and \"完了\" (Done) appears.",
-          "It fades out over 3.9–4.1 s and the original \"送信する\" button comes back, rising 6 px, over 4.1–4.4 s (cubic ease-out)."
+          "Over 2.25–2.45 s the color goes orange → green (#1E9E5A) and a white check draws over 2.25–2.5 s; over 2.45–2.8 s (cubic ease-in-out) it widens 36 → 150 px, the check moves 26 px left and \"Done\" appears.",
+          "It fades out over 3.9–4.1 s and the original \"Send\" button comes back, rising 6 px, over 4.1–4.4 s (cubic ease-out)."
         ],
         "zh-Hans": [
           "视口 511 × 168，橙色胶囊按钮 220 × 36，标签为“提交”。0.8 s 点击。一次演示 4.7 s，每个 9.4 s 素材包周期内重复两次。",
@@ -640,7 +640,7 @@
           "一覧と詳細の写真に同じ view-transition-name を付けたときの View Transitions API の見え方"
         ],
         "en": [
-          "A 511 × 168 viewport with three photos in a list (143 × 80, radius 6). The middle photo is clicked at 0.75 s, and \"← 一覧へ\" (back to list) on the detail page at 3.05 s. One pass takes 4.7 s (twice per 9.4 s pack cycle).",
+          "A 511 × 168 viewport with three photos in a list (143 × 80, radius 6). The middle photo is clicked at 0.75 s, and \"← Back to list\" on the detail page at 3.05 s. One pass takes 4.7 s (twice per 9.4 s pack cycle).",
           "Forward: over 0.85–1.45 s (0.6 s, cubic ease-in-out) the clicked photo moves and resizes continuously from its list slot to the 479 × 94 image at the top of the detail page (radius 8). It stays one photo throughout.",
           "The other photos and the heading fade out over the first 62% of the move; the detail title, text and back button fade in over the last 40%. At 50% the URL changes from /works to /works/02.",
           "Back: over 3.15–3.75 s (0.6 s) the same move runs in reverse to the list slot.",
@@ -742,7 +742,7 @@
       "ask": { "ja": "キャンペーンの締切にカウントダウンタイマーを付けて。時:分:秒で、数字が変わるたびに0.3秒で下から入れ替わるように。", "en": "Add a countdown timer for the campaign deadline: hours, minutes and seconds, with each changing digit rolling in from below over 0.3 s.", "es": "Agrega una cuenta regresiva para el cierre de la campaña: horas, minutos y segundos, y que cada dígito que cambia aparezca rodando desde abajo en 0,3 s.", "zh-Hans": "给活动截止时间加上倒计时：以时:分:秒显示，每次数字变化时新数字用 0.3 s 从下方滚入。", "zh-Hant": "活動截止時間加上倒數計時器：以時:分:秒顯示，數字每次變動時，用 0.3 秒從下方換上新的數字。" },
       "summary": {
         "ja": "「キャンペーン終了まで」の 時:分:秒 が1秒ごとに減り、変わった数字だけが上へ抜けて新しい数字が下から入る。",
-        "en": "The hours, minutes and seconds under \"キャンペーン終了まで\" (until the campaign ends) count down every second; only the digits that change slide up and out as new ones come in from below.",
+        "en": "The hours, minutes and seconds under \"Until the campaign ends\" count down every second; only the digits that change slide up and out as new ones come in from below.",
         "zh-Hans": "“距离活动结束”下方的时、分、秒逐秒倒计时；只有变化的数字向上滑出，新数字从下方进入。"
       },
       "spec": {
@@ -753,7 +753,7 @@
           "9.4秒で最初の 02:15:04 に戻る（動きを付けずに切り替わる）"
         ],
         "en": [
-          "A 511 × 168 viewport: an orange gradient band with \"キャンペーン終了まで\" (until the campaign ends) and six digit tiles for hours, minutes and seconds (34 × 50 each, radius 6, 32 px digits). This card alone runs once per 9.4 s (the pack cycle).",
+          "A 511 × 168 viewport: an orange gradient band with \"Until the campaign ends\" and six digit tiles for hours, minutes and seconds (34 × 50 each, radius 6, 32 px digits). This card alone runs once per 9.4 s (the pack cycle).",
           "It starts at 02:15:04 and counts down one second at a time, nine times, every 1 s from 0.4 s, ending at 02:14:55. At 4.4 s, 02:15:00 → 02:14:59 rolls the minutes over.",
           "Only the tiles whose digit changes animate: over 0.32 s (cubic ease-in-out) the old digit slides up and out and the new one slides in from below, clipped to the tile.",
           "At 9.4 s it goes back to 02:15:04 with a plain cut."

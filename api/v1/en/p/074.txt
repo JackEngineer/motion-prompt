@@ -1,4 +1,4 @@
-Please use "Fade-in on scroll" (スクロールでフェードイン), one of the names in "Landing page & web effects".
+Please use "Fade-in on scroll", one of the names in "Landing page & web effects".
 Motion Prompt #074
 
 What it is: Elements fade in as they scroll into view

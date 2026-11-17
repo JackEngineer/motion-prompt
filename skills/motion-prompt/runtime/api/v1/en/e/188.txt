@@ -1,6 +1,6 @@
 // Motion Prompt #188 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#188
 //
-// Iris out / アイリスアウト
+// Iris out
 // Pack: camera2 (Camera moves & transitions, part 2) · element 20 · Category: Transitions & Editing
 // What happens: A circle closes down on the person until the frame is black, then opens again on the next scene.
 // Motion spec:

@@ -1,6 +1,6 @@
 // Motion Prompt #194 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#194
 //
-// Impasto oil painting / 油絵（厚塗り）
+// Impasto oil painting
 // Pack: artstyle (Art styles for image generation) · element 02 · Category: Painting & printmaking
 // What happens: The same line drawing becomes a richly colored oil painting with thick paint; brush strokes and knife marks stand out as ridges.
 // Motion spec:

@@ -1,6 +1,6 @@
 // Motion Prompt #057 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#057
 //
-// Tabs / タブ
+// Tabs
 // Pack: ui (UI component names) · element 09 · Category: Choosing & switching
 // What happens: Clicking the tabs "Overview, Pricing, Reviews" in turn slides a blue underline across and swaps the content below.
 // Motion spec:

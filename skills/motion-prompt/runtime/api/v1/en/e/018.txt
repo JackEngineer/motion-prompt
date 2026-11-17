@@ -1,6 +1,6 @@
 // Motion Prompt #018 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#018
 //
-// Shape transition / シェイプトランジション
+// Shape transition
 // Pack: motion (Motion graphics moves) · element 18 · Category: Transitions & highlights
 // What happens: Coloured bands sweep across and cover the frame; when they leave, the next scene is there.
 // Motion spec:

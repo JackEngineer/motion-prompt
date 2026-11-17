@@ -1,6 +1,6 @@
 // Motion Prompt #166 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#166
 //
-// Like button animation / いいねアニメーション
+// Like button animation
 // Pack: lp2 (Landing page & web effects, part 2) · element 22 · Category: Showcase effects
 // What happens: Clicking the heart fills it red with a springy pop, small particles burst around it and the count beside it goes up by one; clicking again undoes it.
 // Motion spec:

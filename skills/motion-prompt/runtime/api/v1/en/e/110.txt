@@ -1,6 +1,6 @@
 // Motion Prompt #110 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#110
 //
-// Fisheye lens / 魚眼レンズ
+// Fisheye lens
 // Pack: photo (Photo looks, lighting & styles) · element 14 · Category: Lens & camera effects
 // What happens: The middle of the street scene bulges out; the vertical lines of the buildings and the lines of the road bow outward while the corners stay where they are.
 // Motion spec:

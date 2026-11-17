@@ -1,6 +1,6 @@
 // Motion Prompt #076 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#076
 //
-// Pinning / ピン留め
+// Pinning
 // Pack: lp (Landing page & web effects) · element 04 · Category: Scroll effects
 // What happens: A navy section stops when it fills the view; further scrolling steps the number and photo through 1→2→3, then the section scrolls on.
 // Motion spec:

@@ -1,6 +1,6 @@
 // Motion Prompt #080 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#080
 //
-// Highlighter animation / マーカーアニメーション
+// Highlighter animation
 // Pack: lp (Landing page & web effects) · element 08 · Category: Scroll effects
 // What happens: As the copy scrolls into view, a yellow highlighter stroke is drawn left to right across the lower half of the key words.
 // Motion spec:

@@ -1,6 +1,6 @@
 // Motion Prompt #081 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#081
 //
-// Hover lift / ホバーで浮き上がる
+// Hover lift
 // Pack: lp (Landing page & web effects) · element 09 · Category: Hover & click interactions
 // What happens: Only the card under the cursor lifts slightly and its shadow spreads; it settles back when the cursor leaves.
 // Motion spec:

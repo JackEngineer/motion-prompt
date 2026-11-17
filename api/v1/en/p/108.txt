@@ -1,4 +1,4 @@
-Please use "Panning shot" (流し撮り), one of the names in "Photo looks, lighting & styles".
+Please use "Panning shot", one of the names in "Photo looks, lighting & styles".
 Motion Prompt #108
 
 What it is: Follow a moving subject so only the background streaks

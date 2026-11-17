@@ -1,6 +1,6 @@
 // Motion Prompt #035 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#035
 //
-// FPV drone shot / FPV
+// FPV drone shot
 // Pack: camera (Camera moves & transitions) · element 11 · Category: Shooting Style & Time
 // What happens: A first-person view flying low and fast between two rows of trees, banking from side to side.
 // Motion spec:

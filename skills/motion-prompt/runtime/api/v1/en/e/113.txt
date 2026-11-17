@@ -1,6 +1,6 @@
 // Motion Prompt #113 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#113
 //
-// High-key / ハイキー
+// High-key
 // Pack: photo (Photo looks, lighting & styles) · element 17 · Category: Tones & finishing looks
 // What happens: The landscape and the person turn to light, near-white colours with very faint shadows, and the hump of the histogram at the bottom right moves to the right end.
 // Motion spec:

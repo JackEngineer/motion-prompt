@@ -1,4 +1,4 @@
-Please use "Exit-intent popup" (離脱防止ポップアップ), one of the names in "Landing page & web effects".
+Please use "Exit-intent popup", one of the names in "Landing page & web effects".
 Motion Prompt #088
 
 What it is: A popup shown when the visitor is about to leave

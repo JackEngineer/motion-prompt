@@ -1,6 +1,6 @@
 // Motion Prompt #063 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#063
 //
-// Stepper (+/−) / ステッパー
+// Stepper (+/−)
 // Pack: ui (UI component names) · element 15 · Category: Choosing & switching
 // What happens: Pressing + three times raises the number from 1 to 4, and pressing − three times brings it back to 1; the number pops on each press.
 // Motion spec:

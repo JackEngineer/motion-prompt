@@ -1,4 +1,4 @@
-Please use "Filter chips" (チップ), one of the names in "UI component names".
+Please use "Filter chips", one of the names in "UI component names".
 Motion Prompt #061
 
 What it is: Small pills you click to add or remove a filter

@@ -1,6 +1,6 @@
 // Motion Prompt #217 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#217
 //
-// Venn diagram / ベン図
+// Venn diagram
 // Pack: diagram (Diagrams and charts for slides) · element 01 · Category: Diagrams that organize ideas
 // What happens: Two circles slide in from the sides and overlap, and only the shared part turns dark blue.
 // Motion spec:

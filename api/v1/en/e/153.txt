@@ -1,6 +1,6 @@
 // Motion Prompt #153 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#153
 //
-// 3D tilt on hover / 3Dチルト
+// 3D tilt on hover
 // Pack: lp2 (Landing page & web effects, part 2) · element 09 · Category: Mouse & input interactions
 // What happens: As the cursor moves over the card, the card tilts in depth to match the cursor position and a glare moves across its surface; it settles flat when the cursor leaves.
 // Motion spec:

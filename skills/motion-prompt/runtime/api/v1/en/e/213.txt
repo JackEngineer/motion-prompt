@@ -1,6 +1,6 @@
 // Motion Prompt #213 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#213
 //
-// Clay animation style / クレイアニメ風
+// Clay animation style
 // Pack: artstyle (Art styles for image generation) · element 21 · Category: Digital, 3D & materials
 // What happens: The same line drawing becomes 3D models made of clay, with fingerprints and clay texture on the surface.
 // Motion spec:

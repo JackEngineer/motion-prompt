@@ -1,4 +1,4 @@
-Please use "Heatmap" (ヒートマップ), one of the names in "Diagrams and charts for slides".
+Please use "Heatmap", one of the names in "Diagrams and charts for slides".
 Motion Prompt #227
 
 What it is: Table cells shaded by their value

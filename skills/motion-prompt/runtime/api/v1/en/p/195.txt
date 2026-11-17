@@ -1,4 +1,4 @@
-Please use "Ink wash painting (sumi-e)" (水墨画), one of the names in "Art styles for image generation".
+Please use "Ink wash painting (sumi-e)", one of the names in "Art styles for image generation".
 Motion Prompt #195
 
 What it is: Painted only with shades and washes of black ink

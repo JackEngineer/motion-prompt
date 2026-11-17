@@ -1,4 +1,4 @@
-Please use "Cross dissolve" (クロスディゾルブ), one of the names in "Camera moves & transitions".
+Please use "Cross dissolve", one of the names in "Camera moves & transitions".
 Motion Prompt #044
 
 What it is: Blend one shot into the next

@@ -1,4 +1,4 @@
-Please use "Drawer (Off-canvas)" (ドロワー), one of the names in "UI component names".
+Please use "Drawer (Off-canvas)", one of the names in "UI component names".
 Motion Prompt #050
 
 What it is: A menu panel slides in from the side of the screen

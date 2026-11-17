@@ -1,6 +1,6 @@
 // Motion Prompt #085 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#085
 //
-// Ripple effect / リップルエフェクト
+// Ripple effect
 // Pack: lp (Landing page & web effects) · element 13 · Category: Hover & click interactions
 // What happens: Each click sends a white circle out from the click point to fill the button, then it fades away.
 // Motion spec:

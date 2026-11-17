@@ -1,4 +1,4 @@
-Please use "Impasto oil painting" (油絵（厚塗り）), one of the names in "Art styles for image generation".
+Please use "Impasto oil painting", one of the names in "Art styles for image generation".
 Motion Prompt #194
 
 What it is: Thick paint with visible brush and knife marks

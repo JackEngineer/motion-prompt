@@ -1,4 +1,4 @@
-Please use "3D tilt on hover" (3Dチルト), one of the names in "Landing page & web effects, part 2".
+Please use "3D tilt on hover", one of the names in "Landing page & web effects, part 2".
 Motion Prompt #153
 
 What it is: The card tilts in 3D following the cursor

@@ -1,6 +1,6 @@
 // Motion Prompt #170 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#170
 //
-// Barrel roll / バレルロール
+// Barrel roll
 // Pack: camera2 (Camera moves & transitions, part 2) · element 02 · Category: Camera Movement
 // What happens: The camera rolls a full turn around its lens axis; the horizon goes all the way round and comes back level.
 // Motion spec:

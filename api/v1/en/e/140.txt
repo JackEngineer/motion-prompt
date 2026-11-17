@@ -1,6 +1,6 @@
 // Motion Prompt #140 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#140
 //
-// Page curl / ページめくり
+// Page curl
 // Pack: motion2 (Motion graphics moves, part 2) · element 20 · Category: Transitions & highlights
 // What happens: A page peels back from its corner and folds over, revealing the next page beneath.
 // Motion spec:

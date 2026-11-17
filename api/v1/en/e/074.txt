@@ -1,6 +1,6 @@
 // Motion Prompt #074 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#074
 //
-// Fade-in on scroll / スクロールでフェードイン
+// Fade-in on scroll
 // Pack: lp (Landing page & web effects) · element 02 · Category: Scroll effects
 // What happens: As the page scrolls, the heading, the cards and the body text each rise into place and fade in when they enter the view.
 // Motion spec:

@@ -5,26 +5,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>社区案例｜Motion Prompt</title>
 <meta name="description" content="这里收录了创作者发布的术语、动态示例和速查表，涉及不同领域、语言与风格。我们选择由投稿者自行制作示例的帖子，帖子内容及相关权利属于各位作者。">
-<link rel="canonical" href="https://showheyohtaki.github.io/motion-prompt/found.html">
+<link rel="canonical" href="https://jackengineer.github.io/motion-prompt/found.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Motion Prompt">
 <meta property="og:title" content="社区案例｜Motion Prompt">
 <meta property="og:description" content="这里收录了创作者发布的术语、动态示例和速查表，涉及不同领域、语言与风格。我们选择由投稿者自行制作示例的帖子，帖子内容及相关权利属于各位作者。">
-<meta property="og:url" content="https://showheyohtaki.github.io/motion-prompt/found.html">
-<meta property="og:image" content="assets/og-zh-Hans.png">
+<meta property="og:url" content="https://jackengineer.github.io/motion-prompt/found.html">
+<meta property="og:image" content="https://jackengineer.github.io/motion-prompt/assets/og-zh-Hans.png">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:locale:alternate" content="en_US">
 <meta name="color-scheme" content="light dark">
 <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 <script>
-/* Apply the saved theme and language before first paint (same keys as index.html). */
+/* Apply the saved theme and language before first paint. */
 (function () {
   var d = document.documentElement, t = null, l = null;
   try { t = localStorage.getItem('mp-theme'); l = localStorage.getItem('mp-lang'); } catch (e) {}
-  var m = /[?&]lang=(ja|en|zh-Hans)(?:&|$)/.exec(location.search); if (m) l = m[1];
+  var q = new URLSearchParams(location.search);
+  if (q.has('lang')) l = q.get('lang');
+  d.lang = l === 'en' ? 'en' : 'zh-Hans';
+  if (q.has('lang') && q.get('lang') !== d.lang) {
+    q.set('lang', d.lang);
+    history.replaceState(history.state, '', location.pathname + '?' + q.toString() + location.hash);
+  }
   if (t === 'light' || t === 'dark') d.setAttribute('data-theme', t);
-  if (l !== 'ja' && l !== 'en' && l !== 'zh-Hans') l = 'zh-Hans';
-  d.lang = l;
 })();
 </script>
 <link rel="stylesheet" href="assets/site.css">
@@ -39,10 +43,9 @@
     <nav class="top-nav" aria-label="站内导航" data-t-attr="aria-label:navLabel">
       <a class="top-link top-how" href="./" data-t="navGallery">示例库</a>
       <a class="top-link" href="found.html" aria-current="page" data-t="navFound">社区案例</a>
-      <a class="top-link top-gh" href="https://github.com/showheyohtaki/motion-prompt" rel="noopener">GitHub</a>
+      <a class="top-link top-gh" href="https://github.com/JackEngineer/motion-prompt" rel="noopener">GitHub</a>
       <div class="seg" role="group" aria-label="语言" data-t-attr="aria-label:langLabel">
         <button type="button" class="seg-b" data-lang="zh-Hans" aria-pressed="true" aria-label="简体中文">中文</button>
-        <button type="button" class="seg-b" data-lang="ja" aria-pressed="false" aria-label="日本語">JA</button>
         <button type="button" class="seg-b" data-lang="en" aria-pressed="false" aria-label="English">EN</button>
       </div>
       <button type="button" class="icon-b" id="theme" aria-label="切换到深色模式">
@@ -95,10 +98,10 @@
   <div class="wrap foot-in">
     <p><strong>Motion Prompt</strong> · MIT 许可证 · <span data-t="author">作者</span> <span data-t="authorName">Shohei Ohtaki</span>（<a href="https://x.com/showheyohtaki" rel="noopener">@showheyohtaki</a>）</p>
     <p class="foot-links">
-      <a href="README.zh-Hans.md" data-href-ja="https://github.com/showheyohtaki/motion-prompt/blob/main/README.ja.md#なぜ作ったか" data-href-en="https://github.com/showheyohtaki/motion-prompt#why-i-made-this" rel="noopener" data-href-zh-Hans="README.zh-Hans.md" data-t="whyLink">创作缘由</a>
-      <a href="packs/README.zh-Hans.md" data-href-ja="packs/README.md" data-href-en="packs/README.md" rel="noopener" data-href-zh-Hans="packs/README.zh-Hans.md" data-t="listLink">术语列表</a>
-      <a href="make-your-own/README.zh-Hans.md" data-href-ja="https://github.com/showheyohtaki/motion-prompt/blob/main/make-your-own/README.ja.md" data-href-en="https://github.com/showheyohtaki/motion-prompt/tree/main/make-your-own" rel="noopener" data-href-zh-Hans="make-your-own/README.zh-Hans.md" data-t="makeLink">制作自己的领域或语言版本</a>
-      <a href="CONTRIBUTING.zh-Hans.md" data-href-ja="https://github.com/showheyohtaki/motion-prompt/blob/main/CONTRIBUTING.ja.md" data-href-en="https://github.com/showheyohtaki/motion-prompt/blob/main/CONTRIBUTING.md" data-href-zh-Hans="CONTRIBUTING.zh-Hans.md" rel="noopener" data-t="addLink">贡献你所在领域的术语</a>
+      <a href="README.zh-Hans.md" data-href-en="https://github.com/JackEngineer/motion-prompt/blob/main/README.en.md#why-i-made-this" rel="noopener" data-href-zh-Hans="README.zh-Hans.md" data-t="whyLink">创作缘由</a>
+      <a href="packs/README.zh-Hans.md" data-href-en="packs/README.md" rel="noopener" data-href-zh-Hans="packs/README.zh-Hans.md" data-t="listLink">术语列表</a>
+      <a href="make-your-own/README.zh-Hans.md" data-href-en="https://github.com/showheyohtaki/motion-prompt/tree/main/make-your-own" rel="noopener" data-href-zh-Hans="make-your-own/README.zh-Hans.md" data-t="makeLink">制作自己的领域或语言版本</a>
+      <a href="CONTRIBUTING.zh-Hans.md" data-href-en="https://github.com/showheyohtaki/motion-prompt/blob/main/CONTRIBUTING.md" data-href-zh-Hans="CONTRIBUTING.zh-Hans.md" rel="noopener" data-t="addLink">贡献你所在领域的术语</a>
     </p>
     <p class="foot-remove"><span data-t="removeP1">如需删除或更正收录内容，请使用</span><a href="https://github.com/JackEngineer/motion-prompt/issues/new?template=3-removal.yml" rel="noopener" data-t="removeLink">GitHub Issue 表单</a><span data-t="removeP2">提交申请，核实后会尽快处理。</span></p>
     <p class="foot-thanks"><span data-t="thanks1">动态示例配合可复制提示词的形式受到</span> <a href="https://lucianlabs.dev/uxui-prompt/" rel="noopener">Lucian UX/UI Prompt</a> <span data-t="thanks2">的启发，感谢原作者。</span></p>

@@ -1,6 +1,6 @@
 // Motion Prompt #138 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#138
 //
-// Blinds transition / ブラインド
+// Blinds transition
 // Pack: motion2 (Motion graphics moves, part 2) · element 18 · Category: Transitions & highlights
 // What happens: Gaps in a row of thin strips widen until the next scene is fully open.
 // Motion spec:

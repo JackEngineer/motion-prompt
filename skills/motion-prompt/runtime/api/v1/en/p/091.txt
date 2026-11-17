@@ -1,4 +1,4 @@
-Please use "Infinite scroll" (無限スクロール), one of the names in "Landing page & web effects".
+Please use "Infinite scroll", one of the names in "Landing page & web effects".
 Motion Prompt #091
 
 What it is: More items load automatically at the bottom

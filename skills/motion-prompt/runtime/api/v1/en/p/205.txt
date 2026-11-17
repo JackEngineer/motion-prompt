@@ -1,4 +1,4 @@
-Please use "Risograph print" (リソグラフ), one of the names in "Art styles for image generation".
+Please use "Risograph print", one of the names in "Art styles for image generation".
 Motion Prompt #205
 
 What it is: Two or three inks overlapping slightly out of register

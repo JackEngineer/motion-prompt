@@ -1,4 +1,4 @@
-Please use "Hotspots" (ホットスポット), one of the names in "Landing page & web effects, part 2".
+Please use "Hotspots", one of the names in "Landing page & web effects, part 2".
 Motion Prompt #163
 
 What it is: Dots on an image open notes when clicked

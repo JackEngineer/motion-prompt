@@ -1,6 +1,6 @@
 // Motion Prompt #003 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#003
 //
-// Burst / バースト
+// Burst
 // Pack: motion (Motion graphics moves) · element 03 · Category: Entrances & text
 // What happens: A like heart fills in, and a ring, lines and dots burst outward at the same moment.
 // Motion spec:

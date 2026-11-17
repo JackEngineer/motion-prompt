@@ -1,4 +1,4 @@
-Please use "Shape morph" (モーフィング), one of the names in "Motion graphics moves".
+Please use "Shape morph", one of the names in "Motion graphics moves".
 Motion Prompt #012
 
 What it is: One shape turns smoothly into another

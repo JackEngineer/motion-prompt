@@ -1,4 +1,4 @@
-Please use "Easing" (イージング), one of the names in "Motion graphics moves".
+Please use "Easing", one of the names in "Motion graphics moves".
 Motion Prompt #009
 
 What it is: Motion speeds up and slows down instead of moving at one speed

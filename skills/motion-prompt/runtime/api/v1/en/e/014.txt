@@ -1,6 +1,6 @@
 // Motion Prompt #014 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#014
 //
-// Motion trail / モーショントレイル
+// Motion trail
 // Pack: motion (Motion graphics moves) · element 14 · Category: Motion polish
 // What happens: A ball moving in a figure eight leaves a fading trail of copies behind it.
 // Motion spec:

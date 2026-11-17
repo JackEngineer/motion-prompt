@@ -1,6 +1,6 @@
 // Motion Prompt #240 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#240
 //
-// Concentric circle diagram / 同心円図
+// Concentric circle diagram
 // Pack: diagram (Diagrams and charts for slides) · element 24 · Category: Diagrams of flow and the whole picture
 // What happens: Outer, middle and inner circles grow from the same center one after another, nested inside each other, with the labels TAM, SAM and SOM.
 // Motion spec:

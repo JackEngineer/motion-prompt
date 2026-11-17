@@ -1,6 +1,6 @@
 // Motion Prompt #144 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#144
 //
-// Split screen / スプリットスクリーン
+// Split screen
 // Pack: motion2 (Motion graphics moves, part 2) · element 24 · Category: Transitions & highlights
 // What happens: One full-frame scene splits into two panels, then three, each with its own scene moving.
 // Motion spec:

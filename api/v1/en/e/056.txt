@@ -1,6 +1,6 @@
 // Motion Prompt #056 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#056
 //
-// Toast notification / トースト
+// Toast notification
 // Pack: ui (UI component names) · element 08 · Category: Opening & overlays
 // What happens: Clicking "Save" slides a dark notice into the bottom-right corner; when its time bar runs out it slides away.
 // Motion spec:

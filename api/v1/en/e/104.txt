@@ -1,6 +1,6 @@
 // Motion Prompt #104 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#104
 //
-// Blue hour / ブルーアワー
+// Blue hour
 // Pack: photo (Photo looks, lighting & styles) · element 08 · Category: Lighting & time of day
 // What happens: Once the sun has set, the sky turns two bands of deep blue, the windows and street lamp come on in amber and the person becomes a dark blue shape.
 // Motion spec:

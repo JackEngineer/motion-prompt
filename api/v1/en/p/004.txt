@@ -1,4 +1,4 @@
-Please use "Line draw" (ラインドロー), one of the names in "Motion graphics moves".
+Please use "Line draw", one of the names in "Motion graphics moves".
 Motion Prompt #004
 
 What it is: A line extends as if it were being drawn

@@ -1,6 +1,6 @@
 // Motion Prompt #034 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#034
 //
-// Handheld / 手持ち
+// Handheld
 // Pack: camera (Camera moves & transitions) · element 10 · Category: Shooting Style & Time
 // What happens: Adds a small, irregular shake to the whole frame, as if the camera were held by hand instead of on a tripod.
 // Motion spec:

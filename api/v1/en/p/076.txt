@@ -1,4 +1,4 @@
-Please use "Pinning" (ピン留め), one of the names in "Landing page & web effects".
+Please use "Pinning", one of the names in "Landing page & web effects".
 Motion Prompt #076
 
 What it is: A section stays fixed while scrolling advances its content

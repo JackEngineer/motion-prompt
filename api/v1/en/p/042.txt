@@ -1,4 +1,4 @@
-Please use "Match cut" (マッチカット), one of the names in "Camera moves & transitions".
+Please use "Match cut", one of the names in "Camera moves & transitions".
 Motion Prompt #042
 
 What it is: Cut on a matching shape or motion

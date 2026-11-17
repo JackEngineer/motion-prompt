@@ -1,6 +1,6 @@
 // Motion Prompt #196 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#196
 //
-// Ukiyo-e woodblock print / 浮世絵
+// Ukiyo-e woodblock print
 // Pack: artstyle (Art styles for image generation) · element 04 · Category: Painting & printmaking
 // What happens: The same line drawing becomes an Edo-period color woodblock print: the house turns into a tiled-roof Japanese house, the tree into a pine, the sun into a red circle, and the sky fades from deep indigo at the top.
 // Motion spec:

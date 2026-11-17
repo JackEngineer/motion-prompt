@@ -1,6 +1,6 @@
 // Motion Prompt #077 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#077
 //
-// Horizontal scroll / 横スクロール
+// Horizontal scroll
 // Pack: lp (Landing page & web effects) · element 05 · Category: Scroll effects
 // What happens: As the page scrolls down, the section holds still and four numbered work cards travel to the left.
 // Motion spec:

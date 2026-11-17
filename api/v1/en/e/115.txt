@@ -1,6 +1,6 @@
 // Motion Prompt #115 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#115
 //
-// Black and white / モノクロ
+// Black and white
 // Pack: photo (Photo looks, lighting & styles) · element 19 · Category: Tones & finishing looks
 // What happens: The colour drains from the same landscape; the sun and the light on the figure turn grey and the shapes read only by their brightness.
 // Motion spec:

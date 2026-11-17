@@ -1,4 +1,4 @@
-Please use "100% stacked bar chart" (帯グラフ（100%積み上げ）), one of the names in "Diagrams and charts for slides".
+Please use "100% stacked bar chart", one of the names in "Diagrams and charts for slides".
 Motion Prompt #232
 
 What it is: Bars split by percentage to compare the breakdown

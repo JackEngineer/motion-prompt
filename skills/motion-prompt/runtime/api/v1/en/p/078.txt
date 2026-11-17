@@ -1,4 +1,4 @@
-Please use "Scroll snap" (スクロールスナップ), one of the names in "Landing page & web effects".
+Please use "Scroll snap", one of the names in "Landing page & web effects".
 Motion Prompt #078
 
 What it is: Scrolling settles exactly on the next section

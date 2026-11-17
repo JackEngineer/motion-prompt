@@ -1,6 +1,6 @@
 // Motion Prompt #131 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#131
 //
-// Text on a path / テキストオンパス
+// Text on a path
 // Pack: motion2 (Motion graphics moves, part 2) · element 11 · Category: Text & shapes
 // What happens: A line of text flows along a wavy line, each letter turning to follow it.
 // Motion spec:

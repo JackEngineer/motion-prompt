@@ -1,4 +1,4 @@
-Please use "Range slider" (レンジスライダー), one of the names in "UI component names".
+Please use "Range slider", one of the names in "UI component names".
 Motion Prompt #062
 
 What it is: Two handles on one track pick a minimum and a maximum

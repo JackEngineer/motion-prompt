@@ -1,4 +1,4 @@
-Please use "Wipe" (ワイプ), one of the names in "Camera moves & transitions".
+Please use "Wipe", one of the names in "Camera moves & transitions".
 Motion Prompt #045
 
 What it is: A moving edge replaces the shot

@@ -1,6 +1,6 @@
 // Motion Prompt #126 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#126
 //
-// Motion path / モーションパス
+// Motion path
 // Pack: motion2 (Motion graphics moves, part 2) · element 06 · Category: Motion techniques
 // What happens: A paper plane follows a dotted path, turning as it goes and looping the loop on the way.
 // Motion spec:

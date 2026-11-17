@@ -1,4 +1,4 @@
-Please use "Pop art" (ポップアート), one of the names in "Art styles for image generation".
+Please use "Pop art", one of the names in "Art styles for image generation".
 Motion Prompt #201
 
 What it is: Primary-color areas, bold black outlines and a few halftone dots

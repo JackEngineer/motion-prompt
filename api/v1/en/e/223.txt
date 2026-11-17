@@ -1,6 +1,6 @@
 // Motion Prompt #223 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#223
 //
-// Cycle diagram / サイクル図
+// Cycle diagram
 // Pack: diagram (Diagrams and charts for slides) · element 07 · Category: Diagrams that organize ideas
 // What happens: Circles numbered 1 to 4 sit on a ring, arrows draw one after another until the ring closes, then a blue highlight goes round once.
 // Motion spec:

@@ -1,4 +1,4 @@
-Please use "Rembrandt lighting" (レンブラントライティング), one of the names in "Photo looks, lighting & styles".
+Please use "Rembrandt lighting", one of the names in "Photo looks, lighting & styles".
 Motion Prompt #101
 
 What it is: High side light that leaves a lit triangle on the shadow cheek

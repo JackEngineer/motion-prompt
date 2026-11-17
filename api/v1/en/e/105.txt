@@ -1,6 +1,6 @@
 // Motion Prompt #105 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#105
 //
-// Bokeh / ボケ
+// Bokeh
 // Pack: photo (Photo looks, lighting & styles) · element 09 · Category: Lens & camera effects
 // What happens: As the aperture opens, the in-focus person stays sharp, the buildings behind soften and the street lamps and distant lights spread into large, pale discs.
 // Motion spec:

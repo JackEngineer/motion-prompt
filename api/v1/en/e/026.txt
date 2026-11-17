@@ -1,6 +1,6 @@
 // Motion Prompt #026 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#026
 //
-// Tilt / ティルト
+// Tilt
 // Pack: camera (Camera moves & transitions) · element 02 · Category: Camera Movement
 // What happens: The camera stays in place and pivots upward, from a person at ground level up to the top of a tower.
 // Motion spec:

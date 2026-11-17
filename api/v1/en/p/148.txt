@@ -1,4 +1,4 @@
-Please use "Background color change on scroll" (背景色の切り替え), one of the names in "Landing page & web effects, part 2".
+Please use "Background color change on scroll", one of the names in "Landing page & web effects, part 2".
 Motion Prompt #148
 
 What it is: The page background changes color by section

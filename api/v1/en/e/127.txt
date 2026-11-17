@@ -1,6 +1,6 @@
 // Motion Prompt #127 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#127
 //
-// Ping-pong loop / ピンポンループ
+// Ping-pong loop
 // Pack: motion2 (Motion graphics moves, part 2) · element 07 · Category: Motion techniques
 // What happens: A square travels to one end, then comes back along the same path as if played in reverse, again and again.
 // Motion spec:

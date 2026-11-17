@@ -1,4 +1,4 @@
-Please use "Pixelate" (ピクセレート), one of the names in "Motion graphics moves, part 2".
+Please use "Pixelate", one of the names in "Motion graphics moves, part 2".
 Motion Prompt #141
 
 What it is: Turns into coarse blocks, then switches

@@ -1,6 +1,6 @@
 // Motion Prompt #005 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#005
 //
-// Mask reveal / マスクリビール
+// Mask reveal
 // Pack: motion (Motion graphics moves) · element 05 · Category: Entrances & text
 // What happens: Headline text slides out from behind an invisible edge marked by a single line.
 // Motion spec:

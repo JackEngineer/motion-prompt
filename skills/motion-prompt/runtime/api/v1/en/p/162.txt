@@ -1,4 +1,4 @@
-Please use "Lightbox" (ライトボックス), one of the names in "Landing page & web effects, part 2".
+Please use "Lightbox", one of the names in "Landing page & web effects, part 2".
 Motion Prompt #162
 
 What it is: Opens an image large over a dimmed page

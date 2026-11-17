@@ -1,6 +1,6 @@
 // Motion Prompt #059 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#059
 //
-// Toggle switch / トグルスイッチ
+// Toggle switch
 // Pack: ui (UI component names) · element 11 · Category: Choosing & switching
 // What happens: The switches on the first two of three setting rows are turned on in turn, then off again.
 // Motion spec:

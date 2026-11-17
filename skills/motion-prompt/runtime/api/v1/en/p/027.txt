@@ -1,4 +1,4 @@
-Please use "Dolly in" (ドリーイン), one of the names in "Camera moves & transitions".
+Please use "Dolly in", one of the names in "Camera moves & transitions".
 Motion Prompt #027
 
 What it is: Move the camera toward the subject

@@ -1,4 +1,4 @@
-Please use "Toggle switch" (トグルスイッチ), one of the names in "UI component names".
+Please use "Toggle switch", one of the names in "UI component names".
 Motion Prompt #059
 
 What it is: Flip a setting on or off

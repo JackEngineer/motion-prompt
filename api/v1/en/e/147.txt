@@ -1,6 +1,6 @@
 // Motion Prompt #147 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#147
 //
-// Stacking cards / スタッキングカード
+// Stacking cards
 // Pack: lp2 (Landing page & web effects, part 2) · element 03 · Category: Scroll effects
 // What happens: On scroll, the next card rises from below and stacks over the previous one with a small offset; the cards underneath shrink a little and darken.
 // Motion spec:

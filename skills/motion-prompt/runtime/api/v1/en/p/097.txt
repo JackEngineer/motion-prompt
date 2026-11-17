@@ -1,4 +1,4 @@
-Please use "Backlighting" (逆光), one of the names in "Photo looks, lighting & styles".
+Please use "Backlighting", one of the names in "Photo looks, lighting & styles".
 Motion Prompt #097
 
 What it is: The light source sits behind the subject

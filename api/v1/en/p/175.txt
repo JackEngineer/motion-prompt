@@ -1,4 +1,4 @@
-Please use "Locked-off shot" (ロックオフ), one of the names in "Camera moves & transitions, part 2".
+Please use "Locked-off shot", one of the names in "Camera moves & transitions, part 2".
 Motion Prompt #175
 
 What it is: Camera fixed; only the subject moves

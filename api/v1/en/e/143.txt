@@ -1,6 +1,6 @@
 // Motion Prompt #143 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#143
 //
-// Exploded view / 分解図
+// Exploded view
 // Pack: motion2 (Motion graphics moves, part 2) · element 23 · Category: Transitions & highlights
 // What happens: A phone separates into its layers to show how it is built, then assembles again.
 // Motion spec:

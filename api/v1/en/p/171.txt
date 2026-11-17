@@ -1,4 +1,4 @@
-Please use "Hyperlapse" (ハイパーラプス), one of the names in "Camera moves & transitions, part 2".
+Please use "Hyperlapse", one of the names in "Camera moves & transitions, part 2".
 Motion Prompt #171
 
 What it is: A time-lapse shot while the camera travels

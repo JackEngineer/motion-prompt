@@ -1,4 +1,4 @@
-Please use "Film grain" (フィルムグレイン), one of the names in "Photo looks, lighting & styles".
+Please use "Film grain", one of the names in "Photo looks, lighting & styles".
 Motion Prompt #118
 
 What it is: Fine, film-like grain over the image

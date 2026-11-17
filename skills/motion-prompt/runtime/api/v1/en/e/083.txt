@@ -1,6 +1,6 @@
 // Motion Prompt #083 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#083
 //
-// Cursor follower / マウスストーカー
+// Cursor follower
 // Pack: lp (Landing page & web effects) · element 11 · Category: Hover & click interactions
 // What happens: As the cursor moves around the page, an orange circle follows it a little behind.
 // Motion spec:

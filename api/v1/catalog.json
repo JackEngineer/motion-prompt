@@ -1,5 +1,5 @@
 {
- "version": "1.9120f23441",
+ "version": "1.361dd3737d",
  "site": "https://showheyohtaki.github.io/motion-prompt/",
  "repo": "https://github.com/showheyohtaki/motion-prompt",
  "count": 240,
@@ -4481,7 +4481,7 @@
      "Incoming shot (2.4–4.2 s): focal length 2.6× (858 px) for a tight framing, rolled -0.12 rad (about -7°); the person has both arms raised, with 18 radial blue lines",
      "Shake in the incoming shot: roll ±0.03 rad (about 6 cycles per second) and yaw ±0.006 rad (about 8 per second); volume meter at 0.85±0.15, nearly full",
      "Return: cross-fade back to the quiet shot over the last 0.5 s (quadratic ease-in-out)",
-     "Top-right readout shows \"♪ 静か\" (quiet) → \"♪ 大音量\" (loud)"
+     "Top-right readout shows \"♪ Quiet\" → \"♪ Loud\""
     ],
     "zh-Hans": [
      "衔接：2.4 s 处直接切换，0 帧，无转场效果，依靠反差产生冲击。",
@@ -4567,7 +4567,7 @@
      "Playhead: moves left to right at constant speed over 3.6 s (0.4 s to 4.0 s); audio switches at 35% (about 1.66 s), picture at 55% (about 2.38 s)",
      "In the offset section (35–55%) the picture is still A while the audio is already B; the section is marked with a pale blue band and two blue dashed lines",
      "Layout: the top 134 px is the picture (fixed camera, subjects do not move); the bottom 74 px holds two timeline rows, video and audio (A grey, B pale blue, waveform on the audio row)",
-     "Labels: \"映像A / 映像B\" (video A / B) at bottom left of the picture; the audio now playing at bottom right (\"♪ Aの音\" grey → \"♪ Bの音\" blue)",
+     "Labels: \"Video A / Video B\" at bottom left of the picture; the audio now playing at bottom right (\"♪ Audio A\" grey → \"♪ Audio B\" blue)",
      "Return: cross-fade back to the start over the last 0.5 s (one pass = 4.7 s)"
     ],
     "zh-Hans": [
@@ -4654,7 +4654,7 @@
      "Playhead: moves left to right at constant speed over 3.6 s (0.4 s to 4.0 s); picture switches at 55% (about 2.38 s), audio at 75% (about 3.10 s)",
      "In the offset section (55–75%) the picture is already B while the audio is still A; the section is marked with a pale blue band and two blue dashed lines",
      "Layout: the top 134 px is the picture (fixed camera, subjects do not move); the bottom 74 px holds two timeline rows, video and audio (A grey, B pale blue, waveform on the audio row)",
-     "Labels: \"映像A / 映像B\" (video A / B) at bottom left of the picture; the audio now playing at bottom right (\"♪ Aの音\" grey → \"♪ Bの音\" blue)",
+     "Labels: \"Video A / Video B\" at bottom left of the picture; the audio now playing at bottom right (\"♪ Audio A\" grey → \"♪ Audio B\" blue)",
      "Return: cross-fade back to the start over the last 0.5 s (one pass = 4.7 s)"
     ],
     "zh-Hans": [
@@ -13654,7 +13654,7 @@
      "入力位置の縦線は0.9秒ごとに点滅（打っている間は点けたまま）"
     ],
     "en": [
-     "A 511 × 168 viewport with a 300 × 46 field (radius 8) holding the label \"メールアドレス\" (email address, 15 px). The field is clicked at 0.65 s, and a click outside at 3.95 s removes focus. One pass takes 4.7 s (twice per 9.4 s pack cycle).",
+     "A 511 × 168 viewport with a 300 × 46 field (radius 8) holding the label \"Email address\" (15 px). The field is clicked at 0.65 s, and a click outside at 3.95 s removes focus. One pass takes 4.7 s (twice per 9.4 s pack cycle).",
      "While focused or not empty, over 0.24 s (cubic ease-out) the label shrinks 15 → 11.5 px and moves from the middle of the field onto the top border (left padding 14 → 10 px); the border is masked in white behind it.",
      "While focused, over 0.15 s (cubic ease-out) the border turns from gray to orange and 1.5 → 2.2 px wide, and the label turns orange.",
      "\"hello@example.com\" is typed one character per 0.075 s from 1.0 s and deleted one per 0.03 s from 3.2 s. Once empty and unfocused, the label moves back inside over the same 0.24 s.",
@@ -13736,7 +13736,7 @@
     ],
     "en": [
      "A 511 × 168 viewport with a 300 × 44 email field (radius 8). Clicked at 0.45 s, clicked away at 4.2 s. \"hana@example.com\" (16 characters) is typed one character per 0.115 s from 0.75 s and deleted one per 0.03 s from 3.6 s. One pass takes 4.7 s (twice per 9.4 s pack cycle).",
-     "From the second character until the last one is typed it is invalid: over 0.15 s (cubic ease-out) the border turns red (#E5383B), the fill pale red (#FFF1F1), and a red \"!\" circle with \"形式が正しくありません\" (invalid format, 13 px) appears below.",
+     "From the second character until the last one is typed it is invalid: over 0.15 s (cubic ease-out) the border turns red (#E5383B), the fill pale red (#FFF1F1), and a red \"!\" circle with \"Invalid format\" (13 px) appears below.",
      "When the last character makes it valid, over 0.25 s the border turns green (#1E9E5A), a green circle (radius 11, bouncing in with GSAP elastic.out(1, 0.3)) with a white check appears at the right end, and \"OK\" appears below.",
      "While focused, the border turns from gray to navy and 1.5 → 2.2 px wide over 0.15 s. Once deletion starts, the messages go away."
     ],
@@ -13815,11 +13815,11 @@
      "3.9〜4.1秒で消え、4.1〜4.4秒で元の「送信する」が6px下から戻る（easeOut 3乗）"
     ],
     "en": [
-     "A 511 × 168 viewport with an orange pill button, 220 × 36, labeled \"送信する\" (Send). It is clicked at 0.8 s. One pass takes 4.7 s (twice per 9.4 s pack cycle).",
+     "A 511 × 168 viewport with an orange pill button, 220 × 36, labeled \"Send\". It is clicked at 0.8 s. One pass takes 4.7 s (twice per 9.4 s pack cycle).",
      "Over 0.85–1.15 s (0.3 s, cubic ease-in-out) it shrinks from 220 to 36 px wide, a circle; the label fades in the first third of the shrink.",
      "From 1.1 to 2.3 s a white spinner (radius 10, line width 3, 0.7π arc) turns once every 0.7 s inside the circle.",
-     "Over 2.25–2.45 s the color goes orange → green (#1E9E5A) and a white check draws over 2.25–2.5 s; over 2.45–2.8 s (cubic ease-in-out) it widens 36 → 150 px, the check moves 26 px left and \"完了\" (Done) appears.",
-     "It fades out over 3.9–4.1 s and the original \"送信する\" button comes back, rising 6 px, over 4.1–4.4 s (cubic ease-out)."
+     "Over 2.25–2.45 s the color goes orange → green (#1E9E5A) and a white check draws over 2.25–2.5 s; over 2.45–2.8 s (cubic ease-in-out) it widens 36 → 150 px, the check moves 26 px left and \"Done\" appears.",
+     "It fades out over 3.9–4.1 s and the original \"Send\" button comes back, rising 6 px, over 4.1–4.4 s (cubic ease-out)."
     ],
     "zh-Hans": [
      "视口 511 × 168，橙色胶囊按钮 220 × 36，标签为“提交”。0.8 s 点击。一次演示 4.7 s，每个 9.4 s 素材包周期内重复两次。",
@@ -13897,7 +13897,7 @@
      "一覧と詳細の写真に同じ view-transition-name を付けたときの View Transitions API の見え方"
     ],
     "en": [
-     "A 511 × 168 viewport with three photos in a list (143 × 80, radius 6). The middle photo is clicked at 0.75 s, and \"← 一覧へ\" (back to list) on the detail page at 3.05 s. One pass takes 4.7 s (twice per 9.4 s pack cycle).",
+     "A 511 × 168 viewport with three photos in a list (143 × 80, radius 6). The middle photo is clicked at 0.75 s, and \"← Back to list\" on the detail page at 3.05 s. One pass takes 4.7 s (twice per 9.4 s pack cycle).",
      "Forward: over 0.85–1.45 s (0.6 s, cubic ease-in-out) the clicked photo moves and resizes continuously from its list slot to the 479 × 94 image at the top of the detail page (radius 8). It stays one photo throughout.",
      "The other photos and the heading fade out over the first 62% of the move; the detail title, text and back button fade in over the last 40%. At 50% the URL changes from /works to /works/02.",
      "Back: over 3.15–3.75 s (0.6 s) the same move runs in reverse to the list slot.",
@@ -14125,7 +14125,7 @@
    },
    "summary": {
     "ja": "「キャンペーン終了まで」の 時:分:秒 が1秒ごとに減り、変わった数字だけが上へ抜けて新しい数字が下から入る。",
-    "en": "The hours, minutes and seconds under \"キャンペーン終了まで\" (until the campaign ends) count down every second; only the digits that change slide up and out as new ones come in from below.",
+    "en": "The hours, minutes and seconds under \"Until the campaign ends\" count down every second; only the digits that change slide up and out as new ones come in from below.",
     "zh-Hans": "“距离活动结束”下方的时、分、秒逐秒倒计时；只有变化的数字向上滑出，新数字从下方进入。"
    },
    "spec": {
@@ -14136,7 +14136,7 @@
      "9.4秒で最初の 02:15:04 に戻る（動きを付けずに切り替わる）"
     ],
     "en": [
-     "A 511 × 168 viewport: an orange gradient band with \"キャンペーン終了まで\" (until the campaign ends) and six digit tiles for hours, minutes and seconds (34 × 50 each, radius 6, 32 px digits). This card alone runs once per 9.4 s (the pack cycle).",
+     "A 511 × 168 viewport: an orange gradient band with \"Until the campaign ends\" and six digit tiles for hours, minutes and seconds (34 × 50 each, radius 6, 32 px digits). This card alone runs once per 9.4 s (the pack cycle).",
      "It starts at 02:15:04 and counts down one second at a time, nine times, every 1 s from 0.4 s, ending at 02:14:55. At 4.4 s, 02:15:00 → 02:14:59 rolls the minutes over.",
      "Only the tiles whose digit changes animate: over 0.32 s (cubic ease-in-out) the old digit slides up and out and the new one slides in from below, clipped to the tile.",
      "At 9.4 s it goes back to 02:15:04 with a plain cut."
@@ -14797,7 +14797,7 @@
      "Join: none; for 4.2 s one shot keeps following the person (#041 Jump cut splits it into five)",
      "Subject: a person walks at constant speed from front left (x = -3.4 m, 5.2 m deep) to back right (x = 2.8 m, 9.6 m deep); legs and arms swing by sin(t×7)×0.42 rad",
      "Camera: trucks right 0 m → 1.4 m after the person while turning, yaw = atan2(person x - camera x, depth)×0.8; height 1.4 m",
-     "Bottom strip: one blue bar labelled \"1ショット・カットなし\" (one shot, no cut) with a playhead, showing there is no break",
+     "Bottom strip: one blue bar labelled \"One shot, no cuts\" with a playhead, showing there is no break",
      "Return: stops at 4.2 s, then cross-fades back to the start over the last 0.5 s (one pass = 4.7 s)",
      "Top-right readout shows the elapsed time (NO CUT 0.0s → 4.2s)"
     ],
@@ -15138,7 +15138,7 @@
      "Wall: a pale grey plane 80 m wide and 14 m tall with a window 2.4 m wide and 2.2 m tall (sill at 0.15 m); through it a person (0.3 m right, 14.5 m away), trees, buildings and mountains are visible",
      "Pass-through: the wall stops being drawn 0.25 m in front of the camera; by then the window edge is outside the frame (half-width about 1580 px), so it vanishes unseen",
      "After the pass the place beyond fills the frame and the camera closes to 2 m from the person (#035 FPV drone shot keeps weaving between trees)",
-     "Return: hold 3.6–4.2 s, then cross-fade back to the start over the last 0.5 s; top-right readout shows the distance to the window (\"窓まで 8.0m\" → \"通過\", passed)"
+     "Return: hold 3.6–4.2 s, then cross-fade back to the start over the last 0.5 s; top-right readout shows the distance to the window (\"8.0 m to the window\" → \"Passed\")"
     ],
     "zh-Hans": [
      "相机：向前移动 0 m → 12.5 m（高度 1.3 m，方向固定）；一面带窗的墙位于前方 8 m，相机从中穿过。",
@@ -18728,7 +18728,7 @@
    },
    "summary": {
     "ja": "中央の「テーマ」から左右へ曲線の枝が6本伸び、その先からさらに細い枝と小さな語のノードが出る。",
-    "en": "Six curved branches grow from the central \"テーマ\" (topic) to both sides, then thinner twigs with small word nodes.",
+    "en": "Six curved branches grow from the central \"Topic\" to both sides, then thinner twigs with small word nodes.",
     "zh-Hans": "六条曲线分支从中央的“主题”向两侧生长，随后长出更细的枝条和小文字节点。"
    },
    "spec": {
@@ -18740,7 +18740,7 @@
      "終わり: 4.1〜4.5秒で図全体がフェードアウトし、空のまま4.7秒で1周"
     ],
     "en": [
-     "Center: a 100×44 px blue rounded box with white text \"テーマ\" (19 px), popping in at 0.4 s over 0.3 s (ease-out-back)",
+     "Center: a 100×44 px blue rounded box with white text \"Topic\" (19 px), popping in at 0.4 s over 0.3 s (ease-out-back)",
      "Branches: six cubic Bézier curves (3 px), three to each side, growing over 0.5 s from 0.7 s, 0.09 s apart, each ending in a 54×24 px node; mid blue and gray alternate",
      "Twigs: thinner 2.5 px curves grow from the branch ends over 0.35 s (from 1.45 s), each ending in a small 40×18 px node",
      "Shape: curved branches and word nodes, unlike the nested rings of #240 Concentric circle diagram",
@@ -18990,7 +18990,7 @@
      "終わり: 4.1〜4.5秒で図全体がフェードアウトし、空のまま4.7秒で1周"
     ],
     "en": [
-     "Spine: after the tail (0.35–0.6 s), a line from x = 52 to x = 404 (dark gray, 3 px, 14 px head) grows from 0.45 s to 1.0 s; the head, a 92×56 px blue box reading \"結果\" (result), pops in at 0.95 s",
+     "Spine: after the tail (0.35–0.6 s), a line from x = 52 to x = 404 (dark gray, 3 px, 14 px head) grows from 0.45 s to 1.0 s; the head, a 92×56 px blue box reading \"Result\", pops in at 0.95 s",
      "Bones: six bones from x = 150, 258 and 366 on the spine, slanting up-left and down-left (62 px across, 80 px up or down, mid blue, 3 px), drawn over 0.35 s from 1.1 s, 0.14 s per column, the lower ones 0.07 s later",
      "Side bones: at 36% and 68% along each bone, a 26 px horizontal line to the left (gray, 2.5 px), growing over 0.22 s just after the bone, 0.08 s apart",
      "End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop"
@@ -19570,7 +19570,7 @@
      "People: ten faceless person icons, 80 px tall and 32 px apart, in a single row (a grid would read as a heatmap)",
      "Entrance: they pop in from 0.35 s, 0.06 s apart, over 0.3 s each (ease-out-back), all gray",
      "Color: the first three turn from gray to blue over 0.25 s each, from 1.25 s, 0.22 s apart",
-     "Number: \"30%\" (46 px, blue) on the left counts up from 0 between 1.25 s and 1.94 s, with \"10人中3人\" (3 in 10 people) below",
+     "Number: \"30%\" (46 px, blue) on the left counts up from 0 between 1.25 s and 1.94 s, with \"3 in 10 people\" below",
      "End: the axes and grid stay; only the data fades out from 4.15 s to 4.55 s (one pass = 4.7 s)"
     ],
     "zh-Hans": [
@@ -19819,7 +19819,7 @@
     ],
     "en": [
      "Line: from x = 36 to x = 503 at y = 106 (dark gray, 3 px), drawn from 0.4 s to 2.0 s (cubic ease-in-out), with an arrowhead at the right end",
-     "Dots: five (April, June, August, October, December: 4月 … 12月), each popping in over 0.25 s at the moment the tip reaches it (radius 7 px; the last one blue, 10 px)",
+     "Dots: five (April, June, August, October, December), each popping in over 0.25 s at the moment the tip reaches it (radius 7 px; the last one blue, 10 px)",
      "Labels: from each dot a 22 px stem grows up or down, alternating, to a 64×32 px rounded tag (white with the month in 18 px; the last one blue with white text), over 0.3 s",
      "End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop"
     ],
@@ -20146,7 +20146,7 @@
    },
    "summary": {
     "ja": "左にレーン名（顧客・営業・制作）の3レーン。手順の箱がレーンを行き来しながら順に出て、かぎ形の矢印でつながる。",
-    "en": "Three lanes named on the left (顧客 customer, 営業 sales, 制作 production); step boxes appear one by one, moving between lanes, joined by elbow arrows.",
+    "en": "Three lanes named on the left (customer, sales, production); step boxes appear one by one, moving between lanes, joined by elbow arrows.",
     "zh-Hans": "左侧标出三条泳道的名称：客户、销售和制作；步骤框在不同泳道中依次出现，以折线箭头连接。"
    },
    "spec": {

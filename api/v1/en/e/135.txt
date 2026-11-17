@@ -1,6 +1,6 @@
 // Motion Prompt #135 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#135
 //
-// Kaleidoscope / カレイドスコープ
+// Kaleidoscope
 // Pack: motion2 (Motion graphics moves, part 2) · element 15 · Category: Text & shapes
 // What happens: An 8-way symmetrical pattern turns and spreads out from the centre, like a kaleidoscope.
 // Motion spec:

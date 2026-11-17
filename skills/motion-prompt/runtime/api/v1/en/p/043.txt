@@ -1,4 +1,4 @@
-Please use "Whip pan" (ホイップパン), one of the names in "Camera moves & transitions".
+Please use "Whip pan", one of the names in "Camera moves & transitions".
 Motion Prompt #043
 
 What it is: Fast pan blur into the next shot

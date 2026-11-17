@@ -1,6 +1,6 @@
 // Motion Prompt #134 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#134
 //
-// Repeater / リピーター
+// Repeater
 // Pack: motion2 (Motion graphics moves, part 2) · element 14 · Category: Text & shapes
 // What happens: One shape is duplicated around a circle, and the copies turn and pulse slightly out of step.
 // Motion spec:

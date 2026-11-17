@@ -1,4 +1,4 @@
-Please use "Ping-pong loop" (ピンポンループ), one of the names in "Motion graphics moves, part 2".
+Please use "Ping-pong loop", one of the names in "Motion graphics moves, part 2".
 Motion Prompt #127
 
 What it is: Plays forward, then backward, over and over

@@ -1,6 +1,6 @@
 // Motion Prompt #009 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#009
 //
-// Easing / イージング
+// Easing
 // Pack: motion (Motion graphics moves) · element 09 · Category: Motion polish
 // What happens: Two squares cover the same distance in the same time: the top one at constant speed, the bottom one eased.
 // Motion spec:

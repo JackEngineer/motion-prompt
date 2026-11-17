@@ -1,6 +1,6 @@
 // Motion Prompt #236 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#236
 //
-// Customer journey map / カスタマージャーニーマップ
+// Customer journey map
 // Pack: diagram (Diagrams and charts for slides) · element 20 · Category: Diagrams of flow and the whole picture
 // What happens: Five stage headers and action cards line up, then a feeling line rises and falls from left to right, with a smiling or frowning mark on each point.
 // Motion spec:

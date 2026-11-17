@@ -1,4 +1,4 @@
-Please use "Motion trail" (モーショントレイル), one of the names in "Motion graphics moves".
+Please use "Motion trail", one of the names in "Motion graphics moves".
 Motion Prompt #014
 
 What it is: A fading trail follows a moving object

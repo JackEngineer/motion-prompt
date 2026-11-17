@@ -1,6 +1,6 @@
 // Motion Prompt #169 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#169
 //
-// Pedestal / ペデスタル
+// Pedestal
 // Pack: camera2 (Camera moves & transitions, part 2) · element 01 · Category: Camera Movement
 // What happens: The camera moves straight up without changing its direction; the horizon stays centred while the person and buildings slide down.
 // Motion spec:

@@ -1,4 +1,4 @@
-Please use "Papercraft" (ペーパークラフト), one of the names in "Art styles for image generation".
+Please use "Papercraft", one of the names in "Art styles for image generation".
 Motion Prompt #212
 
 What it is: Paper folded and glued into 3D models

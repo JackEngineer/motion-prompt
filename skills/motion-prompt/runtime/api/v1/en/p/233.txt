@@ -1,4 +1,4 @@
-Please use "Gantt chart" (ガントチャート), one of the names in "Diagrams and charts for slides".
+Please use "Gantt chart", one of the names in "Diagrams and charts for slides".
 Motion Prompt #233
 
 What it is: Bars on a date scale that show when each task runs

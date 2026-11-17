@@ -1,6 +1,6 @@
 // Motion Prompt #116 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#116
 //
-// Duotone / デュオトーン
+// Duotone
 // Pack: photo (Photo looks, lighting & styles) · element 20 · Category: Tones & finishing looks
 // What happens: The colours of the same landscape are replaced by a range between just two colours: indigo in the darks and pink in the lights.
 // Motion spec:

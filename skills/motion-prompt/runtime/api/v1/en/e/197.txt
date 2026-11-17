@@ -1,6 +1,6 @@
 // Motion Prompt #197 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#197
 //
-// Pointillism / 点描
+// Pointillism
 // Pack: artstyle (Art styles for image generation) · element 05 · Category: Painting & printmaking
 // What happens: The same line drawing becomes a picture made only of dots of color; sky, house, tree and ground are all built from clearly visible, fairly large dots.
 // Motion spec:

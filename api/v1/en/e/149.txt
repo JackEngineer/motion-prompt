@@ -1,6 +1,6 @@
 // Motion Prompt #149 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#149
 //
-// Hide-on-scroll header / 隠れるヘッダー
+// Hide-on-scroll header
 // Pack: lp2 (Landing page & web effects, part 2) · element 05 · Category: Scroll effects
 // What happens: Scrolling down slides the header up out of view to free the screen; scrolling up even a little brings it straight back.
 // Motion spec:

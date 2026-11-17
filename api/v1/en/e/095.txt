@@ -1,6 +1,6 @@
 // Motion Prompt #095 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#095
 //
-// Animated gradient / グラデーションアニメーション
+// Animated gradient
 // Pack: lp (Landing page & web effects) · element 23 · Category: Loading, navigation & ambient loops
 // What happens: Behind the headline, soft patches of orange, light orange, blue and light blue drift in circles and keep blending differently.
 // Motion spec:

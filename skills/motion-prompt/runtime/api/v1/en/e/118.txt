@@ -1,6 +1,6 @@
 // Motion Prompt #118 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#118
 //
-// Film grain / フィルムグレイン
+// Film grain
 // Pack: photo (Photo looks, lighting & styles) · element 22 · Category: Tones & finishing looks
 // What happens: Fine grain appears over the whole of the same landscape and the colours lean slightly towards a warm cream.
 // Motion spec:

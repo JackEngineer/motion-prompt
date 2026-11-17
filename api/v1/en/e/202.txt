@@ -1,6 +1,6 @@
 // Motion Prompt #202 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#202
 //
-// Neon sign / ネオンサイン
+// Neon sign
 // Pack: artstyle (Art styles for image generation) · element 10 · Category: Graphic styles
 // What happens: The same line drawing becomes glowing neon tubes on a dark brick wall; the house, tree, sun and the line of the hill glow and bloom.
 // Motion spec:

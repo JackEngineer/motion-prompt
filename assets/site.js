@@ -83,8 +83,7 @@
       "dAsk": "向 AI 提出需求的示例",
       "ownP": "这里展示的是示例。你也可以为自己的领域制作同类术语库，并使用自己的语言。",
       "ownLink": "制作方法与提示词（make-your-own）",
-      "langsP": "术语列表提供英语、日语、西班牙语、简体中文和繁体中文版本。",
-      "langsLink": "五种语言的术语列表",
+      "langsLink": "浏览术语列表",
       "dSpec": "动效规格",
       "dUse": "适用场景",
       "tagsLabel": "标签",
@@ -127,67 +126,6 @@
       "outNote": "备注",
       "outEnd": "可通过 motion-prompt 技能的 get 命令获取完整规格；未安装技能时，请读取各项的“规格与代码”链接。"
     },
-    ja: {
-      title: 'Motion Prompt｜AIに頼むための「名前」のライブラリ',
-      skip: '見本の一覧へ移動', navLabel: 'サイト内', navHow: '使い方', navFound: '事例', langLabel: '言語',
-      themeToDark: 'ダークモードに切り替える', themeToLight: 'ライトモードに切り替える',
-      eyebrow: 'AIに頼むための「名前」のライブラリ',
-      h1: 'AIを<wbr>指揮する<wbr>クリエイティブ<wbr>ディレクターへ',
-      lead: 'モーショングラフィックス、カメラワーク、UIパーツ、LP・Webサイトの演出、写真の表現、画風、資料の図解・グラフの名前を{n}個、動く見本つきで並べました。プロンプトをコピーすれば、動きの仕様と参考実装も一緒に渡せます。',
-      factMoves: '名前', factPacks: 'パック', factLicense: 'ライセンス',
-      installSkillH: 'スキルで導入',
-      installSkillP: 'ターミナルで実行します。入れたあとは、AIに「motion-prompt のライブラリ出して」と頼むと、このギャラリーが開きます。選んで「AIに渡す」を押すと、AIに届きます。',
-      installPromptH: 'プロンプトで導入',
-      installPromptP: '下の文を Claude Code や Codex に貼ると、AIがスキルを入れて使い方を教えてくれます。',
-      installPrompt: 'https://github.com/showheyohtaki/motion-prompt を読んで、motion-prompt スキルをこの環境に入れてください。入れたら、使い方を3行で教えてください。',
-      copy: 'コピー', copied: 'コピーしました', copyFailed: 'コピーできませんでした',
-      copyCmdLabel: '導入コマンドをコピー', copyInstallLabel: '導入用のプロンプトをコピー',
-      galleryH: '見本の一覧', packFilterLabel: 'パックで絞り込む', catFilterLabel: 'カテゴリで絞り込む',
-      all: 'すべて', allIn: 'このパックすべて',
-      searchLabel: '見本を探す', searchPh: '名前・番号・タグで探す',
-      pause: '一時停止', play: '再生', pauseLabel: 'すべての見本を一時停止', playLabel: 'すべての見本を再生',
-      count: '{n}個', countOf: '{n}個（全{total}個）',
-      empty: '見つかりませんでした。別の言葉や番号で探してみてください。',
-      openLabel: '#{id} {name}の詳細を開く', loadFailed: '読み込めませんでした',
-      howH: '使い方',
-      s1h: 'ライブラリを出してもらう', s1p: 'motion-prompt スキルを入れたAIに「motion-prompt のライブラリ出して」と頼みます。このギャラリーがブラウザで開きます。',
-      s2h: '見ながら選ぶ', s2p: '使いたい見本の「選ぶ」を押します。いくつでも選べます。選んだ物は画面の下に並び、「冒頭のタイトルに」のような一言のメモも書けます。',
-      s3h: 'AIに渡して、頼む', s3p: '「AIに渡す」を押すと、選んだ物がAIに届きます。あとは「この動画の冒頭をこんな感じに編集して」と頼みます。このボタンは、AIがライブラリを開いたときに出ます。',
-      skillH: 'こう話しかけます',
-      skillP: '名前や番号を覚えていなくてかまいません。分からないときは、辞書を引くようにライブラリを出してもらってください。',
-      say1: 'motion-prompt のライブラリ出して',
-      say2: 'どんなカメラワークがある？一覧見せて',
-      say3: '（選んで渡したあと）この動画の冒頭をこんな感じに編集して',
-      altH: 'スキルが無いとき・番号が分かるとき',
-      altP1: 'スキルを入れていないAIには、画面の下の「選んだ物をコピー」で作った文を貼ってください。見本と仕様のURLが入っています。1つだけなら、詳細の「プロンプトをコピー」も使えます。',
-      altP2: '番号が分かっていれば、「motion-prompt で #012 と #045 を使って」のように直接頼むこともできます。',
-      implH: '参考実装について',
-      implP: '見本はすべて Canvas 2D で書いた、時刻だけで絵が決まる関数です。外部ライブラリは使っていません。1コマずつ描けるので、動画の書き出しにも使えます。',
-      author: '作者', authorName: '大滝昇平',
-      thanks1: '動く見本を並べて、プロンプトをコピーして使う形は', thanks2: 'から着想を得ました。ありがとうございます。',
-      whyLink: 'なぜ作ったか', makeLink: '自分の分野・自分の言語で作る', addLink: 'あなたの分野の名前を足す', listLink: '名前の一覧（GitHub）',
-      removeP1: '掲載の削除・訂正は', removeLink: 'GitHub の Issue のフォーム', removeP2: 'から依頼できます。確認後、すみやかに対応します。',
-      dAsk: 'AIへの頼み方の例',
-      ownP: 'ここにあるのは見本です。同じような名前の見本を、自分の分野・自分の言語でも作れます。', ownLink: '作り方とプロンプト（make-your-own）',
-      langsP: '名前の一覧は、スペイン語・中国語（簡体字・繁体字）でも読めます。', langsLink: '5言語の一覧（GitHub）',
-      dSpec: '動きの仕様', dUse: '使いどころ', tagsLabel: 'タグ', promptLabel: 'コピーされるプロンプト',
-      copyPrompt: 'プロンプトをコピー', copyCode: 'コードをコピー', showCode: 'コードを見る',
-      prev: '前の名前', next: '次の名前', close: '閉じる',
-      kitLink: '共通の補助コード（kit/{pack}.js）', txtLink: '仕様つきコード（{id}.txt）',
-      codeLoading: '読み込み中です…', codeFailed: 'コードを読み込めませんでした。',
-      size: '{w}×{h}px・1周{c}秒',
-      pick: '選ぶ', picked: '選択中', pickLabel: '#{id} {name}を選ぶ', unpickLabel: '#{id} {name}を外す',
-      pickLimit: '一度に選べるのは{n}個までです。上限を超えた場合は、余分な項目を削除してから送信してください。',
-      trayCount: '選んだ物 {n}個', trayWait: 'AIが待っています。選んだら「AIに渡す」を押してください。',
-      trayEmpty: '見本の「選ぶ」を押すと、ここに並びます。',
-      noteLabel: 'メモ（任意）', notePh: '例: 冒頭のタイトルに',
-      send: 'AIに渡す', sending: 'AIに渡しています…', copyPicked: '選んだ物をコピー', shareUrl: '選択を共有するURL', localShare: 'この端末のリンクをコピー', localNotice: 'このリンクは、この端末のサービスが動作中のみ有効です。保存するには選択内容と番号をコピーしてください。', localReference: 'リンクは現在のローカルサービス用です。後で {gets} と {kits} をそれぞれ実行してください。', clearAll: 'すべて外す',
-      pickedLive: '#{id} {name}を選びました。選んだ物は{n}個です。', unpickedLive: '#{id} {name}を外しました。選んだ物は{n}個です。',
-      clearedLive: '選択をすべて外しました。',
-      outIntro: 'motion-prompt のギャラリーで、次の{n}個を選びました。これを使って編集してください。',
-      outDemo: '見本', outSpec: '仕様とコード', outNote: 'メモ',
-      outEnd: '詳しい仕様は motion-prompt スキルの get で取れます（スキルが入っていなければ、各行の「仕様とコード」のURLを読んでください）。',
-    },
     en: {
       title: 'Motion Prompt — a library of names for the things you ask an AI to make',
       skip: 'Skip to the gallery', navLabel: 'Site', navHow: 'How to use', navFound: 'Examples', langLabel: 'Language',
@@ -200,7 +138,7 @@
       installSkillP: 'Run this in a terminal. After that, say "open the motion-prompt library" to your AI and this gallery opens. Pick what you want and press "Send to AI".',
       installPromptH: 'Install with a prompt',
       installPromptP: 'Paste the text below into Claude Code or Codex. The AI installs the skill and tells you how to use it.',
-      installPrompt: 'Read https://github.com/showheyohtaki/motion-prompt and install the motion-prompt skill in this environment. When it is installed, tell me how to use it in three lines.',
+      installPrompt: 'Read https://github.com/JackEngineer/motion-prompt and install the motion-prompt skill in this environment. When it is installed, tell me how to use it in three lines.',
       copy: 'Copy', copied: 'Copied', copyFailed: 'Could not copy',
       copyCmdLabel: 'Copy the install command', copyInstallLabel: 'Copy the install prompt',
       galleryH: 'Gallery', packFilterLabel: 'Filter by pack', catFilterLabel: 'Filter by category',
@@ -230,7 +168,7 @@
       removeP1: 'To ask for a removal or a correction, use the ', removeLink: 'issue form on GitHub', removeP2: '. We act on it once the request is confirmed.',
       dAsk: 'How to ask an AI',
       ownP: 'What is here is an example. You can make the same kind of name samples for your own field, in your own language.', ownLink: 'How to make one, with prompts (make-your-own)',
-      langsP: 'The name lists are also in Spanish and Chinese (Simplified and Traditional): Español, 简体中文, 繁體中文.', langsLink: 'Lists in five languages (GitHub)',
+      langsLink: 'Browse the name lists',
       dSpec: 'Motion spec', dUse: 'When to use it', tagsLabel: 'Tags', promptLabel: 'The prompt that is copied',
       copyPrompt: 'Copy prompt', copyCode: 'Copy code', showCode: 'View code',
       prev: 'Previous name', next: 'Next name', close: 'Close',
@@ -259,7 +197,7 @@
   var reduceMotion = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
   var darkQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : { matches: false };
   var state = {
-    lang: I18N[root.lang] ? root.lang : 'zh-Hans',
+    lang: root.lang === 'en' ? 'en' : 'zh-Hans',
     pack: 'all', cat: 'all', q: '',
     playing: !reduceMotion.matches,
     open: null,           // id shown in the detail view
@@ -274,13 +212,12 @@
 
   function t(key, vars) {
     var s = I18N[state.lang][key];
-    if (s == null) s = I18N.ja[key] || key;
+    if (s == null) s = I18N.en[key] || key;
     if (vars) Object.keys(vars).forEach(function (k) { s = s.split('{' + k + '}').join(vars[k]); });
     return s;
   }
   function names(el) {
-    var ja = state.lang === 'ja';
-    return { main: el.name[state.lang] || el.name.en, sub: ja ? el.name.en : state.lang === 'zh-Hans' ? '英文名：' + el.name.en : el.name.ja };
+    return { main: el.name[state.lang] || el.name.en, sub: state.lang === 'zh-Hans' ? '英文名：' + el.name.en : '' };
   }
   function h(tag, attrs, kids) {
     var n = document.createElement(tag);
@@ -401,7 +338,7 @@
           h('span', { class: 'tile-cap' }, [
             h('span', { class: 'tile-id', text: el.id }),
             h('span', { class: 'tile-name', text: nm.main }),
-            h('span', { class: 'tile-sub', text: nm.sub }),
+            nm.sub && h('span', { class: 'tile-sub', text: nm.sub }),
           ]),
         ]);
         var pb = h('button', { type: 'button', class: 'tile-pick', 'aria-pressed': 'false', 'data-pick': el.id }, [
@@ -571,7 +508,7 @@
     $('#d-id').textContent = '#' + el.id;
     $('#d-where').textContent = p.title[lang] + (c ? ' / ' + c[lang] : '');
     $('#d-name').textContent = nm.main;
-    $('#d-sub').textContent = nm.sub + ' · ' + t('size', { w: el.width, h: el.height, c: el.cycle });
+    $('#d-sub').textContent = (nm.sub ? nm.sub + ' · ' : '') + t('size', { w: el.width, h: el.height, c: el.cycle });
     var mean = $('#d-meaning'), ask = $('#d-ask'), askH = $('#d-ask-h');
     mean.textContent = el.meaning ? el.meaning[lang] || el.meaning.en || '' : ''; mean.hidden = !mean.textContent;
     ask.textContent = el.ask ? el.ask[lang] || el.ask.en || '' : ''; ask.hidden = askH.hidden = !ask.textContent;
@@ -801,7 +738,7 @@
     var lang = state.lang, lines = [t('outIntro', { n: state.picks.length }), ''];
     state.picks.forEach(function (id, i) {
       var nm = names(elBy[id]);
-      var sub = nm.sub && nm.sub !== nm.main ? (lang === 'ja' ? '（' + nm.sub + '）' : ' (' + nm.sub + ')') : '';
+      var sub = nm.sub ? ' (' + nm.sub + ')' : '';
       lines.push((i + 1) + '. #' + id + ' ' + nm.main + sub);
       lines.push('   ' + t('outDemo') + ': ' + SITE + '#' + id);
       lines.push('   ' + t('outSpec') + ': ' + SITE + 'api/v1/' + lang + '/e/' + id + '.txt');
@@ -877,8 +814,9 @@
     if (lang === state.lang) return;
     state.lang = lang;
     store.set('mp-lang', lang);
-    if (/[?&]lang=/.test(location.search)) { // keep an agent-supplied ?lang= in step with the choice
-      var q = new URLSearchParams(location.search); q.set('lang', lang);
+    var q = new URLSearchParams(location.search);
+    if (q.has('lang')) {
+      q.set('lang', lang);
       history.replaceState(history.state, '', location.pathname + '?' + q.toString() + location.hash);
     }
     applyText(); buildChips(); buildGrid(); renderTray();

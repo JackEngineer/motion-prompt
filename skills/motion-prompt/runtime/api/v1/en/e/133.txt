@@ -1,6 +1,6 @@
 // Motion Prompt #133 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#133
 //
-// Text mask / テキストマスク
+// Text mask
 // Pack: motion2 (Motion graphics moves, part 2) · element 13 · Category: Text & shapes
 // What happens: Heavy letters are cut out so that a moving seascape shows only inside them; near the end of the cycle the whole picture appears.
 // Motion spec:

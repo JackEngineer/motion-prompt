@@ -1,4 +1,4 @@
-Please use "Scroll text reveal" (スクロールテキストリビール), one of the names in "Landing page & web effects, part 2".
+Please use "Scroll text reveal", one of the names in "Landing page & web effects, part 2".
 Motion Prompt #146
 
 What it is: Text darkens letter by letter as you scroll

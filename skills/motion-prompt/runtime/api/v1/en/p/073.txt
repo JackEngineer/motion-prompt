@@ -1,4 +1,4 @@
-Please use "Parallax scrolling" (パララックススクロール), one of the names in "Landing page & web effects".
+Please use "Parallax scrolling", one of the names in "Landing page & web effects".
 Motion Prompt #073
 
 What it is: On scroll, background layers move slower than the content

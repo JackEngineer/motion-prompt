@@ -1,6 +1,6 @@
 // Motion Prompt #189 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#189
 //
-// Cutaway / カットアウェイ
+// Cutaway
 // Pack: camera2 (Camera moves & transitions, part 2) · element 21 · Category: Transitions & Editing
 // What happens: From the speaker to the listening audience and back; what is cut in is a different subject.
 // Motion spec:

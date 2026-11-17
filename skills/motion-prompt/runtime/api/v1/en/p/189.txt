@@ -1,4 +1,4 @@
-Please use "Cutaway" (カットアウェイ), one of the names in "Camera moves & transitions, part 2".
+Please use "Cutaway", one of the names in "Camera moves & transitions, part 2".
 Motion Prompt #189
 
 What it is: Cut to something else, then back

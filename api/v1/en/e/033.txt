@@ -1,6 +1,6 @@
 // Motion Prompt #033 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#033
 //
-// Rack focus / ラックフォーカス
+// Rack focus
 // Pack: camera (Camera moves & transitions) · element 09 · Category: Shooting Style & Time
 // What happens: The camera does not move; focus shifts from a flower in the foreground to a person behind it, swapping which one is blurred.
 // Motion spec:

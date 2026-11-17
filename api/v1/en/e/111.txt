@@ -1,6 +1,6 @@
 // Motion Prompt #111 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#111
 //
-// Chromatic aberration / 色収差
+// Chromatic aberration
 // Pack: photo (Photo looks, lighting & styles) · element 15 · Category: Lens & camera effects
 // What happens: The street scene is split into red, green and blue and the three are laid back together at slightly different sizes, so red and cyan fringes appear on the edges of the person, buildings and lamps, larger towards the sides.
 // Motion spec:

@@ -1,6 +1,6 @@
 // Motion Prompt #054 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#054
 //
-// Tooltip / ツールチップ
+// Tooltip
 // Pack: ui (UI component names) · element 06 · Category: Opening & overlays
 // What happens: Hovering over a "?" icon shows a short note in a dark bubble above it; it disappears when the cursor leaves.
 // Motion spec:

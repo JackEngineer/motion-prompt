@@ -1,6 +1,6 @@
 // Motion Prompt #100 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#100
 //
-// Split lighting / スプリットライティング
+// Split lighting
 // Pack: photo (Photo looks, lighting & styles) · element 04 · Category: Lighting & time of day
 // What happens: The light swings from near the front (20°) to directly at the side (90°); the shadow on the head grows from a crescent to exactly half, splitting the face down the middle.
 // Motion spec:

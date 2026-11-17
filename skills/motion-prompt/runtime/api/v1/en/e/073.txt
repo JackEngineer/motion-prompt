@@ -1,6 +1,6 @@
 // Motion Prompt #073 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#073
 //
-// Parallax scrolling / パララックススクロール
+// Parallax scrolling
 // Pack: lp (Landing page & web effects) · element 01 · Category: Scroll effects
 // What happens: As the page scrolls down, the headline moves up normally while the sky and sun, far hills and near hills move more slowly.
 // Motion spec:

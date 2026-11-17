@@ -1,4 +1,4 @@
-Please use "Floating animation" (ふわふわアニメーション), one of the names in "Landing page & web effects".
+Please use "Floating animation", one of the names in "Landing page & web effects".
 Motion Prompt #096
 
 What it is: Elements bob gently up and down

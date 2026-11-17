@@ -1,6 +1,6 @@
 // Motion Prompt #171 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#171
 //
-// Hyperlapse / ハイパーラプス
+// Hyperlapse
 // Pack: camera2 (Camera moves & transitions, part 2) · element 03 · Category: Camera Movement
 // What happens: The camera travels forward along a street while the sun, clouds and passers-by run in fast forward: a time-lapse that moves.
 // Motion spec:

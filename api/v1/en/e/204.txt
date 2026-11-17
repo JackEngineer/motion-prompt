@@ -1,6 +1,6 @@
 // Motion Prompt #204 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#204
 //
-// Art Nouveau / アールヌーボー
+// Art Nouveau
 // Pack: artstyle (Art styles for image generation) · element 12 · Category: Graphic styles
 // What happens: The same line drawing becomes a poster from around 1900: outlines turn into flowing thick curves, and leaves, grass and sun rays become ornaments of vines and flowers around the house and tree.
 // Motion spec:

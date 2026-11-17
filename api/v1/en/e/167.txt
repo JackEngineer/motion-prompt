@@ -1,6 +1,6 @@
 // Motion Prompt #167 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#167
 //
-// Scroll-down cue / スクロールダウンの合図
+// Scroll-down cue
 // Pack: lp2 (Landing page & web effects, part 2) · element 23 · Category: Showcase effects
 // What happens: Below the hero, the word "SCROLL", a dot inside a mouse outline and arrows on either side keep repeating a downward motion.
 // Motion spec:

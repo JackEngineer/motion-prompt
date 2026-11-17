@@ -1,4 +1,4 @@
-Please use "Animated gradient" (グラデーションアニメーション), one of the names in "Landing page & web effects".
+Please use "Animated gradient", one of the names in "Landing page & web effects".
 Motion Prompt #095
 
 What it is: Background colours keep drifting and blending

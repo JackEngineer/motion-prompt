@@ -1,11 +1,10 @@
 # Motion Prompt
 
-**English** | [日本語](README.ja.md) | [简体中文](README.zh-Hans.md)
+**English** | [简体中文](README.zh-Hans.md)
 
-> 日本語の説明は [README.ja.md](README.ja.md) にあります。
 > 中文用户：所有名称一览都有简体中文和繁體中文版本，见 [`packs/`](packs/README.md)。
 > En español: todas las listas de nombres están en español en [`packs/`](packs/README.md).
-> The name lists are in English, Japanese, Spanish, Simplified Chinese and Traditional Chinese (see [`packs/`](packs/README.md)); this fork’s local gallery also supports Simplified Chinese and defaults to it (use `--lang en` for English CLI output). The upstream public gallery is in English and Japanese. For another language, give [`make-your-own/prompts/en/01-translate.md`](make-your-own/prompts/en/01-translate.md) to a coding AI.
+> The name lists are in English, Japanese, Spanish, Simplified Chinese and Traditional Chinese (see [`packs/`](packs/README.md)); this fork’s online and local galleries offer Simplified Chinese and English, with Simplified Chinese as the default. Use `--lang en` for English CLI output. For another language, give [`make-your-own/prompts/en/01-translate.md`](make-your-own/prompts/en/01-translate.md) to a coding AI.
 
 A library of names for the things you ask an AI to make. Each name comes with a moving sample, a one-line meaning and an example of how to ask for it. Ten sets are in it now, 24 names each and 240 in all: motion-graphics moves (`motion`), camera moves (`camera`), UI component names (`ui`), landing page and web effects (`lp`), photo looks, lighting and styles (`photo`), motion-graphics moves, part 2 (`motion2`), landing page and web effects, part 2 (`lp2`), camera moves and transitions, part 2 (`camera2`), art styles for image generation (`artstyle`), and diagrams and charts for slides (`diagram`). It also comes with the prompts to make the same kind of library for your own field, in your own language.
 
@@ -13,9 +12,10 @@ A library of names for the things you ask an AI to make. Each name comes with a 
 |---|---|
 | ![Motion graphics names 01–08](assets/preview-motion.gif) | ![Camera move names 01–08](assets/preview-camera.gif) |
 
+- [Localized gallery](https://jackengineer.github.io/motion-prompt/) · [Community examples](https://jackengineer.github.io/motion-prompt/found.html)
 - [Upstream gallery (English and Japanese)](https://showheyohtaki.github.io/motion-prompt/)
 - Name lists you can read here on GitHub: [`packs/`](packs/README.md)
-- [Case studies on the upstream site](https://showheyohtaki.github.io/motion-prompt/found.html)
+- [Original Japanese README](README.ja.md)
 
 ## Why I made this
 

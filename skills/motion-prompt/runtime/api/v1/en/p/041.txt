@@ -1,4 +1,4 @@
-Please use "Jump cut" (ジャンプカット), one of the names in "Camera moves & transitions".
+Please use "Jump cut", one of the names in "Camera moves & transitions".
 Motion Prompt #041
 
 What it is: Same framing, skip ahead in time

@@ -1,6 +1,6 @@
 // Motion Prompt #012 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#012
 //
-// Shape morph / モーフィング
+// Shape morph
 // Pack: motion (Motion graphics moves) · element 12 · Category: Motion polish
 // What happens: A shape changes smoothly from circle to square to star to heart, with its colour.
 // Motion spec:

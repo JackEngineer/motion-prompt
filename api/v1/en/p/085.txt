@@ -1,4 +1,4 @@
-Please use "Ripple effect" (リップルエフェクト), one of the names in "Landing page & web effects".
+Please use "Ripple effect", one of the names in "Landing page & web effects".
 Motion Prompt #085
 
 What it is: A ripple spreads from the point that was pressed

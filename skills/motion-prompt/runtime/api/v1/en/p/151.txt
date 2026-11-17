@@ -1,4 +1,4 @@
-Please use "Back-to-top button" (トップへ戻るボタン), one of the names in "Landing page & web effects, part 2".
+Please use "Back-to-top button", one of the names in "Landing page & web effects, part 2".
 Motion Prompt #151
 
 What it is: Appears lower down and returns you to the top

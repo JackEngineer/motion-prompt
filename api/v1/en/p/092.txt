@@ -1,4 +1,4 @@
-Please use "Page transition" (ページ遷移アニメーション), one of the names in "Landing page & web effects".
+Please use "Page transition", one of the names in "Landing page & web effects".
 Motion Prompt #092
 
 What it is: An animation that bridges two pages

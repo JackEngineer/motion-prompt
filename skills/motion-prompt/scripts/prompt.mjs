@@ -20,7 +20,7 @@ export function mpPrompt(el, packTitle, lang, sourceBase) {
   }
   if (en) {
     return [
-      'Please use "' + el.name.en + '"' + (same ? '' : ' (' + el.name.ja + ')') + ', one of the names in "' + packTitle + '".',
+      'Please use "' + el.name.en + '"' + ', one of the names in "' + packTitle + '".',
       'Motion Prompt #' + el.id,
       ''
     ].concat(mean ? ['What it is: ' + mean] : [], [

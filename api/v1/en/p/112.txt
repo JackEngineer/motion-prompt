@@ -1,4 +1,4 @@
-Please use "Vignette" (周辺減光（ビネット）), one of the names in "Photo looks, lighting & styles".
+Please use "Vignette", one of the names in "Photo looks, lighting & styles".
 Motion Prompt #112
 
 What it is: The corners darken and draw the eye to the centre

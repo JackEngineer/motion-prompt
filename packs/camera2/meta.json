@@ -157,7 +157,7 @@
           "Join: none; for 4.2 s one shot keeps following the person (#041 Jump cut splits it into five)",
           "Subject: a person walks at constant speed from front left (x = -3.4 m, 5.2 m deep) to back right (x = 2.8 m, 9.6 m deep); legs and arms swing by sin(t×7)×0.42 rad",
           "Camera: trucks right 0 m → 1.4 m after the person while turning, yaw = atan2(person x - camera x, depth)×0.8; height 1.4 m",
-          "Bottom strip: one blue bar labelled \"1ショット・カットなし\" (one shot, no cut) with a playhead, showing there is no break",
+          "Bottom strip: one blue bar labelled \"One shot, no cuts\" with a playhead, showing there is no break",
           "Return: stops at 4.2 s, then cross-fades back to the start over the last 0.5 s (one pass = 4.7 s)",
           "Top-right readout shows the elapsed time (NO CUT 0.0s → 4.2s)"
         ],
@@ -322,7 +322,7 @@
           "Wall: a pale grey plane 80 m wide and 14 m tall with a window 2.4 m wide and 2.2 m tall (sill at 0.15 m); through it a person (0.3 m right, 14.5 m away), trees, buildings and mountains are visible",
           "Pass-through: the wall stops being drawn 0.25 m in front of the camera; by then the window edge is outside the frame (half-width about 1580 px), so it vanishes unseen",
           "After the pass the place beyond fills the frame and the camera closes to 2 m from the person (#035 FPV drone shot keeps weaving between trees)",
-          "Return: hold 3.6–4.2 s, then cross-fade back to the start over the last 0.5 s; top-right readout shows the distance to the window (\"窓まで 8.0m\" → \"通過\", passed)"
+          "Return: hold 3.6–4.2 s, then cross-fade back to the start over the last 0.5 s; top-right readout shows the distance to the window (\"8.0 m to the window\" → \"Passed\")"
         ],
         "zh-Hans": [
           "相机：向前移动 0 m → 12.5 m（高度 1.3 m，方向固定）；一面带窗的墙位于前方 8 m，相机从中穿过。",

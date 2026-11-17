@@ -1,4 +1,4 @@
-Please use "Art Deco" (アールデコ), one of the names in "Art styles for image generation".
+Please use "Art Deco", one of the names in "Art styles for image generation".
 Motion Prompt #203
 
 What it is: Gold and black, radiating straight lines and symmetry

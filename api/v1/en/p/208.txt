@@ -1,4 +1,4 @@
-Please use "Line art" (ラインアート), one of the names in "Art styles for image generation".
+Please use "Line art", one of the names in "Art styles for image generation".
 Motion Prompt #208
 
 What it is: Drawn only with lines in one color, no fill

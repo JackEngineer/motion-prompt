@@ -1,6 +1,6 @@
 // Motion Prompt #043 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#043
 //
-// Whip pan / ホイップパン
+// Whip pan
 // Pack: camera (Camera moves & transitions) · element 19 · Category: Transitions
 // What happens: The camera swings sideways very fast and the next scene is swapped in during the streaked blur.
 // Motion spec:

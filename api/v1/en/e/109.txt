@@ -1,6 +1,6 @@
 // Motion Prompt #109 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#109
 //
-// Lens flare / レンズフレア
+// Lens flare
 // Pack: photo (Photo looks, lighting & styles) · element 13 · Category: Lens & camera effects
 // What happens: As the sun comes out from behind a building, rays appear around it and a line of light dots, hexagons and a ring runs from the sun through the centre of the frame to the opposite side.
 // Motion spec:

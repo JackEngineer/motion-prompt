@@ -1,6 +1,6 @@
 // Motion Prompt #122 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#122
 //
-// Follow-through / フォロースルー
+// Follow-through
 // Pack: motion2 (Motion graphics moves, part 2) · element 02 · Category: Motion techniques
 // What happens: A round character slides in and stops suddenly; only the flag on its head and its tail keep swinging, then settle.
 // Motion spec:

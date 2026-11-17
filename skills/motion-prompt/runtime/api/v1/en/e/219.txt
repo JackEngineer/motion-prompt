@@ -1,6 +1,6 @@
 // Motion Prompt #219 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#219
 //
-// Logic tree (issue tree) / ロジックツリー
+// Logic tree (issue tree)
 // Pack: diagram (Diagrams and charts for slides) · element 03 · Category: Diagrams that organize ideas
 // What happens: From the "?" box on the left, the tree branches to the right, 1 → 2 → 4, joined by elbow lines.
 // Motion spec:

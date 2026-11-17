@@ -1,4 +1,4 @@
-Please use "Synthwave" (シンセウェイヴ), one of the names in "Art styles for image generation".
+Please use "Synthwave", one of the names in "Art styles for image generation".
 Motion Prompt #215
 
 What it is: 1980s-style neon grid and striped sunset

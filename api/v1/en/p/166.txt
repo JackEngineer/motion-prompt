@@ -1,4 +1,4 @@
-Please use "Like button animation" (いいねアニメーション), one of the names in "Landing page & web effects, part 2".
+Please use "Like button animation", one of the names in "Landing page & web effects, part 2".
 Motion Prompt #166
 
 What it is: The heart pops with a burst when liked

@@ -1,6 +1,6 @@
 // Motion Prompt #232 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#232
 //
-// 100% stacked bar chart / 帯グラフ（100%積み上げ）
+// 100% stacked bar chart
 // Pack: diagram (Diagrams and charts for slides) · element 16 · Category: Charts that show numbers
 // What happens: Four bars of the same length fill from left to right, dotted lines join the borders between neighbouring bars, and the first part shows its %.
 // Motion spec:

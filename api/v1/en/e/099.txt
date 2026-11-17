@@ -1,6 +1,6 @@
 // Motion Prompt #099 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#099
 //
-// Silhouette / シルエット
+// Silhouette
 // Pack: photo (Photo looks, lighting & styles) · element 03 · Category: Lighting & time of day
 // What happens: As the exposure is set for the bright evening sky, the person, buildings, lamp and tree turn into flat black shapes with no detail and only the sky stays bright.
 // Motion spec:

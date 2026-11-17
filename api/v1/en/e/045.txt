@@ -1,6 +1,6 @@
 // Motion Prompt #045 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#045
 //
-// Wipe / ワイプ
+// Wipe
 // Pack: camera (Camera moves & transitions) · element 21 · Category: Transitions
 // What happens: A vertical edge moves from left to right and the next picture replaces the current one behind it.
 // Motion spec:

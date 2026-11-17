@@ -1,4 +1,4 @@
-Please use "Stained glass" (ステンドグラス), one of the names in "Art styles for image generation".
+Please use "Stained glass", one of the names in "Art styles for image generation".
 Motion Prompt #200
 
 What it is: Glowing colored glass divided by black lead lines

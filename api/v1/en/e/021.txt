@@ -1,6 +1,6 @@
 // Motion Prompt #021 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#021
 //
-// Flip / フリップ
+// Flip
 // Pack: motion (Motion graphics moves) · element 21 · Category: Transitions & highlights
 // What happens: A card turns over around its vertical axis and shows its other side.
 // Motion spec:

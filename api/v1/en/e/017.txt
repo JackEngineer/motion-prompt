@@ -1,6 +1,6 @@
 // Motion Prompt #017 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#017
 //
-// Mask transition / マスクトランジション
+// Mask transition
 // Pack: motion (Motion graphics moves) · element 17 · Category: Transitions & highlights
 // What happens: A circle- or star-shaped window grows, showing the next scene inside it.
 // Motion spec:

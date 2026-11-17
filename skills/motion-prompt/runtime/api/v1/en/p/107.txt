@@ -1,4 +1,4 @@
-Please use "Long exposure" (長時間露光), one of the names in "Photo looks, lighting & styles".
+Please use "Long exposure", one of the names in "Photo looks, lighting & styles".
 Motion Prompt #107
 
 What it is: Keep the shutter open long so moving lights become lines

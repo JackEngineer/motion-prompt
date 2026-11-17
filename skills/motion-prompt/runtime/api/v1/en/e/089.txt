@@ -1,6 +1,6 @@
 // Motion Prompt #089 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#089
 //
-// Preloader / ローディング画面
+// Preloader
 // Pack: lp (Landing page & web effects) · element 17 · Category: Loading, navigation & ambient loops
 // What happens: On a navy screen the number under the logo counts from 0% to 100%; then the screen lifts away and the page underneath fades in.
 // Motion spec:

@@ -1,4 +1,4 @@
-Please use "Concentric circle diagram" (同心円図), one of the names in "Diagrams and charts for slides".
+Please use "Concentric circle diagram", one of the names in "Diagrams and charts for slides".
 Motion Prompt #240
 
 What it is: Nested circles that narrow down a market

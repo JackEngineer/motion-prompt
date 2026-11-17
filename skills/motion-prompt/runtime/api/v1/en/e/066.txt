@@ -1,6 +1,6 @@
 // Motion Prompt #066 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#066
 //
-// Breadcrumbs / パンくずリスト
+// Breadcrumbs
 // Pack: ui (UI component names) · element 18 · Category: Navigation & status
 // What happens: Clicking "Courses" in the breadcrumbs goes up to the list page; clicking a card there returns to the detail page.
 // Motion spec:

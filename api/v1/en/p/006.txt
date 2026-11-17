@@ -1,4 +1,4 @@
-Please use "Typewriter" (タイプライター), one of the names in "Motion graphics moves".
+Please use "Typewriter", one of the names in "Motion graphics moves".
 Motion Prompt #006
 
 What it is: Text appears one character at a time, as if typed

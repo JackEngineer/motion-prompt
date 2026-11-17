@@ -1,4 +1,4 @@
-Please use "Low poly" (ローポリ), one of the names in "Art styles for image generation".
+Please use "Low poly", one of the names in "Art styles for image generation".
 Motion Prompt #211
 
 What it is: 3D built from flat triangular faces

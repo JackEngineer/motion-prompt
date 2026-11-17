@@ -1,4 +1,4 @@
-Please use "Before/after slider" (ビフォーアフタースライダー), one of the names in "Landing page & web effects".
+Please use "Before/after slider", one of the names in "Landing page & web effects".
 Motion Prompt #087
 
 What it is: Drag a divider to compare before and after

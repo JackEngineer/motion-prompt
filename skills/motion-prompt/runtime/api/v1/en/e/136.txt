@@ -1,6 +1,6 @@
 // Motion Prompt #136 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#136
 //
-// Line boil / ラインボイル
+// Line boil
 // Pack: motion2 (Motion graphics moves, part 2) · element 16 · Category: Text & shapes
 // What happens: A hand-drawn line picture wobbles every few frames while the picture itself stays still.
 // Motion spec:

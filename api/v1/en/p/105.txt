@@ -1,4 +1,4 @@
-Please use "Bokeh" (ボケ), one of the names in "Photo looks, lighting & styles".
+Please use "Bokeh", one of the names in "Photo looks, lighting & styles".
 Motion Prompt #105
 
 What it is: Out-of-focus points of light melt into soft discs

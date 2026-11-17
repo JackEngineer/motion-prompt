@@ -1,6 +1,6 @@
 // Motion Prompt #064 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#064
 //
-// Pagination / ページネーション
+// Pagination
 // Pack: ui (UI component names) · element 16 · Category: Choosing & switching
 // What happens: Clicking 2 and then 3 in the page numbers moves the blue circle and swaps the list above; finally it goes back to 1.
 // Motion spec:

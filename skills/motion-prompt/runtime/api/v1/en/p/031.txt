@@ -1,4 +1,4 @@
-Please use "Crane up" (クレーンアップ), one of the names in "Camera moves & transitions".
+Please use "Crane up", one of the names in "Camera moves & transitions".
 Motion Prompt #031
 
 What it is: Lift the camera up

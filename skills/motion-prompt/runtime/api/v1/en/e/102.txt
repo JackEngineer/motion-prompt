@@ -1,6 +1,6 @@
 // Motion Prompt #102 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#102
 //
-// Butterfly lighting / バタフライライティング
+// Butterfly lighting
 // Pack: photo (Photo looks, lighting & styles) · element 06 · Category: Lighting & time of day
 // What happens: A light in front of the face and high above comes on; the face lights evenly on both sides and only a small symmetrical shadow falls under the chin.
 // Motion spec:

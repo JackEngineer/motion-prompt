@@ -1,6 +1,6 @@
 // Motion Prompt #114 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#114
 //
-// Low-key / ローキー
+// Low-key
 // Pack: photo (Photo looks, lighting & styles) · element 18 · Category: Tones & finishing looks
 // What happens: Most of the frame sinks into darkness and the sun goes out; only the right edge of the bust, lit from the side, stays bright. The histogram hump moves to the left end.
 // Motion spec:

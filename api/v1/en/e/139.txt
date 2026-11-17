@@ -1,6 +1,6 @@
 // Motion Prompt #139 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#139
 //
-// Cube transition / キューブ
+// Cube transition
 // Pack: motion2 (Motion graphics moves, part 2) · element 19 · Category: Transitions & highlights
 // What happens: Like a turning cube, the front face swings away and the next face comes round.
 // Motion spec:

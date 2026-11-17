@@ -1,6 +1,6 @@
 // Motion Prompt #193 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#193
 //
-// Watercolor / 水彩画
+// Watercolor
 // Pack: artstyle (Art styles for image generation) · element 01 · Category: Painting & printmaking
 // What happens: The line drawing of a house, a tree and the sun becomes a pale transparent watercolor, with colors bleeding and pooling and the white paper left showing.
 // Motion spec:

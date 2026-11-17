@@ -1,4 +1,4 @@
-Please use "Iris out" (アイリスアウト), one of the names in "Camera moves & transitions, part 2".
+Please use "Iris out", one of the names in "Camera moves & transitions, part 2".
 Motion Prompt #188
 
 What it is: A circle closes down to black

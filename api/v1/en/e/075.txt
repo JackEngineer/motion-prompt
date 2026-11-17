@@ -1,6 +1,6 @@
 // Motion Prompt #075 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#075
 //
-// Sticky header / 追従ヘッダー
+// Sticky header
 // Pack: lp (Landing page & web effects) · element 03 · Category: Scroll effects
 // What happens: The announcement strip scrolls away, but the header below it stops at the top edge and the content scrolls underneath.
 // Motion spec:

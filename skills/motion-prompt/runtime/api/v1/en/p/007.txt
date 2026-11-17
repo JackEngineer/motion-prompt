@@ -1,4 +1,4 @@
-Please use "Count-up" (カウントアップ), one of the names in "Motion graphics moves".
+Please use "Count-up", one of the names in "Motion graphics moves".
 Motion Prompt #007
 
 What it is: A number runs up quickly to its final value

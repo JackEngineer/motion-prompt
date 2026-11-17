@@ -1,6 +1,6 @@
 // Motion Prompt #032 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#032
 //
-// Dolly zoom (Vertigo) / ドリーズーム
+// Dolly zoom (Vertigo)
 // Pack: camera (Camera moves & transitions) · element 08 · Category: Camera Movement
 // What happens: The camera pulls back while zooming in by the same ratio; the person keeps the same size and only the background closes in.
 // Motion spec:

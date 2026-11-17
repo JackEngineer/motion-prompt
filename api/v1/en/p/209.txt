@@ -1,4 +1,4 @@
-Please use "Pixel art" (ドット絵（ピクセルアート）), one of the names in "Art styles for image generation".
+Please use "Pixel art", one of the names in "Art styles for image generation".
 Motion Prompt #209
 
 What it is: Game-style pictures drawn in visible square pixels

@@ -1,4 +1,4 @@
-Please use "Duotone" (デュオトーン), one of the names in "Photo looks, lighting & styles".
+Please use "Duotone", one of the names in "Photo looks, lighting & styles".
 Motion Prompt #116
 
 What it is: Show the image in two colours, one for darks and one for lights

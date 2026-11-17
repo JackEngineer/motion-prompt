@@ -1,6 +1,6 @@
 // Motion Prompt #112 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#112
 //
-// Vignette / 周辺減光（ビネット）
+// Vignette
 // Pack: photo (Photo looks, lighting & styles) · element 16 · Category: Lens & camera effects
 // What happens: The frame darkens smoothly from the corners while the person and the road in the middle stay bright.
 // Motion spec:

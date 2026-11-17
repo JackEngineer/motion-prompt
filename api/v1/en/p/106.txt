@@ -1,4 +1,4 @@
-Please use "Tilt-shift" (ティルトシフト), one of the names in "Photo looks, lighting & styles".
+Please use "Tilt-shift", one of the names in "Photo looks, lighting & styles".
 Motion Prompt #106
 
 What it is: Blur top and bottom so a real scene looks like a miniature

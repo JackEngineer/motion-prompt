@@ -1,4 +1,4 @@
-Please use "Scrollspy" (スクロールスパイ), one of the names in "Landing page & web effects, part 2".
+Please use "Scrollspy", one of the names in "Landing page & web effects, part 2".
 Motion Prompt #150
 
 What it is: Highlights the current section in the menu

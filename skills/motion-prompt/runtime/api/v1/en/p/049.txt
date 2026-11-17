@@ -1,4 +1,4 @@
-Please use "Modal dialog" (モーダル), one of the names in "UI component names".
+Please use "Modal dialog", one of the names in "UI component names".
 Motion Prompt #049
 
 What it is: A window opens in the middle while the page behind dims

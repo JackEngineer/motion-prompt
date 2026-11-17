@@ -1,6 +1,6 @@
 // Motion Prompt #024 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#024
 //
-// Impact shake / インパクトシェイク
+// Impact shake
 // Pack: motion (Motion graphics moves) · element 24 · Category: Transitions & highlights
 // What happens: A heavy headline slab drops with a thud and the whole frame shakes from the impact.
 // Motion spec:

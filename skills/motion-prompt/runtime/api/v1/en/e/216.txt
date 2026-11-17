@@ -1,6 +1,6 @@
 // Motion Prompt #216 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#216
 //
-// Blueprint / ブループリント（設計図風）
+// Blueprint
 // Pack: artstyle (Art styles for image generation) · element 24 · Category: Digital, 3D & materials
 // What happens: The same line drawing becomes a technical drawing in fine white lines on blue, with a few dimension and construction lines.
 // Motion spec:

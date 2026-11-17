@@ -1,6 +1,6 @@
 // Motion Prompt #023 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#023
 //
-// Glitch / グリッチ
+// Glitch
 // Pack: motion (Motion graphics moves) · element 23 · Category: Transitions & highlights
 // What happens: Text slices shift sideways, colours split and small bars appear, with no brightness flashing.
 // Motion spec:

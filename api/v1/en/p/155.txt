@@ -1,4 +1,4 @@
-Please use "Image swap on hover" (ホバーで画像切り替え), one of the names in "Landing page & web effects, part 2".
+Please use "Image swap on hover", one of the names in "Landing page & web effects, part 2".
 Motion Prompt #155
 
 What it is: Hovering swaps the photo for another shot

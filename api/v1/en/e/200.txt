@@ -1,6 +1,6 @@
 // Motion Prompt #200 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#200
 //
-// Stained glass / ステンドグラス
+// Stained glass
 // Pack: artstyle (Art styles for image generation) · element 08 · Category: Painting & printmaking
 // What happens: The same line drawing becomes a glass picture divided by black lead lines; sky, hill, house and tree each turn into pieces of colored glass with light shining through.
 // Motion spec:

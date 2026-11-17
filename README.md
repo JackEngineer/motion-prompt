@@ -1,6 +1,6 @@
 # Motion Prompt 简体中文汉化版
 
-[English](README.en.md) | [日本語](README.ja.md) | **简体中文**
+[English](README.en.md) | **简体中文**
 
 本仓库是 [Shohei Ohtaki（showheyohtaki）](https://github.com/showheyohtaki) 创建的 [Motion Prompt](https://github.com/showheyohtaki/motion-prompt) 的**简体中文汉化版**，由 [JackEngineer](https://github.com/JackEngineer) 维护汉化修改。
 
@@ -12,15 +12,16 @@
 
 这是一个帮助你向 AI 描述创作需求的术语库。每个名称都有动态示例、一句话释义和提问示例。目前共有十个素材包，每包 24 个术语，合计 240 个。分类包括动态图形（`motion`）、镜头运动（`camera`）、UI 组件（`ui`）、落地页与网页效果（`lp`）、摄影表现、布光与风格（`photo`）、动态图形第二辑（`motion2`）、网页效果第二辑（`lp2`）、镜头运动与转场第二辑（`camera2`）、图像生成画风（`artstyle`）、演示文稿图解与图表（`diagram`）。项目也提供提示词，帮助你用自己的语言，为熟悉的领域制作同类术语库。
 
-简体中文是本仓库的默认语言，术语列表也提供英文、日文、西班牙文和繁体中文。从本地工作区使用中文示例库、API 和技能。制作其他语言版本可使用[翻译提示词](make-your-own/prompts/zh-Hans/01-translate.md)。
+在线和本地示例库均默认使用简体中文，可在页面顶部切换英文。术语列表另提供日文、西班牙文和繁体中文。制作其他语言版本可使用[翻译提示词](make-your-own/prompts/zh-Hans/01-translate.md)。
 
 | 动态图形 | 镜头运动 |
 |---|---|
 | ![动态图形术语 01–08](assets/preview-motion-zh-Hans.gif) | ![镜头运动术语 01–08](assets/preview-camera-zh-Hans.gif) |
 
+- [汉化版在线示例库](https://jackengineer.github.io/motion-prompt/) · [社区案例](https://jackengineer.github.io/motion-prompt/found.html)
 - [简体中文术语列表](packs/README.zh-Hans.md)
 - [在本机运行示例库](#在本机运行示例库)
-- [原作者的在线示例库（英文和日文）](https://showheyohtaki.github.io/motion-prompt/)
+- 原版资料：[在线示例库](https://showheyohtaki.github.io/motion-prompt/) · [日文 README](README.ja.md)
 
 ## 原作者的创作缘由
 

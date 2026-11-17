@@ -1,4 +1,4 @@
-Please use "Embroidery" (刺繍), one of the names in "Art styles for image generation".
+Please use "Embroidery", one of the names in "Art styles for image generation".
 Motion Prompt #214
 
 What it is: A picture stitched into fabric with colored thread

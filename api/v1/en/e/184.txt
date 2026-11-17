@@ -1,6 +1,6 @@
 // Motion Prompt #184 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#184
 //
-// Extreme close-up / エクストリームクローズアップ
+// Extreme close-up
 // Pack: camera2 (Camera moves & transitions, part 2) · element 16 · Category: Angles & Framing
 // What happens: From a close-up of the face to a frame filled by nothing but the eyes.
 // Motion spec:

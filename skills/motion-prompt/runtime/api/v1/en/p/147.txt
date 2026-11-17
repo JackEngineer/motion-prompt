@@ -1,4 +1,4 @@
-Please use "Stacking cards" (スタッキングカード), one of the names in "Landing page & web effects, part 2".
+Please use "Stacking cards", one of the names in "Landing page & web effects, part 2".
 Motion Prompt #147
 
 What it is: Cards stack on top of each other on scroll

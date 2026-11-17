@@ -1,4 +1,4 @@
-Please use "Voxel art" (ボクセルアート), one of the names in "Art styles for image generation".
+Please use "Voxel art", one of the names in "Art styles for image generation".
 Motion Prompt #210
 
 What it is: 3D built from small stacked cubes

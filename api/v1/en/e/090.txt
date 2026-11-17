@@ -1,6 +1,6 @@
 // Motion Prompt #090 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#090
 //
-// Lazy loading / 遅延読み込み
+// Lazy loading
 // Pack: lp (Landing page & web effects) · element 18 · Category: Loading, navigation & ambient loops
 // What happens: As grey placeholders scroll into view, a spinner turns in each, and the images fade in as they arrive. The top row is loaded from the start.
 // Motion spec:

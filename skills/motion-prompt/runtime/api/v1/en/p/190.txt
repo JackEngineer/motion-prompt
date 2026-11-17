@@ -1,4 +1,4 @@
-Please use "Cross-cutting" (クロスカッティング), one of the names in "Camera moves & transitions, part 2".
+Please use "Cross-cutting", one of the names in "Camera moves & transitions, part 2".
 Motion Prompt #190
 
 What it is: Alternate between two simultaneous scenes

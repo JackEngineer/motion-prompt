@@ -1,6 +1,6 @@
 // Motion Prompt #121 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#121
 //
-// Anticipation / アンティシペーション
+// Anticipation
 // Pack: motion2 (Motion graphics moves, part 2) · element 01 · Category: Motion techniques
 // What happens: A square character pulls back against its direction of travel, squashes to wind up, then shoots forward.
 // Motion spec:

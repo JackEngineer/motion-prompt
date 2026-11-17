@@ -1,4 +1,4 @@
-Please use "Underline animation" (下線アニメーション), one of the names in "Landing page & web effects".
+Please use "Underline animation", one of the names in "Landing page & web effects".
 Motion Prompt #086
 
 What it is: A link's underline grows from the left on hover

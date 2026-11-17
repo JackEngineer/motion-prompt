@@ -1,6 +1,6 @@
 // Motion Prompt #175 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#175
 //
-// Locked-off shot / ロックオフ
+// Locked-off shot
 // Pack: camera2 (Camera moves & transitions, part 2) · element 07 · Category: Camera Movement
 // What happens: A person crosses in front of a tripod-fixed camera and a car passes behind; the camera does not move by a pixel.
 // Motion spec:

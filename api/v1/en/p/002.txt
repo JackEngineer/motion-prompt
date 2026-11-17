@@ -1,4 +1,4 @@
-Please use "Stagger" (スタガー), one of the names in "Motion graphics moves".
+Please use "Stagger", one of the names in "Motion graphics moves".
 Motion Prompt #002
 
 What it is: Items appear one after another, slightly offset in time

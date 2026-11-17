@@ -1,6 +1,6 @@
 // Motion Prompt #230 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#230
 //
-// Combo chart (bar + line) / 複合グラフ（棒＋折れ線）
+// Combo chart (bar + line)
 // Pack: diagram (Diagrams and charts for slides) · element 14 · Category: Charts that show numbers
 // What happens: Six bars grow against the left scale (gray ticks), then a line is drawn left to right against the right scale (blue ticks).
 // Motion spec:

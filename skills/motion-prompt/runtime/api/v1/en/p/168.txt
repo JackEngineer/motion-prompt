@@ -1,4 +1,4 @@
-Please use "Background video" (背景動画), one of the names in "Landing page & web effects, part 2".
+Please use "Background video", one of the names in "Landing page & web effects, part 2".
 Motion Prompt #168
 
 What it is: A video plays behind the hero section

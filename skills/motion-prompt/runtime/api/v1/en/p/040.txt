@@ -1,4 +1,4 @@
-Please use "Freeze frame" (フリーズフレーム), one of the names in "Camera moves & transitions".
+Please use "Freeze frame", one of the names in "Camera moves & transitions".
 Motion Prompt #040
 
 What it is: Pause the action for a beat

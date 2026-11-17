@@ -1,14 +1,14 @@
 // Motion Prompt #160 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#160
 //
-// Loading button / ローディングボタン
+// Loading button
 // Pack: lp2 (Landing page & web effects, part 2) · element 16 · Category: Mouse & input interactions
 // What happens: Clicking the submit button shrinks it to a circle with a spinner inside; when it finishes it widens into a green "Done" with a check.
 // Motion spec:
-//   - A 511 × 168 viewport with an orange pill button, 220 × 36, labeled "送信する" (Send). It is clicked at 0.8 s. One pass takes 4.7 s (twice per 9.4 s pack cycle).
+//   - A 511 × 168 viewport with an orange pill button, 220 × 36, labeled "Send". It is clicked at 0.8 s. One pass takes 4.7 s (twice per 9.4 s pack cycle).
 //   - Over 0.85–1.15 s (0.3 s, cubic ease-in-out) it shrinks from 220 to 36 px wide, a circle; the label fades in the first third of the shrink.
 //   - From 1.1 to 2.3 s a white spinner (radius 10, line width 3, 0.7π arc) turns once every 0.7 s inside the circle.
-//   - Over 2.25–2.45 s the color goes orange → green (#1E9E5A) and a white check draws over 2.25–2.5 s; over 2.45–2.8 s (cubic ease-in-out) it widens 36 → 150 px, the check moves 26 px left and "完了" (Done) appears.
-//   - It fades out over 3.9–4.1 s and the original "送信する" button comes back, rising 6 px, over 4.1–4.4 s (cubic ease-out).
+//   - Over 2.25–2.45 s the color goes orange → green (#1E9E5A) and a white check draws over 2.25–2.5 s; over 2.45–2.8 s (cubic ease-in-out) it widens 36 → 150 px, the check moves 26 px left and "Done" appears.
+//   - It fades out over 3.9–4.1 s and the original "Send" button comes back, rising 6 px, over 4.1–4.4 s (cubic ease-out).
 // When to use it: Use it on buttons that make people wait a moment for a result, such as submit, purchase or save.
 // Tags: loading-button, button, spinner, submit, success-state, microinteraction
 // Size: 539x208 px · Cycle: 9.4 s

@@ -1,6 +1,6 @@
 // Motion Prompt #142 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#142
 //
-// Shatter / ガラス割れ
+// Shatter
 // Pack: motion2 (Motion graphics moves, part 2) · element 22 · Category: Transitions & highlights
 // What happens: The picture cracks like glass, the shards fly off and the next scene is revealed.
 // Motion spec:

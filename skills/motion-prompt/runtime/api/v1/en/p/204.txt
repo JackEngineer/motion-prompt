@@ -1,4 +1,4 @@
-Please use "Art Nouveau" (アールヌーボー), one of the names in "Art styles for image generation".
+Please use "Art Nouveau", one of the names in "Art styles for image generation".
 Motion Prompt #204
 
 What it is: Ornament framed by flowing curves of plants and flowers

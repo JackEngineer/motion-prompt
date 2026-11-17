@@ -1,6 +1,6 @@
 // Motion Prompt #029 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#029
 //
-// Tracking shot / トラッキング
+// Tracking shot
 // Pack: camera (Camera moves & transitions) · element 05 · Category: Camera Movement
 // What happens: The camera moves sideways at the same speed as a walking person; the person stays centred while nearer posts sweep past faster.
 // Motion spec:

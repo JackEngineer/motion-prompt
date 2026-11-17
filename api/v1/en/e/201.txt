@@ -1,6 +1,6 @@
 // Motion Prompt #201 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#201
 //
-// Pop art / ポップアート
+// Pop art
 // Pack: artstyle (Art styles for image generation) · element 09 · Category: Graphic styles
 // What happens: The same line drawing becomes flat primary colors with bold black outlines, with halftone dots here and there.
 // Motion spec:

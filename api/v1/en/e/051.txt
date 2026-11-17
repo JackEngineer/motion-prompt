@@ -1,6 +1,6 @@
 // Motion Prompt #051 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#051
 //
-// Bottom sheet / ボトムシート
+// Bottom sheet
 // Pack: ui (UI component names) · element 03 · Category: Opening & overlays
 // What happens: A finger taps "View details" and a panel rises from the bottom; dragging its handle down closes it.
 // Motion spec:

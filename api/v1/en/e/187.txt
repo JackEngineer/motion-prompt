@@ -1,6 +1,6 @@
 // Motion Prompt #187 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#187
 //
-// Fade to black / フェードアウト
+// Fade to black
 // Pack: camera2 (Camera moves & transitions, part 2) · element 19 · Category: Transitions & Editing
 // What happens: The whole picture sinks to black, and the next scene brightens out of the black.
 // Motion spec:

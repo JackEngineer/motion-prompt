@@ -1,6 +1,6 @@
 // Motion Prompt #225 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#225
 //
-// Scatter plot / 散布図
+// Scatter plot
 // Pack: diagram (Diagrams and charts for slides) · element 09 · Category: Charts that show numbers
 // What happens: Small blue dots pop in from left to right on L-shaped axes, scattered upward to the right, and a dashed trend line follows.
 // Motion spec:

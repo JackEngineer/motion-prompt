@@ -1,4 +1,4 @@
-Please use "Radar chart" (レーダーチャート), one of the names in "Diagrams and charts for slides".
+Please use "Radar chart", one of the names in "Diagrams and charts for slides".
 Motion Prompt #228
 
 What it is: A spider web that compares several items

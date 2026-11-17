@@ -1,6 +1,6 @@
 // Motion Prompt #168 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#168
 //
-// Background video / 背景動画
+// Background video
 // Pack: lp2 (Landing page & web effects, part 2) · element 24 · Category: Showcase effects
 // What happens: In the hero background, clouds and waves keep moving, while the headline and button sit still on top.
 // Motion spec:

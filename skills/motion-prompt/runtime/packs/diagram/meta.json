@@ -328,7 +328,7 @@
    },
    "summary": {
     "ja": "中央の「テーマ」から左右へ曲線の枝が6本伸び、その先からさらに細い枝と小さな語のノードが出る。",
-    "en": "Six curved branches grow from the central \"テーマ\" (topic) to both sides, then thinner twigs with small word nodes.",
+    "en": "Six curved branches grow from the central \"Topic\" to both sides, then thinner twigs with small word nodes.",
         "zh-Hans": "六条曲线分支从中央的“主题”向两侧生长，随后长出更细的枝条和小文字节点。"
       },
    "spec": {
@@ -340,7 +340,7 @@
      "終わり: 4.1〜4.5秒で図全体がフェードアウトし、空のまま4.7秒で1周"
     ],
     "en": [
-     "Center: a 100×44 px blue rounded box with white text \"テーマ\" (19 px), popping in at 0.4 s over 0.3 s (ease-out-back)",
+     "Center: a 100×44 px blue rounded box with white text \"Topic\" (19 px), popping in at 0.4 s over 0.3 s (ease-out-back)",
      "Branches: six cubic Bézier curves (3 px), three to each side, growing over 0.5 s from 0.7 s, 0.09 s apart, each ending in a 54×24 px node; mid blue and gray alternate",
      "Twigs: thinner 2.5 px curves grow from the branch ends over 0.35 s (from 1.45 s), each ending in a small 40×18 px node",
      "Shape: curved branches and word nodes, unlike the nested rings of #240 Concentric circle diagram",
@@ -541,7 +541,7 @@
      "終わり: 4.1〜4.5秒で図全体がフェードアウトし、空のまま4.7秒で1周"
     ],
     "en": [
-     "Spine: after the tail (0.35–0.6 s), a line from x = 52 to x = 404 (dark gray, 3 px, 14 px head) grows from 0.45 s to 1.0 s; the head, a 92×56 px blue box reading \"結果\" (result), pops in at 0.95 s",
+     "Spine: after the tail (0.35–0.6 s), a line from x = 52 to x = 404 (dark gray, 3 px, 14 px head) grows from 0.45 s to 1.0 s; the head, a 92×56 px blue box reading \"Result\", pops in at 0.95 s",
      "Bones: six bones from x = 150, 258 and 366 on the spine, slanting up-left and down-left (62 px across, 80 px up or down, mid blue, 3 px), drawn over 0.35 s from 1.1 s, 0.14 s per column, the lower ones 0.07 s later",
      "Side bones: at 36% and 68% along each bone, a 26 px horizontal line to the left (gray, 2.5 px), growing over 0.22 s just after the bone, 0.08 s apart",
      "End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop"
@@ -1009,7 +1009,7 @@
      "People: ten faceless person icons, 80 px tall and 32 px apart, in a single row (a grid would read as a heatmap)",
      "Entrance: they pop in from 0.35 s, 0.06 s apart, over 0.3 s each (ease-out-back), all gray",
      "Color: the first three turn from gray to blue over 0.25 s each, from 1.25 s, 0.22 s apart",
-     "Number: \"30%\" (46 px, blue) on the left counts up from 0 between 1.25 s and 1.94 s, with \"10人中3人\" (3 in 10 people) below",
+     "Number: \"30%\" (46 px, blue) on the left counts up from 0 between 1.25 s and 1.94 s, with \"3 in 10 people\" below",
      "End: the axes and grid stay; only the data fades out from 4.15 s to 4.55 s (one pass = 4.7 s)"
     ],
         "zh-Hans": [
@@ -1210,7 +1210,7 @@
     ],
     "en": [
      "Line: from x = 36 to x = 503 at y = 106 (dark gray, 3 px), drawn from 0.4 s to 2.0 s (cubic ease-in-out), with an arrowhead at the right end",
-     "Dots: five (April, June, August, October, December: 4月 … 12月), each popping in over 0.25 s at the moment the tip reaches it (radius 7 px; the last one blue, 10 px)",
+     "Dots: five (April, June, August, October, December), each popping in over 0.25 s at the moment the tip reaches it (radius 7 px; the last one blue, 10 px)",
      "Labels: from each dot a 22 px stem grows up or down, alternating, to a 64×32 px rounded tag (white with the month in 18 px; the last one blue with white text), over 0.3 s",
      "End: the whole figure fades out from 4.1 s to 4.5 s and the card stays empty until the 4.7 s loop"
     ],
@@ -1473,7 +1473,7 @@
    },
    "summary": {
     "ja": "左にレーン名（顧客・営業・制作）の3レーン。手順の箱がレーンを行き来しながら順に出て、かぎ形の矢印でつながる。",
-    "en": "Three lanes named on the left (顧客 customer, 営業 sales, 制作 production); step boxes appear one by one, moving between lanes, joined by elbow arrows.",
+    "en": "Three lanes named on the left (customer, sales, production); step boxes appear one by one, moving between lanes, joined by elbow arrows.",
         "zh-Hans": "左侧标出三条泳道的名称：客户、销售和制作；步骤框在不同泳道中依次出现，以折线箭头连接。"
       },
    "spec": {

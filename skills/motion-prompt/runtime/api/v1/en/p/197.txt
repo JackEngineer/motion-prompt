@@ -1,4 +1,4 @@
-Please use "Pointillism" (点描), one of the names in "Art styles for image generation".
+Please use "Pointillism", one of the names in "Art styles for image generation".
 Motion Prompt #197
 
 What it is: Painted with small dots of color placed side by side

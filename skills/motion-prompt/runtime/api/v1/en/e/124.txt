@@ -1,6 +1,6 @@
 // Motion Prompt #124 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#124
 //
-// Wiggle / ウィグル
+// Wiggle
 // Pack: motion2 (Motion graphics moves, part 2) · element 04 · Category: Motion techniques
 // What happens: A bell keeps jittering irregularly: not one hit, but a small shake that never stops.
 // Motion spec:

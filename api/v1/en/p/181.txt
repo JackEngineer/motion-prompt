@@ -1,4 +1,4 @@
-Please use "Bird's-eye view" (バーズアイ), one of the names in "Camera moves & transitions, part 2".
+Please use "Bird's-eye view", one of the names in "Camera moves & transitions, part 2".
 Motion Prompt #181
 
 What it is: Straight down from directly overhead

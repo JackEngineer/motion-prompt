@@ -1,6 +1,6 @@
 // Motion Prompt #229 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#229
 //
-// Gauge chart / ゲージチャート
+// Gauge chart
 // Pack: diagram (Diagrams and charts for slides) · element 13 · Category: Charts that show numbers
 // What happens: The needle of a half-circle dial swings past, wobbles and settles at 72%; the blue band and the number follow the needle.
 // Motion spec:

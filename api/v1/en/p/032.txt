@@ -1,4 +1,4 @@
-Please use "Dolly zoom (Vertigo)" (ドリーズーム), one of the names in "Camera moves & transitions".
+Please use "Dolly zoom (Vertigo)", one of the names in "Camera moves & transitions".
 Motion Prompt #032
 
 What it is: Subject stays, background warps

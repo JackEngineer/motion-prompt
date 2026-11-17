@@ -1,6 +1,6 @@
 // Motion Prompt #079 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#079
 //
-// Scroll progress bar / スクロールプログレスバー
+// Scroll progress bar
 // Pack: lp (Landing page & web effects) · element 07 · Category: Scroll effects
 // What happens: As the article is read a bit at a time, the line along the top grows from the left and reaches the far end at the bottom of the page.
 // Motion spec:

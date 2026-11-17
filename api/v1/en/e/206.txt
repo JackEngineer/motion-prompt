@@ -1,6 +1,6 @@
 // Motion Prompt #206 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#206
 //
-// Layered paper art / 重ね切り絵
+// Layered paper art
 // Pack: artstyle (Art styles for image generation) · element 14 · Category: Graphic styles
 // What happens: The same line drawing becomes many layers of cut colored paper; shadows fall where the layers step, giving depth.
 // Motion spec:

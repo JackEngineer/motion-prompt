@@ -1,6 +1,6 @@
 // Motion Prompt #207 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#207
 //
-// Flat illustration / フラットイラスト
+// Flat illustration
 // Pack: artstyle (Art styles for image generation) · element 15 · Category: Graphic styles
 // What happens: The same line drawing becomes a picture made only of flat areas of color, with no outlines and no shadows.
 // Motion spec:

@@ -1,6 +1,6 @@
 // Motion Prompt #004 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#004
 //
-// Line draw / ラインドロー
+// Line draw
 // Pack: motion (Motion graphics moves) · element 04 · Category: Entrances & text
 // What happens: A chart line draws itself on, and is later erased from its starting end.
 // Motion spec:

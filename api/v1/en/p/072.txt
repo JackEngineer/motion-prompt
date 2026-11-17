@@ -1,4 +1,4 @@
-Please use "Empty state" (エンプティステート), one of the names in "UI component names".
+Please use "Empty state", one of the names in "UI component names".
 Motion Prompt #072
 
 What it is: The screen shown when there is nothing to list yet

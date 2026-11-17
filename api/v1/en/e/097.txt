@@ -1,6 +1,6 @@
 // Motion Prompt #097 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#097
 //
-// Backlighting / 逆光
+// Backlighting
 // Pack: photo (Photo looks, lighting & styles) · element 01 · Category: Lighting & time of day
 // What happens: The sun moves from outside the frame to directly behind the person's head; a thin bright edge appears around the figure, a pale warm haze covers the frame and the side facing the camera darkens.
 // Motion spec:

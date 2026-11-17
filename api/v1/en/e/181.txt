@@ -1,6 +1,6 @@
 // Motion Prompt #181 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#181
 //
-// Bird's-eye view / バーズアイ
+// Bird's-eye view
 // Pack: camera2 (Camera moves & transitions, part 2) · element 13 · Category: Angles & Framing
 // What happens: Looking straight down from overhead: road, people, cars and trees appear as top-down shapes, and more comes into view as the camera rises.
 // Motion spec:

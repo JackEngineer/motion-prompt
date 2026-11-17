@@ -1,6 +1,6 @@
 // Motion Prompt #071 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#071
 //
-// Badge / バッジ
+// Badge
 // Pack: ui (UI component names) · element 23 · Category: Navigation & status
 // What happens: Each time a notification arrives, the blue dot on the bell in the header counts up 1, 2, 3; clicking the bell clears it.
 // Motion spec:

@@ -1,6 +1,6 @@
 // Motion Prompt #146 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#146
 //
-// Scroll text reveal / スクロールテキストリビール
+// Scroll text reveal
 // Pack: lp2 (Landing page & web effects, part 2) · element 02 · Category: Scroll effects
 // What happens: A light gray headline darkens one character at a time from the top left as the page scrolls, and fades back from the end when scrolling up.
 // Motion spec:

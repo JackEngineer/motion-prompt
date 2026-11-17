@@ -1,6 +1,6 @@
 // Motion Prompt #186 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#186
 //
-// Morph cut / モーフカット
+// Morph cut
 // Pack: camera2 (Camera moves & transitions, part 2) · element 18 · Category: Transitions & Editing
 // What happens: Two takes of the same person are joined by smoothly interpolating position and pose, so nothing jumps as in a jump cut.
 // Motion spec:

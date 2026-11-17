@@ -1,4 +1,4 @@
-Please use "Text roll on hover" (テキストロール), one of the names in "Landing page & web effects, part 2".
+Please use "Text roll on hover", one of the names in "Landing page & web effects, part 2".
 Motion Prompt #156
 
 What it is: Letters roll up and swap on hover

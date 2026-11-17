@@ -1,6 +1,6 @@
 // Motion Prompt #190 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#190
 //
-// Cross-cutting / クロスカッティング
+// Cross-cutting
 // Pack: camera2 (Camera moves & transitions, part 2) · element 22 · Category: Transitions & Editing
 // What happens: Two scenes happening at the same time, a runner and a car, alternate in shorter and shorter cuts.
 // Motion spec:

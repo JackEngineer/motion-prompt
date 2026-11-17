@@ -1,4 +1,4 @@
-Please use "Flowchart" (フローチャート), one of the names in "Diagrams and charts for slides".
+Please use "Flowchart", one of the names in "Diagrams and charts for slides".
 Motion Prompt #222
 
 What it is: Steps you follow, with diamond-shaped decisions

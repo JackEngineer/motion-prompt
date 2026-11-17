@@ -1,6 +1,6 @@
 // Motion Prompt #237 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#237
 //
-// Treemap / ツリーマップ
+// Treemap
 // Pack: diagram (Diagrams and charts for slides) · element 21 · Category: Diagrams of flow and the whole picture
 // What happens: A dashed outer frame fills up with seven rectangles of different sizes, biggest first.
 // Motion spec:

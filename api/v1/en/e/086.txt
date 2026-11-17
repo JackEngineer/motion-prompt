@@ -1,6 +1,6 @@
 // Motion Prompt #086 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#086
 //
-// Underline animation / 下線アニメーション
+// Underline animation
 // Pack: lp (Landing page & web effects) · element 14 · Category: Hover & click interactions
 // What happens: Under the link the cursor is on, an orange line grows from the left; when the cursor leaves, the line shrinks away to the right.
 // Motion spec:

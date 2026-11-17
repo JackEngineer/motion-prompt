@@ -1,6 +1,6 @@
 // Motion Prompt #084 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#084
 //
-// Magnetic button / マグネティックボタン
+// Magnetic button
 // Pack: lp (Landing page & web effects) · element 12 · Category: Hover & click interactions
 // What happens: As the cursor comes near, the button is drawn toward it and follows; when the cursor leaves, the button wobbles back to its place.
 // Motion spec:

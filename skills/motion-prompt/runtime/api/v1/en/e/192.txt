@@ -1,6 +1,6 @@
 // Motion Prompt #192 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#192
 //
-// Montage / モンタージュ
+// Montage
 // Pack: camera2 (Camera moves & transitions, part 2) · element 24 · Category: Transitions & Editing
 // What happens: Seven short shots show thirty days of training; straight cuts, with the date jumping at top right.
 // Motion spec:

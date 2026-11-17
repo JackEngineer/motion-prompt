@@ -1,4 +1,4 @@
-Please use "Hover image reveal" (ホバーで画像プレビュー), one of the names in "Landing page & web effects, part 2".
+Please use "Hover image reveal", one of the names in "Landing page & web effects, part 2".
 Motion Prompt #157
 
 What it is: Hovering a list item shows its photo

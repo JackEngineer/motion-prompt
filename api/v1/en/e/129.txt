@@ -1,6 +1,6 @@
 // Motion Prompt #129 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#129
 //
-// Text scramble / テキストスクランブル
+// Text scramble
 // Pack: motion2 (Motion graphics moves, part 2) · element 09 · Category: Text & shapes
 // What happens: Random characters keep changing, then lock into the right word from left to right.
 // Motion spec:

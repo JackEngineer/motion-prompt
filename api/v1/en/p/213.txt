@@ -1,4 +1,4 @@
-Please use "Clay animation style" (クレイアニメ風), one of the names in "Art styles for image generation".
+Please use "Clay animation style", one of the names in "Art styles for image generation".
 Motion Prompt #213
 
 What it is: Clay models with fingerprints still visible

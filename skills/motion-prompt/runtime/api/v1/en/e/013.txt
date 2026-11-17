@@ -1,6 +1,6 @@
 // Motion Prompt #013 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#013
 //
-// Liquid motion / リキッドモーション
+// Liquid motion
 // Pack: motion (Motion graphics moves) · element 13 · Category: Motion polish
 // What happens: A blob stretches out, breaks into drops and merges back into one.
 // Motion spec:

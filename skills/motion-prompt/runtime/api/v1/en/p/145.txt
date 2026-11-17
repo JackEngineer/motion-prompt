@@ -1,4 +1,4 @@
-Please use "Timeline on scroll" (タイムラインアニメーション), one of the names in "Landing page & web effects, part 2".
+Please use "Timeline on scroll", one of the names in "Landing page & web effects, part 2".
 Motion Prompt #145
 
 What it is: A timeline line grows as you scroll

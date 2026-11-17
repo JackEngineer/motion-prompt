@@ -1,6 +1,6 @@
 // Motion Prompt #222 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#222
 //
-// Flowchart / フローチャート
+// Flowchart
 // Pack: diagram (Diagrams and charts for slides) · element 06 · Category: Diagrams that organize ideas
 // What happens: Start → step → diamond decision → step → end appear in one row, with a loop arrow from the decision back to the first step; then a dot walks the path, loops back once and goes on to the end.
 // Motion spec:

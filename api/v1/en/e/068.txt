@@ -1,6 +1,6 @@
 // Motion Prompt #068 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#068
 //
-// Step indicator / ステップインジケーター
+// Step indicator
 // Pack: ui (UI component names) · element 20 · Category: Navigation & status
 // What happens: Each click on "Next" turns the next of four step circles into a check and extends the blue line to the following step.
 // Motion spec:

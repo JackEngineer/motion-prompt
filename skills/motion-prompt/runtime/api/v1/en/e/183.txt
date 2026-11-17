@@ -1,6 +1,6 @@
 // Motion Prompt #183 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#183
 //
-// Establishing shot / エスタブリッシングショット
+// Establishing shot
 // Pack: camera2 (Camera moves & transitions, part 2) · element 15 · Category: Angles & Framing
 // What happens: A wide, high view of the whole town; the camera pushes in slowly and a location caption appears at bottom left.
 // Motion spec:

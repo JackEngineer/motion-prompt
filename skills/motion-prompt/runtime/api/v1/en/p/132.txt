@@ -1,4 +1,4 @@
-Please use "Variable font animation" (可変フォントアニメーション), one of the names in "Motion graphics moves, part 2".
+Please use "Variable font animation", one of the names in "Motion graphics moves, part 2".
 Motion Prompt #132
 
 What it is: The weight of the letters changes smoothly

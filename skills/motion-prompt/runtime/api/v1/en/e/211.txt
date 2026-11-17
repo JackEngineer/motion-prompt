@@ -1,6 +1,6 @@
 // Motion Prompt #211 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#211
 //
-// Low poly / ローポリ
+// Low poly
 // Pack: artstyle (Art styles for image generation) · element 19 · Category: Digital, 3D & materials
 // What happens: The same line drawing becomes 3D made only of triangular faces; each face has its own shade, so the forms look faceted.
 // Motion spec:

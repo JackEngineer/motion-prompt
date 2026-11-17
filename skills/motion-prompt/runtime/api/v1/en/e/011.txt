@@ -1,6 +1,6 @@
 // Motion Prompt #011 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#011
 //
-// Squash & stretch / スクワッシュ＆ストレッチ
+// Squash & stretch
 // Pack: motion (Motion graphics moves) · element 11 · Category: Motion polish
 // What happens: A bouncing character squashes on landing and stretches as it takes off.
 // Motion spec:

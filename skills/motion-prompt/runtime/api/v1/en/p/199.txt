@@ -1,4 +1,4 @@
-Please use "Linocut print" (リノカット), one of the names in "Art styles for image generation".
+Please use "Linocut print", one of the names in "Art styles for image generation".
 Motion Prompt #199
 
 What it is: Bold black-and-white lines cut into a block

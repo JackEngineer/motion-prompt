@@ -1,6 +1,6 @@
 // Motion Prompt #087 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#087
 //
-// Before/after slider / ビフォーアフタースライダー
+// Before/after slider
 // Pack: lp (Landing page & web effects) · element 15 · Category: Hover & click interactions
 // What happens: Dragging the line in the middle of the photo left and right changes how much of the grey "before" (left) and the coloured "after" (right) is shown.
 // Motion spec:

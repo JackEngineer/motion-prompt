@@ -1,6 +1,6 @@
 // Motion Prompt #094 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#094
 //
-// Marquee / マーキー
+// Marquee
 // Pack: lp (Landing page & web effects) · element 22 · Category: Loading, navigation & ambient loops
 // What happens: Inside a navy band, large service names separated by orange dots keep moving to the left without a gap.
 // Motion spec:

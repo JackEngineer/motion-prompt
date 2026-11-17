@@ -1,6 +1,6 @@
 // Motion Prompt #101 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#101
 //
-// Rembrandt lighting / レンブラントライティング
+// Rembrandt lighting
 // Pack: photo (Photo looks, lighting & styles) · element 05 · Category: Lighting & time of day
 // What happens: A light 45° to the side and 45° up comes on; the right side of the face falls into shadow except for a small inverted triangle of light on the shadow-side cheek.
 // Motion spec:

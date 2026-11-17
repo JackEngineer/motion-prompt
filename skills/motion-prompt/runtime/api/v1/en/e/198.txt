@@ -1,6 +1,6 @@
 // Motion Prompt #198 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#198
 //
-// Colored pencil drawing / 色鉛筆画
+// Colored pencil drawing
 // Pack: artstyle (Art styles for image generation) · element 06 · Category: Painting & printmaking
 // What happens: The same line drawing becomes a hand-drawn colored pencil picture, with layered fine strokes and white paper grain showing through.
 // Motion spec:

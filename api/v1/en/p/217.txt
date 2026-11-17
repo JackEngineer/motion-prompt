@@ -1,4 +1,4 @@
-Please use "Venn diagram" (ベン図), one of the names in "Diagrams and charts for slides".
+Please use "Venn diagram", one of the names in "Diagrams and charts for slides".
 Motion Prompt #217
 
 What it is: Overlapping circles that show what is shared

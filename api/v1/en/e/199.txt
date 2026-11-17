@@ -1,6 +1,6 @@
 // Motion Prompt #199 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#199
 //
-// Linocut print / リノカット
+// Linocut print
 // Pack: artstyle (Art styles for image generation) · element 07 · Category: Painting & printmaking
 // What happens: The same line drawing becomes a black-and-white print from a carved block, made only of bold lines and shapes with no gray or blur.
 // Motion spec:

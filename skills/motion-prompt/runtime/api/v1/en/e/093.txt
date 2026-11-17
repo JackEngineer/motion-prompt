@@ -1,6 +1,6 @@
 // Motion Prompt #093 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#093
 //
-// Smooth scroll / スムーススクロール
+// Smooth scroll
 // Pack: lp (Landing page & web effects) · element 21 · Category: Loading, navigation & ambient loops
 // What happens: Clicking "Pricing" in the menu glides the page down to the pricing section; the up arrow at the bottom right glides it back to the top.
 // Motion spec:

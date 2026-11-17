@@ -3,6 +3,8 @@ import fs from 'node:fs';
 import vm from 'node:vm';
 
 const zh = 'zh-Hans';
+const japanese = /[\u3040-\u30ff]|顧客|営業|目次/;
+const eastAsianText = /[\p{Script=Han}\p{Script=Hiragana}\p{Script=Katakana}]/u;
 let elements = 0, specs = 0;
 const dictionary = JSON.parse(fs.readFileSync('data/tags.zh-Hans.json', 'utf8'));
 const sourceTags = new Set();
@@ -20,7 +22,7 @@ for (const pack of fs.readdirSync('packs')) {
   ];
   for (const [field, value] of localized) {
     assert.equal(typeof value, 'string', `${pack}/${field}: 缺少中文文案`);
-    assert.doesNotMatch(value, /[\u3040-\u30ff]|顧客|営業|目次/, `${pack}/${field}: 中文文案残留日文`);
+    assert.doesNotMatch(value, japanese, `${pack}/${field}: 中文文案残留日文`);
   }
   for (const c of meta.categories) assert.ok(c[zh], `${pack}/${c.slug}: 类别`);
   for (const e of meta.elements) {
@@ -42,6 +44,7 @@ for (const [script, page] of [['site', 'index'], ['found', 'found']]) {
   const source = fs.readFileSync(`assets/${script}.js`, 'utf8');
   const match = /var I18N = (\{[\s\S]*?\n  \});/.exec(source);
   const strings = vm.runInNewContext(`(${match[1]})`);
+  assert.deepEqual(Object.keys(strings).sort(), ['en', zh]);
   assert.deepEqual(Object.keys(strings[zh]).sort(), Object.keys(strings.en).sort(), `${script}: 文案键不完整`);
   const html = fs.readFileSync(`${page}.html`, 'utf8');
   assert.match(html, /<html lang="zh-Hans">/);
@@ -56,13 +59,22 @@ for (const e of cat.elements) {
   const prompt = fs.readFileSync(`api/v1/${zh}/p/${e.id}.txt`, 'utf8');
   const code = fs.readFileSync(`api/v1/${zh}/e/${e.id}.txt`, 'utf8');
   assert.ok(prompt.includes(e.name[zh]) && prompt.includes('动效规格：'));
-  assert.doesNotMatch(code, /[\u3040-\u30ff]|顧客|営業|目次/, `${e.id}: 中文规格或参考代码残留日文`);
+  assert.doesNotMatch(code, japanese, `${e.id}: 中文规格或参考代码残留日文`);
   assert.ok(code.includes(e.summary[zh]) && code.includes('适用场景'));
   assert.ok(code.includes('标签：' + e.tagLabels[zh].join('、')), `${e.id}: 中文规格的标签未翻译`);
   assert.ok(prompt.includes('../e/' + e.id + '.txt'), `${e.id}: 静态提示词引用必须指向同一语言`);
   assert.ok(!prompt.includes('/en/e/'), `${e.id}: 中文提示词不能回跳英文实现`);
+  const englishPrompt = fs.readFileSync(`api/v1/en/p/${e.id}.txt`, 'utf8');
+  const englishCode = fs.readFileSync(`api/v1/en/e/${e.id}.txt`, 'utf8');
+  const codeStart = '\n// Element code starts here.';
+  assert.ok(englishCode.includes(codeStart));
+  const [englishSpec] = englishCode.split(codeStart, 1);
+  assert.doesNotMatch(englishPrompt, eastAsianText, `${e.id}: 英文提示词残留中日文`);
+  assert.doesNotMatch(englishSpec, eastAsianText, `${e.id}: 英文规格残留中日文`);
+  assert.doesNotMatch(englishCode, japanese, `${e.id}: 英文参考代码残留日文`);
 }
+assert.doesNotMatch(fs.readFileSync('api/v1/en/catalog.tsv', 'utf8'), eastAsianText, '英文术语列表残留中日文');
 for (const pack of cat.packs) {
   assert.doesNotMatch(fs.readFileSync(`api/v1/kit/${pack.pack}.js`, 'utf8'), /[\u3040-\u30ff]/, `${pack.pack}: 共用代码残留日文注释`);
 }
-console.log(`通过：${elements} 条中文数据、${specs} 行规格、${sourceTags.size} 个标签译名、两页文案键与初始 HTML、全部中文 API 提示词与规格。`);
+console.log(`通过：${elements} 条中文数据、${specs} 行规格、${sourceTags.size} 个标签译名、两页文案键与初始 HTML、全部中英文 API 提示词与规格、英文术语列表。`);

@@ -1,6 +1,6 @@
 // Motion Prompt #191 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#191
 //
-// Bullet time / バレットタイム
+// Bullet time
 // Pack: camera2 (Camera moves & transitions, part 2) · element 23 · Category: Transitions & Editing
 // What happens: Time nearly stops at the top of a jump while the camera circles around the person.
 // Motion spec:

@@ -1,4 +1,4 @@
-Please use "Image zoom on hover" (ホバーで画像ズーム), one of the names in "Landing page & web effects".
+Please use "Image zoom on hover", one of the names in "Landing page & web effects".
 Motion Prompt #082
 
 What it is: The photo enlarges inside a fixed frame

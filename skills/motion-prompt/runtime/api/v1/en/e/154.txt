@@ -1,6 +1,6 @@
 // Motion Prompt #154 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#154
 //
-// Spotlight hover / スポットライトホバー
+// Spotlight hover
 // Pack: lp2 (Landing page & web effects, part 2) · element 10 · Category: Mouse & input interactions
 // What happens: As the cursor moves over the dark cards, only a circle around it is lit, and the edges of nearby cards glow.
 // Motion spec:

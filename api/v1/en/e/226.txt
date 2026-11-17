@@ -1,6 +1,6 @@
 // Motion Prompt #226 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#226
 //
-// Bubble chart / バブルチャート
+// Bubble chart
 // Pack: diagram (Diagrams and charts for slides) · element 10 · Category: Charts that show numbers
 // What happens: Five semi-transparent circles of different sizes grow one by one on L-shaped axes; only the largest is dark blue.
 // Motion spec:

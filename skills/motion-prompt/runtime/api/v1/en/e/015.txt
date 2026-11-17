@@ -1,6 +1,6 @@
 // Motion Prompt #015 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#015
 //
-// Particles / パーティクル
+// Particles
 // Pack: motion (Motion graphics moves) · element 15 · Category: Motion polish
 // What happens: Particles keep shooting up from an emitter, spread out and fall.
 // Motion spec:

@@ -1,6 +1,6 @@
 // Motion Prompt #180 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#180
 //
-// Over-the-shoulder / オーバーザショルダー
+// Over-the-shoulder
 // Pack: camera2 (Camera moves & transitions, part 2) · element 12 · Category: Angles & Framing
 // What happens: The back of one person's head and shoulder sit at the edge of frame and the other person is seen past them; the foreground is soft, the subject sharp.
 // Motion spec:

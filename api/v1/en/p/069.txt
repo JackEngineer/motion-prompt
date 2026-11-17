@@ -1,4 +1,4 @@
-Please use "Skeleton screen" (スケルトン), one of the names in "UI component names".
+Please use "Skeleton screen", one of the names in "UI component names".
 Motion Prompt #069
 
 What it is: Grey shapes stand in for content while it loads

@@ -1,6 +1,6 @@
 // Motion Prompt #028 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#028
 //
-// Zoom in / ズームイン
+// Zoom in
 // Pack: camera (Camera moves & transitions) · element 04 · Category: Camera Movement
 // What happens: The camera does not move; only the focal length gets longer, so the whole picture enlarges by the same ratio.
 // Motion spec:

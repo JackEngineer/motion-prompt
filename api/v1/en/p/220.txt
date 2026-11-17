@@ -1,4 +1,4 @@
-Please use "Pyramid diagram" (ピラミッド図), one of the names in "Diagrams and charts for slides".
+Please use "Pyramid diagram", one of the names in "Diagrams and charts for slides".
 Motion Prompt #220
 
 What it is: Layers stacked from the base to the top

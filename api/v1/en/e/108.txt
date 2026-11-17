@@ -1,6 +1,6 @@
 // Motion Prompt #108 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#108
 //
-// Panning shot / 流し撮り
+// Panning shot
 // Pack: photo (Photo looks, lighting & styles) · element 12 · Category: Lens & camera effects
 // What happens: The camera follows the moving car: the car stays sharp in the middle of the frame while only the buildings, trees and lamps behind it streak sideways.
 // Motion spec:

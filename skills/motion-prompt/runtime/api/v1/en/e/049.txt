@@ -1,6 +1,6 @@
 // Motion Prompt #049 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#049
 //
-// Modal dialog / モーダル
+// Modal dialog
 // Pack: ui (UI component names) · element 01 · Category: Opening & overlays
 // What happens: Clicking "Open" dims the whole page and a small window scales up slightly into the centre; clicking × closes it.
 // Motion spec:

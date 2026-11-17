@@ -1,4 +1,4 @@
-Please use "Tooltip" (ツールチップ), one of the names in "UI component names".
+Please use "Tooltip", one of the names in "UI component names".
 Motion Prompt #054
 
 What it is: Hover over something to show a short label

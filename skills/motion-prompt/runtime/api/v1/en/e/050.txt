@@ -1,6 +1,6 @@
 // Motion Prompt #050 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#050
 //
-// Drawer (Off-canvas) / ドロワー
+// Drawer (Off-canvas)
 // Pack: ui (UI component names) · element 02 · Category: Opening & overlays
 // What happens: Clicking "Menu" slides a tall panel in from the left; clicking outside slides it back.
 // Motion spec:

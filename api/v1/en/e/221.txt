@@ -1,10 +1,10 @@
 // Motion Prompt #221 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#221
 //
-// Mind map / マインドマップ
+// Mind map
 // Pack: diagram (Diagrams and charts for slides) · element 05 · Category: Diagrams that organize ideas
-// What happens: Six curved branches grow from the central "テーマ" (topic) to both sides, then thinner twigs with small word nodes.
+// What happens: Six curved branches grow from the central "Topic" to both sides, then thinner twigs with small word nodes.
 // Motion spec:
-//   - Center: a 100×44 px blue rounded box with white text "テーマ" (19 px), popping in at 0.4 s over 0.3 s (ease-out-back)
+//   - Center: a 100×44 px blue rounded box with white text "Topic" (19 px), popping in at 0.4 s over 0.3 s (ease-out-back)
 //   - Branches: six cubic Bézier curves (3 px), three to each side, growing over 0.5 s from 0.7 s, 0.09 s apart, each ending in a 54×24 px node; mid blue and gray alternate
 //   - Twigs: thinner 2.5 px curves grow from the branch ends over 0.35 s (from 1.45 s), each ending in a small 40×18 px node
 //   - Shape: curved branches and word nodes, unlike the nested rings of #240 Concentric circle diagram

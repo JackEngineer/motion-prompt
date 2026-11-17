@@ -1,4 +1,4 @@
-Please use "Dutch angle" (ダッチアングル), one of the names in "Camera moves & transitions".
+Please use "Dutch angle", one of the names in "Camera moves & transitions".
 Motion Prompt #036
 
 What it is: Tilt the frame diagonally

@@ -1,6 +1,6 @@
 // Motion Prompt #195 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#195
 //
-// Ink wash painting (sumi-e) / 水墨画
+// Ink wash painting (sumi-e)
 // Pack: artstyle (Art styles for image generation) · element 03 · Category: Painting & printmaking
 // What happens: The same line drawing becomes a picture in one black ink on washi paper, shaped only by dark and pale ink, bleeds and soft washes.
 // Motion spec:

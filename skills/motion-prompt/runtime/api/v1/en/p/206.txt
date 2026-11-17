@@ -1,4 +1,4 @@
-Please use "Layered paper art" (重ね切り絵), one of the names in "Art styles for image generation".
+Please use "Layered paper art", one of the names in "Art styles for image generation".
 Motion Prompt #206
 
 What it is: Cut colored paper stacked in layers, with shadows giving depth

@@ -1,4 +1,4 @@
-Please use "Text scramble" (テキストスクランブル), one of the names in "Motion graphics moves, part 2".
+Please use "Text scramble", one of the names in "Motion graphics moves, part 2".
 Motion Prompt #129
 
 What it is: Letters shuffle at random, then settle

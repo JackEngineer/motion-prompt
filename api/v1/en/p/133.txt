@@ -1,4 +1,4 @@
-Please use "Text mask" (テキストマスク), one of the names in "Motion graphics moves, part 2".
+Please use "Text mask", one of the names in "Motion graphics moves, part 2".
 Motion Prompt #133
 
 What it is: Letters cut out to show a picture inside

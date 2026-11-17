@@ -1,6 +1,6 @@
 // Motion Prompt #107 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#107
 //
-// Long exposure / 長時間露光
+// Long exposure
 // Pack: photo (Photo looks, lighting & styles) · element 11 · Category: Lens & camera effects
 // What happens: The street turns to night; the moving car fades to almost nothing, a red tail-light line stretches out behind it and white and amber lines run along the opposite lane.
 // Motion spec:

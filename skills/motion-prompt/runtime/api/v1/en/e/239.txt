@@ -1,6 +1,6 @@
 // Motion Prompt #239 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#239
 //
-// Chevron process / 矢羽根図（シェブロン）
+// Chevron process
 // Pack: diagram (Diagrams and charts for slides) · element 23 · Category: Diagrams of flow and the whole picture
 // What happens: Arrow-shaped steps 1 to 5 slide in from the left one after another, each with short notes below; the blue gets darker to the right.
 // Motion spec:

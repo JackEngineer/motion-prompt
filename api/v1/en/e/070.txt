@@ -1,6 +1,6 @@
 // Motion Prompt #070 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#070
 //
-// Spinner / スピナー
+// Spinner
 // Pack: ui (UI component names) · element 22 · Category: Navigation & status
 // What happens: Clicking "Send" washes the card white and a blue arc spins in the middle; when finished it changes to a check and fades.
 // Motion spec:

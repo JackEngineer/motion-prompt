@@ -1,6 +1,6 @@
 // Motion Prompt #036 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#036
 //
-// Dutch angle / ダッチアングル
+// Dutch angle
 // Pack: camera (Camera moves & transitions) · element 12 · Category: Shooting Style & Time
 // What happens: A level camera rolls around its lens axis and holds with the horizon on a diagonal.
 // Motion spec:

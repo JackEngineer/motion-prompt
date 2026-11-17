@@ -1,4 +1,4 @@
-Please use "Neon sign" (ネオンサイン), one of the names in "Art styles for image generation".
+Please use "Neon sign", one of the names in "Art styles for image generation".
 Motion Prompt #202
 
 What it is: Shapes drawn with glowing tubes on a dark wall

@@ -1,6 +1,6 @@
 // Motion Prompt #215 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#215
 //
-// Synthwave / シンセウェイヴ
+// Synthwave
 // Pack: artstyle (Art styles for image generation) · element 23 · Category: Digital, 3D & materials
 // What happens: The same line drawing becomes an 1980s neon world: the ground is a glowing purple and cyan grid, the sun a big striped sunset, and the house and tree neon outlines.
 // Motion spec:

@@ -1,6 +1,6 @@
 // Motion Prompt #141 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#141
 //
-// Pixelate / ピクセレート
+// Pixelate
 // Pack: motion2 (Motion graphics moves, part 2) · element 21 · Category: Transitions & highlights
 // What happens: The picture turns into coarser and coarser blocks, switches at the coarsest point, then sharpens again.
 // Motion spec:

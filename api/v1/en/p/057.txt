@@ -1,4 +1,4 @@
-Please use "Tabs" (タブ), one of the names in "UI component names".
+Please use "Tabs", one of the names in "UI component names".
 Motion Prompt #057
 
 What it is: Click a label to switch which panel is shown

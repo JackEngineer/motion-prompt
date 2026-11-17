@@ -1,4 +1,4 @@
-Please use "Zoom in" (ズームイン), one of the names in "Camera moves & transitions".
+Please use "Zoom in", one of the names in "Camera moves & transitions".
 Motion Prompt #028
 
 What it is: Magnify with the lens (camera stays put)

@@ -1,4 +1,4 @@
-Please use "Segmented control" (セグメントコントロール), one of the names in "UI component names".
+Please use "Segmented control", one of the names in "UI component names".
 Motion Prompt #060
 
 What it is: A row of joined buttons that switches the view

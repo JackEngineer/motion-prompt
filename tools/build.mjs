@@ -17,7 +17,7 @@ const SITE = 'https://showheyohtaki.github.io/motion-prompt/';
 const REPO = 'https://github.com/showheyohtaki/motion-prompt';
 const LICENCE = 'MIT License (c) 2026 Shohei Ohtaki';
 const VERSION = 1;
-const LANGS = ['ja', 'en', 'zh-Hans'];   // languages of the gallery, the API folders and the copyable prompt
+const LANGS = ['ja', 'en', 'zh-Hans'];   // languages of the API folders and the copyable prompt
 const BASE_LANG = 'en';       // every text field needs this one; any other language code is optional
 
 const args = process.argv.slice(2);
@@ -341,7 +341,7 @@ const T = {
 function elementTxt(el, lang) {
   const t = T[lang], p = packOf[el.pack];
   const cat = p.categories.find(c => c.slug === el.category);
-  const name = lang === 'en' ? `${el.name.en} / ${el.name.ja}` : `${el.name[lang]} / ${lang === 'zh-Hans' ? '英文名：' : ''}${el.name.en}`;
+  const name = lang === 'en' ? el.name.en : `${el.name[lang]} / ${lang === 'zh-Hans' ? '英文名：' : ''}${el.name.en}`;
   const zh = lang === 'zh-Hans';
   const sep = zh ? '：' : ': ';
   const head = [
@@ -403,7 +403,7 @@ function catalogTsv(lang) {
     : `# Motion Prompt catalog (${lang}) · ${catalog.count} elements · ${SITE} · columns: ${columns}`;
   const rows = catalog.elements.map(el => {
     const cat = packOf[el.pack].categories.find(c => c.slug === el.category);
-    const title = lang === 'en' ? `${el.name.en} (${el.name.ja})` : `${el.name[lang]} (${el.name.en})`;
+    const title = lang === 'en' ? el.name.en : `${el.name[lang]} (${el.name.en})`;
     return [el.id, el.pack, cat ? cat[lang] : el.category, title, (lang === 'zh-Hans' ? el.tagLabels['zh-Hans'] : el.tags).join(','), el.summary[lang]].map(tsvCell).join('\t');
   });
   return [head, ...rows].join('\n') + '\n';

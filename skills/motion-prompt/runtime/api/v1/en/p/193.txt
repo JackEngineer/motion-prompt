@@ -1,4 +1,4 @@
-Please use "Watercolor" (水彩画), one of the names in "Art styles for image generation".
+Please use "Watercolor", one of the names in "Art styles for image generation".
 Motion Prompt #193
 
 What it is: A pale painting with soft bleeds and white paper showing

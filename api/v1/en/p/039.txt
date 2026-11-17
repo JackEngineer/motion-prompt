@@ -1,4 +1,4 @@
-Please use "Time-lapse" (タイムラプス), one of the names in "Camera moves & transitions".
+Please use "Time-lapse", one of the names in "Camera moves & transitions".
 Motion Prompt #039
 
 What it is: Compress hours into seconds

@@ -1,6 +1,6 @@
 // Motion Prompt #010 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#010
 //
-// Overshoot / オーバーシュート
+// Overshoot
 // Pack: motion (Motion graphics moves) · element 10 · Category: Motion polish
 // What happens: A gauge needle swings past its target, comes back and settles.
 // Motion spec:

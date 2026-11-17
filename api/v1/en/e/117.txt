@@ -1,6 +1,6 @@
 // Motion Prompt #117 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#117
 //
-// Teal and orange / ティール＆オレンジ
+// Teal and orange
 // Pack: photo (Photo looks, lighting & styles) · element 21 · Category: Tones & finishing looks
 // What happens: In the same landscape the sky, hills, ground and the shadowed figure shift to teal while the sunlit edge of the figure and the sun shift to orange, a complementary contrast.
 // Motion spec:

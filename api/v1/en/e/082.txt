@@ -1,6 +1,6 @@
 // Motion Prompt #082 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#082
 //
-// Image zoom on hover / ホバーで画像ズーム
+// Image zoom on hover
 // Pack: lp (Landing page & web effects) · element 10 · Category: Hover & click interactions
 // What happens: The photo under the cursor slowly enlarges while its frame stays the same size, and shrinks back when the cursor leaves.
 // Motion spec:

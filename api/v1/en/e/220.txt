@@ -1,6 +1,6 @@
 // Motion Prompt #220 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#220
 //
-// Pyramid diagram / ピラミッド図
+// Pyramid diagram
 // Pack: diagram (Diagrams and charts for slides) · element 04 · Category: Diagrams that organize ideas
 // What happens: A triangle in four layers stacks up from the bottom, each layer dropping into place; only the top layer is dark blue.
 // Motion spec:

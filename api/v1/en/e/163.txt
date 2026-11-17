@@ -1,6 +1,6 @@
 // Motion Prompt #163 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#163
 //
-// Hotspots / ホットスポット
+// Hotspots
 // Pack: lp2 (Landing page & web effects, part 2) · element 19 · Category: Showcase effects
 // What happens: White dots pulse on the product picture; clicking one opens a tooltip about that part, and clicking another dot swaps the tooltip.
 // Motion spec:

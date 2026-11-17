@@ -1,4 +1,4 @@
-Please use "Lazy loading" (遅延読み込み), one of the names in "Landing page & web effects".
+Please use "Lazy loading", one of the names in "Landing page & web effects".
 Motion Prompt #090
 
 What it is: Images load only when they come into view

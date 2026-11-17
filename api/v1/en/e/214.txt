@@ -1,6 +1,6 @@
 // Motion Prompt #214 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#214
 //
-// Embroidery / 刺繍
+// Embroidery
 // Pack: artstyle (Art styles for image generation) · element 22 · Category: Digital, 3D & materials
 // What happens: The same line drawing becomes embroidery in colored thread on fabric, with the stitches and the weave of the cloth visible.
 // Motion spec:

@@ -1,6 +1,6 @@
 // Motion Prompt #106 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#106
 //
-// Tilt-shift / ティルトシフト
+// Tilt-shift
 // Pack: photo (Photo looks, lighting & styles) · element 10 · Category: Lens & camera effects
 // What happens: The top and bottom bands of the street blur while only the middle band with the road, the car and the small people stays in focus, so the street looks like a model.
 // Motion spec:

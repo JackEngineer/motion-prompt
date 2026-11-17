@@ -1,6 +1,6 @@
 // Motion Prompt #120 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#120
 //
-// Double exposure / 二重露光（多重露光）
+// Double exposure
 // Pack: photo (Photo looks, lighting & styles) · element 24 · Category: Tones & finishing looks
 // What happens: The background turns white and the landscape of hills, house, trees and sun appears, scaled down, only inside the shape of the bust.
 // Motion spec:

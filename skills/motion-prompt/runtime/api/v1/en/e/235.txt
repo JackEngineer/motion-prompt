@@ -1,6 +1,6 @@
 // Motion Prompt #235 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#235
 //
-// Funnel chart / ファネル図
+// Funnel chart
 // Pack: diagram (Diagrams and charts for slides) · element 19 · Category: Diagrams of flow and the whole picture
 // What happens: Four centered bars grow out from the middle one after another from the top, each shorter than the one above, joined by light gray trapezoids.
 // Motion spec:

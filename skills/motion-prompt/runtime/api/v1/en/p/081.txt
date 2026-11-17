@@ -1,4 +1,4 @@
-Please use "Hover lift" (ホバーで浮き上がる), one of the names in "Landing page & web effects".
+Please use "Hover lift", one of the names in "Landing page & web effects".
 Motion Prompt #081
 
 What it is: On hover, the element rises with a deeper shadow

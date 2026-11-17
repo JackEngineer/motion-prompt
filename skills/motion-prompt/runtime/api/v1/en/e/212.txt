@@ -1,6 +1,6 @@
 // Motion Prompt #212 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#212
 //
-// Papercraft / ペーパークラフト
+// Papercraft
 // Pack: artstyle (Art styles for image generation) · element 20 · Category: Digital, 3D & materials
 // What happens: The same line drawing becomes a photo of models folded from colored card stock: the house is a box, the tree and sun are polyhedra, and folds, glue tabs and cut edges show.
 // Motion spec:

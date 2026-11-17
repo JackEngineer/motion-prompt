@@ -1,6 +1,6 @@
 // Motion Prompt #044 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#044
 //
-// Cross dissolve / クロスディゾルブ
+// Cross dissolve
 // Pack: camera (Camera moves & transitions) · element 20 · Category: Transitions
 // What happens: The next picture is laid over the current one and its opacity rises until it takes over; both show through each other midway.
 // Motion spec:

@@ -1,6 +1,6 @@
 // Motion Prompt #001 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#001
 //
-// Pop-in / ポップイン
+// Pop-in
 // Pack: motion (Motion graphics moves) · element 01 · Category: Entrances & text
 // What happens: An app icon pops in with a bounce, then a notification badge pops in a moment later.
 // Motion spec:

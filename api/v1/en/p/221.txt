@@ -1,10 +1,10 @@
-Please use "Mind map" (マインドマップ), one of the names in "Diagrams and charts for slides".
+Please use "Mind map", one of the names in "Diagrams and charts for slides".
 Motion Prompt #221
 
 What it is: Ideas branching out from a central topic
-What the sample shows: Six curved branches grow from the central "テーマ" (topic) to both sides, then thinner twigs with small word nodes.
+What the sample shows: Six curved branches grow from the central "Topic" to both sides, then thinner twigs with small word nodes.
 Spec:
-- Center: a 100×44 px blue rounded box with white text "テーマ" (19 px), popping in at 0.4 s over 0.3 s (ease-out-back)
+- Center: a 100×44 px blue rounded box with white text "Topic" (19 px), popping in at 0.4 s over 0.3 s (ease-out-back)
 - Branches: six cubic Bézier curves (3 px), three to each side, growing over 0.5 s from 0.7 s, 0.09 s apart, each ending in a 54×24 px node; mid blue and gray alternate
 - Twigs: thinner 2.5 px curves grow from the branch ends over 0.35 s (from 1.45 s), each ending in a small 40×18 px node
 - Shape: curved branches and word nodes, unlike the nested rings of #240 Concentric circle diagram

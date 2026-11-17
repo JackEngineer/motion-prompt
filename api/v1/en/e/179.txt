@@ -1,6 +1,6 @@
 // Motion Prompt #179 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#179
 //
-// POV shot / POVショット
+// POV shot
 // Pack: camera2 (Camera moves & transitions, part 2) · element 11 · Category: Angles & Framing
 // What happens: Seen through a character's eyes: the walking sway and the hands at the bottom say first person, and the person ahead waves at you.
 // Motion spec:

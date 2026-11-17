@@ -1,4 +1,4 @@
-Please use "Rack focus" (ラックフォーカス), one of the names in "Camera moves & transitions".
+Please use "Rack focus", one of the names in "Camera moves & transitions".
 Motion Prompt #033
 
 What it is: Shift focus between near and far

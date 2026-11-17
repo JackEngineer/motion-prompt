@@ -1,4 +1,4 @@
-Please use "Parallax" (パララックス), one of the names in "Motion graphics moves".
+Please use "Parallax", one of the names in "Motion graphics moves".
 Motion Prompt #016
 
 What it is: Near and far layers move at different speeds to show depth

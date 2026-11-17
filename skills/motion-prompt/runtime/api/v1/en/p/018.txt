@@ -1,4 +1,4 @@
-Please use "Shape transition" (シェイプトランジション), one of the names in "Motion graphics moves".
+Please use "Shape transition", one of the names in "Motion graphics moves".
 Motion Prompt #018
 
 What it is: Shapes cover the screen and uncover the next scene

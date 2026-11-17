@@ -1,6 +1,6 @@
 // Motion Prompt #061 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#061
 //
-// Filter chips / チップ
+// Filter chips
 // Pack: ui (UI component names) · element 13 · Category: Choosing & switching
 // What happens: Clicking the "New" and "Free" chips adds a check mark and turns them blue, and cards that do not match fade out.
 // Motion spec:

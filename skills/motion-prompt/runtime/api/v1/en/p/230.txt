@@ -1,4 +1,4 @@
-Please use "Combo chart (bar + line)" (複合グラフ（棒＋折れ線）), one of the names in "Diagrams and charts for slides".
+Please use "Combo chart (bar + line)", one of the names in "Diagrams and charts for slides".
 Motion Prompt #230
 
 What it is: Bars and a line on one chart, with two scales

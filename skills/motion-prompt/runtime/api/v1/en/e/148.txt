@@ -1,6 +1,6 @@
 // Motion Prompt #148 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#148
 //
-// Background color change on scroll / 背景色の切り替え
+// Background color change on scroll
 // Pack: lp2 (Landing page & web effects, part 2) · element 04 · Category: Scroll effects
 // What happens: Each time the scroll moves into a new section, the whole page background blends from cream to navy to light blue; on the dark background the text turns white.
 // Motion spec:

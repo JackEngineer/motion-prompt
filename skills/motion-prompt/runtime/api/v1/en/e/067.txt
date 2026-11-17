@@ -1,6 +1,6 @@
 // Motion Prompt #067 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#067
 //
-// Mega menu / メガメニュー
+// Mega menu
 // Pack: ui (UI component names) · element 19 · Category: Navigation & status
 // What happens: Hovering over "Products" in the header drops a full-width panel with three columns of links and an image; it closes when the cursor leaves.
 // Motion spec:

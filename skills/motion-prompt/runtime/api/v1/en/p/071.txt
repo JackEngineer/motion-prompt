@@ -1,4 +1,4 @@
-Please use "Badge" (バッジ), one of the names in "UI component names".
+Please use "Badge", one of the names in "UI component names".
 Motion Prompt #071
 
 What it is: A small dot with a number showing a count

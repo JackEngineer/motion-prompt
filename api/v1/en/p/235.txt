@@ -1,4 +1,4 @@
-Please use "Funnel chart" (ファネル図), one of the names in "Diagrams and charts for slides".
+Please use "Funnel chart", one of the names in "Diagrams and charts for slides".
 Motion Prompt #235
 
 What it is: Numbers narrowing stage by stage

@@ -1,6 +1,6 @@
 // Motion Prompt #016 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#016
 //
-// Parallax / パララックス
+// Parallax
 // Pack: motion (Motion graphics moves) · element 16 · Category: Motion polish
 // What happens: A landscape pans sideways; near layers move more and far layers move less, creating depth.
 // Motion spec:

@@ -1,6 +1,6 @@
 // Motion Prompt #123 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#123
 //
-// Bounce / バウンス
+// Bounce
 // Pack: motion2 (Motion graphics moves, part 2) · element 03 · Category: Motion techniques
 // What happens: A ball drops and bounces lower each time until it comes to rest.
 // Motion spec:

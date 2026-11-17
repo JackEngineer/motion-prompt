@@ -1,6 +1,6 @@
 // Motion Prompt #173 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#173
 //
-// Steadicam / ステディカム
+// Steadicam
 // Pack: camera2 (Camera moves & transitions, part 2) · element 05 · Category: Camera Movement
 // What happens: The camera glides forward after a walking person with only a slow, gentle sway and no jitter, unlike handheld.
 // Motion spec:

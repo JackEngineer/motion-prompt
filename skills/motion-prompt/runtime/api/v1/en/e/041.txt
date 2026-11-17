@@ -1,6 +1,6 @@
 // Motion Prompt #041 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#041
 //
-// Jump cut / ジャンプカット
+// Jump cut
 // Pack: camera (Camera moves & transitions) · element 17 · Category: Transitions
 // What happens: Camera position and framing stay the same while the person's position and the clock jump; time is skipped inside one scene.
 // Motion spec:

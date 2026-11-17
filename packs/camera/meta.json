@@ -1574,7 +1574,7 @@
           "Incoming shot (2.4–4.2 s): focal length 2.6× (858 px) for a tight framing, rolled -0.12 rad (about -7°); the person has both arms raised, with 18 radial blue lines",
           "Shake in the incoming shot: roll ±0.03 rad (about 6 cycles per second) and yaw ±0.006 rad (about 8 per second); volume meter at 0.85±0.15, nearly full",
           "Return: cross-fade back to the quiet shot over the last 0.5 s (quadratic ease-in-out)",
-          "Top-right readout shows \"♪ 静か\" (quiet) → \"♪ 大音量\" (loud)"
+          "Top-right readout shows \"♪ Quiet\" → \"♪ Loud\""
         ],
         "zh-Hans": [
           "衔接：2.4 s 处直接切换，0 帧，无转场效果，依靠反差产生冲击。",
@@ -1644,7 +1644,7 @@
           "Playhead: moves left to right at constant speed over 3.6 s (0.4 s to 4.0 s); audio switches at 35% (about 1.66 s), picture at 55% (about 2.38 s)",
           "In the offset section (35–55%) the picture is still A while the audio is already B; the section is marked with a pale blue band and two blue dashed lines",
           "Layout: the top 134 px is the picture (fixed camera, subjects do not move); the bottom 74 px holds two timeline rows, video and audio (A grey, B pale blue, waveform on the audio row)",
-          "Labels: \"映像A / 映像B\" (video A / B) at bottom left of the picture; the audio now playing at bottom right (\"♪ Aの音\" grey → \"♪ Bの音\" blue)",
+          "Labels: \"Video A / Video B\" at bottom left of the picture; the audio now playing at bottom right (\"♪ Audio A\" grey → \"♪ Audio B\" blue)",
           "Return: cross-fade back to the start over the last 0.5 s (one pass = 4.7 s)"
         ],
         "zh-Hans": [
@@ -1715,7 +1715,7 @@
           "Playhead: moves left to right at constant speed over 3.6 s (0.4 s to 4.0 s); picture switches at 55% (about 2.38 s), audio at 75% (about 3.10 s)",
           "In the offset section (55–75%) the picture is already B while the audio is still A; the section is marked with a pale blue band and two blue dashed lines",
           "Layout: the top 134 px is the picture (fixed camera, subjects do not move); the bottom 74 px holds two timeline rows, video and audio (A grey, B pale blue, waveform on the audio row)",
-          "Labels: \"映像A / 映像B\" (video A / B) at bottom left of the picture; the audio now playing at bottom right (\"♪ Aの音\" grey → \"♪ Bの音\" blue)",
+          "Labels: \"Video A / Video B\" at bottom left of the picture; the audio now playing at bottom right (\"♪ Audio A\" grey → \"♪ Audio B\" blue)",
           "Return: cross-fade back to the start over the last 0.5 s (one pass = 4.7 s)"
         ],
         "zh-Hans": [

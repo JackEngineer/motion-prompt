@@ -61,39 +61,6 @@
       "thanks1": "动态示例配合可复制提示词的形式受到",
       "thanks2": "的启发，感谢原作者。"
     },
-    ja: {
-      title: '見つけた事例｜Motion Prompt',
-      skip: '事例の一覧へ移動', navLabel: 'サイト内', navGallery: '見本', navFound: '事例', langLabel: '言語',
-      themeToDark: 'ダークモードに切り替える', themeToLight: 'ライトモードに切り替える',
-      eyebrow: '見つけた事例',
-      h1: '名前と見本で、共通言語を作っている人たち',
-      lead: 'AIに頼むための名前を、動く見本や早見表と一緒にまとめて公開している人たちのポストです。分野も言語も見た目もそれぞれ違います。投稿者が自分で作った見本のあるポストを選んでいて、ポストの内容と権利は各投稿者にあります。',
-      leadNote: 'ここで紹介していることは、投稿者がこのサイトを支持しているという意味ではありません。紹介文はこのサイトが書いています。',
-      noteH: '埋め込みについて',
-      noteP: 'このページは、各ポストをX（旧Twitter）の埋め込みで表示しています。開くとXのサーバーから読み込まれ、XのCookieが使われます。Xはその閲覧を記録し、広告に使うことがあります。読み込むときは、パーソナライズに使わないよう求める設定（dnt）を付けています。',
-      notePrivacy: 'Xのプライバシーポリシー', noteCookies: 'XのCookieについて',
-      listH: '事例の一覧', loadListFailed: '一覧を読み込めませんでした。', emptyList: '事例はまだありません。',
-      count: '{n}件',
-      postLang: { ja: '日本語', en: '英語' },
-      postLangLabel: 'ポストの言語: {l}',
-      viewOnX: 'Xで見る',
-      viewOnXLabel: '{a} のポストをXで見る',
-      loading: '読み込み中です…',
-      gone: 'このポストは表示できません（削除された可能性があります）。',
-      failed: 'Xから読み込めませんでした。広告ブロックなどで止められている可能性があります。「Xで見る」から開けます。',
-      shown: '{a} のポストを表示しました',
-      moreH: '事例を教えてください',
-      recH: 'ポストを推薦する（自薦も歓迎）',
-      recP: '名前に見本を付けて公開しているポストを見つけたら、GitHub の Issue で知らせてください。自分のポストでもかまいません。載せるのは埋め込みとリンクだけで、画像や動画をこのサイトに写すことはしません。',
-      recLink: '事例を推薦する（GitHub Issue）',
-      rmH: '外してほしいとき',
-      rmP: 'ご自分のポストを外したい、紹介文が正しくない、という場合は Issue のフォームから依頼してください。確認できたら、すみやかに外します。',
-      rmLink: '削除・訂正を依頼する（GitHub Issue）',
-      author: '作者', authorName: '大滝昇平',
-      whyLink: 'なぜ作ったか', makeLink: '自分の分野・自分の言語で作る', addLink: 'あなたの分野の名前を足す', listLink: '名前の一覧（GitHub）',
-      removeP1: '掲載の削除・訂正は', removeLink: 'GitHub の Issue のフォーム', removeP2: 'から依頼できます。確認後、すみやかに対応します。',
-      thanks1: '動く見本を並べて、プロンプトをコピーして使う形は', thanks2: 'から着想を得ました。ありがとうございます。',
-    },
     en: {
       title: 'Examples — Motion Prompt',
       skip: 'Skip to the examples', navLabel: 'Site', navGallery: 'Gallery', navFound: 'Examples', langLabel: 'Language',
@@ -135,12 +102,12 @@
     del: function (k) { try { localStorage.removeItem(k); } catch (e) { /* ignore */ } },
   };
   var darkQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : { matches: false };
-  var state = { lang: I18N[root.lang] ? root.lang : 'zh-Hans', data: null };
+  var state = { lang: root.lang === 'en' ? 'en' : 'zh-Hans', data: null };
   var cards = [];   // { item, el, box, status, shown, token }
 
   function t(key, vars) {
     var s = I18N[state.lang][key];
-    if (s == null) s = I18N.ja[key];
+    if (s == null) s = I18N.en[key];
     if (s == null) s = key;
     if (vars && typeof s === 'string') Object.keys(vars).forEach(function (k) { s = s.split('{' + k + '}').join(vars[k]); });
     return s;
@@ -238,7 +205,7 @@
             h('a', { class: 'ex-author', href: 'https://x.com/' + encodeURIComponent(handle), rel: 'noopener', text: it.author }),
             h('span', { class: 'ex-lang', title: t('postLangLabel', { l: langName }), 'aria-label': t('postLangLabel', { l: langName }), text: langName }),
           ]),
-          h('p', { class: 'ex-intro', text: (it.intro && (it.intro[state.lang] || it.intro.en || it.intro.ja)) || '' }),
+          h('p', { class: 'ex-intro', text: (it.intro && (it.intro[state.lang] || it.intro.en)) || '' }),
           h('div', { class: 'ex-act' }, [link]),
           status,
           box,
@@ -298,8 +265,9 @@
       if (lang === state.lang) return;
       state.lang = lang;
       store.set('mp-lang', lang);
-      if (/[?&]lang=/.test(location.search)) {
-        var q = new URLSearchParams(location.search); q.set('lang', lang);
+      var q = new URLSearchParams(location.search);
+      if (q.has('lang')) {
+        q.set('lang', lang);
         history.replaceState(history.state, '', location.pathname + '?' + q.toString() + location.hash);
       }
       applyText();

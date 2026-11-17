@@ -1,6 +1,6 @@
 // Motion Prompt #088 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#088
 //
-// Exit-intent popup / 離脱防止ポップアップ
+// Exit-intent popup
 // Pack: lp (Landing page & web effects) · element 16 · Category: Hover & click interactions
 // What happens: When the cursor heads out through the top of the page (toward the tabs and close button), the page dims and a "Wait!" popup opens. The × closes it.
 // Motion spec:

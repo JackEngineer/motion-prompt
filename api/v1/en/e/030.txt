@@ -1,6 +1,6 @@
 // Motion Prompt #030 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#030
 //
-// Orbit (Arc shot) / オービット
+// Orbit (Arc shot)
 // Pack: camera (Camera moves & transitions) · element 06 · Category: Camera Movement
 // What happens: The camera travels on a circle around the subject; the person stays centred while the trees and buildings behind sweep sideways.
 // Motion spec:

@@ -1,6 +1,6 @@
 // Motion Prompt #130 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#130
 //
-// Wave text / ウェーブテキスト
+// Wave text
 // Pack: motion2 (Motion graphics moves, part 2) · element 10 · Category: Text & shapes
 // What happens: The letters of "WAVE TEXT" rise and fall one after another, like a wave.
 // Motion spec:

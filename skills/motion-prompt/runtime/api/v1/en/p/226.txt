@@ -1,4 +1,4 @@
-Please use "Bubble chart" (バブルチャート), one of the names in "Diagrams and charts for slides".
+Please use "Bubble chart", one of the names in "Diagrams and charts for slides".
 Motion Prompt #226
 
 What it is: Circle size shows a third number

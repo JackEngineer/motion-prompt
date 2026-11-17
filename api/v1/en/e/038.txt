@@ -1,6 +1,6 @@
 // Motion Prompt #038 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#038
 //
-// Speed ramp / スピードランプ
+// Speed ramp
 // Pack: camera (Camera moves & transitions) · element 14 · Category: Shooting Style & Time
 // What happens: Within one shot the playback speed changes smoothly from fast to slow; a graph at bottom left shows the speed.
 // Motion spec:

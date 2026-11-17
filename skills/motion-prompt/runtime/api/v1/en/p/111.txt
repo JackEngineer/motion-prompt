@@ -1,4 +1,4 @@
-Please use "Chromatic aberration" (色収差), one of the names in "Photo looks, lighting & styles".
+Please use "Chromatic aberration", one of the names in "Photo looks, lighting & styles".
 Motion Prompt #111
 
 What it is: Red and blue-violet colour fringes along high-contrast edges

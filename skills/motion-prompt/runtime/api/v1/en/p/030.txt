@@ -1,4 +1,4 @@
-Please use "Orbit (Arc shot)" (オービット), one of the names in "Camera moves & transitions".
+Please use "Orbit (Arc shot)", one of the names in "Camera moves & transitions".
 Motion Prompt #030
 
 What it is: Circle around the subject

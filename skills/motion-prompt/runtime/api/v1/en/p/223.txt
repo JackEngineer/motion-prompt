@@ -1,4 +1,4 @@
-Please use "Cycle diagram" (サイクル図), one of the names in "Diagrams and charts for slides".
+Please use "Cycle diagram", one of the names in "Diagrams and charts for slides".
 Motion Prompt #223
 
 What it is: Arrows in a ring that keeps going round

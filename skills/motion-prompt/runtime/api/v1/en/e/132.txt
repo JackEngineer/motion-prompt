@@ -1,6 +1,6 @@
 // Motion Prompt #132 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#132
 //
-// Variable font animation / 可変フォントアニメーション
+// Variable font animation
 // Pack: motion2 (Motion graphics moves, part 2) · element 12 · Category: Text & shapes
 // What happens: The same word goes smoothly from thin to very bold and back, with a slider below showing the weight.
 // Motion spec:

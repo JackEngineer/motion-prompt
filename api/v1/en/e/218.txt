@@ -1,6 +1,6 @@
 // Motion Prompt #218 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#218
 //
-// 2x2 matrix / 4象限マトリクス（2×2）
+// 2x2 matrix
 // Pack: diagram (Diagrams and charts for slides) · element 02 · Category: Diagrams that organize ideas
 // What happens: Two axes grow out from the center, four areas appear and dots are placed; only the top-right area and its dot are blue.
 // Motion spec:

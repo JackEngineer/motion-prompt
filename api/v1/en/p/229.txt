@@ -1,4 +1,4 @@
-Please use "Gauge chart" (ゲージチャート), one of the names in "Diagrams and charts for slides".
+Please use "Gauge chart", one of the names in "Diagrams and charts for slides".
 Motion Prompt #229
 
 What it is: A half-circle dial and needle that show progress

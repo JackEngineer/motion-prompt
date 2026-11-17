@@ -1,6 +1,6 @@
 // Motion Prompt #228 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#228
 //
-// Radar chart / レーダーチャート
+// Radar chart
 // Pack: diagram (Diagrams and charts for slides) · element 12 · Category: Charts that show numbers
 // What happens: On a six-axis spider web, a gray polygon spreads out from the center, then a blue one spreads with a slight overshoot.
 // Motion spec:

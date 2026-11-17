@@ -1,6 +1,6 @@
 // Motion Prompt #145 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#145
 //
-// Timeline on scroll / タイムラインアニメーション
+// Timeline on scroll
 // Pack: lp2 (Landing page & web effects, part 2) · element 01 · Category: Scroll effects
 // What happens: As the page scrolls down, an orange line grows down the timeline; each dot it reaches fills in and its year and event slide in from the right. Scrolling back up reverses it.
 // Motion spec:

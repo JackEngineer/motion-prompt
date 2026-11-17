@@ -1,4 +1,4 @@
-Please use "Scroll-down cue" (スクロールダウンの合図), one of the names in "Landing page & web effects, part 2".
+Please use "Scroll-down cue", one of the names in "Landing page & web effects, part 2".
 Motion Prompt #167
 
 What it is: A looping cue that invites you to scroll down

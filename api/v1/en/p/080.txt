@@ -1,4 +1,4 @@
-Please use "Highlighter animation" (マーカーアニメーション), one of the names in "Landing page & web effects".
+Please use "Highlighter animation", one of the names in "Landing page & web effects".
 Motion Prompt #080
 
 What it is: A highlighter stroke is drawn under key words
