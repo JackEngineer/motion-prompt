@@ -20,6 +20,5 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 01
-// 01 パン: 回転なので全ての層が同じだけ横に流れる
 CELLS[0] = shot(camCell((k, w, h, p) => world(k, w, h, cam({ yaw: lerp(-0.32, 0.32, p) }), { person: { x: 0, z: 8 } }),
   p => `${Math.round(lerp(-0.32, 0.32, p) * 57.3)}°`.replace(/^(\d)/, '+$1')));

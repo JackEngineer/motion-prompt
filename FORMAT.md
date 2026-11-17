@@ -1,5 +1,8 @@
 # Motion Prompt — pack and API format
 
+[简体中文](FORMAT.zh-Hans.md)
+
+
 Motion Prompt is a library of names: the words a field uses for the things you ask an AI to make, each
 with a moving sample. Each element is a small, dependency-free Canvas 2D animation that is a
 **pure function of time**, with its name and a one-line meaning in several languages, an example

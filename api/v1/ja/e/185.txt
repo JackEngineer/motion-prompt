@@ -19,21 +19,20 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 17
-// 17 インサートショット: 同じ場面の細部（手元の時計）を1.3秒だけ差し込み、元の画に戻る
 const INS = [1.6, 2.9];
 CELLS[16] = shot((k, w, h, u) => {
   const ins = u >= INS[0] && u < INS[1];
   if (!ins) world(k, w, h, cam({ y: 1.4 }), { person: { x: -0.6, z: 6, walk: 0 }, fg: [[2.2, 4]], after: (kk, cc) => { const q = proj(cc, -0.35, 1.08, 6); kk.fillStyle = C.ink; kk.beginPath(); kk.arc(q.x, q.y, 1.6 * q.s / 10, 0, 7); kk.fill(); } });
-  else {   // 手首の時計の大写し
+  else {
     k.save(); k.translate(w / 2, h / 2);
     k.fillStyle = C.blueXL; k.fillRect(-w, -h, w * 2, h * 2);
     k.fillStyle = C.blue; k.save(); k.rotate(-0.35); rr(k, -300, -46, 600, 92, 30); k.fill(); k.restore();
     k.fillStyle = '#fff'; k.beginPath(); k.arc(0, 0, 58, 0, 7); k.fill(); k.strokeStyle = C.ink; k.lineWidth = 5; k.stroke();
     k.strokeStyle = C.ink; k.lineWidth = 4; k.lineCap = 'round'; k.beginPath(); k.moveTo(0, 0); k.lineTo(0, -34); k.moveTo(0, 0); k.lineTo(26, 14); k.stroke();
-    const a = (u - INS[0]) / (INS[1] - INS[0]) * Math.PI * 2 - Math.PI / 2;   // 秒針が1周
+    const a = (u - INS[0]) / (INS[1] - INS[0]) * Math.PI * 2 - Math.PI / 2;
     k.strokeStyle = C.blue; k.lineWidth = 2; k.beginPath(); k.moveTo(0, 0); k.lineTo(Math.cos(a) * 44, Math.sin(a) * 44); k.stroke();
     k.restore();
   }
-  strip(k, w, h, [[0, INS[0], 'A', C.g2], [INS[0], INS[1], '細部', C.blue], [INS[1], CYC, 'A', C.g2]], u);
-  return ins ? 'INSERT' : 'SHOT A';
+  strip(k, w, h, [[0, INS[0], 'A', C.g2], [INS[0], INS[1], '细节', C.blue], [INS[1], CYC, 'A', C.g2]], u);
+  return ins ? '插入细节' : '镜头 A';
 });

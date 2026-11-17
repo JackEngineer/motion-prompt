@@ -20,7 +20,6 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 08
-// 08 ドリーズーム: 人物の大きさは一定、背景だけ伸び縮み
 CELLS[7] = shot(camCell((k, w, h, p) => {
   const d = lerp(3.2, 8, p), f = F0 * d / 8 * 1.0;
   const c = cam({ z: 8 - d, f, y: 1.3 });

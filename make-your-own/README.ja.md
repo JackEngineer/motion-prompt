@@ -45,7 +45,7 @@ examples/motion-graphics/
 | 自分の分野の名前を、自分の好きな見た目で作る | [`prompts/ja/02-your-own-field.md`](prompts/ja/02-your-own-field.md) |
 | 1枚の早見表の画像を作る | [`prompts/ja/03-cheatsheet-image.md`](prompts/ja/03-cheatsheet-image.md) |
 
-英語版は [`prompts/en/`](prompts/en/) にあります。
+英語版は [`prompts/en/`](prompts/en/01-translate.md) にあります。
 
 手で直すときの場所（`index.html` の中）:
 

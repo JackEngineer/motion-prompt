@@ -17,5 +17,4 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 05
-// 点描: 小さな色の点を並べて描く
 CELLS[4] = (k, w, h, u) => gafu(k, w, h, u, '05');

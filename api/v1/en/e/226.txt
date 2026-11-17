@@ -19,8 +19,7 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 10
-// 10 バブルチャート: a few semi-transparent circles of different sizes grow on the axes
-const BB = [   // x, y (0..1 in the plot), radius px, emphasized
+const BB = [   // 前两项为绘图区内归一化到 0 至 1 的坐标，后两项为像素半径和高亮标记。
   [0.16, 0.30, 18, 0], [0.34, 0.64, 34, 0], [0.53, 0.34, 25, 0], [0.67, 0.6, 44, 1], [0.89, 0.30, 14, 0],
 ];
 function bubble(k, w, h, u) {

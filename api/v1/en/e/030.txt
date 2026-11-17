@@ -20,7 +20,6 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 06
-// 06 オービット: 被写体を中心に円を描いて回り込む
 CELLS[5] = shot(camCell((k, w, h, p) => {
   const a = lerp(-0.95, 0.95, p), R = 6, P0 = [0, 0, 9];
   const c = cam({ x: P0[0] + Math.sin(a) * R, z: P0[2] - Math.cos(a) * R, yaw: -a, y: 1.7, pitch: -0.07 });

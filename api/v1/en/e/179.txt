@@ -19,15 +19,14 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 11
-// 11 POVショット: 登場人物の目で見た画。歩く上下動と画面下の両手で一人称だと分かる。前の人物が振り向いて手を振る
 CELLS[10] = shot(camCell((k, w, h, p, u) => {
   const z = lerp(0, 3.2, p), T = u * 2 * Math.PI / CYC;
   const bob = Math.sin(T * 6) * 0.03 * (p > 0 && p < 1 ? 1 : 0);
   world(k, w, h, cam({ z, y: 1.6 + bob, roll: Math.sin(T * 3) * 0.008 * (p > 0 && p < 1 ? 1 : 0) }), {
     person: { z: 7.5, armUp: u > 1.6 && u < 3.4, walk: 0 }, fg: [[-1.8, 2.6], [2.2, 3.8]],
-    after: (kk) => {   // 両手（画面の下の両端から入る。体と一緒に動くので、揺れるのは世界のほう）
+    after: (kk) => {   // 双手固定在画面两侧。步行的起伏由场景的上下移动表现。
       kk.fillStyle = C.blue;
       [-1, 1].forEach(sx => { kk.save(); kk.translate(sx * 178, 64); kk.rotate(sx * -0.5); kk.fillStyle = C.blue; rr(kk, -34, -28, 68, 120, 30); kk.fill(); if (sx > 0) { kk.fillStyle = '#fff'; rr(kk, -17, -62, 34, 54, 6); kk.fill(); kk.strokeStyle = C.blue; kk.lineWidth = 3; rr(kk, -17, -62, 34, 54, 6); kk.stroke(); } kk.restore(); });
     }
   });
-}, p => 'POV', 0.3, 4.2));
+}, p => '主观视角', 0.3, 4.2));

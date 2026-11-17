@@ -20,10 +20,9 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 06
-// 06 タイプライター（入力欄に1文字ずつ打たれ、打ち終わると送信ボタンが点く）
 CELLS[5] = (k, w, h, u) => {
   stage(k);
-  const S = 'ねこの動画つくって', N = [...S].length, t0 = 0.3, dt = 0.24, done = t0 + N * dt;
+  const S = '帮我制作猫咪视频', N = [...S].length, t0 = 0.3, dt = 0.24, done = t0 + N * dt;
   const BX = 34, BY = 58, BW = w - 68, BH = 92;
   const sendT = done + 0.55, clr = P(u, sendT + 0.12, sendT + 0.4);
   k.fillStyle = '#fff'; rr(k, BX, BY, BW, BH, 30); k.fill();
@@ -38,10 +37,9 @@ CELLS[5] = (k, w, h, u) => {
   });
   k.restore();
   if (clr > 0.5) x = BX + 32;
-  // カーソル（打っている間は点灯。待ちの間は0.94秒周期でゆっくり明滅）
+  // 输入时光标常亮，等待时每 0.94 秒闪烁一次。
   const typing = u >= t0 - 0.05 && u < done + 0.1, blink = typing ? 1 : (mod(u, 0.94) < 0.5 ? 1 : 0);
   if (blink) { k.fillStyle = C.coral; rr(k, x + 4, y - 23, 5, 44, 2.5); k.fill(); }
-  // 送信ボタン
   const on = spring(u - done - 0.12, 15, 6.5) * (1 - P(u, sendT + 0.5, sendT + 0.8)), press = 1 - 0.2 * Math.sin(Math.PI * P(u, sendT - 0.05, sendT + 0.2));
   const bx = BX + BW - 48, by = BY + BH / 2;
   k.fillStyle = '#DDE3F3'; k.beginPath(); k.arc(bx, by, 30, 0, 7); k.fill();

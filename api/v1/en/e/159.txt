@@ -18,7 +18,6 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 15
-// 15 インラインバリデーション（打っている途中は赤で「形式が正しくありません」、正しく打ち終わると緑のチェックとOK）
 CELLS[14] = (k, w, h, u) => {
   u = snapU(u);
   frame(k);
@@ -31,8 +30,8 @@ CELLS[14] = (k, w, h, u) => {
   const cur = t => path([[0, 445, 205], [0.3, 262, 80], [0.6, 262, 80], [1.1, 455, 146], [3.8, 455, 146], [4.1, 470, 26], [4.3, 470, 26], [4.65, 445, 205], [4.7, 445, 205]], t);
   const [cx, cy] = cur(u);
   view(k, () => {
-    txt(k, 'お問い合わせ', F.x, 26, `800 15px ${JP}`, C.ink);
-    txt(k, 'メールアドレス', F.x, 47, `700 12px ${JP}`, C.ink);
+    txt(k, '联系我们', F.x, 26, `800 15px ${JP}`, C.ink);
+    txt(k, '电子邮箱', F.x, 47, `700 12px ${JP}`, C.ink);
     k.fillStyle = mix('#FFFFFF', '#FFF1F1', qe); rr(k, F.x, F.y, F.w, F.h, 8); k.fill();
     const bc = mix(mix(mix('#C9D0DC', C.ink, fo), RED, qe), GREEN, qo);
     k.lineWidth = lerp(1.5, 2.2, Math.max(fo, qe, qo)); k.strokeStyle = bc; rr(k, F.x, F.y, F.w, F.h, 8); k.stroke();
@@ -42,14 +41,14 @@ CELLS[14] = (k, w, h, u) => {
     if (qe > 0) {
       k.save(); k.globalAlpha = qe;
       k.fillStyle = RED; k.beginPath(); k.arc(F.x + 7, F.y + F.h + 20, 7, 0, 7); k.fill(); txt(k, '!', F.x + 7, F.y + F.h + 20.5, `800 11px ${EN}`, '#fff', 'center', 'middle');
-      txt(k, '形式が正しくありません', F.x + 20, F.y + F.h + 20.5, `700 13px ${JP}`, RED, 'left', 'middle');
+      txt(k, '格式不正确', F.x + 20, F.y + F.h + 20.5, `700 13px ${JP}`, RED, 'left', 'middle');
       k.restore();
     }
     if (qo > 0) {
       k.save(); k.globalAlpha = qo;
       k.fillStyle = GREEN; k.beginPath(); k.arc(F.x + F.w - 22, F.y + F.h / 2, 11 * eEl(qo), 0, 7); k.fill(); check(k, F.x + F.w - 22, F.y + F.h / 2, 12, '#fff', 2.4);
       k.fillStyle = GREEN; k.beginPath(); k.arc(F.x + 7, F.y + F.h + 20, 7, 0, 7); k.fill(); check(k, F.x + 7, F.y + F.h + 20, 8, '#fff', 1.8);
-      txt(k, 'OK', F.x + 20, F.y + F.h + 20.5, `800 13px ${EN}`, GREEN, 'left', 'middle');
+      txt(k, '验证通过', F.x + 20, F.y + F.h + 20.5, `800 13px ${EN}`, GREEN, 'left', 'middle');
       k.restore();
     }
     click(k, cx, cy, u, [0.45, 4.2]);

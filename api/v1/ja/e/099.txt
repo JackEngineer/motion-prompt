@@ -20,7 +20,6 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 03
-// シルエット: 露出を明るい空に合わせると、人物も建物も木も黒い形だけになる
 CELLS[2] = cell((k, u) => {
   const a = env(u), INK = '#2A2D36';
   const SILH = mapPal(BASE, () => INK);

@@ -19,7 +19,6 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 15
-// 色収差: 赤・緑・青を少しずつ違う大きさで重ね、画面の端ほど縁に赤と青のずれが出る
 CELLS[14] = cell((k, u) => {
   const a = env(u), s = 0.02 * a, cx = CW / 2, cy = CH / 2;
   if (s < 0.0005) { stageStreet(k, BASE); return; }

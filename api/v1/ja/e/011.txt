@@ -19,7 +19,6 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 11
-// 11 スクワッシュ＆ストレッチ（弾むキャラクターが、着地でつぶれ、飛ぶときに伸びる）
 CELLS[10] = (k, w, h, u) => {
   stage(k);
   const T = CYC / 4, q = mod(u, T) / T, c = 0.1, floor = h - 28, R = 37, Hgt = 92;
@@ -30,7 +29,6 @@ CELLS[10] = (k, w, h, u) => {
   const sx = 1 / sy, hg = (floor - yb) / Hgt;
   k.fillStyle = C.navy3; rr(k, 40, floor, w - 80, 5, 2.5); k.fill();
   k.fillStyle = 'rgba(0,0,0,.32)'; k.beginPath(); k.ellipse(X, floor + 9, R * 1.2 * (1 - hg * 0.55) * Math.max(1, sx), 6 * (1 - hg * 0.5), 0, 0, 7); k.fill();
-  // 着地の小さなしぶき
   const dq = q < 0.5 ? q : q - 1; if (Math.abs(dq) < 0.16 && dq > -0.02) { const t = (dq + 0.02) / 0.18; k.strokeStyle = C.yel; k.lineWidth = 5 * (1 - t); k.lineCap = 'round';[-1, 1].forEach(s => { k.beginPath(); k.moveTo(X + s * (50 + 28 * t), floor - 6 - 10 * t); k.lineTo(X + s * (62 + 40 * t), floor - 12 - 20 * t); if (t < 0.97) k.stroke(); }); }
   k.save(); k.translate(X, yb); k.scale(sx, sy);
   k.fillStyle = C.coral; k.beginPath(); k.arc(0, -R, R, 0, 7); k.fill();

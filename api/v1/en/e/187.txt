@@ -19,10 +19,9 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 19
-// 19 フェードアウト: 画面全体が黒へ沈んで終わり、黒から次の場面が明けてくる
 CELLS[18] = shot(abCell((k, w, h, u, A, B) => {
   const out = eIOs(P(u, 1.4, 2.6)), inn = eIOs(P(u, 3.1, 4.3));
   if (u < 2.9) A(k, w, h); else B(k, w, h);
   const a = u < 2.9 ? out : 1 - inn;
   if (a > 0) { k.fillStyle = `rgba(20,20,24,${a.toFixed(3)})`; k.fillRect(0, 0, w, h); }
-}, u => u < 2.9 ? 'FADE OUT' : 'FADE IN'));
+}, u => u < 2.9 ? '淡出' : '淡入'));

@@ -19,12 +19,10 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 24
-// 24 同心円図: circles appear one inside another around the same center (TAM > SAM > SOM)
 function concentric(k, w, h, u) {
   bg(k, w, h);
   const f = fade(u), cx0 = w / 2, cy0 = h / 2 + 2;
   const RR = [91, 61, 31], COL = [C.blueL, C.blueM, C.blue], LB = ['TAM', 'SAM', 'SOM'];
-  // skeleton: faint outer ring guide
   k.strokeStyle = C.g2; k.lineWidth = 2; k.beginPath(); k.arc(cx0, cy0, RR[0], 0, 7); k.stroke();
   k.globalAlpha = f;
   RR.forEach((r, i) => {

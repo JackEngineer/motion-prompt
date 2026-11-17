@@ -20,10 +20,9 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 19
-// 19 ホイップパン（ブレで次の場面へ）
 CELLS[18] = shot(abCell((k, w, h, u, A, B) => {
   const t0 = 1.7, t1 = 2.5;
-  const at = (kk, s) => {   // s: 0..1 の進み。前半 A を右へ振り、後半 B が左から止まる
+  const at = (kk, s) => {   // s 为转场进度，范围为 0 到 1。前半段镜头从 A 向右快速摇移，后半段镜头从左进入 B 并停下。
     if (s < .5) world(kk, w, h, cam({ y: 1.4, yaw: eIOs(s * 2) * 0.45 }), A === sceneA ? { person: { x: -0.6, z: 7 } } : SB);
     else world(kk, w, h, cam({ y: 1.4, yaw: -(1 - eIOs((s - .5) * 2)) * 0.45 }), B === sceneA ? { person: { x: -0.6, z: 7 } } : SB);
   };

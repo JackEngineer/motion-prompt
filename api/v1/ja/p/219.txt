@@ -1,4 +1,4 @@
-「ロジックツリー（Logic tree (issue tree)）」を使ってください。「資料で使う図解・グラフの名前」の名前の1つです。
+「ロジックツリー（英文名：Logic tree (issue tree)）」を使ってください。「資料で使う図解・グラフの名前」の名前の1つです。
 Motion Prompt #219
 
 どういうものか: 1つの問いを枝分かれで分解する
@@ -11,6 +11,6 @@ Motion Prompt #219
 - 終わり: 4.1〜4.5秒で図全体がフェードアウトし、空のまま4.7秒で1周
 使いどころ: 問題や目標を漏れなく分解して、原因や打ち手を洗い出すとき。
 
-参考実装（Canvas 2D・時刻だけで絵が決まる関数）: https://showheyohtaki.github.io/motion-prompt/api/v1/ja/e/219.txt
-共通の補助コード: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+参考実装（Canvas 2D・時刻だけで絵が決まる関数）: ../e/219.txt
+共通の補助コード: ../../kit/diagram.js
 参考実装の形・タイミング・イージングの数値はそのまま使い、中の文字・色・素材だけ、いま作っている物に合わせてください。

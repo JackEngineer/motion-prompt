@@ -20,7 +20,6 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 08
-// ブルーアワー: 日が沈んだ後、空が深い青になり、窓と街灯の暖かい光が灯る
 CELLS[7] = cell((k, u) => {
   const a = env(u);
   const p = pal(BASE, NIGHT, a);

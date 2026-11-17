@@ -20,5 +20,4 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 24
-// 24 Lカット: 映像が先に次の場面（B）へ切り替わり、前の場面（A）の音が残る
 CELLS[23] = shot(splitCell(-0.2), 134);

@@ -19,7 +19,6 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 15
-// 15 カレイドスコープ（万華鏡のように、8分割の対称な模様が回りながら広がる）
 const KAL = (() => { const R = rand(1515), a = []; for (let i = 0; i < 13; i++) a.push({ r0: R() * 300, th: 0.06 + R() * 0.66, kind: i % 3, col: PAL[i % 4], sz: 0.7 + R() * 0.7, ph: R() * 6 }); return a; })();
 CELLS[14] = (k, w, h, u) => {
   stage(k);

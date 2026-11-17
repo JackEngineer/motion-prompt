@@ -1,4 +1,4 @@
-「ダッチアングル（Dutch angle）」を使ってください。「カメラワークと切り替え」の名前の1つです。
+「ダッチアングル（英文名：Dutch angle）」を使ってください。「カメラワークと切り替え」の名前の1つです。
 Motion Prompt #036
 
 どういうものか: 画面を斜めに傾ける
@@ -12,6 +12,6 @@ Motion Prompt #036
 - 右上に角度を表示（∠ 0° → ∠ 21°）
 使いどころ: 不安・緊張・違和感を画面で表すとき。
 
-参考実装（Canvas 2D・時刻だけで絵が決まる関数）: https://showheyohtaki.github.io/motion-prompt/api/v1/ja/e/036.txt
-共通の補助コード: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/camera.js
+参考実装（Canvas 2D・時刻だけで絵が決まる関数）: ../e/036.txt
+共通の補助コード: ../../kit/camera.js
 参考実装の形・タイミング・イージングの数値はそのまま使い、中の文字・色・素材だけ、いま作っている物に合わせてください。

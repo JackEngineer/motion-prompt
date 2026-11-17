@@ -19,7 +19,6 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 09
-// 09 散布図: many small dots pop in from left to right, rising to the right; a dashed trend line follows
 const SCPTS = (() => {
   const r = rand(907), pts = [];
   for (let i = 0; i < 52; i++) {
@@ -35,7 +34,7 @@ function scatter(k, w, h, u) {
   const fo = dataFade(u);
   k.save(); k.globalAlpha = fo;
   const X = x => lerp(A.x0 + 10, A.x1 - 8, x), Y = y => lerp(A.y1 - 8, A.y0 + 6, y);
-  // trend line (drawn after the dots)
+  // 趋势线在散点之后绘制。
   const tl = easeInOut(P(u, 1.85, 2.5));
   if (tl > 0) {
     const xa = X(0.02), ya = Y(0.11), xb = X(0.98), yb = Y(0.83);

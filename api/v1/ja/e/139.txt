@@ -18,7 +18,6 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 19
-// 19 キューブ（立方体が回るように、前の面が奥へ倒れて次の面が現れる）
 const CFW = 250, CFH = 146, CF = [mkCanvas(CFW, CFH), mkCanvas(CFW, CFH)];
 function cubeFace(i) {
   const g = CF[i].getContext('2d'); g.setTransform(1, 0, 0, 1, 0, 0); g.clearRect(0, 0, CFW, CFH);

@@ -15,7 +15,8 @@
       "ask": { "ja": "カメラの向きは変えずに、目の高さから3mまでペデスタルで真上に上げて。", "en": "Pedestal up from eye level to about 3 meters, keeping the camera pointed straight ahead.", "es": "Pedestal hacia arriba desde la altura de los ojos hasta unos 3 metros, con la cámara apuntando siempre al frente.", "zh-Hans": "保持镜头朝向不变，用垂直升降镜头从眼睛高度直线上升到约 3 m。", "zh-Hant": "攝影機方向不變，用 Pedestal 垂直升降從視線高度往正上方升到約 3 公尺。" },
       "summary": {
         "ja": "カメラが向きを変えずに真上へ平行移動する。地平線は画面の中央のまま、人物と建物が下へ流れる。",
-        "en": "The camera moves straight up without changing its direction; the horizon stays centred while the person and buildings slide down."
+        "en": "The camera moves straight up without changing its direction; the horizon stays centred while the person and buildings slide down.",
+        "zh-Hans": "相机保持朝向不变，垂直上升；地平线始终位于中央，人物和建筑向下滑动。"
       },
       "spec": {
         "ja": [
@@ -33,11 +34,20 @@
           "Because the pitch does not change, the horizon stays at the centre of the frame (#031 Crane up tilts down while rising)",
           "Return: hold 3.4–4.2 s, then cross-fade back to the start over the last 0.5 s (one pass = 4.7 s)",
           "Top-right readout shows the height (↕ 1.0m → ↕ 3.2m)"
+        ],
+        "zh-Hans": [
+          "相机：从 1.0 m 垂直上升至 3.2 m；方向（偏航角、俯仰角）和焦距（330 px）保持不变。",
+          "时间：0.5 s 至 3.4 s（2.9 s），三次缓入缓出（约为 cubic-bezier(0.65,0,0.35,1)）。",
+          "主体：人物静止站在前方 7 m 处，在画面中向下滑动，脚部先从下方离开画面；一座塔位于右侧 3.5 m、前方 26 m 处。",
+          "由于俯仰角不变，地平线保持在画面中央（#031 升镜头在上升的同时向下俯拍）。",
+          "返回：在 3.4–4.2 s 保持，最后 0.5 s 交叉淡化回起点（单次 = 4.7 s）。",
+          "右上角读数显示高度（↕ 1.0m → ↕ 3.2m）。"
         ]
       },
       "use": {
         "ja": "棚や建物を下から上へなめらかに見せるとき、ティルトせずに目線の高さを変えるとき。",
-        "en": "To show a shelf or a building from bottom to top smoothly, or to change the eye level without tilting."
+        "en": "To show a shelf or a building from bottom to top smoothly, or to change the eye level without tilting.",
+        "zh-Hans": "适合平稳地从下往上展示货架或建筑，或在不俯仰相机的情况下改变视点高度。"
       },
       "tags": ["pedestal", "boom", "vertical move", "rise", "elevate", "camera move", "no tilt"]
     },
@@ -48,7 +58,8 @@
       "ask": { "ja": "ドローンの映像をバレルロールで1回転させて。3秒かけて。", "en": "Barrel roll the drone shot through one full rotation over 3 seconds.", "es": "Barrel roll de la toma de dron: una vuelta completa en 3 segundos.", "zh-Hans": "让无人机画面用横滚镜头旋转一整圈，用时 3 s。", "zh-Hant": "空拍畫面請用 Barrel roll 翻轉一整圈，花 3 秒。" },
       "summary": {
         "ja": "カメラがレンズの軸でぐるりと1回転し、地平線が一周して元に戻る。",
-        "en": "The camera rolls a full turn around its lens axis; the horizon goes all the way round and comes back level."
+        "en": "The camera rolls a full turn around its lens axis; the horizon goes all the way round and comes back level.",
+        "zh-Hans": "相机绕镜头轴线完整滚转一周，地平线旋转一整圈后恢复水平。"
       },
       "spec": {
         "ja": [
@@ -64,11 +75,19 @@
           "Subject: a person stands still 7 m ahead; horizon, buildings and person all turn by the same angle, and white shows in the corners while turning",
           "Hold: 3.6–4.2 s. After a full turn the picture equals the start, so the final 0.5 s cross-fade is invisible (one pass = 4.7 s)",
           "Top-right readout shows the angle (↻ 0° → ↻ 360°)"
+        ],
+        "zh-Hans": [
+          "相机：位置固定（高度 1.5 m）；仅滚转，0 → 2π rad（360°）；整幅画面绕画面中心旋转。",
+          "时间：0.5 s 至 3.6 s（3.1 s），三次缓入缓出（约为 cubic-bezier(0.65,0,0.35,1)）。",
+          "主体：人物静止站在前方 7 m 处；地平线、建筑和人物旋转相同角度，转动时四角露出白色。",
+          "保持：3.6–4.2 s。旋转一整圈后画面与起点相同，因此最后 0.5 s 的交叉淡化不可见（单次 = 4.7 s）。",
+          "右上角读数显示角度（↻ 0° → ↻ 360°）。"
         ]
       },
       "use": {
         "ja": "飛行機やドローンの映像で勢いを出すとき、めまいや混乱を表すとき。",
-        "en": "For aerial or drone footage that needs energy, or to show dizziness and confusion."
+        "en": "For aerial or drone footage that needs energy, or to show dizziness and confusion.",
+        "zh-Hans": "适合需要动感的航拍或无人机画面，也可表现眩晕与混乱。"
       },
       "tags": ["barrel roll", "roll", "360", "rotate", "spin", "aerial", "camera move"]
     },
@@ -79,7 +98,8 @@
       "ask": { "ja": "駅から公園まで歩きながらのハイパーラプス。雲が流れて、人が早送りで動くように。", "en": "Hyperlapse walking from the station to the park, clouds streaming and people in fast forward.", "es": "Hyperlapse caminando de la estación al parque, con las nubes pasando rápido y la gente en cámara rápida.", "zh-Hans": "拍一段从车站走到公园的移动延时：云朵流动，行人像快进一样移动。", "zh-Hant": "用移動縮時拍從車站走到公園的過程，雲快速飄過，路人像快轉一樣移動。" },
       "summary": {
         "ja": "街路を前へ進みながら、太陽・雲・人影が早送りで動く。タイムラプスとカメラの移動を同時に行う。",
-        "en": "The camera travels forward along a street while the sun, clouds and passers-by run in fast forward: a time-lapse that moves."
+        "en": "The camera travels forward along a street while the sun, clouds and passers-by run in fast forward: a time-lapse that moves.",
+        "zh-Hans": "相机沿街道向前移动，太阳、云和路人快速推进，形成会移动的延时摄影。"
       },
       "spec": {
         "ja": [
@@ -97,11 +117,20 @@
           "Sun: travels left to right along an arc, angle -1.25 rad → +1.25 rad, always 170 m ahead of the camera; three clouds drift 140 m right in total, wrapping every 80 m; six small figures cross an 11 m wide street",
           "Building shadows fall away from the sun and swing as it moves (translucent grey); the mountains move with the camera so they keep their size",
           "Return: cross-fade back to the start over the last 0.5 s; top-right readout shows the clock and the distance travelled (06:00 · 0m → 18:00 · 22m)"
+        ],
+        "zh-Hans": [
+          "相机：向前移动 0 m → 22 m（高度 1.6 m，俯仰角 +0.05 rad），同时太阳、云和人物快进经过 12 小时（#039 延时摄影保持相机静止）。",
+          "时间：0.4 s 至 4.1 s（3.7 s），三次缓入缓出（约为 cubic-bezier(0.65,0,0.35,1)）。",
+          "街道：12 座建筑位于 x = ±7.5 m（纵深 5–55 m，高 8–16 m），逐渐靠近相机并离开画面。",
+          "太阳：沿弧线从左向右移动，角度 -1.25 rad → +1.25 rad，始终位于相机前方 170 m；三朵云向右总共漂移 140 m，每 80 m 循环；六个小人物穿过 11 m 宽的街道。",
+          "建筑阴影朝远离太阳的方向投射，并随太阳移动而摆动（半透明灰色）；山脉跟随相机移动，大小保持不变。",
+          "返回：最后 0.5 s 交叉淡化回起点；右上角读数显示时钟和移动距离（06:00 · 0m → 18:00 · 22m）。"
         ]
       },
       "use": {
         "ja": "街や建物の中を、長い距離と長い時間ぶん一気に見せるとき。",
-        "en": "To cover a long distance and a long stretch of time in one sweep through a city or a building."
+        "en": "To cover a long distance and a long stretch of time in one sweep through a city or a building.",
+        "zh-Hans": "适合用一次穿越城市或建筑的运动，展现长距离和长时间的变化。"
       },
       "tags": ["hyperlapse", "time-lapse", "moving timelapse", "fast forward", "travel", "city", "camera move"]
     },
@@ -112,7 +141,8 @@
       "ask": { "ja": "準備から出発までを長回しで。カットを割らずに人物についていって。", "en": "Shoot from the preparation to the departure as one long take, following the person without a cut.", "es": "Graba desde la preparación hasta la salida en un plano secuencia, siguiendo a la persona sin cortar.", "zh-Hans": "从准备到出发用一个长镜头拍完，跟着人物，中间不切镜头。", "zh-Hant": "從準備到出發用一鏡到底拍完，中間不剪接，一路跟著人物。" },
       "summary": {
         "ja": "歩く人物をカットなしで追い続ける1ショット。画面下の帯は切れ目のない1本のまま。",
-        "en": "One continuous shot follows a walking person with no cut; the bar at the bottom stays a single unbroken strip."
+        "en": "One continuous shot follows a walking person with no cut; the bar at the bottom stays a single unbroken strip.",
+        "zh-Hans": "一个没有剪切的连续镜头跟随行走的人物，底部条带始终是一整条，没有断点。"
       },
       "spec": {
         "ja": [
@@ -130,11 +160,20 @@
           "Bottom strip: one blue bar labelled \"1ショット・カットなし\" (one shot, no cut) with a playhead, showing there is no break",
           "Return: stops at 4.2 s, then cross-fades back to the start over the last 0.5 s (one pass = 4.7 s)",
           "Top-right readout shows the elapsed time (NO CUT 0.0s → 4.2s)"
+        ],
+        "zh-Hans": [
+          "衔接：无；一个镜头连续跟随人物 4.2 s（#041 跳切将其分成五段）。",
+          "主体：人物以恒定速度从左前方（x = -3.4 m，纵深 5.2 m）走向右后方（x = 2.8 m，纵深 9.6 m）；腿和手臂按 sin(t×7)×0.42 rad 摆动。",
+          "相机：跟随人物向右横移 0 m → 1.4 m，同时转向，yaw = atan2(person x - camera x, depth)×0.8；高度 1.4 m。",
+          "底部条带：一整条蓝色条带，标有“一镜到底，无切镜”并带有播放头，表示没有中断。",
+          "返回：在 4.2 s 停止，最后 0.5 s 交叉淡化回起点（单次 = 4.7 s）。",
+          "右上角读数显示已用时间（无切镜 0.0s → 4.2s）。"
         ]
       },
       "use": {
         "ja": "緊張感や臨場感を切らさずに見せたいとき、動きの流れを1本で見せるとき。",
-        "en": "To keep tension and presence unbroken, or to show a sequence of movement as one flow."
+        "en": "To keep tension and presence unbroken, or to show a sequence of movement as one flow.",
+        "zh-Hans": "适合保持连续的紧张感和临场感，或把一系列动作展现为一个流畅过程。"
       },
       "tags": ["long take", "oner", "one shot", "continuous", "no cut", "sequence shot", "camera move"]
     },
@@ -145,7 +184,8 @@
       "ask": { "ja": "廊下を歩く人物の後ろをステディカムで。揺れなしでなめらかに。", "en": "Follow the person down the corridor with a Steadicam: smooth, no shake.", "es": "Sigue con Steadicam a la persona por el pasillo: suave, sin temblor.", "zh-Hans": "用斯坦尼康跟拍走廊里人物的背后，平稳无晃动。", "zh-Hant": "用 Steadicam 跟在走過走廊的人物後方，不晃動、平順地移動。" },
       "summary": {
         "ja": "細かい揺れのない、ゆっくり大きなうねりだけで前へ進み、歩く人物を追う。手持ちとの違いが分かる。",
-        "en": "The camera glides forward after a walking person with only a slow, gentle sway and no jitter, unlike handheld."
+        "en": "The camera glides forward after a walking person with only a slow, gentle sway and no jitter, unlike handheld.",
+        "zh-Hans": "相机平滑向前跟随行走的人物，仅有缓慢轻柔的摇摆，没有手持拍摄般的抖动。"
       },
       "spec": {
         "ja": [
@@ -161,11 +201,19 @@
           "Subject: a person walks 5 m ahead of the camera at the same speed; legs and arms take 5 strides per 4.7 s",
           "Trees: 3.6 m tall at x = -5 m and 3.2 m tall at x = +5 m, every 8 m (the two rows offset by 4 m); the mountains and sun move with the camera",
           "8 m is a multiple of the grid (2 m) and tree (8 m) spacing, so it loops seamlessly every 4.7 s; top-right readout shows \"STEADICAM\""
+        ],
+        "zh-Hans": [
+          "相机：以恒定 1.7 m/s 向前移动（每 4.7 s 移动 8 m）；高度 1.45 m，俯仰角 -0.02 rad；无缓动。",
+          "摇摆：高度 ±3.5 cm（每 4.7 s 2 个周期）、横向 ±5 cm（1 个周期）、偏航角 ±0.012 rad、滚转角 ±0.006 rad，均为整数周期的正弦波，缓慢且幅度宽（#034 手持镜头快速且不规则）。",
+          "主体：人物位于相机前方 5 m，以相同速度行走；腿和手臂每 4.7 s 完成 5 次步幅。",
+          "树木：x = -5 m 处高 3.6 m，x = +5 m 处高 3.2 m，每隔 8 m 一棵（两排错开 4 m）；山脉和太阳跟随相机移动。",
+          "8 m 是网格（2 m）和树木（8 m）间距的倍数，因此每 4.7 s 无缝循环；右上角读数为“斯坦尼康”。"
         ]
       },
       "use": {
         "ja": "歩きながらの移動を、映画のようになめらかに見せたいとき。",
-        "en": "To make a walking move look smooth and cinematic."
+        "en": "To make a walking move look smooth and cinematic.",
+        "zh-Hans": "适合让步行跟拍显得平稳且具有电影感。"
       },
       "tags": ["steadicam", "gimbal", "stabilizer", "smooth", "glide", "floating", "camera move"]
     },
@@ -176,7 +224,8 @@
       "ask": { "ja": "森の中を歩く人物の背中をフォローショットで。少し遅れてついていって。", "en": "Follow shot behind the person walking through the woods, trailing a little behind.", "es": "Follow shot por detrás de la persona que camina por el bosque, siguiéndola un poco atrás.", "zh-Hans": "用背后跟拍拍摄在林中行走的人物背影，稍微落后一点跟着。", "zh-Hant": "用背後跟拍拍攝在森林裡走路的人物，稍微落後一點跟著走。" },
       "summary": {
         "ja": "蛇行して歩く人物の後ろを、同じ道筋で少し遅れてついていく。人物は中央付近に留まり、背中が見える。",
-        "en": "The camera trails a weaving walker along the same path a few metres behind; the person stays near the centre, seen from the back."
+        "en": "The camera trails a weaving walker along the same path a few metres behind; the person stays near the centre, seen from the back.",
+        "zh-Hans": "相机沿同一路径，在几米后方跟随曲线行走的人物；从背后看人物，人物始终靠近画面中央。"
       },
       "spec": {
         "ja": [
@@ -192,11 +241,19 @@
           "Timing: 0.3 s to 4.2 s (3.9 s), cubic ease-in-out (about cubic-bezier(0.65,0,0.35,1)); legs and arms swing by sin(s×30)×0.42 rad",
           "The person stays near the centre of frame, seen from behind; posts and a rock beside the path sweep past in the foreground (#029 Tracking shot runs alongside)",
           "Return: cross-fade back to the start over the last 0.5 s (one pass = 4.7 s); top-right readout shows the distance to the person (FOLLOW 3.6–3.9m)"
+        ],
+        "zh-Hans": [
+          "路径：人物沿 x = 1.8·sin(2.2s)、纵深 z = 4 + 9s 的曲线行走（s 从 0 到 1），从距离 4 m 走到 13 m。",
+          "相机：沿相同曲线在 s-0.4 处跟随（约落后 3.6–3.9 m），始终朝向人物，yaw = atan2(person x - camera x, person z - camera z)；高度 1.5 m。",
+          "时间：0.3 s 至 4.2 s（3.9 s），三次缓入缓出（约为 cubic-bezier(0.65,0,0.35,1)）；腿和手臂按 sin(s×30)×0.42 rad 摆动。",
+          "从背后看人物，人物保持在画面中央附近；路径旁的柱子和岩石在前景掠过（#029 跟拍是并排行进）。",
+          "返回：最后 0.5 s 交叉淡化回起点（单次 = 4.7 s）；右上角读数显示与人物的距离（跟拍 3.6–3.9m）。"
         ]
       },
       "use": {
         "ja": "人物と一緒に場所へ入っていく感じを出すとき、ゲームのような三人称視点。",
-        "en": "To enter a place together with a character, or for a third-person, game-like view."
+        "en": "To enter a place together with a character, or for a third-person, game-like view.",
+        "zh-Hans": "适合与角色一起进入某处，或营造类似游戏的第三人称视角。"
       },
       "tags": ["follow shot", "follow", "behind", "third person", "trail", "walk", "camera move"]
     },
@@ -207,7 +264,8 @@
       "ask": { "ja": "交差点をロックオフで。カメラは三脚で固定して、人や車だけが通り過ぎるように。", "en": "Locked-off shot of the crossing: camera fixed on a tripod, only the people and cars pass through.", "es": "Plano fijo de la intersección: la cámara fija en un trípode, y que solo pasen las personas y los carros.", "zh-Hans": "用固定镜头拍十字路口：相机固定在三脚架上，只有行人和车辆经过。", "zh-Hant": "十字路口用固定鏡頭拍：攝影機架在三腳架上固定不動，只有行人和車輛經過。" },
       "summary": {
         "ja": "三脚で固定したカメラの前を人物が横切り、奥を車が通る。カメラは1pxも動かない。",
-        "en": "A person crosses in front of a tripod-fixed camera and a car passes behind; the camera does not move by a pixel."
+        "en": "A person crosses in front of a tripod-fixed camera and a car passes behind; the camera does not move by a pixel.",
+        "zh-Hans": "人物从固定在三脚架上的相机前经过，汽车从后方驶过，相机一像素也不移动。"
       },
       "spec": {
         "ja": [
@@ -223,11 +281,19 @@
           "A grey car crosses right to left 15 m away (x = +16 m → -16 m in 4.7 s)",
           "Both start and end outside the frame, so it loops seamlessly every 4.7 s",
           "A grey tripod mark at bottom left; top-right readout shows \"LOCKED\" (#040 Freeze frame stops the footage time; here time runs and only the camera is still)"
+        ],
+        "zh-Hans": [
+          "相机：完全固定（高度 1.4 m，朝向正前方，焦距 330 px）；只有主体移动。",
+          "主体：人物在前方 6.5 m 处，以恒定速度从左向右走过（4.7 s 内 x = -6.2 m → +6.2 m）；腿和手臂按 sin(u×7)×0.42 rad 摆动。",
+          "灰色汽车在 15 m 远处从右向左行驶（4.7 s 内 x = +16 m → -16 m）。",
+          "两者起点和终点均在画面外，因此每 4.7 s 无缝循环。",
+          "左下角有灰色三脚架标记；右上角读数为“机位固定”（#040 定格会停止素材时间；此处时间继续流逝，仅相机静止）。"
         ]
       },
       "use": {
         "ja": "動きの対比で被写体を目立たせるとき、定点観測、タイムラプスや合成の土台にするとき。",
-        "en": "To make the subject stand out by contrast, for fixed-point observation, or as a base for time-lapse and compositing."
+        "en": "To make the subject stand out by contrast, for fixed-point observation, or as a base for time-lapse and compositing.",
+        "zh-Hans": "适合以静衬动突出主体、定点观察，或作为延时摄影与合成的基础。"
       },
       "tags": ["locked-off", "locked off", "static shot", "fixed camera", "tripod", "static", "still camera"]
     },
@@ -238,7 +304,8 @@
       "ask": { "ja": "窓からフライスルーで部屋の中へ入って、テーブルの上まで寄って。", "en": "Fly-through from the window into the room and over to the table.", "es": "Fly-through desde la ventana hacia adentro del cuarto y hasta la mesa.", "zh-Hans": "用穿越镜头从窗户进入房间，一直推到桌子上方。", "zh-Hant": "用 Fly-through 穿越鏡頭從窗戶飛進房間，一路靠近到桌子上方。" },
       "summary": {
         "ja": "窓のあいた壁へ向かって進み、窓を通り抜けて向こう側の場所へ出る。",
-        "en": "The camera flies toward a wall with a window, passes through the opening and comes out into the place beyond."
+        "en": "The camera flies toward a wall with a window, passes through the opening and comes out into the place beyond.",
+        "zh-Hans": "相机飞向一面带窗的墙，从窗口穿过，进入墙后的空间。"
       },
       "spec": {
         "ja": [
@@ -256,11 +323,20 @@
           "Pass-through: the wall stops being drawn 0.25 m in front of the camera; by then the window edge is outside the frame (half-width about 1580 px), so it vanishes unseen",
           "After the pass the place beyond fills the frame and the camera closes to 2 m from the person (#035 FPV drone shot keeps weaving between trees)",
           "Return: hold 3.6–4.2 s, then cross-fade back to the start over the last 0.5 s; top-right readout shows the distance to the window (\"窓まで 8.0m\" → \"通過\", passed)"
+        ],
+        "zh-Hans": [
+          "相机：向前移动 0 m → 12.5 m（高度 1.3 m，方向固定）；一面带窗的墙位于前方 8 m，相机从中穿过。",
+          "时间：0.5 s 至 3.6 s（3.1 s），三次缓入缓出（约为 cubic-bezier(0.65,0,0.35,1)）。",
+          "墙：浅灰色平面，宽 80 m、高 14 m，窗宽 2.4 m、高 2.2 m（窗台高度 0.15 m）；透过窗口可见人物（右侧 0.3 m，距离 14.5 m）、树木、建筑和山脉。",
+          "穿越：墙位于相机前方 0.25 m 时停止绘制；此时窗框已在画面之外（半宽约 1580 px），所以消失不可见。",
+          "穿过后，墙后的空间充满画面，相机靠近至距人物 2 m（#035 FPV 穿越机镜头持续在树木之间穿行）。",
+          "返回：在 3.6–4.2 s 保持，最后 0.5 s 交叉淡化回起点；右上角读数显示到窗口的距离（“距窗 8.0m” → “已穿过”）。"
         ]
       },
       "use": {
         "ja": "建物の中へ入る導入、場所から場所への移動を1つの動きで見せるとき。",
-        "en": "To enter a building as an opening move, or to travel from one place to another in a single move."
+        "en": "To enter a building as an opening move, or to travel from one place to another in a single move.",
+        "zh-Hans": "适合以进入建筑的运动开场，或用一次运动从一个空间穿越到另一个空间。"
       },
       "tags": ["fly-through", "flythrough", "through the window", "pass through", "drone", "interior", "camera move"]
     },
@@ -271,7 +347,8 @@
       "ask": { "ja": "ヒーローの登場はローアングルで。地面近くから見上げて。", "en": "Shoot the hero's entrance from a low angle, looking up from near the ground.", "es": "Graba la entrada del héroe en contrapicado, mirando hacia arriba desde cerca del suelo.", "zh-Hans": "英雄登场用低角度镜头，从贴近地面处向上拍。", "zh-Hant": "英雄登場用仰角鏡頭，從靠近地面的位置往上拍。" },
       "summary": {
         "ja": "カメラを地面近くまで下げて見上げる。人物が大きく、建物が高くそびえて見える。",
-        "en": "The camera drops to near the ground and looks up; the person looks big and the buildings tower."
+        "en": "The camera drops to near the ground and looks up; the person looks big and the buildings tower.",
+        "zh-Hans": "相机降到接近地面并向上仰拍，人物显得高大，建筑显得耸立。"
       },
       "spec": {
         "ja": [
@@ -287,11 +364,19 @@
           "Subject: a person stands still 4.5 m ahead; an 11.8 m tower stands 3 m left, 22 m away. As the camera looks up, person and tower stretch upward and the horizon drops",
           "Hold: stays at the low angle from 2.2 s to 4.2 s (time to read the composition itself)",
           "Return: cross-fade back to eye level over the last 0.5 s (one pass = 4.7 s); top-right readout shows angle and height (↗ 0° · 1.5m → ↗ 18° · 0.4m)"
+        ],
+        "zh-Hans": [
+          "相机：从 1.5 m 降至 0.35 m，同时俯仰角 0 → +0.32 rad（向上约 18°）；不前后移动。",
+          "时间：0.6 s 至 2.2 s（1.6 s），三次缓入缓出（约为 cubic-bezier(0.65,0,0.35,1)）。",
+          "主体：人物静止站在前方 4.5 m；一座高 11.8 m 的塔位于左侧 3 m、距离 22 m 处。相机向上看时，人物和塔向上延伸，地平线下降。",
+          "保持：2.2 s 至 4.2 s 保持低角度（留出观看构图本身的时间）。",
+          "返回：最后 0.5 s 交叉淡化回平视高度（单次 = 4.7 s）；右上角读数显示角度和高度（↗ 0° · 1.5m → ↗ 18° · 0.4m）。"
         ]
       },
       "use": {
         "ja": "人物を強く・大きく見せたいとき、建物の高さを強調するとき。",
-        "en": "To make a person look powerful or large, or to emphasise the height of a building."
+        "en": "To make a person look powerful or large, or to emphasise the height of a building.",
+        "zh-Hans": "适合让人物显得有力量或高大，或强调建筑高度。"
       },
       "tags": ["low angle", "worm's eye", "look up", "from below", "power", "heroic", "angle"]
     },
@@ -302,7 +387,8 @@
       "ask": { "ja": "迷子の場面はハイアングルで。少し上から見下ろして小さく見せて。", "en": "Use a high angle for the lost-child scene, looking down from above so they look small.", "es": "Usa un picado para la escena del niño perdido, mirando desde arriba para que se vea pequeño.", "zh-Hans": "迷路孩子的场景用高角度镜头，从稍高处向下拍，让孩子显得很小。", "zh-Hant": "迷路小孩的場景用俯角鏡頭，從稍高的地方往下拍，讓他看起來很渺小。" },
       "summary": {
         "ja": "カメラを高い位置へ上げて見下ろす。人物が小さく、地面が画面の大半を占める。",
-        "en": "The camera rises and looks down; the person looks small and the ground fills most of the frame."
+        "en": "The camera rises and looks down; the person looks small and the ground fills most of the frame.",
+        "zh-Hans": "相机升高并向下俯拍，人物显得渺小，地面占据画面大部分。"
       },
       "spec": {
         "ja": [
@@ -318,11 +404,19 @@
           "Subject: a person stands still 5 m ahead; as the camera looks down they shrink and move lower, the ground grid fills most of the frame and the horizon leaves at the top",
           "Hold: stays at the high angle from 2.2 s to 4.2 s (#031 Crane up keeps rising to 9 m; 13 Bird's-eye view looks straight down at 90°)",
           "Return: cross-fade back to eye level over the last 0.5 s (one pass = 4.7 s); top-right readout shows angle and height (↘ 0° · 1.5m → ↘ 29° · 4.5m)"
+        ],
+        "zh-Hans": [
+          "相机：从 1.5 m 升至 4.5 m，同时俯仰角 0 → -0.5 rad（向下约 29°）；不前后移动。",
+          "时间：0.6 s 至 2.2 s（1.6 s），三次缓入缓出（约为 cubic-bezier(0.65,0,0.35,1)）。",
+          "主体：人物静止站在前方 5 m；相机向下看时，人物缩小并向下移动，地面网格占据画面大部分，地平线从顶部离开。",
+          "保持：2.2 s 至 4.2 s 保持高角度（#031 升镜头持续升至 9 m；13 鸟瞰镜头 以 90° 垂直向下看）。",
+          "返回：最后 0.5 s 交叉淡化回平视高度（单次 = 4.7 s）；右上角读数显示角度和高度（↘ 0° · 1.5m → ↘ 29° · 4.5m）。"
         ]
       },
       "use": {
         "ja": "人物を弱く・小さく見せたいとき、状況を俯瞰で説明するとき。",
-        "en": "To make a person look vulnerable or small, or to explain a situation from above."
+        "en": "To make a person look vulnerable or small, or to explain a situation from above.",
+        "zh-Hans": "适合让人物显得脆弱或渺小，或从上方交代局面。"
       },
       "tags": ["high angle", "look down", "from above", "overhead", "vulnerable", "angle"]
     },
@@ -333,7 +427,8 @@
       "ask": { "ja": "ドアを開けて部屋に入る瞬間はPOVショットで。本人の目線で。", "en": "The moment of opening the door and entering the room as a POV shot, through their eyes.", "es": "El momento de abrir la puerta y entrar al cuarto en plano subjetivo, a través de sus ojos.", "zh-Hans": "开门走进房间的那一刻用 POV 镜头，以角色本人的视线拍摄。", "zh-Hant": "打開門走進房間的那一刻用 POV 主觀鏡頭，以本人的視線拍攝。" },
       "summary": {
         "ja": "登場人物の目で見た画。歩く揺れと画面下の両手で一人称だと分かり、前の人物がこちらに手を振る。",
-        "en": "Seen through a character's eyes: the walking sway and the hands at the bottom say first person, and the person ahead waves at you."
+        "en": "Seen through a character's eyes: the walking sway and the hands at the bottom say first person, and the person ahead waves at you.",
+        "zh-Hans": "透过角色的双眼观看，行走摇摆和底部的双手表明这是第一人称视角，前方人物向你招手。"
       },
       "spec": {
         "ja": [
@@ -349,11 +444,19 @@
           "Hands: blue rounded hands at both bottom corners (±178 px from centre), a white phone in the right one; they move with the body, so the hands stay still and the world sways",
           "The other person, 7.5 m ahead, raises both arms and waves only from 1.6 s to 3.4 s (looking at you); two posts in the foreground",
           "Return: cross-fade back to the start over the last 0.5 s (one pass = 4.7 s); top-right readout shows \"POV\""
+        ],
+        "zh-Hans": [
+          "相机：处于角色眼睛高度 1.6 m，向前行走 0 m → 3.2 m；0.3 s 至 4.2 s（3.9 s），三次缓入缓出（约为 cubic-bezier(0.65,0,0.35,1)）。",
+          "行走摇摆：高度 ±3 cm（每 4.7 s 6 个周期），滚转角 ±0.008 rad（3 个周期），仅在移动时叠加。",
+          "双手：底部两角为蓝色圆润的手（距中心 ±178 px），右手持白色手机；双手随身体移动，因此手保持不动，周围世界摇摆。",
+          "前方 7.5 m 的另一个人物仅在 1.6 s 至 3.4 s 之间抬起双臂挥手（看着你）；前景有两根柱子。",
+          "返回：最后 0.5 s 交叉淡化回起点（单次 = 4.7 s）；右上角读数为“主观视角”。"
         ]
       },
       "use": {
         "ja": "観客に登場人物と同じ体験をさせたいとき、ゲームやVR風の見せ方。",
-        "en": "To put the viewer in the character's place, or for a game-like or VR-like feel."
+        "en": "To put the viewer in the character's place, or for a game-like or VR-like feel.",
+        "zh-Hans": "适合让观众代入角色，或营造游戏与 VR 般的体验。"
       },
       "tags": ["pov", "point of view", "first person", "subjective", "eyes", "hands", "angle"]
     },
@@ -364,7 +467,8 @@
       "ask": { "ja": "会話は肩越しのオーバーザショルダーで。手前の肩は少しぼかして。", "en": "Shoot the conversation over the shoulder, with the foreground shoulder slightly out of focus.", "es": "Graba la conversación en plano sobre el hombro, con el hombro en primer plano un poco desenfocado.", "zh-Hans": "对话用过肩镜头拍摄，前景的肩膀稍微虚化。", "zh-Hant": "對話用過肩鏡頭拍，前景的肩膀稍微模糊。" },
       "summary": {
         "ja": "手前の人物の後頭部と肩を画面の端に入れ、その肩越しに相手を撮る。手前はぼけ、相手にピント。",
-        "en": "The back of one person's head and shoulder sit at the edge of frame and the other person is seen past them; the foreground is soft, the subject sharp."
+        "en": "The back of one person's head and shoulder sit at the edge of frame and the other person is seen past them; the foreground is soft, the subject sharp.",
+        "zh-Hans": "一个人的后脑勺和肩膀位于画面边缘，越过肩膀可见另一个人；前景模糊，主体清晰。"
       },
       "spec": {
         "ja": [
@@ -380,11 +484,19 @@
           "Camera: height 1.55 m, yaw +0.05 rad; pushes in slowly 0 m → 0.35 m from 0.5 s to 3.4 s (cubic ease-in-out (about cubic-bezier(0.65,0,0.35,1)))",
           "The other person sways arms and legs by 0.35·sin(u×5) rad, as if talking",
           "Return: hold 3.4–4.2 s, then cross-fade back to the start over the last 0.5 s; top-right readout shows \"OTS\""
+        ],
+        "zh-Hans": [
+          "取景：前景人物的后脑勺和肩膀（灰色，左侧 0.62 m，距离 1.15 m）占据左边缘；越过肩膀可见另一人物（蓝色，右侧 0.32 m，距离 3.1 m）。",
+          "焦点：前景肩膀模糊 2.6 px，另一人物清晰，取景范围为胸部以上。",
+          "相机：高度 1.55 m，偏航角 +0.05 rad；在 0.5 s 至 3.4 s 之间缓慢推进 0 m → 0.35 m（三次缓入缓出，约为 cubic-bezier(0.65,0,0.35,1)）。",
+          "另一人物的手臂和腿按 0.35·sin(u×5) rad 摆动，仿佛在说话。",
+          "返回：在 3.4–4.2 s 保持，最后 0.5 s 交叉淡化回起点；右上角读数为“过肩”。"
         ]
       },
       "use": {
         "ja": "会話の場面で2人の位置関係を見せるとき、相手の表情に集中させるとき。",
-        "en": "To show who is facing whom in a conversation and to focus on the other person's expression."
+        "en": "To show who is facing whom in a conversation and to focus on the other person's expression.",
+        "zh-Hans": "适合交代对话中人物的相对位置，并突出对方的表情。"
       },
       "tags": ["over-the-shoulder", "ots", "dialogue", "conversation", "shoulder", "two shot", "angle"]
     },
@@ -395,7 +507,8 @@
       "ask": { "ja": "交差点を真上からのバーズアイで。人と車が上から見た形で動くように。", "en": "Bird's-eye view of the crossing from directly above, people and cars moving as seen from the top.", "es": "Plano cenital de la intersección, justo desde arriba, con las personas y los carros moviéndose vistos desde lo alto.", "zh-Hans": "从正上方用鸟瞰镜头拍十字路口，人和车以从上往下看的样子移动。", "zh-Hant": "十字路口用正上方的鳥瞰鏡頭拍，讓行人和車輛以從上往下看的樣子移動。" },
       "summary": {
         "ja": "真上から真下を見下ろす。道・人・車・木がすべて上から見た形になり、上がるほど広い範囲が見える。",
-        "en": "Looking straight down from overhead: road, people, cars and trees appear as top-down shapes, and more comes into view as the camera rises."
+        "en": "Looking straight down from overhead: road, people, cars and trees appear as top-down shapes, and more comes into view as the camera rises.",
+        "zh-Hans": "从正上方向下看，道路、人物、汽车和树木呈现为俯视形状，相机上升时可见范围扩大。"
       },
       "spec": {
         "ja": [
@@ -413,11 +526,20 @@
           "Subjects: a person (head circle and shoulder ellipse) walks 5.2 m up the right side of the road, a car (1.8×4 m) drives 6.8 m down the left side; both move in proportion to the progress p",
           "As the camera rises everything shrinks and more of the ground comes into view (10 High angle looks down at a slant)",
           "Return: hold 3.4–4.2 s, then cross-fade back to the start over the last 0.5 s; top-right readout shows \"↓ 90° · 9m → 15m\""
+        ],
+        "zh-Hans": [
+          "相机：垂直向下（俯仰角 -π/2 = -90°），在原点正上方从 9 m 升至 15 m。",
+          "时间：0.5 s 至 3.4 s（2.9 s），三次缓入缓出（约为 cubic-bezier(0.65,0,0.35,1)）。",
+          "地面：2 m 网格和一条宽 3.2 m 的道路（白色虚线中线）绘制在同一平面上；俯视的六棵树为圆形，三座建筑为方形。",
+          "主体：人物（圆形头部与椭圆肩部）沿道路右侧向上行走 5.2 m，汽车（1.8×4 m）沿左侧向下行驶 6.8 m；两者均按进度 p 成比例移动。",
+          "相机上升时，所有物体缩小，更多地面进入画面（10 高角度镜头 是斜向下俯拍）。",
+          "返回：在 3.4–4.2 s 保持，最后 0.5 s 交叉淡化回起点；右上角读数为“↓ 90° · 9m → 15m”。"
         ]
       },
       "use": {
         "ja": "配置や動線を図のように見せたいとき、神の視点で俯瞰するとき。",
-        "en": "To show layout and paths like a diagram, or for a god's-eye overview."
+        "en": "To show layout and paths like a diagram, or for a god's-eye overview.",
+        "zh-Hans": "适合像图解一样展示布局和路径，或提供上帝视角的全貌。"
       },
       "tags": ["bird's-eye", "birds eye", "top-down", "overhead", "straight down", "aerial", "angle"]
     },
@@ -428,7 +550,8 @@
       "ask": { "ja": "手前のカップも奥の人物もはっきり見せたいので、ディープフォーカスで。", "en": "Deep focus, so the cup in front and the person behind are both sharp.", "es": "Foco profundo, para que la taza de adelante y la persona de atrás se vean nítidas.", "zh-Hans": "前景的杯子和后方的人物都要清晰，所以用深焦镜头。", "zh-Hant": "前景的杯子和後方的人物都要拍清楚，請用深焦。" },
       "summary": {
         "ja": "手前の花から奥の人物・建物まで、同時に全部にピントが合っていく。",
-        "en": "From the flower in front to the person and buildings behind, everything comes into sharp focus at the same time."
+        "en": "From the flower in front to the person and buildings behind, everything comes into sharp focus at the same time.",
+        "zh-Hans": "从前方的花朵到后方的人物与建筑，所有物体同时变得清晰。"
       },
       "spec": {
         "ja": [
@@ -444,11 +567,19 @@
           "Timing: 0.5 s to 3.4 s (2.9 s), cubic ease-in-out (about cubic-bezier(0.65,0,0.35,1))",
           "Focus markers: blue corner brackets on both the flower (half-width 46 px) and the person (half-width 30 px), opacity 0 → 1 as focus arrives",
           "Return: hold 3.4–4.2 s, then cross-fade back to the start over the last 0.5 s; top-right readout shows the aperture (f/1.8 → f/16)"
+        ],
+        "zh-Hans": [
+          "相机：位置、方向和焦距全部固定（高度 1.1 m）；只有模糊程度变化。",
+          "模糊：前景花朵（左侧 0.75 m，距离 2 m）从 5 px → 0 px，背景（人物在右侧 0.9 m、距离 9 m；建筑；山脉）从 6 px → 0 px，两者同时变清晰（#033 焦点转移会模糊其中一侧）。",
+          "时间：0.5 s 至 3.4 s（2.9 s），三次缓入缓出（约为 cubic-bezier(0.65,0,0.35,1)）。",
+          "对焦标记：花朵（半宽 46 px）和人物（半宽 30 px）周围都有蓝色直角框，合焦时不透明度 0 → 1。",
+          "返回：在 3.4–4.2 s 保持，最后 0.5 s 交叉淡化回起点；右上角读数显示光圈（f/1.8 → f/16）。"
         ]
       },
       "use": {
         "ja": "画面のどこを見てもよい場面、奥行きの中で複数の出来事を同時に見せるとき。",
-        "en": "When the viewer may look anywhere in the frame, or to show several things happening at different depths at once."
+        "en": "When the viewer may look anywhere in the frame, or to show several things happening at different depths at once.",
+        "zh-Hans": "适合让观众自由观看画面各处，或同时展示不同纵深位置发生的事情。"
       },
       "tags": ["deep focus", "depth of field", "everything sharp", "f/16", "small aperture", "pan focus", "focus"]
     },
@@ -459,7 +590,8 @@
       "ask": { "ja": "冒頭は街全体が見えるエスタブリッシングショットから。場所の名前も出して。", "en": "Open with an establishing shot of the whole town, with the location name on screen.", "es": "Abre con un plano de establecimiento de todo el pueblo, con el nombre del lugar en pantalla.", "zh-Hans": "开头先用能看到整个城镇的定场镜头，同时显示地名。", "zh-Hant": "開場先用看得到整座城鎮的定場鏡頭，並打上地點名稱。" },
       "summary": {
         "ja": "広角・高い位置から街全体を見せる引きの画。ゆっくり寄りながら、場所の表示が左下に出る。",
-        "en": "A wide, high view of the whole town; the camera pushes in slowly and a location caption appears at bottom left."
+        "en": "A wide, high view of the whole town; the camera pushes in slowly and a location caption appears at bottom left.",
+        "zh-Hans": "以高处广角视野展示整座城镇，相机缓慢推进，左下角出现地点字幕。"
       },
       "spec": {
         "ja": [
@@ -475,11 +607,19 @@
           "Scene: eight city buildings 30 m away, a tower 16 m right and 36 m away, three clouds and mountains; a small person 1 m left, 12 m away gives the scale",
           "Location caption: from 0.9 s to 1.3 s a white card reading \"EXT. CITY – DAY\" (158×30 px, blue bar on its left) fades in at bottom left while moving up 8 px, then stays",
           "Return: cross-fade back to the start over the last 0.5 s (one pass = 4.7 s); top-right readout shows \"16mm WIDE\""
+        ],
+        "zh-Hans": [
+          "相机：广角镜头（焦距 220 px，显示为 16mm），高度 4.5 m，俯仰角 -0.06 rad；从 -5 m 缓慢推进至 -2.5 m。",
+          "时间：0.3 s 至 4.2 s（3.9 s），三次缓入缓出（约为 cubic-bezier(0.65,0,0.35,1)）。",
+          "场景：前方 30 m 有八座城市建筑，右侧 16 m、距离 36 m 有一座塔，还有三朵云和山脉；左侧 1 m、距离 12 m 处的小人物提供比例参照。",
+          "地点字幕：0.9 s 至 1.3 s，一张写有“外景 · 城市 · 日”的白色卡片（158×30 px，左侧蓝色竖条）在左下角向上移动 8 px 并淡入，随后保持。",
+          "返回：最后 0.5 s 交叉淡化回起点（单次 = 4.7 s）；右上角读数为“16mm 广角”。"
         ]
       },
       "use": {
         "ja": "場面の冒頭でどこにいるかを伝えるとき、場所や時間が変わったとき。",
-        "en": "At the start of a scene to say where we are, or whenever the place or time changes."
+        "en": "At the start of a scene to say where we are, or whenever the place or time changes.",
+        "zh-Hans": "适合在场景开始时交代地点，或在地点、时间变化时使用。"
       },
       "tags": ["establishing shot", "wide shot", "location", "opening", "scene setting", "aerial", "framing"]
     },
@@ -490,7 +630,8 @@
       "ask": { "ja": "涙がこぼれる瞬間は、目だけのエクストリームクローズアップで。", "en": "Extreme close-up on just the eye at the moment the tear falls.", "es": "Primerísimo primer plano solo del ojo en el momento en que cae la lágrima.", "zh-Hans": "眼泪落下的瞬间，用只拍眼睛的大特写。", "zh-Hant": "眼淚滑落的瞬間，用只拍眼睛的大特寫。" },
       "summary": {
         "ja": "顔のクローズアップから、目だけが画面を埋めるまで寄る。",
-        "en": "From a close-up of the face to a frame filled by nothing but the eyes."
+        "en": "From a close-up of the face to a frame filled by nothing but the eyes.",
+        "zh-Hans": "画面从脸部特写推进到只剩双眼充满画面。"
       },
       "spec": {
         "ja": [
@@ -506,11 +647,19 @@
           "Face: a blue head (radius 0.16 m) with white eyes (ellipses 0.045×0.028 m), dark pupils (radius 0.016 m), highlights and white brows; it starts as a close-up of the whole face (head about 150 px across) and ends with only the eyes filling the frame",
           "Background: trees and buildings blurred 3 px, leaving the frame as the lens closes in",
           "Return: hold 3.4–4.2 s, then cross-fade back to the start over the last 0.5 s; top-right readout shows the focal length and the abbreviation (44mm CU → 148mm ECU)"
+        ],
+        "zh-Hans": [
+          "相机：把前方 1.3 m 处面孔的右眼（中心左侧 0.06 m，高 1.66 m）放在画面中心；相机不移动。",
+          "焦距：610 px → 2040 px（显示为 44mm → 148mm，约 3.3×）；f = 610 × (2040/610)^p，其中 p 在 0.5 s 至 3.4 s 之间采用三次缓入缓出（约为 cubic-bezier(0.65,0,0.35,1)）。",
+          "面孔：蓝色头部（半径 0.16 m），白色眼睛（椭圆 0.045×0.028 m）、深色瞳孔（半径 0.016 m）、高光和白色眉毛；开始为整张脸的特写（头部宽约 150 px），结束时只有双眼充满画面。",
+          "背景：树木和建筑模糊 3 px，随着镜头拉近逐渐离开画面。",
+          "返回：在 3.4–4.2 s 保持，最后 0.5 s 交叉淡化回起点；右上角读数显示焦距和景别（44mm 特写 → 148mm 大特写）。"
         ]
       },
       "use": {
         "ja": "感情の一番の山場、小さな細部に注目させたいとき。",
-        "en": "For the emotional peak, or to make the viewer notice one small detail."
+        "en": "For the emotional peak, or to make the viewer notice one small detail.",
+        "zh-Hans": "适合情绪高潮，或让观众注意到细小的关键细节。"
       },
       "tags": ["extreme close-up", "ecu", "close-up", "eye", "detail", "macro", "framing"]
     },
@@ -521,7 +670,8 @@
       "ask": { "ja": "鍵を回すところはインサートショットで手元に寄って、すぐ戻して。", "en": "Insert shot of the hand turning the key, then straight back to the scene.", "es": "Inserto de la mano girando la llave, y de vuelta a la escena enseguida.", "zh-Hans": "转动钥匙时用插入镜头拍手部特写，然后马上切回。", "zh-Hant": "轉鑰匙的地方用插入鏡頭拍手部特寫，接著馬上回到原本的畫面。" },
       "summary": {
         "ja": "人物の場面に、同じ場面の手元の時計の大写しを1.3秒だけ差し込み、元の画へ戻る。",
-        "en": "A big close-up of the watch on the person's wrist is cut into the scene for 1.3 s, then it returns to the same shot."
+        "en": "A big close-up of the watch on the person's wrist is cut into the scene for 1.3 s, then it returns to the same shot.",
+        "zh-Hans": "场景中插入人物腕表的大特写，持续 1.3 s 后回到原镜头。"
       },
       "spec": {
         "ja": [
@@ -537,11 +687,19 @@
           "Detail (INSERT): a big close-up of the wrist from the same scene; a blue sleeve (600×92 px, rotated -0.35 rad) on pale blue, a white dial (radius 58 px), dark hands and a blue second hand that makes one turn in 1.3 s",
           "Bottom strip: three sections A (grey), detail (blue), A (grey) with a playhead; what is cut in belongs to the same scene (21 Cutaway shows a different subject)",
           "Top-right readout shows \"SHOT A\" → \"INSERT\" → \"SHOT A\"; at 4.7 s it cuts straight back to the start"
+        ],
+        "zh-Hans": [
+          "衔接：两次硬切（0 帧）；1.6 s 切入细节，2.9 s 回到原场景（细节持续 1.3 s）。",
+          "主镜头（A）：相机固定（高度 1.4 m）；人物位于左侧 0.6 m、距离 6 m，手腕上有手表（深色圆点）；柱子位于右侧 2.2 m、距离 4 m。",
+          "插入细节：同一场景中手腕的大特写；浅蓝背景上有蓝色衣袖（600×92 px，旋转 -0.35 rad）、白色表盘（半径 58 px）、深色指针，以及在 1.3 s 内转一圈的蓝色秒针。",
+          "底部条带：A（灰色）、细节（蓝色）、A（灰色）三段，带播放头；插入的内容属于同一场景（21 切出镜头 展示不同主体）。",
+          "右上角读数为“镜头 A” → “插入细节” → “镜头 A”；4.7 s 时硬切回起点。"
         ]
       },
       "use": {
         "ja": "小さな物や手元の動作を見せるとき、重要な小道具を強調するとき。",
-        "en": "To show a small object or a hand action, or to point out an important prop."
+        "en": "To show a small object or a hand action, or to point out an important prop.",
+        "zh-Hans": "适合展示小物件、手部动作或重要道具。"
       },
       "tags": ["insert shot", "insert", "detail", "close-up", "cut in", "prop", "edit"]
     },
@@ -552,7 +710,8 @@
       "ask": { "ja": "インタビューの言い直しをモーフカットで消して、つなぎ目が見えないように。", "en": "Remove the repeated sentence in the interview with a morph cut, so the join is invisible.", "es": "Quita la frase repetida de la entrevista con un morph cut, para que no se note la unión.", "zh-Hans": "用变形剪切去掉采访中说错重来的部分，让接缝看不出来。", "zh-Hant": "請用 Morph Cut 剪掉訪談中重講的句子，讓接點看不出來。" },
       "summary": {
         "ja": "同じ人物の2つのテイクを、位置と姿勢をなめらかに補間してつなぐ。ジャンプカットのように飛ばない。",
-        "en": "Two takes of the same person are joined by smoothly interpolating position and pose, so nothing jumps as in a jump cut."
+        "en": "Two takes of the same person are joined by smoothly interpolating position and pose, so nothing jumps as in a jump cut.",
+        "zh-Hans": "同一人物的两次拍摄通过位置和姿势的平滑插值连接，不会像跳切那样产生突变。"
       },
       "spec": {
         "ja": [
@@ -568,11 +727,19 @@
           "Only during the morph a blur of sin(q×π)×2.2 px is applied to the whole frame to soften the join (#041 Jump cut lets the position jump)",
           "Bottom strip: take 1 (grey), morph (blue, narrow), take 2 (grey) with a playhead",
           "Return: cross-fade back to the start of take 1 over the last 0.5 s; top-right readout shows \"TAKE 1\" → \"MORPH\" → \"TAKE 2\""
+        ],
+        "zh-Hans": [
+          "拍摄 1（0–2.0 s）：相机固定（高度 1.45 m）；人物位于左侧 0.4 m、距离 3.3 m，手臂和腿角度为 -0.45 rad。拍摄 2（从 2.45 s 起）：右侧 0.35 m，+0.55 rad。两者都按 0.12·sin(t×3) rad 轻微摆动。",
+          "形变（2.0–2.45 s，0.45 s）：位置采用二次缓入缓出插值（约为 cubic-bezier(0.45,0,0.55,1)），两种姿势绘制在相同的插值位置并交叉淡化。",
+          "仅在形变期间，整幅画面应用 sin(q×π)×2.2 px 的模糊以柔化衔接（#041 跳切允许位置突变）。",
+          "底部条带：拍摄 1（灰色）、形变（蓝色窄段）、拍摄 2（灰色），带播放头。",
+          "返回：最后 0.5 s 交叉淡化回拍摄 1 的起点；右上角读数为“拍摄 1” → “变形” → “拍摄 2”。"
         ]
       },
       "use": {
         "ja": "インタビューや語りの間を詰めるとき、言い間違いを目立たずに消すとき。",
-        "en": "To tighten an interview or narration, or to remove a slip without drawing attention."
+        "en": "To tighten an interview or narration, or to remove a slip without drawing attention.",
+        "zh-Hans": "适合精简访谈或旁白，或在不引人注意的情况下去掉口误。"
       },
       "tags": ["morph cut", "morph", "seamless", "interview", "talking head", "edit", "transition"]
     },
@@ -583,7 +750,8 @@
       "ask": { "ja": "場面の終わりは1秒のフェードアウトで黒へ。次の場面は黒から明けて。", "en": "End the scene with a 1-second fade to black, then fade in from black.", "es": "Cierra la escena con un fundido a negro de 1 segundo, y luego abre la siguiente desde negro.", "zh-Hans": "场景结尾用 1 s 淡出到黑场，下一场景再从黑场中淡入。", "zh-Hant": "場景結尾用 1 秒的淡出至黑，下一個場景再從黑畫面淡入。" },
       "summary": {
         "ja": "画面全体が黒へ沈んで終わり、黒から次の場面が明けてくる。",
-        "en": "The whole picture sinks to black, and the next scene brightens out of the black."
+        "en": "The whole picture sinks to black, and the next scene brightens out of the black.",
+        "zh-Hans": "整幅画面逐渐变黑，下一场景再从黑色中亮起。"
       },
       "spec": {
         "ja": [
@@ -599,11 +767,19 @@
           "Fade in: from 3.1 s to 4.3 s (1.2 s) the black goes from 100% → 0 with the same easing",
           "Camera: fixed in both pictures (A at height 1.4 m; B at height 1.6 m, pitch +0.1 rad); the subjects do not move either",
           "Alternates A→B and B→A every 4.7 s (9.4 s for the round trip); top-right readout shows \"FADE OUT\" / \"FADE IN\"; the viewfinder marks stay over the black"
+        ],
+        "zh-Hans": [
+          "淡出：1.4 s 至 2.6 s（1.2 s），在离场画面上叠加黑色（rgb(20,20,24)），不透明度 0 → 100%，二次缓入缓出（约为 cubic-bezier(0.45,0,0.55,1)）。",
+          "全黑：2.6 s 至 3.1 s 完全黑屏；2.9 s 时通过硬切换入下一画面，切换不可见。",
+          "淡入：3.1 s 至 4.3 s（1.2 s），黑色不透明度按相同缓动从 100% → 0。",
+          "相机：两幅画面中均固定（A 高度 1.4 m；B 高度 1.6 m、俯仰角 +0.1 rad）；主体也不移动。",
+          "每 4.7 s 交替 A→B 和 B→A（往返 9.4 s）；右上角读数为“淡出” / “淡入”；取景器标记在黑屏上方保持可见。"
         ]
       },
       "use": {
         "ja": "章の区切り、時間の大きな経過、物語の終わり。",
-        "en": "For a chapter break, a long passage of time, or the end of a story."
+        "en": "For a chapter break, a long passage of time, or the end of a story.",
+        "zh-Hans": "适合章节间隔、较长时间流逝或故事结尾。"
       },
       "tags": ["fade to black", "fade out", "fade in", "black", "ending", "transition"]
     },
@@ -614,7 +790,8 @@
       "ask": { "ja": "昔の映画風に、主人公を中心にアイリスアウトで閉じて終わって。", "en": "Old-film style: iris out, closing on the hero to end the scene.", "es": "Al estilo del cine antiguo: iris out, cerrando sobre el protagonista para terminar la escena.", "zh-Hans": "以老电影的风格，用圈出收拢到主角身上，结束这个场景。", "zh-Hant": "做成老電影的風格，以主角為中心用 Iris out 圓形收合，收成全黑後結束。" },
       "summary": {
         "ja": "人物を中心に丸い窓が閉じて黒になり、次の場面は丸い窓が開いて現れる。",
-        "en": "A circle closes down on the person until the frame is black, then opens again on the next scene."
+        "en": "A circle closes down on the person until the frame is black, then opens again on the next scene.",
+        "zh-Hans": "圆形窗口围绕人物逐渐收拢，直到画面全黑，再在下一场景中重新打开。"
       },
       "spec": {
         "ja": [
@@ -632,11 +809,20 @@
           "Iris in: from 3.1 s to 4.4 s (1.3 s) the circle grows from 0 to 340 px around the incoming picture's subject",
           "Edge: while the radius is at least 1 px, a 2 px blue circle marks the rim; the camera is fixed in both pictures",
           "Alternates A→B and B→A every 4.7 s (9.4 s for the round trip); top-right readout shows \"IRIS OUT\" / \"IRIS IN\""
+        ],
+        "zh-Hans": [
+          "圆形收拢：1.3 s 至 2.7 s（1.4 s），圆形窗口半径从 340 px 缩至 0（二次缓入缓出，约为 cubic-bezier(0.45,0,0.55,1)）；圆外为黑色（#141418）。",
+          "窗口中心：当前画面的主体投影到屏幕的位置，即 A 中人物的头部（左侧 0.6 m，高 1.63 m，距离 7 m），或 B 中的汽车（右侧 1.2 m，高 0.9 m，距离 9 m）。",
+          "全黑：2.7–3.1 s；2.9 s 时硬切换入下一画面。",
+          "圆形展开：3.1 s 至 4.4 s（1.3 s），圆形围绕下一画面的主体从 0 增至 340 px。",
+          "边缘：半径至少为 1 px 时，用 2 px 蓝色圆线标记边缘；两幅画面中相机均固定。",
+          "每 4.7 s 交替 A→B 和 B→A（往返 9.4 s）；右上角读数为“圆孔收拢” / “圆孔打开”。"
         ]
       },
       "use": {
         "ja": "無声映画やアニメ風の終わり方、コミカルな区切り。",
-        "en": "For a silent-film or cartoon-style ending, or a playful break."
+        "en": "For a silent-film or cartoon-style ending, or a playful break.",
+        "zh-Hans": "适合默片或卡通风格的结尾，或轻松俏皮的段落间隔。"
       },
       "tags": ["iris out", "iris in", "iris wipe", "circle", "old film", "cartoon", "transition"]
     },
@@ -647,7 +833,8 @@
       "ask": { "ja": "話している途中で客席の反応にカットアウェイして、また戻して。", "en": "Cut away to the audience reaction in the middle of the talk, then back.", "es": "A mitad de la charla, corta a un plano de recurso de la reacción del público y vuelve.", "zh-Hans": "讲话途中用切出镜头切到观众的反应，再切回来。", "zh-Hant": "講話講到一半，用 Cutaway 切出鏡頭切到觀眾的反應，再切回來。" },
       "summary": {
         "ja": "話す人物の場面から、聞いている客席へ切り替えて戻る。差し込むのは別の対象。",
-        "en": "From the speaker to the listening audience and back; what is cut in is a different subject."
+        "en": "From the speaker to the listening audience and back; what is cut in is a different subject.",
+        "zh-Hans": "镜头从讲话者切到聆听的观众，再切回来；插入的是不同主体。"
       },
       "spec": {
         "ja": [
@@ -663,11 +850,19 @@
           "Other subject (CUTAWAY): the listening audience, five people 3.1–4.6 m away in blue and pale blue with both arms up, bouncing by |sin(t×9+i)|×5 cm; no background (a different place)",
           "Bottom strip: A (grey), other subject (blue), A (grey) with a playhead (17 Insert shot shows a detail of the same scene)",
           "Top-right readout shows \"SHOT A\" → \"CUTAWAY\" → \"SHOT A\"; at 4.7 s it cuts straight back to the start"
+        ],
+        "zh-Hans": [
+          "衔接：两次硬切（0 帧）；1.7 s 切到另一主体，3.0 s 回到原场景（离开 1.3 s）。",
+          "主镜头（A）：相机固定（高度 1.4 m）；5.5 m 处的人物讲话，手臂和腿按 0.45·sin(u×6) rad 摆动，右侧 0.9 m 有灰色讲台。",
+          "切出的主体：聆听的观众，五个人位于 3.1–4.6 m 处，穿蓝色和浅蓝色服装，双臂举起，按 |sin(t×9+i)|×5 cm 弹动；没有背景（位于另一地点）。",
+          "底部条带：A（灰色）、另一主体（蓝色）、A（灰色），带播放头（17 插入镜头 展示同一场景的细节）。",
+          "右上角读数为“镜头 A” → “切出” → “镜头 A”；4.7 s 时硬切回起点。"
         ]
       },
       "use": {
         "ja": "反応を見せるとき、時間の省略や言い間違いのカットをごまかすとき。",
-        "en": "To show a reaction, or to hide a time skip or a removed slip."
+        "en": "To show a reaction, or to hide a time skip or a removed slip.",
+        "zh-Hans": "适合展示反应，或遮掩时间跳跃和删除的口误。"
       },
       "tags": ["cutaway", "reaction shot", "b-roll", "cut away", "audience", "edit"]
     },
@@ -678,7 +873,8 @@
       "ask": { "ja": "逃げる人と追う車をクロスカッティングで交互に。だんだん短く切って。", "en": "Cross-cut between the runner and the chasing car, with the cuts getting shorter.", "es": "Montaje paralelo entre la persona que corre y el carro que la persigue, con cortes cada vez más cortos.", "zh-Hans": "用交叉剪辑交替展示逃跑的人和追赶的车，镜头逐渐变短。", "zh-Hant": "逃跑的人和追趕的車用交叉剪接交替呈現，每個鏡頭越剪越短。" },
       "summary": {
         "ja": "同時に進む2つの場面（走る人物と走る車）を、だんだん短く交互に見せる。",
-        "en": "Two scenes happening at the same time, a runner and a car, alternate in shorter and shorter cuts."
+        "en": "Two scenes happening at the same time, a runner and a car, alternate in shorter and shorter cuts.",
+        "zh-Hans": "跑步者和汽车两个同时发生的场景交替出现，剪切间隔越来越短。"
       },
       "spec": {
         "ja": [
@@ -696,11 +892,20 @@
           "Camera: A at height 1.3 m, fixed, with four posts in the foreground; B at height 1.6 m, pitch +0.06 rad, fixed, with the city and sun",
           "Bottom strip: eight alternating sections A (grey) and B (blue) with a playhead; the last 0.3 s cross-fades back to the start of A",
           "Top-right readout shows \"SCENE A\" / \"SCENE B\""
+        ],
+        "zh-Hans": [
+          "两个场景共用同一时钟：A 是跑步者（左侧 0.3 m，纵深 15 m → 4.5 m，腿部按 u×12 运动），B 是城市中的汽车（右侧 1 m，纵深 17 m → 4.5 m）；两者均在 4.7 s 内靠近。",
+          "剪切：在 0 / 1.1 / 2.0 / 2.7 / 3.3 / 3.8 / 4.2 / 4.5 s 处在 A 和 B 之间硬切；镜头时长依次缩短为 1.1 → 0.9 → 0.7 → 0.6 → 0.5 → 0.4 → 0.3 s，以增加紧张感。",
+          "另一场景显示时，每个场景仍继续推进（切回来时主体已移动）。",
+          "相机：A 高度 1.3 m，固定，前景有四根柱子；B 高度 1.6 m，俯仰角 +0.06 rad，固定，场景含城市和太阳。",
+          "底部条带：A（灰色）和 B（蓝色）交替的八段，带播放头；最后 0.3 s 交叉淡化回 A 的起点。",
+          "右上角读数为“场景 A” / “场景 B”。"
         ]
       },
       "use": {
         "ja": "追跡や救出など、同時進行の緊張を高めるとき。",
-        "en": "To build tension between things happening at once, such as a chase or a rescue."
+        "en": "To build tension between things happening at once, such as a chase or a rescue.",
+        "zh-Hans": "适合在同时发生的事件之间制造紧张感，例如追逐或救援。"
       },
       "tags": ["cross-cutting", "parallel editing", "intercut", "parallel action", "chase", "edit"]
     },
@@ -711,7 +916,8 @@
       "ask": { "ja": "跳んだ頂点でバレットタイム。時間を止めてカメラだけ回り込んで。", "en": "Bullet time at the top of the jump: freeze the moment and circle the camera around.", "es": "Bullet time en lo más alto del salto: congela el momento y haz que la cámara gire alrededor.", "zh-Hans": "在跳跃最高点用子弹时间：让时间停住，只有相机绕着人物转。", "zh-Hant": "跳到最高點時用子彈時間：時間停住，只有攝影機繞著人物轉。" },
       "summary": {
         "ja": "跳躍の頂点で時間がほぼ止まり、その間にカメラが人物の周りを回り込む。",
-        "en": "Time nearly stops at the top of a jump while the camera circles around the person."
+        "en": "Time nearly stops at the top of a jump while the camera circles around the person.",
+        "zh-Hans": "人物跳到最高点时，时间几乎停止，相机绕着人物环行。"
       },
       "spec": {
         "ja": [
@@ -727,11 +933,19 @@
           "Camera: during the slow part it travels on a circle of radius 6 m around the person from -0.6 rad to +0.6 rad (about 69°), cubic ease-in-out (about cubic-bezier(0.65,0,0.35,1)); always facing the centre, height 1.6 m, pitch -0.05 rad",
           "The next 4.7 s pass circles the other way (+0.6 → -0.6 rad), so the 9.4 s loop is seamless (#030 Orbit does not stop time)",
           "A dashed circle of radius 1.3 m on the ground and a ring of trees at 10 m; top-right readout shows \"×1.0\" → \"BULLET ×0.1\" → \"×1.0\""
+        ],
+        "zh-Hans": [
+          "素材时间：0–1.5 s 正常播放，1.5 s 至 3.3 s 以 0.1× 播放（1.8 s 内只推进 0.18 s 素材），之后恢复正常（素材时间 = u - 1.62）。",
+          "主体：9 m 处的人物在素材时间 0.6–2.6 s 之间沿抛物线跳起（最高 1.1 m，双臂举起）；慢速部分仿佛悬停在最高点附近（进度 45–54%）；九片树叶按相同素材时间下落。",
+          "相机：慢速部分沿人物周围半径 6 m 的圆弧从 -0.6 rad 移至 +0.6 rad（约 69°），三次缓入缓出（约为 cubic-bezier(0.65,0,0.35,1)）；始终朝向圆心，高度 1.6 m，俯仰角 -0.05 rad。",
+          "接下来 4.7 s 反向环行（+0.6 → -0.6 rad），因此 9.4 s 循环无缝（#030 Orbit 不会停止时间）。",
+          "地面有半径 1.3 m 的虚线圆，10 m 处有一圈树木；右上角读数为“×1.0” → “子弹时间 ×0.1” → “×1.0”。"
         ]
       },
       "use": {
         "ja": "決めの瞬間を立体的に見せるとき、アクションの見せ場。",
-        "en": "To show a decisive moment in three dimensions, or as the highlight of an action scene."
+        "en": "To show a decisive moment in three dimensions, or as the highlight of an action scene.",
+        "zh-Hans": "适合以三维视角展示决定性瞬间，或作为动作场面的高潮。"
       },
       "tags": ["bullet time", "time slice", "frozen moment", "orbit", "slow motion", "matrix", "effect"]
     },
@@ -742,7 +956,8 @@
       "ask": { "ja": "練習の1か月をモンタージュで。短いカットを7つくらい並べて。", "en": "A one-month training montage: about seven short shots in a row.", "es": "Una secuencia de montaje de un mes de entrenamiento: unas siete tomas cortas seguidas.", "zh-Hans": "用蒙太奇表现一个月的练习，连续排列约 7 个短镜头。", "zh-Hant": "一個月的練習用蒙太奇呈現，接約 7 個短鏡頭。" },
       "summary": {
         "ja": "7つの短いカットで30日分の練習を見せる。つなぎは直結で、右上の日付が飛ぶ。",
-        "en": "Seven short shots show thirty days of training; straight cuts, with the date jumping at top right."
+        "en": "Seven short shots show thirty days of training; straight cuts, with the date jumping at top right.",
+        "zh-Hans": "七个短镜头展现三十天的训练，镜头以硬切衔接，右上角的日期跳跃变化。"
       },
       "spec": {
         "ja": [
@@ -756,11 +971,18 @@
           "Shots: 1 tracking a runner (legs at t×14), 2 a jump in the park, 3 sunrise (sun rising from 4 m to 12 m), 4 arms raised from a low angle, 5 walking in the city (focal length 420 px), 6 circling the person from -0.3 to +0.3 rad, 7 arms raised in front of a flag",
           "Thirty days of training condensed into 4.7 s; camera position, height and focal length change with every shot (#041 Jump cut keeps the same framing)",
           "Bottom strip: seven sections, only the current shot in blue; the last 0.3 s cross-fades back to the start of the first shot"
+        ],
+        "zh-Hans": [
+          "七个镜头通过硬切（0 帧）衔接：0.75 / 0.7 / 0.65 / 0.65 / 0.65 / 0.6 / 0.7 s（合计 4.7 s）；右上角日期跳跃为 第 1、3、7、12、20、28、30 天。",
+          "镜头：1 跟拍跑步者（腿部按 t×14 运动），2 公园中跳跃，3 日出（太阳从 4 m 升至 12 m），4 低角度拍摄举起双臂，5 城市中行走（焦距 420 px），6 绕人物从 -0.3 环行至 +0.3 rad，7 在旗帜前举起双臂。",
+          "三十天训练浓缩为 4.7 s；每个镜头都改变相机位置、高度和焦距（#041 跳切保持同一构图）。",
+          "底部条带：七段，仅当前镜头为蓝色；最后 0.3 s 交叉淡化回第一个镜头的起点。"
         ]
       },
       "use": {
         "ja": "長い期間の変化や努力を短く見せるとき。",
-        "en": "To show a long period of change or effort in a short time."
+        "en": "To show a long period of change or effort in a short time.",
+        "zh-Hans": "适合在短时间内展现长期的变化或努力。"
       },
       "tags": ["montage", "sequence", "training montage", "time passing", "quick cuts", "edit"]
     }

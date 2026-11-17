@@ -1,8 +1,8 @@
 blank_issues_enabled: true
 contact_links:
-  - name: "寄稿の手引き · Contributing guide"
-    url: https://github.com/showheyohtaki/motion-prompt/blob/main/CONTRIBUTING.md
-    about: "名前と見本の基準、パックの足し方 / What a name and a sample need, and how to add a pack"
-  - name: "事例のページ · Examples page"
-    url: https://showheyohtaki.github.io/motion-prompt/found.html
-    about: "いま載っている事例 / The examples listed now"
+  - name: 贡献指南
+    url: https://github.com/JackEngineer/motion-prompt/blob/main/CONTRIBUTING.zh-Hans.md
+    about: 术语和示例标准，以及如何添加素材包
+  - name: 社区案例目录
+    url: https://github.com/JackEngineer/motion-prompt/blob/main/examples/found.json
+    about: 查看本仓库收录的案例和原帖链接

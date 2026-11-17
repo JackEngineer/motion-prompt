@@ -19,12 +19,10 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 22
-// 22 スイムレーン図: lane names on the left; boxes and arrows move across the lanes step by step
 function swimlane(k, w, h, u) {
   bg(k, w, h);
   const f = fade(u), X0 = 22, X1 = 517, HW = 62, Y0 = 13, LH = 60, NL = 3;
-  const NAMES = ['顧客', '営業', '制作'];
-  // skeleton: lanes
+  const NAMES = ['客户', '销售', '制作'];
   for (let i = 0; i < NL; i++) {
     const y = Y0 + i * LH;
     k.fillStyle = '#FFFFFF'; k.fillRect(X0 + HW, y, X1 - X0 - HW, LH);
@@ -35,13 +33,12 @@ function swimlane(k, w, h, u) {
   for (let i = 1; i < NL; i++) { k.beginPath(); k.moveTo(X0, Y0 + i * LH); k.lineTo(X1, Y0 + i * LH); k.stroke(); }
   k.beginPath(); k.moveTo(X0 + HW, Y0); k.lineTo(X0 + HW, Y0 + NL * LH); k.stroke();
   rr(k, X0, Y0, X1 - X0, NL * LH, 6); k.stroke();
-  // steps
   const BX = [138, 224, 310, 396, 474], BL = [0, 1, 2, 1, 0], bw = 56, bh = 30;
   const cyOf = l => Y0 + l * LH + LH / 2;
   k.globalAlpha = f;
   for (let i = 0; i < BX.length; i++) {
     const t0 = 0.4 + i * 0.38;
-    // arrow from previous box: right, then down/up into this box
+    // 从上一框先向右画箭头，再向上或向下接入当前框。
     if (i > 0) {
       const pa = easeInOut(P(u, t0 - 0.24, t0 + 0.02));
       if (pa > 0) {

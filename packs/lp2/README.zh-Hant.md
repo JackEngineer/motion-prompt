@@ -6,7 +6,7 @@
 
 找到名稱後，直接告訴 AI。再加上「幾秒」「多強」「什麼在動」，結果會更接近你想要的。
 
-![Landing Page 與網站效果 第 2 彈 — 範例](../../assets/preview-lp2.gif)
+![Landing Page 與網站效果 第 2 彈 範例](../../assets/preview-lp2.gif)
 
 ## 捲動時的效果
 

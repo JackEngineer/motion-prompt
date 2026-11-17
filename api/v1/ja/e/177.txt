@@ -19,6 +19,5 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 09
-// 09 ローアングル: カメラを地面近くに下げ、見上げる。人物が大きく、建物が高く見える
 CELLS[8] = shot(camCell((k, w, h, p) => world(k, w, h, cam({ y: lerp(1.5, 0.35, p), pitch: lerp(0, 0.32, p) }), { person: { z: 4.5 }, tower: [-3, 22] }),
   p => `↗ ${Math.round(lerp(0, 0.32, p) * 57.3)}° · ${lerp(1.5, 0.35, p).toFixed(1)}m`, 0.6, 2.2));

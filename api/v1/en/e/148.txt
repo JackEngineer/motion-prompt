@@ -19,7 +19,6 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 04
-// 04 背景色の切り替え（スクロールでセクションが変わるたび、ページ全体の背景色がなめらかに変わる）
 CELLS[3] = (k, w, h, u) => {
   u = snapU(u);
   frame(k);
@@ -31,14 +30,13 @@ CELLS[3] = (k, w, h, u) => {
   view(k, () => {
     k.fillStyle = bg; k.fillRect(0, 0, VW, VH);
     k.save(); k.translate(0, -y);
-    const S = [['01  MORNING', '朝のひととき'], ['02  NIGHT', '夜のくつろぎ'], ['03  HOLIDAY', '休日のおでかけ']];
+    const S = [['01  清晨', '清晨时光'], ['02  夜晚', '夜晚小憩'], ['03  假日', '假日出游']];
     S.forEach(([no, ttl], i) => {
       const y0 = i * VH;
       txt(k, no, 40, y0 + 58, `800 12px ${EN}`, C.acc, 'left', 'alphabetic', '2px');
       txt(k, ttl, 40, y0 + 92, `800 24px ${JP}`, fg);
       k.fillStyle = bc; for (let j = 0; j < 2; j++) { rr(k, 40, y0 + 108 + j * 12, j ? 110 : 180, 6, 3); k.fill(); }
     });
-    // 朝: 太陽 / 夜: 月と星 / 休日: 山の写真
     k.fillStyle = C.acc; k.beginPath(); k.arc(380, 84, 34, 0, 7); k.fill();
     k.strokeStyle = C.acc; k.lineWidth = 4; k.lineCap = 'round';
     for (let j = 0; j < 8; j++) { const a = j * Math.PI / 4; k.beginPath(); k.moveTo(380 + Math.cos(a) * 44, 84 + Math.sin(a) * 44); k.lineTo(380 + Math.cos(a) * 54, 84 + Math.sin(a) * 54); k.stroke(); }

@@ -19,7 +19,6 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 05
-// 05 トラッキング: 人物と並んで横移動（手前ほど速く流れる）
 CELLS[4] = shot((k, w, h, u) => {
   const x = (u - CYC / 2) * 1.7;
   const fgp = []; for (let i = -12; i <= 12; i++) fgp.push([i * 1.6, 4]);

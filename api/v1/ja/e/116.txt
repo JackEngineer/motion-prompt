@@ -18,7 +18,6 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 20
-// デュオトーン: 暗い所を藍、明るい所をピンクの2色だけに置き換える
 CELLS[19] = cell((k, u) => {
   const a = env(u);
   const DUO = mapPal(BASE, c => mixc('#1F2A5C', '#FF9FB2', Math.pow(clamp((lum(c) - 70) / (250 - 70)), 2.4)));

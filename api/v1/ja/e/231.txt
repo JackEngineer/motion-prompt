@@ -19,8 +19,7 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 15
-// 15 絵グラフ（ピクトグラム）: 10 people in one row pop in gray, then 3 of them turn blue and "30%" counts up
-// faceless pictogram person (the same parts as the camera packs). x,y = feet, h = height in px. o.col: color
+// 人物图标沿用相机包。x 和 y 是脚的位置，h 是像素高度，o.col 控制颜色。
 function person(k, x, y, h, o = {}) {
   k.save(); k.translate(x, y); const s = h / 1.8; k.scale(s, -s); if (o.lean) k.rotate(o.lean);
   k.fillStyle = o.col || C.blue;
@@ -42,12 +41,11 @@ function picto(k, w, h, u) {
     if (i < HI) { const pc = easeInOut(P(u, 1.25 + i * 0.22, 1.5 + i * 0.22)); col = mix(C.g3, C.blue, pc); }
     person(k, xs + i * sp, foot, ph * s, { col });
   }
-  // the share, counting up while the people turn blue
   const pc = easeInOut(P(u, 1.25, 1.94));
   if (pc > 0) {
     const v = Math.round(30 * pc);
     txt(k, `${v}%`, 164, 112, `800 46px ${FONT}`, C.blue, 'right', 'middle');
-    txt(k, '10人中3人', 164, 148, `600 16px ${FONT}`, C.sub, 'right', 'middle');
+    txt(k, '10 人中有 3 人', 164, 148, `600 16px ${FONT}`, C.sub, 'right', 'middle');
   }
   seg(k, xs - 22, foot + 6, xs + (n - 1) * sp + 18, foot + 6, C.g3, 2);
   k.restore();

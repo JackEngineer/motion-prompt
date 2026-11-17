@@ -19,7 +19,6 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 02
-// リムライト: 周りが暗くなり、斜め後ろ左右の2灯で頭と肩の輪郭だけが細く光る
 CELLS[1] = cell((k, u) => {
   const a = env(u);
   stagePortrait(k, pal(BASE, DARK, a));

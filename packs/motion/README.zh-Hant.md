@@ -6,7 +6,7 @@
 
 找到名稱後，直接告訴 AI。再加上「幾秒」「多強」「什麼在動」，結果會更接近你想要的。
 
-![Motion Graphics 動態手法 — 範例](../../assets/preview-motion.gif)
+![Motion Graphics 動態手法 範例](../../assets/preview-motion.gif)
 
 ## 登場與文字動態
 

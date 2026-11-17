@@ -1,28 +1,29 @@
 // Motion Prompt #097-120 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#097
 //
-// Kit for pack "photo" (Photo looks, lighting & styles / 写真の表現・光と画風): the constants and helpers its elements share.
-// Elements #097-120 · 539x208 px · cycle 5 s. Element code: https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/<id>.txt (or /ja/).
+// 以下为素材包 "photo"（摄影效果、光线与风格）各元素共用的常量和辅助函数。
+// 元素 #097-120 · 539x208 px · 循环时长 5 秒
+// 元素代码（简体中文）：../zh-Hans/e/<id>.txt（相对于本辅助代码文件）
+// 其他语言：../en/e/<id>.txt（英文）、../ja/e/<id>.txt（日文）
 //
-// Run one element standalone in a browser:
-//   1. paste this file into a <script>,
-//   2. paste the element code below it (it assigns CELLS[n - 1], n = the element number inside the pack),
-//   3. then add:
+// 在浏览器中单独运行一个元素：
+//   1. 将本文件内容粘贴到 <script> 中。
+//   2. 在其后粘贴元素代码。元素代码会设置 CELLS[n - 1]，其中 n 是元素在素材包内的编号。
+//   3. 接着添加以下代码。
 //        const c = document.createElement('canvas'); c.width = 539; c.height = 208; document.body.append(c);
 //        const k = c.getContext('2d'), cell = CELLS.find(Boolean), t0 = performance.now();
 //        (function loop() {
-//          const u = ((performance.now() - t0) / 1000) % 5;   // seconds, 0 <= u < 5
+//          const u = ((performance.now() - t0) / 1000) % 5;   // 单位为秒，0 <= u < 5
 //          k.setTransform(1, 0, 0, 1, 0, 0); k.clearRect(0, 0, 539, 208);
 //          k.save(); cell(k, 539, 208, u); k.restore();
 //          requestAnimationFrame(loop);
 //        })();
-// Every cell is a pure function of u, so the same call renders video frames: u = frame / fps.
+// 各元素的画面只取决于 u，因此可用同一个函数渲染视频帧。将 u 设为 frame / fps。
 
 // @kit
-// 写真の表現・光と画風 24（カード 539x208、1周 5秒）。各コマは時間 u の純関数。
-// 絵は平らな図形だけで描く。場面は3つを全コマで使い回す: ①光＝地平線の前の胸像 ②レンズ＝街角 ③仕上げ＝胸像と風景。
-// 人物は顔・髪のない丸い頭のピクト。光はアンバー1色の面、影は一段濃い平らな面で表す。
-// 色が主役の効果（モノクロ・デュオトーンなど）は、同じ場面の色の割り当て（パレット）を差し替えて見せる。
-// 多くの見本は「効果なし → あり → なし」を env(u) で切り替える（0.4〜1.4秒で入り、4.0秒まで保ち、4.8秒までに戻る）。
+// 每张卡片为 539 × 208 像素，循环时长为 5 秒。每帧仅由时间 u 决定。
+// 用平面图形绘制三个共用场景。用地平线前的半身像展示布光，用街角展示镜头效果，用半身像和风景展示后期处理。
+// 黑白和双色调等效果通过替换同一场景的调色板实现。
+// 大多数效果由 env(u) 控制，在 0.4 至 1.4 秒逐渐进入，保持到第 4 秒，并在第 4.8 秒前恢复。
 const CW = 539, CH = 208, CYC = 5;
 const TAU = Math.PI * 2;
 const MONO = '"SF Mono", ui-monospace, Menlo, monospace';
@@ -31,47 +32,43 @@ const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
 const lerp = (a, b, x) => a + (b - a) * x;
 const P = (t, a, b) => clamp((t - a) / (b - a));
 const eIO = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
-// 効果の量: 0（なし）→ 1（あり）→ 0。イージングは3次のイーズインアウト
+// 效果强度在 0 和 1 之间往返，使用三次缓入缓出。
 const IN0 = 0.4, IN1 = 1.4, OUT0 = 4.0, OUT1 = 4.8;
 const env = u => eIO(P(u, IN0, IN1)) * (1 - eIO(P(u, OUT0, OUT1)));
-// 固定シードの乱数（mulberry32）
+// 用固定种子的 mulberry32 生成可复现的随机数。
 function rng(seed) { let s = seed >>> 0; return () => { s = s + 0x6D2B79F5 >>> 0; let t = s; t = Math.imul(t ^ t >>> 15, t | 1); t ^= t + Math.imul(t ^ t >>> 7, t | 61); return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
-// 1回だけ作って使い回す物（中身は固定なので毎回同じ）
+// 将不变的数据预先计算一次，供各帧复用。
 const MEMO = {};
 const once = (name, fn) => MEMO[name] || (MEMO[name] = fn());
 
-// ---------- 色 ----------
+// 调色板
 const HEX = {};
 const hx = s => HEX[s] || (HEX[s] = [1, 3, 5].map(i => parseInt(s.slice(i, i + 2), 16)));
 const toHex = c => '#' + c.map(v => Math.round(clamp(v, 0, 255)).toString(16).padStart(2, '0')).join('');
 const mixc = (a, b, t) => t <= 0 ? a : t >= 1 ? b : toHex(hx(a).map((v, i) => lerp(v, hx(b)[i], t)));
 const lum = s => { const c = hx(s); return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]; };
-// パレット同士を t で混ぜる（効果の入り・戻りはこれで色を移す）
+// 按 t 插值混合两套调色板，使效果逐渐出现或消退。
 const pal = (a, b, t) => { if (t <= 0) return a; if (t >= 1) return b; const o = {}; for (const key in a) o[key] = mixc(a[key], b[key], t); return o; };
 const mapPal = (a, f) => { const o = {}; for (const key in a) o[key] = f(a[key]); return o; };
 
-// 基本の場面の色: 明るいニュートラル（camera パックと同じ灰色の段）＋人物の青みグレー＋光のアンバー
 const BASE = {
   sky: '#FAF9F7', sky2: '#FAF9F7', far: '#EAEDF1', mid: '#DEE3EA', ground: '#F1F0EE', ground2: '#E2E1DE', mark: '#FAF9F7', cast: '#E2E1DE',
   bld: '#F1F0EE', edge: '#CFCECB', win: '#E2E1DE', winOff: '#E2E1DE', tree: '#E2E1DE', trunk: '#CFCECB', post: '#A9A8A5', bulb: '#CFCECB',
   person: '#4D5A75', shade: '#33405A', lit: '#FFC75A', car: '#8D97AA', glass: '#EEF1F5', tire: '#3E4452',
   sun: '#F5A524', glow: '#FFE3A3'
 };
-// 周りの明かりを落とした場面（ライティングの見本で、光の当たる所だけを見せる）
 const DIM = {
   sky: '#E7E5E1', sky2: '#E7E5E1', far: '#DADCDF', mid: '#CFD2D7', ground: '#DDDBD7', ground2: '#D0CECA', mark: '#E7E5E1', cast: '#D0CECA',
   bld: '#DDDBD7', edge: '#C0BEBA', win: '#D0CECA', winOff: '#D0CECA', tree: '#D0CECA', trunk: '#C0BEBA', post: '#9D9B97', bulb: '#C0BEBA',
   person: '#4D5A75', shade: '#2C3750', lit: '#FFC75A', car: '#7E889B', glass: '#DDE1E7', tire: '#353B48',
   sun: '#F5A524', glow: '#FFE3A3'
 };
-// 夜（ブルーアワー・長時間露光）。窓と街灯はアンバーに灯る
 const NIGHT = {
   sky: '#2C3B5E', sky2: '#4A6191', far: '#34466D', mid: '#2C3C60', ground: '#283452', ground2: '#222C47', mark: '#3A4A70', cast: '#1F2840',
   bld: '#34446B', edge: '#283657', win: '#FFC75A', winOff: '#2A3859', tree: '#2F3F64', trunk: '#253252', post: '#1E2843', bulb: '#FFC75A',
   person: '#1C2439', shade: '#141B2D', lit: '#FFC75A', car: '#222C47', glass: '#3A4A70', tire: '#141B2D',
   sun: '#F5A524', glow: '#FFE3A3'
 };
-// 暗い場面（リムライト・ローキー）
 const DARK = {
   sky: '#2B2D33', sky2: '#2B2D33', far: '#313339', mid: '#36383E', ground: '#24252A', ground2: '#202125', mark: '#2B2D33', cast: '#1D1E22',
   bld: '#2F3137', edge: '#27292E', win: '#34363C', winOff: '#34363C', tree: '#323439', trunk: '#2A2C31', post: '#3B3D43', bulb: '#3B3D43',
@@ -79,8 +76,8 @@ const DARK = {
   sun: '#F5A524', glow: '#FFE3A3'
 };
 
-// ---------- 図形 ----------
-// 図形を描く道具。M（点の写像）を渡すと、輪郭を細かく刻んでから写す（魚眼用）。M がなければそのまま描く
+// 图形描画
+// M 为点的映射函数。绘制鱼眼效果时，先细分轮廓再应用 M。未提供 M 时直接绘制。
 function arcPts(x, y, r, n = 40) { const o = []; for (let i = 0; i < n; i++) { const a = i / n * TAU; o.push([x + Math.cos(a) * r, y + Math.sin(a) * r]); } return o; }
 function rrPts(x, y, w, h, r) {
   const R = (Array.isArray(r) ? r : [r, r, r, r]).map(v => Math.min(v, w / 2, h / 2)), o = [];
@@ -114,7 +111,7 @@ function pen(k, M) {
   return D;
 }
 
-// 小物（3つの場面で共通）: 建物・木・街灯・太陽・車
+// 三个场景共用的建筑、树、路灯、太阳和汽车。
 function building(D, x, base, w, h, p, seed = 0) {
   D.rect(x, base - h, w, h, p.bld); D.frame(x, base - h, w, h, 1.4, p.edge);
   let n = seed;
@@ -122,7 +119,6 @@ function building(D, x, base, w, h, p, seed = 0) {
 }
 function tree(D, x, base, r, p) { D.rect(x - r * 0.15, base - r * 1.4, r * 0.3, r * 1.4, p.trunk); D.circ(x, base - r * 1.6, r, p.tree); }
 function lamp(D, x, base, h, p) { D.rect(x - 1.6, base - h, 3.2, h, p.post); D.rect(x - 1.6, base - h, 10, 3, p.post); D.circ(x + 9, base - h + 5, 4, p.bulb); }
-// 太陽: 平らな2段の光の輪＋円
 function sun(D, x, y, r, p, a = 1) {
   const k = D.k; k.save();
   k.globalAlpha = 0.35 * a; D.circ(x, y, r * 2.6, p.glow);
@@ -130,7 +126,7 @@ function sun(D, x, y, r, p, a = 1) {
   k.globalAlpha = a; D.circ(x, y, r, p.sun);
   k.restore();
 }
-function car(D, x, p, o = {}) {   // x = 車の中心、道の奥の車線を走る
+function car(D, x, p, o = {}) {   // x 为车身中心。汽车沿远侧车道行驶。
   D.rr(x - 22, 128, 42, 13, [6, 6, 0, 0], p.car);
   D.rr(x - 18, 131, 16, 8, 2, p.glass); D.rr(x + 1, 131, 15, 8, 2, p.glass);
   D.rr(x - 35, 140, 70, 15, 5, p.car);
@@ -139,7 +135,7 @@ function car(D, x, p, o = {}) {   // x = 車の中心、道の奥の車線を走
   D.circ(x - 21, 156, 2.2, p.glass); D.circ(x + 21, 156, 2.2, p.glass);
 }
 
-// 人のピクト（全身）。camera パックと同じ組み方（頭・胴・腕・脚の角丸）。x = 足元の中心、feet = 足元の y、s = 身長(px)
+// 全身人物图标沿用 camera 包的圆角组件。x 为脚底中心的横坐标，feet 为脚底纵坐标，s 为像素身高。
 function figure(D, x, feet, s, col) {
   const m = s / 1.79, X = v => x + v * m, Y = v => feet - v * m;
   D.rr(X(-0.155), Y(0.88), 0.15 * m, 0.88 * m, 0.07 * m, col); D.rr(X(0.005), Y(0.88), 0.15 * m, 0.88 * m, 0.07 * m, col);
@@ -147,28 +143,27 @@ function figure(D, x, feet, s, col) {
   D.rr(X(-0.23), Y(1.46), 0.46 * m, 0.64 * m, 0.12 * m, col);
   D.circ(x, Y(1.63), 0.16 * m, col);
 }
-// 胸から上のピクト（同じ組み方を頭の半径 R で切り出す）。cx,cy = 頭の中心
+// 半身像沿用相同的人物组件，以头部半径 R 定尺寸。cx、cy 为头部中心坐标。
 function bustPath(k, cx, cy, R) {
   k.beginPath(); k.arc(cx, cy, R, 0, TAU);
   k.roundRect(cx - 1.4375 * R, cy + 1.0625 * R, 2.875 * R, CH, 0.75 * R);
   k.roundRect(cx - 1.9375 * R, cy + 1.4375 * R, 0.75 * R, CH, 0.375 * R);
   k.roundRect(cx + 1.1875 * R, cy + 1.4375 * R, 0.75 * R, CH, 0.375 * R);
 }
-// 胸像を色 col で塗り、paint(k) で光と影の面を胸像の形の中だけに塗る
+// 先用 col 填充半身像，再将 paint(k) 绘制的光影裁剪到像内。
 function bust(k, cx, cy, R, col, paint) {
   k.save(); bustPath(k, cx, cy, R); k.fillStyle = col; k.fill();
   if (paint) { k.clip(); paint(k); }
   k.restore();
 }
-// 頭の影の面: 光が横から角度 az（0 = 正面、90° = 真横）で当たるとき、明暗の境は x = cx ± cos(az)·√(R²−dy²)。side = +1 で右側が影
+// az 为入射角（0° 正面，90° 正侧面）。头部明暗边界为 x = cx ± cos(az)·√(R²−dy²)。side = +1 时右侧为阴影。
 function headShade(k, cx, cy, R, az, side, col) {
   const c = Math.cos(az), n = 28; k.beginPath();
   for (let i = 0; i <= n; i++) { const y = cy - R + 2 * R * i / n; k.lineTo(cx + side * c * Math.sqrt(Math.max(0, R * R - (y - cy) ** 2)), y); }
   k.lineTo(cx + side * (R + 4), cy + R); k.lineTo(cx + side * (R + 4), cy - R); k.closePath(); k.fillStyle = col; k.fill();
 }
 
-// ---------- 3つの場面 ----------
-// ① 光: 地平線（y150）の前の胸像。左に建物2棟、右に街灯と木
+// 共用场景
 const PX = 270, PY = 78, PR = 29, HZ = 150;
 function stagePortrait(k, p, o = {}) {
   const D = pen(k);
@@ -181,10 +176,9 @@ function stagePortrait(k, p, o = {}) {
   lamp(D, 404, HZ, 58, p); tree(D, 456, HZ, 17, p);
   if (o.after) o.after(D);
 }
-// ② レンズ: 街角。奥に建物の列・木・街灯、手前に道と歩道、人物は左手前
 const BLD = [[-8, 52, 66], [48, 40, 90], [92, 54, 58], [150, 44, 78], [208, 32, 52], [296, 52, 84], [352, 48, 60], [404, 42, 98], [470, 40, 70], [514, 40, 88]];
 const TREES = [[136, 17], [262, 17], [384, 15]], LAMPS = [114, 292, 494], ROAD = 132, WALK = 162;
-const FIG = [176, 200, 124];   // 人物: 足元の x・y、身長
+const FIG = [176, 200, 124];   // 参数依次为脚底的 x、y 坐标及身高。
 function stageStreet(k, p, o = {}) {
   const D = pen(k, o.M);
   D.rect(-40, -40, CW + 80, CH + 80, p.sky);
@@ -200,7 +194,6 @@ function stageStreet(k, p, o = {}) {
   D.circ(18, 206, 17, p.tree); D.circ(42, 210, 11, p.tree); D.circ(516, 204, 19, p.tree); D.circ(494, 211, 11, p.tree);
   if (o.after) o.after(D);
 }
-// ③ 仕上げ: 左に胸像、右に丘と家と木と太陽。日は右から当たり、胸像の右の縁が光る
 const QX = 140, QY = 82, QR = 28;
 function stageLand(k, p, o = {}) {
   const D = pen(k);
@@ -217,8 +210,7 @@ function stageLand(k, p, o = {}) {
   if (o.after) o.after(D);
 }
 
-// ---------- 表示 ----------
-// 右上の数値（camera パックと同じ控えめな札）
+// 信息叠层
 function hud(k, s) {
   k.save(); k.globalAlpha = 1;
   const m = 13, f = `600 15px ${MONO}`; k.font = f; const ww = k.measureText(s).width;
@@ -226,7 +218,7 @@ function hud(k, s) {
   k.fillStyle = '#6E6E73'; k.textAlign = 'right'; k.textBaseline = 'middle'; k.fillText(s, CW - m - 14, m + 18);
   k.restore();
 }
-// 右下の、真上から見た配置図: 頭（下がカメラ側）と光の位置。lights = [[角度, 明るさ0..1]]、角度は 0 = カメラ側、+90° = 画面の左
+// 绘制灯位俯视图，头部下方为相机侧。lights = [[角度, 亮度（0 至 1）], …]。0° 指向相机侧，+90° 指向画面左侧。
 function plan(k, lights) {
   const w = 66, h = 66, x = CW - 13 - w, y = CH - 13 - h, cx = x + w / 2, cy = y + h / 2 - 3;
   k.save();
@@ -243,7 +235,7 @@ function plan(k, lights) {
   }
   k.restore();
 }
-// 作業用のオフスクリーン（名前ごとに1枚・使う前に空にする）
+// 每个名称对应一张离屏画布，复用前先清空。
 const LAYERS = {};
 function layer(name) {
   const c = LAYERS[name] || (LAYERS[name] = (() => { const e = document.createElement('canvas'); e.width = CW; e.height = CH; return e; })());
@@ -252,12 +244,11 @@ function layer(name) {
 }
 const cell = fn => (k, w, h, u) => { k.save(); fn(k, u); k.restore(); };
 
-// 胴の光と影（胴は円柱とみなし、左右に分けて塗る）。W = 胴の外側までの半幅
+// 将躯干视为圆柱体，按左右两侧绘制光影。W 为躯干的半宽。
 const torsoW = R => 1.9375 * R;
 function torso(k, cx, cy, R, x0, x1, col) { k.fillStyle = col; k.fillRect(x0, cy + R, x1 - x0, CH); }
-// 時刻の表示（分 → hh:mm）
 const clock = m => `${String(Math.floor(m / 60)).padStart(2, '0')}:${String(Math.floor(m % 60)).padStart(2, '0')}`;
-// 右下の小さなヒストグラム（明るさの分布）。c = 山の中心 0..1、s = 山の幅
+// 绘制亮度分布直方图。c 为峰值位置（0 至 1），s 为峰宽。
 function histo(k, c, s) {
   const w = 96, h = 46, x = CW - 13 - w, y = CH - 13 - h, n = 20;
   k.save();

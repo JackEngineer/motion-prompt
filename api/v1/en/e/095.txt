@@ -18,10 +18,9 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 23
-// 23 グラデーションアニメーション（背景のグラデーションの色が、ゆっくり流れるように動き続ける）
 CELLS[22] = (k, w, h, u) => {
   frame(k);
-  const a = 2 * Math.PI * u / CYC;                        // 4.8秒で1周
+  const a = 2 * Math.PI * u / CYC;
   const BLOBS = [[C.acc, 150, 60, 230, 70, 30, 0], ['#FFB08F', 380, 40, 210, 60, 40, 2.1], [C.blue, 330, 150, 240, 80, 30, 4.2], ['#9DB6FB', 90, 170, 200, 50, 35, 1.0]];
   view(k, () => {
     k.fillStyle = '#FFF1EB'; k.fillRect(0, 0, VW, VH);
@@ -30,8 +29,8 @@ CELLS[22] = (k, w, h, u) => {
       const g = k.createRadialGradient(x, y, 0, x, y, r); g.addColorStop(0, col); g.addColorStop(1, 'rgba(255,255,255,0)');
       k.globalAlpha = 0.85; k.fillStyle = g; k.fillRect(0, 0, VW, VH); k.globalAlpha = 1;
     }
-    txt(k, 'Hello, Future.', 40, 82, `800 34px ${EN}`, '#fff', 'left', 'alphabetic', '1px');
+    txt(k, '你好，未来。', 40, 82, `800 34px ${EN}`, '#fff', 'left', 'alphabetic', '1px');
     bars(k, 40, 100, 200, 2, 'rgba(255,255,255,.8)', 6, 12, 0.6);
-    btn(k, 40, 128, 104, 26, 'はじめる', '#fff', C.ink);
+    btn(k, 40, 128, 104, 26, '开始使用', '#fff', C.ink);
   });
 };

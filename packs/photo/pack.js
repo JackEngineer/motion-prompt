@@ -1,11 +1,10 @@
 /* Motion Prompt · pack "photo" · MIT License (c) 2026 Shohei Ohtaki · https://github.com/showheyohtaki/motion-prompt */
 MotionPrompt.pack('photo', function () {
   // @kit
-  // 写真の表現・光と画風 24（カード 539x208、1周 5秒）。各コマは時間 u の純関数。
-  // 絵は平らな図形だけで描く。場面は3つを全コマで使い回す: ①光＝地平線の前の胸像 ②レンズ＝街角 ③仕上げ＝胸像と風景。
-  // 人物は顔・髪のない丸い頭のピクト。光はアンバー1色の面、影は一段濃い平らな面で表す。
-  // 色が主役の効果（モノクロ・デュオトーンなど）は、同じ場面の色の割り当て（パレット）を差し替えて見せる。
-  // 多くの見本は「効果なし → あり → なし」を env(u) で切り替える（0.4〜1.4秒で入り、4.0秒まで保ち、4.8秒までに戻る）。
+  // 每张卡片为 539 × 208 像素，循环时长为 5 秒。每帧仅由时间 u 决定。
+  // 用平面图形绘制三个共用场景。用地平线前的半身像展示布光，用街角展示镜头效果，用半身像和风景展示后期处理。
+  // 黑白和双色调等效果通过替换同一场景的调色板实现。
+  // 大多数效果由 env(u) 控制，在 0.4 至 1.4 秒逐渐进入，保持到第 4 秒，并在第 4.8 秒前恢复。
   const CW = 539, CH = 208, CYC = 5;
   const TAU = Math.PI * 2;
   const MONO = '"SF Mono", ui-monospace, Menlo, monospace';
@@ -14,47 +13,43 @@ MotionPrompt.pack('photo', function () {
   const lerp = (a, b, x) => a + (b - a) * x;
   const P = (t, a, b) => clamp((t - a) / (b - a));
   const eIO = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
-  // 効果の量: 0（なし）→ 1（あり）→ 0。イージングは3次のイーズインアウト
+  // 效果强度在 0 和 1 之间往返，使用三次缓入缓出。
   const IN0 = 0.4, IN1 = 1.4, OUT0 = 4.0, OUT1 = 4.8;
   const env = u => eIO(P(u, IN0, IN1)) * (1 - eIO(P(u, OUT0, OUT1)));
-  // 固定シードの乱数（mulberry32）
+  // 用固定种子的 mulberry32 生成可复现的随机数。
   function rng(seed) { let s = seed >>> 0; return () => { s = s + 0x6D2B79F5 >>> 0; let t = s; t = Math.imul(t ^ t >>> 15, t | 1); t ^= t + Math.imul(t ^ t >>> 7, t | 61); return ((t ^ t >>> 14) >>> 0) / 4294967296; }; }
-  // 1回だけ作って使い回す物（中身は固定なので毎回同じ）
+  // 将不变的数据预先计算一次，供各帧复用。
   const MEMO = {};
   const once = (name, fn) => MEMO[name] || (MEMO[name] = fn());
 
-  // ---------- 色 ----------
+  // 调色板
   const HEX = {};
   const hx = s => HEX[s] || (HEX[s] = [1, 3, 5].map(i => parseInt(s.slice(i, i + 2), 16)));
   const toHex = c => '#' + c.map(v => Math.round(clamp(v, 0, 255)).toString(16).padStart(2, '0')).join('');
   const mixc = (a, b, t) => t <= 0 ? a : t >= 1 ? b : toHex(hx(a).map((v, i) => lerp(v, hx(b)[i], t)));
   const lum = s => { const c = hx(s); return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2]; };
-  // パレット同士を t で混ぜる（効果の入り・戻りはこれで色を移す）
+  // 按 t 插值混合两套调色板，使效果逐渐出现或消退。
   const pal = (a, b, t) => { if (t <= 0) return a; if (t >= 1) return b; const o = {}; for (const key in a) o[key] = mixc(a[key], b[key], t); return o; };
   const mapPal = (a, f) => { const o = {}; for (const key in a) o[key] = f(a[key]); return o; };
 
-  // 基本の場面の色: 明るいニュートラル（camera パックと同じ灰色の段）＋人物の青みグレー＋光のアンバー
   const BASE = {
     sky: '#FAF9F7', sky2: '#FAF9F7', far: '#EAEDF1', mid: '#DEE3EA', ground: '#F1F0EE', ground2: '#E2E1DE', mark: '#FAF9F7', cast: '#E2E1DE',
     bld: '#F1F0EE', edge: '#CFCECB', win: '#E2E1DE', winOff: '#E2E1DE', tree: '#E2E1DE', trunk: '#CFCECB', post: '#A9A8A5', bulb: '#CFCECB',
     person: '#4D5A75', shade: '#33405A', lit: '#FFC75A', car: '#8D97AA', glass: '#EEF1F5', tire: '#3E4452',
     sun: '#F5A524', glow: '#FFE3A3'
   };
-  // 周りの明かりを落とした場面（ライティングの見本で、光の当たる所だけを見せる）
   const DIM = {
     sky: '#E7E5E1', sky2: '#E7E5E1', far: '#DADCDF', mid: '#CFD2D7', ground: '#DDDBD7', ground2: '#D0CECA', mark: '#E7E5E1', cast: '#D0CECA',
     bld: '#DDDBD7', edge: '#C0BEBA', win: '#D0CECA', winOff: '#D0CECA', tree: '#D0CECA', trunk: '#C0BEBA', post: '#9D9B97', bulb: '#C0BEBA',
     person: '#4D5A75', shade: '#2C3750', lit: '#FFC75A', car: '#7E889B', glass: '#DDE1E7', tire: '#353B48',
     sun: '#F5A524', glow: '#FFE3A3'
   };
-  // 夜（ブルーアワー・長時間露光）。窓と街灯はアンバーに灯る
   const NIGHT = {
     sky: '#2C3B5E', sky2: '#4A6191', far: '#34466D', mid: '#2C3C60', ground: '#283452', ground2: '#222C47', mark: '#3A4A70', cast: '#1F2840',
     bld: '#34446B', edge: '#283657', win: '#FFC75A', winOff: '#2A3859', tree: '#2F3F64', trunk: '#253252', post: '#1E2843', bulb: '#FFC75A',
     person: '#1C2439', shade: '#141B2D', lit: '#FFC75A', car: '#222C47', glass: '#3A4A70', tire: '#141B2D',
     sun: '#F5A524', glow: '#FFE3A3'
   };
-  // 暗い場面（リムライト・ローキー）
   const DARK = {
     sky: '#2B2D33', sky2: '#2B2D33', far: '#313339', mid: '#36383E', ground: '#24252A', ground2: '#202125', mark: '#2B2D33', cast: '#1D1E22',
     bld: '#2F3137', edge: '#27292E', win: '#34363C', winOff: '#34363C', tree: '#323439', trunk: '#2A2C31', post: '#3B3D43', bulb: '#3B3D43',
@@ -62,8 +57,8 @@ MotionPrompt.pack('photo', function () {
     sun: '#F5A524', glow: '#FFE3A3'
   };
 
-  // ---------- 図形 ----------
-  // 図形を描く道具。M（点の写像）を渡すと、輪郭を細かく刻んでから写す（魚眼用）。M がなければそのまま描く
+  // 图形描画
+  // M 为点的映射函数。绘制鱼眼效果时，先细分轮廓再应用 M。未提供 M 时直接绘制。
   function arcPts(x, y, r, n = 40) { const o = []; for (let i = 0; i < n; i++) { const a = i / n * TAU; o.push([x + Math.cos(a) * r, y + Math.sin(a) * r]); } return o; }
   function rrPts(x, y, w, h, r) {
     const R = (Array.isArray(r) ? r : [r, r, r, r]).map(v => Math.min(v, w / 2, h / 2)), o = [];
@@ -97,7 +92,7 @@ MotionPrompt.pack('photo', function () {
     return D;
   }
 
-  // 小物（3つの場面で共通）: 建物・木・街灯・太陽・車
+  // 三个场景共用的建筑、树、路灯、太阳和汽车。
   function building(D, x, base, w, h, p, seed = 0) {
     D.rect(x, base - h, w, h, p.bld); D.frame(x, base - h, w, h, 1.4, p.edge);
     let n = seed;
@@ -105,7 +100,6 @@ MotionPrompt.pack('photo', function () {
   }
   function tree(D, x, base, r, p) { D.rect(x - r * 0.15, base - r * 1.4, r * 0.3, r * 1.4, p.trunk); D.circ(x, base - r * 1.6, r, p.tree); }
   function lamp(D, x, base, h, p) { D.rect(x - 1.6, base - h, 3.2, h, p.post); D.rect(x - 1.6, base - h, 10, 3, p.post); D.circ(x + 9, base - h + 5, 4, p.bulb); }
-  // 太陽: 平らな2段の光の輪＋円
   function sun(D, x, y, r, p, a = 1) {
     const k = D.k; k.save();
     k.globalAlpha = 0.35 * a; D.circ(x, y, r * 2.6, p.glow);
@@ -113,7 +107,7 @@ MotionPrompt.pack('photo', function () {
     k.globalAlpha = a; D.circ(x, y, r, p.sun);
     k.restore();
   }
-  function car(D, x, p, o = {}) {   // x = 車の中心、道の奥の車線を走る
+  function car(D, x, p, o = {}) {   // x 为车身中心。汽车沿远侧车道行驶。
     D.rr(x - 22, 128, 42, 13, [6, 6, 0, 0], p.car);
     D.rr(x - 18, 131, 16, 8, 2, p.glass); D.rr(x + 1, 131, 15, 8, 2, p.glass);
     D.rr(x - 35, 140, 70, 15, 5, p.car);
@@ -122,7 +116,7 @@ MotionPrompt.pack('photo', function () {
     D.circ(x - 21, 156, 2.2, p.glass); D.circ(x + 21, 156, 2.2, p.glass);
   }
 
-  // 人のピクト（全身）。camera パックと同じ組み方（頭・胴・腕・脚の角丸）。x = 足元の中心、feet = 足元の y、s = 身長(px)
+  // 全身人物图标沿用 camera 包的圆角组件。x 为脚底中心的横坐标，feet 为脚底纵坐标，s 为像素身高。
   function figure(D, x, feet, s, col) {
     const m = s / 1.79, X = v => x + v * m, Y = v => feet - v * m;
     D.rr(X(-0.155), Y(0.88), 0.15 * m, 0.88 * m, 0.07 * m, col); D.rr(X(0.005), Y(0.88), 0.15 * m, 0.88 * m, 0.07 * m, col);
@@ -130,28 +124,27 @@ MotionPrompt.pack('photo', function () {
     D.rr(X(-0.23), Y(1.46), 0.46 * m, 0.64 * m, 0.12 * m, col);
     D.circ(x, Y(1.63), 0.16 * m, col);
   }
-  // 胸から上のピクト（同じ組み方を頭の半径 R で切り出す）。cx,cy = 頭の中心
+  // 半身像沿用相同的人物组件，以头部半径 R 定尺寸。cx、cy 为头部中心坐标。
   function bustPath(k, cx, cy, R) {
     k.beginPath(); k.arc(cx, cy, R, 0, TAU);
     k.roundRect(cx - 1.4375 * R, cy + 1.0625 * R, 2.875 * R, CH, 0.75 * R);
     k.roundRect(cx - 1.9375 * R, cy + 1.4375 * R, 0.75 * R, CH, 0.375 * R);
     k.roundRect(cx + 1.1875 * R, cy + 1.4375 * R, 0.75 * R, CH, 0.375 * R);
   }
-  // 胸像を色 col で塗り、paint(k) で光と影の面を胸像の形の中だけに塗る
+  // 先用 col 填充半身像，再将 paint(k) 绘制的光影裁剪到像内。
   function bust(k, cx, cy, R, col, paint) {
     k.save(); bustPath(k, cx, cy, R); k.fillStyle = col; k.fill();
     if (paint) { k.clip(); paint(k); }
     k.restore();
   }
-  // 頭の影の面: 光が横から角度 az（0 = 正面、90° = 真横）で当たるとき、明暗の境は x = cx ± cos(az)·√(R²−dy²)。side = +1 で右側が影
+  // az 为入射角（0° 正面，90° 正侧面）。头部明暗边界为 x = cx ± cos(az)·√(R²−dy²)。side = +1 时右侧为阴影。
   function headShade(k, cx, cy, R, az, side, col) {
     const c = Math.cos(az), n = 28; k.beginPath();
     for (let i = 0; i <= n; i++) { const y = cy - R + 2 * R * i / n; k.lineTo(cx + side * c * Math.sqrt(Math.max(0, R * R - (y - cy) ** 2)), y); }
     k.lineTo(cx + side * (R + 4), cy + R); k.lineTo(cx + side * (R + 4), cy - R); k.closePath(); k.fillStyle = col; k.fill();
   }
 
-  // ---------- 3つの場面 ----------
-  // ① 光: 地平線（y150）の前の胸像。左に建物2棟、右に街灯と木
+  // 共用场景
   const PX = 270, PY = 78, PR = 29, HZ = 150;
   function stagePortrait(k, p, o = {}) {
     const D = pen(k);
@@ -164,10 +157,9 @@ MotionPrompt.pack('photo', function () {
     lamp(D, 404, HZ, 58, p); tree(D, 456, HZ, 17, p);
     if (o.after) o.after(D);
   }
-  // ② レンズ: 街角。奥に建物の列・木・街灯、手前に道と歩道、人物は左手前
   const BLD = [[-8, 52, 66], [48, 40, 90], [92, 54, 58], [150, 44, 78], [208, 32, 52], [296, 52, 84], [352, 48, 60], [404, 42, 98], [470, 40, 70], [514, 40, 88]];
   const TREES = [[136, 17], [262, 17], [384, 15]], LAMPS = [114, 292, 494], ROAD = 132, WALK = 162;
-  const FIG = [176, 200, 124];   // 人物: 足元の x・y、身長
+  const FIG = [176, 200, 124];   // 参数依次为脚底的 x、y 坐标及身高。
   function stageStreet(k, p, o = {}) {
     const D = pen(k, o.M);
     D.rect(-40, -40, CW + 80, CH + 80, p.sky);
@@ -183,7 +175,6 @@ MotionPrompt.pack('photo', function () {
     D.circ(18, 206, 17, p.tree); D.circ(42, 210, 11, p.tree); D.circ(516, 204, 19, p.tree); D.circ(494, 211, 11, p.tree);
     if (o.after) o.after(D);
   }
-  // ③ 仕上げ: 左に胸像、右に丘と家と木と太陽。日は右から当たり、胸像の右の縁が光る
   const QX = 140, QY = 82, QR = 28;
   function stageLand(k, p, o = {}) {
     const D = pen(k);
@@ -200,8 +191,7 @@ MotionPrompt.pack('photo', function () {
     if (o.after) o.after(D);
   }
 
-  // ---------- 表示 ----------
-  // 右上の数値（camera パックと同じ控えめな札）
+  // 信息叠层
   function hud(k, s) {
     k.save(); k.globalAlpha = 1;
     const m = 13, f = `600 15px ${MONO}`; k.font = f; const ww = k.measureText(s).width;
@@ -209,7 +199,7 @@ MotionPrompt.pack('photo', function () {
     k.fillStyle = '#6E6E73'; k.textAlign = 'right'; k.textBaseline = 'middle'; k.fillText(s, CW - m - 14, m + 18);
     k.restore();
   }
-  // 右下の、真上から見た配置図: 頭（下がカメラ側）と光の位置。lights = [[角度, 明るさ0..1]]、角度は 0 = カメラ側、+90° = 画面の左
+  // 绘制灯位俯视图，头部下方为相机侧。lights = [[角度, 亮度（0 至 1）], …]。0° 指向相机侧，+90° 指向画面左侧。
   function plan(k, lights) {
     const w = 66, h = 66, x = CW - 13 - w, y = CH - 13 - h, cx = x + w / 2, cy = y + h / 2 - 3;
     k.save();
@@ -226,7 +216,7 @@ MotionPrompt.pack('photo', function () {
     }
     k.restore();
   }
-  // 作業用のオフスクリーン（名前ごとに1枚・使う前に空にする）
+  // 每个名称对应一张离屏画布，复用前先清空。
   const LAYERS = {};
   function layer(name) {
     const c = LAYERS[name] || (LAYERS[name] = (() => { const e = document.createElement('canvas'); e.width = CW; e.height = CH; return e; })());
@@ -235,12 +225,11 @@ MotionPrompt.pack('photo', function () {
   }
   const cell = fn => (k, w, h, u) => { k.save(); fn(k, u); k.restore(); };
 
-  // 胴の光と影（胴は円柱とみなし、左右に分けて塗る）。W = 胴の外側までの半幅
+  // 将躯干视为圆柱体，按左右两侧绘制光影。W 为躯干的半宽。
   const torsoW = R => 1.9375 * R;
   function torso(k, cx, cy, R, x0, x1, col) { k.fillStyle = col; k.fillRect(x0, cy + R, x1 - x0, CH); }
-  // 時刻の表示（分 → hh:mm）
   const clock = m => `${String(Math.floor(m / 60)).padStart(2, '0')}:${String(Math.floor(m % 60)).padStart(2, '0')}`;
-  // 右下の小さなヒストグラム（明るさの分布）。c = 山の中心 0..1、s = 山の幅
+  // 绘制亮度分布直方图。c 为峰值位置（0 至 1），s 为峰宽。
   function histo(k, c, s) {
     const w = 96, h = 46, x = CW - 13 - w, y = CH - 13 - h, n = 20;
     k.save();
@@ -254,20 +243,17 @@ MotionPrompt.pack('photo', function () {
   const CELLS = [];
 
   // @element 01
-  // 逆光: 太陽が画面の外から頭の真後ろへ回り込み、輪郭が光って人物は暗くなる
   CELLS[0] = cell((k, u) => {
     const a = env(u);
     const BACK = Object.assign({}, BASE, { sky: '#FFF4DC', sky2: '#FFEBC4', far: '#F6E2BE', ground: '#F7EAD3', bld: '#F7E9D2', winOff: '#EEDCBF', win: '#EEDCBF', tree: '#EEDCBF', edge: '#E3CFAE', post: '#CDB894', trunk: '#E3CFAE', bulb: '#E3CFAE' });
     stagePortrait(k, pal(BASE, BACK, a), { sun: [lerp(40, PX, a), lerp(-40, PY - 22, a), 20, 1] });
-    // 輪郭の光: 胸像の形を太い線でなぞってから中を塗り、縁だけを残す
+    // 先用粗线描出半身像轮廓，再填充内部，使亮部只留在边缘。
     k.save(); k.globalAlpha = a; bustPath(k, PX, PY, PR); k.strokeStyle = BASE.lit; k.lineWidth = 7; k.lineJoin = 'round'; k.stroke(); k.restore();
     bust(k, PX, PY, PR, mixc(BASE.person, BASE.shade, a));
-    // かすみ: 全体に光の色を薄く重ねる
     k.save(); k.globalAlpha = 0.22 * a; k.fillStyle = BASE.glow; k.fillRect(0, 0, CW, CH); k.restore();
   });
 
   // @element 02
-  // リムライト: 周りが暗くなり、斜め後ろ左右の2灯で頭と肩の輪郭だけが細く光る
   CELLS[1] = cell((k, u) => {
     const a = env(u);
     stagePortrait(k, pal(BASE, DARK, a));
@@ -280,7 +266,6 @@ MotionPrompt.pack('photo', function () {
   });
 
   // @element 03
-  // シルエット: 露出を明るい空に合わせると、人物も建物も木も黒い形だけになる
   CELLS[2] = cell((k, u) => {
     const a = env(u), INK = '#2A2D36';
     const SILH = mapPal(BASE, () => INK);
@@ -291,7 +276,6 @@ MotionPrompt.pack('photo', function () {
   });
 
   // @element 04
-  // スプリットライティング: 光が真横（90°）へ回り、顔の右半分が影に沈む
   CELLS[3] = cell((k, u) => {
     const a = env(u), az = lerp(0.35, Math.PI / 2, a);
     stagePortrait(k, pal(BASE, DIM, a));
@@ -307,16 +291,15 @@ MotionPrompt.pack('photo', function () {
   });
 
   // @element 05
-  // レンブラントライティング: 斜め45°・上からの光。影側の頬に三角形の光が残る
   CELLS[4] = cell((k, u) => {
     const a = env(u), R = PR, W = torsoW(R);
     stagePortrait(k, pal(BASE, DIM, a));
     const lit = mixc(BASE.person, BASE.lit, a), sh = mixc(BASE.person, BASE.shade, a);
     bust(k, PX, PY, R, BASE.person, kk => {
       kk.fillStyle = lit; kk.beginPath(); kk.arc(PX, PY, R, 0, TAU); kk.fill();
-      kk.fillStyle = sh; kk.fillRect(PX + 0.04 * R, PY - R - 2, R * 2, R * 2 + 4);       // 鼻筋から右は影
+      kk.fillStyle = sh; kk.fillRect(PX + 0.04 * R, PY - R - 2, R * 2, R * 2 + 4);
       kk.beginPath(); kk.arc(PX, PY, R, 0, TAU); kk.clip();
-      kk.fillStyle = lit; kk.beginPath();                                                   // 影側の頬に残る光の三角形
+      kk.fillStyle = lit; kk.beginPath();
       kk.moveTo(PX + 0.24 * R, PY - 0.12 * R); kk.lineTo(PX + 0.7 * R, PY - 0.12 * R); kk.lineTo(PX + 0.24 * R, PY + 0.5 * R); kk.closePath(); kk.fill();
     });
     bust(k, PX, PY, R, 'rgba(0,0,0,0)', kk => {
@@ -329,14 +312,13 @@ MotionPrompt.pack('photo', function () {
   });
 
   // @element 06
-  // バタフライライティング: 顔の正面・高い位置からの光。顔は左右対称に明るく、あごの下にだけ小さな影
   CELLS[5] = cell((k, u) => {
     const a = env(u), R = PR, W = torsoW(R);
     stagePortrait(k, pal(BASE, DIM, a));
     const lit = mixc(BASE.person, BASE.lit, a), sh = mixc(BASE.person, BASE.shade, a);
     bust(k, PX, PY, R, BASE.person, kk => {
       torso(kk, PX, PY, R, PX - 0.8 * W, PX + 0.8 * W, lit);
-      kk.fillStyle = sh; kk.beginPath(); kk.ellipse(PX, PY + R * 1.06, R * 0.72, R * 0.38, 0, 0, TAU); kk.fill();    // あごの下の影（左右対称）
+      kk.fillStyle = sh; kk.beginPath(); kk.ellipse(PX, PY + R * 1.06, R * 0.72, R * 0.38, 0, 0, TAU); kk.fill();
       kk.fillStyle = lit; kk.beginPath(); kk.arc(PX, PY, R, 0, TAU); kk.fill();
     });
     plan(k, [[0, a]]);
@@ -344,7 +326,6 @@ MotionPrompt.pack('photo', function () {
   });
 
   // @element 07
-  // ゴールデンアワー: 太陽が地平線近くまで下り、全体が橙に染まって影が長く伸びる
   CELLS[6] = cell((k, u) => {
     const a = env(u), R = PR, W = torsoW(R);
     const GOLD = {
@@ -365,7 +346,6 @@ MotionPrompt.pack('photo', function () {
   });
 
   // @element 08
-  // ブルーアワー: 日が沈んだ後、空が深い青になり、窓と街灯の暖かい光が灯る
   CELLS[7] = cell((k, u) => {
     const a = env(u);
     const p = pal(BASE, NIGHT, a);
@@ -378,13 +358,12 @@ MotionPrompt.pack('photo', function () {
   });
 
   // @element 09
-  // ボケ: 絞りを開けると、人物はくっきりのまま、背景の灯りが大きな丸になってにじむ
   CELLS[8] = cell((k, u) => {
     const a = env(u), p = pal(BASE, DIM, a);
     const [B, kb] = layer('bokeh'); stageStreet(kb, p, { person: false });
     const [Bb, kbb] = layer('bokeh-b'); kbb.filter = `blur(${(6 * a).toFixed(2)}px)`; kbb.drawImage(B, 0, 0); kbb.filter = 'none';
     k.drawImage(B, 0, 0); k.drawImage(Bb, 0, 0);
-    // 灯り: 街灯3つと、窓や遠くの灯り12個（横に45pxおき・高さと大きさは固定シード）。絞りを開くほど丸が大きく薄くなる
+    // 使用三个路灯和十二处窗灯或远处光源。远处光源每隔 45 像素排布，高度和大小由固定种子生成。
     const pts = once('bokeh-pts', () => {
       const o = LAMPS.map(x => [x + 9, ROAD - 53, 1.25, 0]), r = rng(9);
       for (let i = 0; i < 12; i++) o.push([22 + i * 45 + r() * 20, 44 + r() * 70, 0.6 + r() * 0.6, 1]);
@@ -403,7 +382,6 @@ MotionPrompt.pack('photo', function () {
   });
 
   // @element 10
-  // ティルトシフト: 上下の帯がぼけて中央の帯だけピントが合い、街と小さな人と車が模型のように見える
   CELLS[9] = cell((k, u) => {
     const a = env(u), carX = lerp(-60, 600, u / CYC);
     const minis = D => { [[196, 26], [322, 26], [340, 23], [452, 25]].forEach(([x, h]) => figure(D, x, 172, h, BASE.person)); };
@@ -413,14 +391,12 @@ MotionPrompt.pack('photo', function () {
     k.drawImage(S, 0, 0);
     const band = (img, y0, y1) => { k.save(); k.beginPath(); k.rect(0, y0, CW, y1 - y0); k.clip(); k.drawImage(img, 0, 0); k.restore(); };
     band(B2, 0, 42); band(B1, 42, 66); band(B1, 176, 190); band(B2, 190, CH);
-    // ピントの帯の目印（写真アプリの線）
     k.save(); k.globalAlpha = 0.75 * a; k.strokeStyle = '#8E8E93'; k.lineWidth = 1.4; k.setLineDash([6, 5]);
     k.beginPath(); k.moveTo(0, 66); k.lineTo(CW, 66); k.moveTo(0, 176); k.lineTo(CW, 176); k.stroke(); k.setLineDash([]);
     k.restore();
   });
 
   // @element 11
-  // 長時間露光: シャッターを開け続けると、夜道の車は消え、ライトだけが光の線になる
   CELLS[10] = cell((k, u) => {
     const a = env(u), x = lerp(-60, 600, u / CYC);
     const p = pal(BASE, NIGHT, a);
@@ -428,17 +404,14 @@ MotionPrompt.pack('photo', function () {
       car: false, person: false,
       after: D => {
         const kk = D.k;
-        // 車の通った跡: 尾灯（赤）と前照灯（白〜アンバー）の線。車の後ろに伸びる
         kk.save(); kk.globalAlpha = a; kk.lineCap = 'round';
         const x0 = -60, x1 = Math.min(x, CW + 40);
         const ln = (ya, yb, c1, c2, w1, w2) => { kk.strokeStyle = c1; kk.lineWidth = w1; kk.beginPath(); kk.moveTo(x0, ya); kk.lineTo(x1, ya); kk.stroke(); kk.strokeStyle = c2; kk.lineWidth = w2; kk.beginPath(); kk.moveTo(x0, yb); kk.lineTo(x1, yb); kk.stroke(); };
         ln(145, 149, '#FF5B4D', '#FF8A6E', 2.6, 1.4);
-        // 反対車線の車たちの跡（画面いっぱい）
         for (const [y, c, lw] of [[135, '#FFE9B8', 2.6], [138.5, BASE.lit, 1.6], [141.5, '#FFE9B8', 1.2]]) { kk.strokeStyle = c; kk.lineWidth = lw; kk.beginPath(); kk.moveTo(-10, y); kk.lineTo(CW + 10, y); kk.stroke(); }
         kk.restore();
       }
     });
-    // 車の本体は露光が長いほど薄く写る
     k.save(); k.globalAlpha = 1 - 0.9 * a; const D = pen(k);
     car(D, x, p, { head: BASE.lit, tail: '#FF5B4D' }); k.restore();
     figure(pen(k), FIG[0], FIG[1], FIG[2], p.person);
@@ -446,16 +419,15 @@ MotionPrompt.pack('photo', function () {
   });
 
   // @element 12
-  // 流し撮り: 走る車を追ってカメラを振ると、車はくっきり、背景だけ横に流れる
   CELLS[11] = cell((k, u) => {
     const a = env(u);
     const drive = lerp(-80, 620, u / CYC), x = lerp(drive, 270 + 10 * Math.sin(u / CYC * TAU), a);
     const S = 46 * a, n = S < 0.5 ? 1 : 12;
-    for (let i = 0; i < n; i++) {   // 背景を横にずらして重ね、平均をとる（流れ）
+    for (let i = 0; i < n; i++) {   // 水平平移背景并叠加多次绘制结果，平均得到拖影。
       k.save(); k.globalAlpha = 1 / (i + 1); k.translate(n > 1 ? lerp(-S / 2, S / 2, i / (n - 1)) : 0, 0); stageStreet(k, BASE, { car: false, person: false }); k.restore();
     }
     const D = pen(k); car(D, x, BASE, { head: BASE.lit });
-    // 車輪の回転（1周に12回転＝継ぎ目なし）
+    // 每轮演示车轮恰好转 12 圈，首尾无跳变。
     k.save(); k.strokeStyle = BASE.tire; k.lineWidth = 1.6;
     for (const wx of [x - 21, x + 21]) { const t = u / CYC * TAU * 12; k.beginPath(); k.moveTo(wx - Math.cos(t) * 5, 156 - Math.sin(t) * 5); k.lineTo(wx + Math.cos(t) * 5, 156 + Math.sin(t) * 5); k.stroke(); }
     k.restore();
@@ -463,16 +435,14 @@ MotionPrompt.pack('photo', function () {
   });
 
   // @element 13
-  // レンズフレア: 建物の陰から太陽が出ると、画面の中心をはさんで反対側へ光の玉が並ぶ
   CELLS[12] = cell((k, u) => {
     const a = env(u), sx = lerp(428, 474, a), sy = lerp(74, 30, a);
     stageStreet(k, BASE, { sun: [sx, sy, 13, 1] });
     const cx = CW / 2, cy = CH / 2, dx = cx - sx, dy = cy - sy;
     k.save();
-    // 太陽の光の筋
     k.globalAlpha = 0.75 * a; k.strokeStyle = BASE.lit; k.lineWidth = 1.6; k.lineCap = 'round';
     for (let i = 0; i < 8; i++) { const t = i / 8 * TAU + 0.2, L = i % 2 ? 26 : 44; k.beginPath(); k.moveTo(sx + Math.cos(t) * 17, sy + Math.sin(t) * 17); k.lineTo(sx + Math.cos(t) * L, sy + Math.sin(t) * L); k.stroke(); }
-    // 光の玉: 太陽から中心を通る線の上（t = 0.45〜2.0）
+    // 光斑沿太阳与画面中心的连线分布，t 的取值范围为 0.45 至 2。
     const G = [[0.45, 7, 'c', 0.6], [0.8, 13, 'h', 0.55], [1.15, 5, 'c', 0.7], [1.45, 22, 'h', 0.4], [1.75, 9, 'c', 0.55], [2.0, 30, 'r', 0.55]];
     for (const [t, r, kind, al] of G) {
       const x = sx + dx * t, y = sy + dy * t;
@@ -486,7 +456,6 @@ MotionPrompt.pack('photo', function () {
   });
 
   // @element 14
-  // 魚眼レンズ: 中心がふくらみ、建物の縦の線が外側へ丸く曲がる
   CELLS[13] = cell((k, u) => {
     const a = env(u), kk = 1.25 * a, cx = CW / 2, cy = CH / 2, R2 = cx * cx + cy * cy;
     const M = kk < 0.002 ? null : (x, y) => { const dx = x - cx, dy = y - cy, g = (1 + kk) / (1 + kk * (dx * dx + dy * dy) / R2); return [cx + dx * g, cy + dy * g]; };
@@ -495,7 +464,6 @@ MotionPrompt.pack('photo', function () {
   });
 
   // @element 15
-  // 色収差: 赤・緑・青を少しずつ違う大きさで重ね、画面の端ほど縁に赤と青のずれが出る
   CELLS[14] = cell((k, u) => {
     const a = env(u), s = 0.02 * a, cx = CW / 2, cy = CH / 2;
     if (s < 0.0005) { stageStreet(k, BASE); return; }
@@ -508,11 +476,10 @@ MotionPrompt.pack('photo', function () {
   });
 
   // @element 16
-  // 周辺減光（ビネット）: 四隅だけがなだらかに暗くなり、中央の人物に目が集まる
   CELLS[15] = cell((k, u) => {
     const a = env(u);
     stageStreet(k, BASE);
-    // 楕円の放射グラデーション: 半径の45%までは素通し、外へ向かって 0 → 70% の濃さ
+    // 椭圆径向渐变在半径的 45% 以内完全透明，向外增加到 70% 不透明度。
     k.save(); k.translate(CW / 2, CH / 2); k.scale(1, CH / CW * 1.35);
     const g = k.createRadialGradient(0, 0, CW * 0.45 * 0.62, 0, 0, CW * 0.62);
     g.addColorStop(0, 'rgba(32,35,43,0)'); g.addColorStop(1, `rgba(32,35,43,${(0.7 * a).toFixed(3)})`);
@@ -520,7 +487,6 @@ MotionPrompt.pack('photo', function () {
   });
 
   // @element 17
-  // ハイキー: 明るい色だけになり、影はごく薄く、明るさの山が右端へ寄る
   CELLS[16] = cell((k, u) => {
     const a = env(u);
     const HIGH = {
@@ -533,7 +499,6 @@ MotionPrompt.pack('photo', function () {
   });
 
   // @element 18
-  // ローキー: 画面の大半が暗く沈み、横からの光が当たる縁だけが浮かぶ
   CELLS[17] = cell((k, u) => {
     const a = env(u);
     const LOW = Object.assign({}, DARK, { sun: DARK.sky, glow: DARK.sky, person: '#25272E', lit: '#FFB547' });
@@ -542,7 +507,6 @@ MotionPrompt.pack('photo', function () {
   });
 
   // @element 19
-  // モノクロ: 色を抜き、明るさだけで見せる（コントラストを少し強める）
   CELLS[18] = cell((k, u) => {
     const a = env(u);
     const GRAY = mapPal(BASE, c => { const g = clamp((lum(c) - 140) * 1.25 + 140, 0, 255); return toHex([g, g, g]); });
@@ -550,7 +514,6 @@ MotionPrompt.pack('photo', function () {
   });
 
   // @element 20
-  // デュオトーン: 暗い所を藍、明るい所をピンクの2色だけに置き換える
   CELLS[19] = cell((k, u) => {
     const a = env(u);
     const DUO = mapPal(BASE, c => mixc('#1F2A5C', '#FF9FB2', Math.pow(clamp((lum(c) - 70) / (250 - 70)), 2.4)));
@@ -558,7 +521,6 @@ MotionPrompt.pack('photo', function () {
   });
 
   // @element 21
-  // ティール＆オレンジ: 空と影を青緑、日の当たる肌と太陽を橙に寄せる
   CELLS[20] = cell((k, u) => {
     const a = env(u);
     const TO = {
@@ -570,7 +532,6 @@ MotionPrompt.pack('photo', function () {
   });
 
   // @element 22
-  // フィルムグレイン: 細かい粒子が全体に乗り、全体が少し暖かい色に寄る
   CELLS[21] = cell((k, u) => {
     const a = env(u);
     const FILM = mapPal(BASE, c => mixc(c, '#F2DDBE', 0.16));
@@ -581,36 +542,34 @@ MotionPrompt.pack('photo', function () {
   });
 
   // @element 23
-  // ライトリーク: 右端から、フィルムに光がもれたような赤と橙のにじみが帯になって入る
   CELLS[22] = cell((k, u) => {
     const a = env(u), w = Math.sin(u / CYC * TAU);
     stageLand(k, BASE);
     k.save();
-    // 縦長の楕円を右端の外に中心を置いて重ねる（外ほど淡い黄、端ほど赤）
+    // 将纵向拉长的椭圆叠加到画面右侧，圆心位于边缘外。内侧偏红，外围呈淡黄色。
     const band = (rx, col, al) => { k.globalAlpha = al * a; k.fillStyle = col; k.beginPath(); k.ellipse(CW + 30 + 6 * w, CH / 2, rx * a, CH * 1.1, 0, 0, TAU); k.fill(); };
     band(250, '#FFD089', 0.35); band(170, '#FF9A3D', 0.4); band(95, '#FF5A3A', 0.45); band(45, '#FF3B30', 0.5);
     k.restore();
   });
 
   // @element 24
-  // 二重露光: 背景が白く飛び、胸像の形の中にだけ丘と家と木と太陽が写り込む
   CELLS[23] = cell((k, u) => {
     const a = env(u);
     const DX = Object.assign({}, BASE, { sky: '#D3DBE6', sky2: '#D3DBE6', far: '#9AA8BD', mid: '#76869F', ground: '#55647E', bld: '#E8ECF2', edge: '#55647E', win: '#9AA8BD', winOff: '#9AA8BD', tree: '#3F4C66', trunk: '#3F4C66' });
     const draw = kk => {
       kk.fillStyle = '#FFFFFF'; kk.fillRect(0, 0, CW, CH);
       kk.save(); bustPath(kk, QX, QY, QR); kk.clip();
-      // 風景を0.7倍にして、太陽が頭の右上、丘の稜線が首のあたりに来るように置く
+      // 把风景缩放至 0.7 倍，使太阳位于头部右上方、山脊位于颈部附近。
       kk.translate(QX, QY); kk.scale(0.7, 0.7); kk.translate(-415, -77);
       kk.fillStyle = DX.sky; kk.fillRect(0, -200, CW * 2, CH * 3);
       stageLand(kk, DX, { person: false });
       kk.fillStyle = DX.ground; kk.fillRect(-CW, 200, CW * 3, CH * 3);
       kk.restore();
     };
-    if (a >= 0.999) { draw(k); return; }   // 効果が入りきったら直接描く（拡大表示でも輪郭がくっきり）
+    if (a >= 0.999) { draw(k); return; }   // 效果完全显示后直接绘制，确保放大时保留清晰的轮廓。
     stageLand(k, BASE);
     if (a < 0.002) return;
-    const [L, kl] = layer('dx'); draw(kl);   // 入り・戻りの途中は、別の面に描いて重ねる
+    const [L, kl] = layer('dx'); draw(kl);   // 淡入和淡出期间，先在离屏画布上绘制再叠加。
     k.save(); k.globalAlpha = a; k.drawImage(L, 0, 0); k.restore();
   });
 

@@ -6,7 +6,7 @@
 
 Find the name, then say it to your AI. Add how long, how strong and what moves, and the result gets closer to what you had in mind.
 
-![Camera moves & transitions, part 2 — preview](../../assets/preview-camera2.gif)
+![Camera moves & transitions, part 2 preview](../../assets/preview-camera2.gif)
 
 ## Camera Movement
 

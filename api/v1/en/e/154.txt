@@ -19,15 +19,14 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 10
-// 10 スポットライトホバー（暗いカードの上で、カーソルの周りだけが丸く明るく光る）
 CELLS[9] = (k, w, h, u) => {
   u = snapU(u);
   frame(k);
   const cx = 255 + 190 * Math.sin(2 * Math.PI * u / CYC), cy = 92 + 40 * Math.sin(4 * Math.PI * u / CYC);
   view(k, () => {
     k.fillStyle = '#121828'; k.fillRect(0, 0, VW, VH);
-    txt(k, 'FEATURES', VW / 2, 26, `800 11px ${EN}`, 'rgba(255,255,255,.45)', 'center', 'alphabetic', '3px');
-    const LAB = ['かんたん', 'あんしん', 'はやい'];
+    txt(k, '产品特色', VW / 2, 26, `800 11px ${EN}`, 'rgba(255,255,255,.45)', 'center', 'alphabetic', '3px');
+    const LAB = ['简单', '安心', '快捷'];
     for (let i = 0; i < 3; i++) {
       const x = 22 + i * 160, y = 40, cw = 147, ch = 116;
       k.fillStyle = '#1C2335'; rr(k, x, y, cw, ch, 10); k.fill();

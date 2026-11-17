@@ -19,13 +19,11 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 06
-// 06 フローチャート: start -> step -> decision (diamond) -> step -> end, with a "No" loop back;
-// then a marker walks the path once (loops back once, then goes on to the end)
 function flow(k, w, h, u) {
   bg(k, w, h);
   k.globalAlpha = fade(u);
   const y = 80, S = [64, y], A = [158, y], D = [262, y], B = [364, y], E = [460, y], LY = 172;
-  const dw = 46, dh = 36;                                   // diamond half sizes
+  const dw = 46, dh = 36;
   const arrows = [
     [[S[0] + 34, y], [A[0] - 36, y]],
     [[A[0] + 36, y], [D[0] - dw, y]],
@@ -37,7 +35,6 @@ function flow(k, w, h, u) {
   pen(k, C.g4, 3);
   arrows.forEach((pts, i) => trace(k, pts, easeInOut(P(u, tA[i], tA[i] + 0.22)), 10, C.g4));
   trace(k, loop, easeInOut(P(u, 2.0, 2.45)), 10, C.g4);
-  // shapes
   const pill = (c, s, col) => box(k, c[0], c[1], 66, 36, 18, s, col);
   pill(S, pop(u, 0.4), C.g3);
   box(k, A[0], A[1], 72, 40, 6, pop(u, 0.8), C.blueL);
@@ -50,7 +47,7 @@ function flow(k, w, h, u) {
   }
   box(k, B[0], B[1], 72, 40, 6, pop(u, 1.6), C.blueL);
   pill(E, pop(u, 1.95), C.g3);
-  // marker: start -> A -> D -> (No) loop -> A -> D -> (Yes) -> B -> E
+  // 播放标记从起点到达 A 和 D，沿否定分支回到 A，再经 D 的肯定分支、B 到终点。
   const path = [S, A, D, [D[0], LY], [A[0], LY], A, D, B, E];
   const m = P(u, 2.6, 3.8);
   const a = Math.min(P(u, 2.5, 2.65), 1 - P(u, 3.8, 4.0));

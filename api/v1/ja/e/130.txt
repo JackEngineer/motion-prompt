@@ -18,10 +18,9 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 10
-// 10 ウェーブテキスト（1文字ずつ、波のように順に上下する）
 CELLS[9] = (k, w, h, u) => {
   stage(k);
-  const f = `800 70px ${DISP}`, cs = chars(k, 'WAVE TEXT', f, 4), Y = h / 2 + 2, ph = 2 * Math.PI * 3 * u / CYC;
+  const f = `800 70px ${JP}`, cs = chars(k, '文字随波起伏', f, 4), Y = h / 2 + 2, ph = 2 * Math.PI * 3 * u / CYC;
   cs.forEach((c, i) => {
     if (c.ch === ' ') return;
     const s = Math.sin(ph - i * 0.62), y = -28 * s;

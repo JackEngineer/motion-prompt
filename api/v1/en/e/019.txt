@@ -19,7 +19,6 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 19
-// 19 リキッドトランジション（ペンキのような液体が上から垂れて流れ込み、次の画面になる）
 const DRIPS = [0, 1].map(s => { const R = rand(190 + s * 7), a = []; for (let i = 0; i < 7; i++) a.push({ x: 36 + i * 78 + (R() - 0.5) * 30, len: 30 + R() * 80, wd: 15 + R() * 12, ph: R() * 6 }); return a; });
 function liquidShape(g, w, h, p, set, u) {
   const base = lerp(-110, h + 130, p), amp = Math.sin(Math.PI * clamp(p * 1.1));

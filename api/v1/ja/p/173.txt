@@ -1,4 +1,4 @@
-「ステディカム（Steadicam）」を使ってください。「カメラワークと切り替え 第2弾」の名前の1つです。
+「ステディカム（英文名：Steadicam）」を使ってください。「カメラワークと切り替え 第2弾」の名前の1つです。
 Motion Prompt #173
 
 どういうものか: 揺れを抑えてなめらかに移動
@@ -11,6 +11,6 @@ Motion Prompt #173
 - 8mは格子（2m）と木（8m）の間隔の倍数なので、4.7秒ごとに継ぎ目なく戻る。右上に「STEADICAM」
 使いどころ: 歩きながらの移動を、映画のようになめらかに見せたいとき。
 
-参考実装（Canvas 2D・時刻だけで絵が決まる関数）: https://showheyohtaki.github.io/motion-prompt/api/v1/ja/e/173.txt
-共通の補助コード: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/camera2.js
+参考実装（Canvas 2D・時刻だけで絵が決まる関数）: ../e/173.txt
+共通の補助コード: ../../kit/camera2.js
 参考実装の形・タイミング・イージングの数値はそのまま使い、中の文字・色・素材だけ、いま作っている物に合わせてください。

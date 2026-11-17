@@ -19,7 +19,6 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 22
-// フィルムグレイン: 細かい粒子が全体に乗り、全体が少し暖かい色に寄る
 CELLS[21] = cell((k, u) => {
   const a = env(u);
   const FILM = mapPal(BASE, c => mixc(c, '#F2DDBE', 0.16));

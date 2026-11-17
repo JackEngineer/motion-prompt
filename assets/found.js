@@ -10,6 +10,57 @@
   var WIDGETS = 'https://platform.twitter.com/widgets.js';
 
   var I18N = {
+    'zh-Hans': {
+      "title": "社区案例｜Motion Prompt",
+      "skip": "跳转到案例列表",
+      "navLabel": "站内导航",
+      "navGallery": "示例库",
+      "navFound": "社区案例",
+      "langLabel": "语言",
+      "themeToDark": "切换到深色模式",
+      "themeToLight": "切换到浅色模式",
+      "eyebrow": "社区案例",
+      "h1": "用术语和示例建立共同语言",
+      "lead": "这里收录了创作者发布的术语、动态示例和速查表，涉及不同领域、语言与风格。我们选择由投稿者自行制作示例的帖子，帖子内容及相关权利属于各位作者。",
+      "leadNote": "被收录不代表作者为本站背书。案例介绍由本站撰写。",
+      "noteH": "关于嵌入内容",
+      "noteP": "本页通过 X（原 Twitter）嵌入展示帖子。打开后将从 X 服务器加载内容并使用 X Cookie。X 可能记录浏览情况并将其用于广告。嵌入时已设置 dnt，请求 X 不将此次访问用于个性化推荐。",
+      "notePrivacy": "X 隐私政策",
+      "noteCookies": "X 的 Cookie 使用说明",
+      "listH": "案例列表",
+      "loadListFailed": "案例列表加载失败。",
+      "emptyList": "暂无社区案例。",
+      "count": "{n} 条帖子",
+      "postLang": {
+        "ja": "日语",
+        "en": "英语"
+      },
+      "postLangLabel": "帖子语言：{l}",
+      "viewOnX": "在 X 上查看",
+      "viewOnXLabel": "在 X 上查看 {a} 的帖子",
+      "loading": "正在加载…",
+      "gone": "无法显示此帖子，可能已被删除。",
+      "failed": "无法从 X 加载内容，可能被内容拦截工具阻止。你仍可点击“在 X 上查看”打开原帖。",
+      "shown": "已显示 {a} 的帖子",
+      "moreH": "分享你发现的案例",
+      "recH": "推荐帖子，也欢迎自荐",
+      "recP": "如果发现以示例讲解术语的帖子，欢迎通过 GitHub Issue 推荐，也可以推荐自己的作品。本站只嵌入帖子并提供链接，不复制图片或视频。",
+      "recLink": "推荐案例（GitHub Issue）",
+      "rmH": "申请移除帖子",
+      "rmP": "如需移除自己的帖子或更正介绍，请通过 Issue 表单申请，核实后会尽快处理。",
+      "rmLink": "申请删除或更正（GitHub Issue）",
+      "author": "作者",
+      "authorName": "Shohei Ohtaki",
+      "whyLink": "创作缘由",
+      "makeLink": "制作自己的领域或语言版本",
+      "addLink": "贡献你所在领域的术语",
+      "listLink": "术语列表",
+      "removeP1": "如需删除或更正收录内容，请使用",
+      "removeLink": "GitHub Issue 表单",
+      "removeP2": "提交申请，核实后会尽快处理。",
+      "thanks1": "动态示例配合可复制提示词的形式受到",
+      "thanks2": "的启发，感谢原作者。"
+    },
     ja: {
       title: '見つけた事例｜Motion Prompt',
       skip: '事例の一覧へ移動', navLabel: 'サイト内', navGallery: '見本', navFound: '事例', langLabel: '言語',
@@ -21,7 +72,7 @@
       noteH: '埋め込みについて',
       noteP: 'このページは、各ポストをX（旧Twitter）の埋め込みで表示しています。開くとXのサーバーから読み込まれ、XのCookieが使われます。Xはその閲覧を記録し、広告に使うことがあります。読み込むときは、パーソナライズに使わないよう求める設定（dnt）を付けています。',
       notePrivacy: 'Xのプライバシーポリシー', noteCookies: 'XのCookieについて',
-      listH: '事例の一覧', loadListFailed: '一覧を読み込めませんでした。',
+      listH: '事例の一覧', loadListFailed: '一覧を読み込めませんでした。', emptyList: '事例はまだありません。',
       count: '{n}件',
       postLang: { ja: '日本語', en: '英語' },
       postLangLabel: 'ポストの言語: {l}',
@@ -54,7 +105,7 @@
       noteH: 'About the embeds',
       noteP: "This page shows each post as an X (formerly Twitter) embed. When you open it, the posts load from X's servers and X cookies are used. X may record the view and use it for ads. The embeds are loaded with the setting that asks X not to use them for personalization (dnt).",
       notePrivacy: 'X Privacy Policy', noteCookies: 'How X uses cookies',
-      listH: 'Examples', loadListFailed: 'Could not load the list.',
+      listH: 'Examples', loadListFailed: 'Could not load the list.', emptyList: 'No community examples yet.',
       count: '{n} posts',
       postLang: { ja: 'Japanese', en: 'English' },
       postLangLabel: 'Post language: {l}',
@@ -84,7 +135,7 @@
     del: function (k) { try { localStorage.removeItem(k); } catch (e) { /* ignore */ } },
   };
   var darkQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : { matches: false };
-  var state = { lang: root.lang === 'en' ? 'en' : 'ja', data: null };
+  var state = { lang: I18N[root.lang] ? root.lang : 'zh-Hans', data: null };
   var cards = [];   // { item, el, box, status, shown, token }
 
   function t(key, vars) {
@@ -148,7 +199,7 @@
     return loadWidgets().then(function (tw) {
       if (c.token !== token) return;
       return tw.widgets.createTweet(c.item.id, c.box, {
-        lang: state.lang, theme: isDark() ? 'dark' : 'light', dnt: true, conversation: 'none', align: 'center',
+        lang: state.lang === 'zh-Hans' ? 'zh-cn' : state.lang, theme: isDark() ? 'dark' : 'light', dnt: true, conversation: 'none', align: 'center',
       }).then(function (el) {
         if (c.token !== token) return;
         if (el) { setStatus(c, null); c.el.classList.remove('is-gone'); }
@@ -185,7 +236,7 @@
         var li = h('li', { class: 'ex' }, [
           h('div', { class: 'ex-head' }, [
             h('a', { class: 'ex-author', href: 'https://x.com/' + encodeURIComponent(handle), rel: 'noopener', text: it.author }),
-            h('span', { class: 'ex-lang', title: t('postLangLabel', { l: langName }), 'aria-label': t('postLangLabel', { l: langName }), text: String(it.lang).toUpperCase() }),
+            h('span', { class: 'ex-lang', title: t('postLangLabel', { l: langName }), 'aria-label': t('postLangLabel', { l: langName }), text: langName }),
           ]),
           h('p', { class: 'ex-intro', text: (it.intro && (it.intro[state.lang] || it.intro.en || it.intro.ja)) || '' }),
           h('div', { class: 'ex-act' }, [link]),
@@ -204,6 +255,8 @@
         list,
       ]));
     });
+    $('#f-empty').hidden = cards.length > 0;
+    $('#f-empty').textContent = t('emptyList');
     observe();
   }
 
@@ -245,6 +298,10 @@
       if (lang === state.lang) return;
       state.lang = lang;
       store.set('mp-lang', lang);
+      if (/[?&]lang=/.test(location.search)) {
+        var q = new URLSearchParams(location.search); q.set('lang', lang);
+        history.replaceState(history.state, '', location.pathname + '?' + q.toString() + location.hash);
+      }
       applyText();
       if (state.data) build();  // rebuild redraws the embeds in the new language
     });
@@ -269,5 +326,5 @@
       state.data = data;
       build();
     })
-    .catch(function () { $('#f-empty').hidden = false; });
+    .catch(function () { $('#f-empty').textContent = t('loadListFailed'); $('#f-empty').hidden = false; });
 })();

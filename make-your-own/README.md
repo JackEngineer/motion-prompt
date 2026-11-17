@@ -1,5 +1,8 @@
 # Make your own
 
+[简体中文](README.zh-Hans.md)
+
+
 **English** | [日本語](README.ja.md)
 
 Prompts, a render script and two finished examples for making a "names" set of your own: 3 looping videos of 8 cards each, where every card is a small animation that shows what one name means, plus a one-page cheat-sheet image.
@@ -45,7 +48,7 @@ Give this repository to a coding AI and paste one of these.
 | The names of your own field, with your own look | [`prompts/en/02-your-own-field.md`](prompts/en/02-your-own-field.md) |
 | The one-page cheat-sheet image | [`prompts/en/03-cheatsheet-image.md`](prompts/en/03-cheatsheet-image.md) |
 
-Japanese versions are in [`prompts/ja/`](prompts/ja/).
+Japanese versions are in [`prompts/ja/`](prompts/ja/01-translate.md).
 
 Where to edit by hand, in an `index.html`:
 

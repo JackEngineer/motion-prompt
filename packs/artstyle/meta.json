@@ -62,8 +62,9 @@
    },
    "summary": {
     "ja": "線画の家・木・太陽が、淡い透明水彩の絵に変わる。色がにじんでたまり、紙の白が残る。",
-    "en": "The line drawing of a house, a tree and the sun becomes a pale transparent watercolor, with colors bleeding and pooling and the white paper left showing."
-   },
+    "en": "The line drawing of a house, a tree and the sun becomes a pale transparent watercolor, with colors bleeding and pooling and the white paper left showing.",
+        "zh-Hans": "房屋、树和太阳的线稿变成浅淡通透的水彩画，颜料晕染、积聚，露出白色纸面。"
+      },
    "spec": {
     "ja": [
      "画材: 紙に透明水彩",
@@ -74,12 +75,18 @@
      "Medium: transparent watercolor on paper",
      "Look: colors that bleed and pool, white paper left unpainted, pale colors overall",
      "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
-    ]
-   },
+    ],
+        "zh-Hans": [
+          "媒介：纸上透明水彩",
+          "外观：颜色晕染、积聚，保留纸张留白，整体色调浅淡",
+          "示例：将同一张基础草图（山丘上的房屋、树和太阳的线稿）作为参考交给图像模型，按此风格重绘。0.5 s 至 1.35 s，以斜向擦除从草图切换为该风格；画面缓慢放大至 1.045x，持续到 4.0 s；4.0 s 至 4.5 s 淡回草图（单次循环 = 4.7 s，cubic ease-in-out）"
+        ]
+      },
    "use": {
     "ja": "絵本・挿絵・季節のカードなど、やわらかく手描きの温かさを出したいとき。",
-    "en": "For picture books, illustrations or seasonal cards that should feel soft and hand-painted."
-   },
+    "en": "For picture books, illustrations or seasonal cards that should feel soft and hand-painted.",
+        "zh-Hans": "适合需要柔和手绘质感的绘本、插画或节日贺卡。"
+      },
    "tags": [
     "watercolor",
     "painting",
@@ -116,8 +123,9 @@
    },
    "summary": {
     "ja": "同じ線画が、絵の具を厚く盛った色の濃い油絵に変わる。筆跡とナイフの跡が凹凸になって見える。",
-    "en": "The same line drawing becomes a richly colored oil painting with thick paint; brush strokes and knife marks stand out as ridges."
-   },
+    "en": "The same line drawing becomes a richly colored oil painting with thick paint; brush strokes and knife marks stand out as ridges.",
+        "zh-Hans": "同一张线稿变成色彩浓郁的厚涂油画，笔触和画刀痕迹形成明显的凸起。"
+      },
    "spec": {
     "ja": [
      "画材: 油絵の具を厚く盛る（インパスト）",
@@ -128,12 +136,18 @@
      "Medium: oil paint laid on thickly (impasto)",
      "Look: brush strokes and palette-knife marks stay as raised ridges; strong, dense colors",
      "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
-    ]
-   },
+    ],
+        "zh-Hans": [
+          "媒介：厚涂油彩（impasto）",
+          "外观：笔触和调色刀痕迹保留为凸起的纹理，色彩浓烈厚重",
+          "示例：将同一张基础草图（山丘上的房屋、树和太阳的线稿）作为参考交给图像模型，按此风格重绘。0.5 s 至 1.35 s，以斜向擦除从草图切换为该风格；画面缓慢放大至 1.045x，持续到 4.0 s；4.0 s 至 4.5 s 淡回草图（单次循环 = 4.7 s，cubic ease-in-out）"
+        ]
+      },
    "use": {
     "ja": "重厚さや手仕事の力強さを出したいポスター・アート作品に。",
-    "en": "For posters and art pieces that should feel rich, heavy and hand-made."
-   },
+    "en": "For posters and art pieces that should feel rich, heavy and hand-made.",
+        "zh-Hans": "适合需要浓郁、厚重手工质感的海报和艺术作品。"
+      },
    "tags": [
     "impasto",
     "oil painting",
@@ -170,8 +184,9 @@
    },
    "summary": {
     "ja": "同じ線画が、和紙に墨1色で描いた絵に変わる。濃い墨と薄い墨のにじみ・ぼかしだけで形を作る。",
-    "en": "The same line drawing becomes a picture in one black ink on washi paper, shaped only by dark and pale ink, bleeds and soft washes."
-   },
+    "en": "The same line drawing becomes a picture in one black ink on washi paper, shaped only by dark and pale ink, bleeds and soft washes.",
+        "zh-Hans": "同一张线稿变成和纸上的单色水墨画，仅用墨色浓淡、晕染和柔和的水洗效果塑造形象。"
+      },
    "spec": {
     "ja": [
      "画材: 和紙に墨1色",
@@ -182,12 +197,18 @@
      "Medium: one black ink on washi paper",
      "Look: drawn only with dark and pale ink, bleeds and soft washes; no color",
      "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
-    ]
-   },
+    ],
+        "zh-Hans": [
+          "媒介：和纸上使用单一黑墨",
+          "外观：仅以浓淡墨色、晕染和柔和水洗效果绘制，不使用彩色",
+          "示例：将同一张基础草图（山丘上的房屋、树和太阳的线稿）作为参考交给图像模型，按此风格重绘。0.5 s 至 1.35 s，以斜向擦除从草图切换为该风格；画面缓慢放大至 1.045x，持续到 4.0 s；4.0 s 至 4.5 s 淡回草图（单次循环 = 4.7 s，cubic ease-in-out）"
+        ]
+      },
    "use": {
     "ja": "和の静けさや余白のある画面を作りたいとき。",
-    "en": "For a quiet, Japanese feel with plenty of empty space."
-   },
+    "en": "For a quiet, Japanese feel with plenty of empty space.",
+        "zh-Hans": "适合留白充足、安静的日式画面。"
+      },
    "tags": [
     "ink wash",
     "sumi-e",
@@ -224,8 +245,9 @@
    },
    "summary": {
     "ja": "同じ線画が、江戸の多色刷り木版画に変わる。家は瓦屋根の日本家屋、木は松になり、太陽は赤い丸、空は上から薄くなるぼかし摺り。",
-    "en": "The same line drawing becomes an Edo-period color woodblock print: the house turns into a tiled-roof Japanese house, the tree into a pine, the sun into a red circle, and the sky fades from deep indigo at the top."
-   },
+    "en": "The same line drawing becomes an Edo-period color woodblock print: the house turns into a tiled-roof Japanese house, the tree into a pine, the sun into a red circle, and the sky fades from deep indigo at the top.",
+        "zh-Hans": "同一张线稿变成江户时代的彩色木版画：房屋变为日式瓦顶屋，树变为松树，太阳变为红色圆盘，天空从顶部的深靛蓝向下渐淡。"
+      },
    "spec": {
     "ja": [
      "画材: 江戸時代の多色刷り木版画",
@@ -238,12 +260,19 @@
      "Look: thin, even black outlines, flat areas of color, slight misregistration between blocks, washi fibers and uneven printing",
      "Sky: graded from deep indigo at the top to pale below, with a band of mist across it; the sun as a red circle (the sample leaves out Mount Fuji, waves, people and text)",
      "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
-    ]
-   },
+    ],
+        "zh-Hans": [
+          "媒介：江户时代的多色木版画",
+          "外观：细而均匀的黑色轮廓、平涂色块、各色版之间轻微错位，保留和纸纤维与印刷不均的质感",
+          "天空：顶部深靛蓝向下渐淡，横贯一条雾带；太阳为红色圆盘（示例不包含富士山、海浪、人物或文字）",
+          "示例：将同一张基础草图（山丘上的房屋、树和太阳的线稿）作为参考交给图像模型，按此风格重绘。0.5 s 至 1.35 s，以斜向擦除从草图切换为该风格；画面缓慢放大至 1.045x，持续到 4.0 s；4.0 s 至 4.5 s 淡回草图（单次循环 = 4.7 s，cubic ease-in-out）"
+        ]
+      },
    "use": {
     "ja": "和の題材を、平らな色と線で印象的に見せたいとき。",
-    "en": "For Japanese subjects shown boldly with flat color and line."
-   },
+    "en": "For Japanese subjects shown boldly with flat color and line.",
+        "zh-Hans": "适合用鲜明的平涂色块和线条表现日本题材。"
+      },
    "tags": [
     "ukiyo-e",
     "woodblock",
@@ -280,8 +309,9 @@
    },
    "summary": {
     "ja": "同じ線画が、色の点だけを並べた絵に変わる。空・家・木・地面のすべてが、はっきり見える大きめの点でできている。",
-    "en": "The same line drawing becomes a picture made only of dots of color; sky, house, tree and ground are all built from clearly visible, fairly large dots."
-   },
+    "en": "The same line drawing becomes a picture made only of dots of color; sky, house, tree and ground are all built from clearly visible, fairly large dots.",
+        "zh-Hans": "同一张线稿变成完全由色点组成的画面；天空、房屋、树和地面都由清晰可见、较大的色点构成。"
+      },
    "spec": {
     "ja": [
      "描き方: 色の点だけを並べて描く。線や塗りの面は使わない",
@@ -292,12 +322,18 @@
      "Technique: only dots of color placed side by side; no lines or filled areas",
      "Dot size: large enough to stay visible on a small card (tiny dots read as watercolor)",
      "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
-    ]
-   },
+    ],
+        "zh-Hans": [
+          "技法：仅将色点并排铺放，不使用线条或整片填色",
+          "色点大小：在小卡片上仍应清晰可见（过小的点会看起来像水彩）",
+          "示例：将同一张基础草图（山丘上的房屋、树和太阳的线稿）作为参考交给图像模型，按此风格重绘。0.5 s 至 1.35 s，以斜向擦除从草图切换为该风格；画面缓慢放大至 1.045x，持续到 4.0 s；4.0 s 至 4.5 s 淡回草图（单次循环 = 4.7 s，cubic ease-in-out）"
+        ]
+      },
    "use": {
     "ja": "手作り感とリズムのある、明るい絵にしたいとき。",
-    "en": "For a bright picture with a hand-made, rhythmic texture."
-   },
+    "en": "For a bright picture with a hand-made, rhythmic texture.",
+        "zh-Hans": "适合明亮、带有手工感和节奏感纹理的画面。"
+      },
    "tags": [
     "pointillism",
     "dots",
@@ -334,8 +370,9 @@
    },
    "summary": {
     "ja": "同じ線画が、色鉛筆で塗った手描きの絵に変わる。細い線の重なりと、白く残る紙の目が見える。",
-    "en": "The same line drawing becomes a hand-drawn colored pencil picture, with layered fine strokes and white paper grain showing through."
-   },
+    "en": "The same line drawing becomes a hand-drawn colored pencil picture, with layered fine strokes and white paper grain showing through.",
+        "zh-Hans": "同一张线稿变成手绘彩铅画，细密笔触层层叠加，白色纸纹透出。"
+      },
    "spec": {
     "ja": [
      "画材: 紙に色鉛筆",
@@ -346,12 +383,18 @@
      "Medium: colored pencils on paper",
      "Look: color built up from layered fine strokes; the paper grain shows through in white",
      "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
-    ]
-   },
+    ],
+        "zh-Hans": [
+          "媒介：纸上彩色铅笔",
+          "外观：细密笔触层层叠加形成颜色，白色纸纹透出",
+          "示例：将同一张基础草图（山丘上的房屋、树和太阳的线稿）作为参考交给图像模型，按此风格重绘。0.5 s 至 1.35 s，以斜向擦除从草图切换为该风格；画面缓慢放大至 1.045x，持续到 4.0 s；4.0 s 至 4.5 s 淡回草图（单次循环 = 4.7 s，cubic ease-in-out）"
+        ]
+      },
    "use": {
     "ja": "子ども向けや、親しみやすい手描きの挿絵に。",
-    "en": "For friendly, hand-drawn illustrations, including ones for children."
-   },
+    "en": "For friendly, hand-drawn illustrations, including ones for children.",
+        "zh-Hans": "适合亲切的手绘插画，也适合儿童题材。"
+      },
    "tags": [
     "colored pencil",
     "pencil drawing",
@@ -388,8 +431,9 @@
    },
    "summary": {
     "ja": "同じ線画が、版を彫って刷った白黒の絵に変わる。太い線と面だけで、灰色やぼかしはない。",
-    "en": "The same line drawing becomes a black-and-white print from a carved block, made only of bold lines and shapes with no gray or blur."
-   },
+    "en": "The same line drawing becomes a black-and-white print from a carved block, made only of bold lines and shapes with no gray or blur.",
+        "zh-Hans": "同一张线稿变成雕版印制的黑白版画，仅由粗犷线条和形状构成，没有灰色或模糊。"
+      },
    "spec": {
     "ja": [
      "画材: リノリウムの版を彫って刷る",
@@ -402,12 +446,19 @@
      "Look: bold lines in pure black and white, with rough marks left by the carving",
      "Avoid: gray, blur and gradients",
      "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
-    ]
-   },
+    ],
+        "zh-Hans": [
+          "媒介：雕刻油毡板后印制",
+          "外观：纯黑白的粗犷线条，保留雕刻留下的粗糙痕迹",
+          "避免：灰色、模糊和渐变",
+          "示例：将同一张基础草图（山丘上的房屋、树和太阳的线稿）作为参考交给图像模型，按此风格重绘。0.5 s 至 1.35 s，以斜向擦除从草图切换为该风格；画面缓慢放大至 1.045x，持续到 4.0 s；4.0 s 至 4.5 s 淡回草图（单次循环 = 4.7 s，cubic ease-in-out）"
+        ]
+      },
    "use": {
     "ja": "ポスター・Tシャツ・ロゴなど、強い白黒の印象がほしいとき。",
-    "en": "For posters, T-shirts or logos that need a strong black-and-white look."
-   },
+    "en": "For posters, T-shirts or logos that need a strong black-and-white look.",
+        "zh-Hans": "适合需要强烈黑白效果的海报、T 恤或标志。"
+      },
    "tags": [
     "linocut",
     "block print",
@@ -444,8 +495,9 @@
    },
    "summary": {
     "ja": "同じ線画が、黒い鉛の枠で区切ったガラスの絵に変わる。空・丘・家・木がそれぞれ色ガラスの破片になり、光が透ける。",
-    "en": "The same line drawing becomes a glass picture divided by black lead lines; sky, hill, house and tree each turn into pieces of colored glass with light shining through."
-   },
+    "en": "The same line drawing becomes a glass picture divided by black lead lines; sky, hill, house and tree each turn into pieces of colored glass with light shining through.",
+        "zh-Hans": "同一张线稿变成由黑色铅条分隔的彩色玻璃画；天空、山丘、房屋和树分别成为透光的彩色玻璃片。"
+      },
    "spec": {
     "ja": [
      "素材: 色ガラスを鉛の枠でつないだ窓",
@@ -456,12 +508,18 @@
      "Material: pieces of colored glass joined by lead, as in a window",
      "Look: areas of color divided by thick black lines, glowing as light passes through",
      "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out) (this sample is cropped slightly wider so the lead lines of the hill show)"
-    ]
-   },
+    ],
+        "zh-Hans": [
+          "材料：以铅条拼接彩色玻璃片，如玻璃窗",
+          "外观：粗黑线分隔各个色块，光线透过时发亮",
+          "示例：将同一张基础草图（山丘上的房屋、树和太阳的线稿）作为参考交给图像模型，按此风格重绘。0.5 s 至 1.35 s，以斜向擦除从草图切换为该风格；画面缓慢放大至 1.045x，持续到 4.0 s；4.0 s 至 4.5 s 淡回草图（单次循环 = 4.7 s，cubic ease-in-out）（此示例采用略宽的裁切范围，以展示山丘的铅条）"
+        ]
+      },
    "use": {
     "ja": "荘厳さや、光を感じる華やかな装飾がほしいとき。",
-    "en": "For a solemn or festive decorative look that glows with light."
-   },
+    "en": "For a solemn or festive decorative look that glows with light.",
+        "zh-Hans": "适合庄严或喜庆、具有透光感的装饰画面。"
+      },
    "tags": [
     "stained glass",
     "glass",
@@ -498,8 +556,9 @@
    },
    "summary": {
     "ja": "同じ線画が、原色の平らな面と太い黒い輪郭の絵に変わる。ところどころに網点が入る。",
-    "en": "The same line drawing becomes flat primary colors with bold black outlines, with halftone dots here and there."
-   },
+    "en": "The same line drawing becomes flat primary colors with bold black outlines, with halftone dots here and there.",
+        "zh-Hans": "同一张线稿变成以粗黑轮廓包围的平涂原色色块，局部点缀半色调网点。"
+      },
    "spec": {
     "ja": [
      "見た目: 原色の平らな面と太い黒の輪郭。ところどころに少しだけ網点",
@@ -510,12 +569,18 @@
      "Look: flat areas of primary color with bold black outlines; a few halftone dots here and there",
      "Feel: 1960s silkscreen prints",
      "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
-    ]
-   },
+    ],
+        "zh-Hans": [
+          "外观：粗黑轮廓与平涂原色色块，局部点缀少量半色调网点",
+          "氛围：1960 年代丝网印刷作品",
+          "示例：将同一张基础草图（山丘上的房屋、树和太阳的线稿）作为参考交给图像模型，按此风格重绘。0.5 s 至 1.35 s，以斜向擦除从草图切换为该风格；画面缓慢放大至 1.045x，持续到 4.0 s；4.0 s 至 4.5 s 淡回草图（单次循环 = 4.7 s，cubic ease-in-out）"
+        ]
+      },
    "use": {
     "ja": "目を引く広告・SNS画像・グッズのデザインに。",
-    "en": "For eye-catching ads, social images or merchandise."
-   },
+    "en": "For eye-catching ads, social images or merchandise.",
+        "zh-Hans": "适合醒目的广告、社交媒体图片或周边商品。"
+      },
    "tags": [
     "pop art",
     "halftone",
@@ -552,8 +617,9 @@
    },
    "summary": {
     "ja": "同じ線画が、暗いレンガの壁に光るネオン管の線だけで描いた絵に変わる。家・木・太陽・丘の稜線が光ってにじむ。",
-    "en": "The same line drawing becomes glowing neon tubes on a dark brick wall; the house, tree, sun and the line of the hill glow and bloom."
-   },
+    "en": "The same line drawing becomes glowing neon tubes on a dark brick wall; the house, tree, sun and the line of the hill glow and bloom.",
+        "zh-Hans": "同一张线稿变成暗色砖墙上的发光霓虹灯管；房屋、树、太阳和山丘轮廓发亮并向四周泛光。"
+      },
    "spec": {
     "ja": [
      "素材: 暗いレンガの壁と、光るネオン管",
@@ -564,12 +630,18 @@
      "Material: a dark brick wall and glowing neon tubes",
      "Look: shapes drawn only with tube lines, with the light blooming around them; the sample uses red, yellow and green tubes",
      "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
-    ]
-   },
+    ],
+        "zh-Hans": [
+          "材料：暗色砖墙与发光霓虹灯管",
+          "外观：仅以灯管线条勾勒形状，光晕向周围扩散；示例使用红、黄、绿灯管",
+          "示例：将同一张基础草图（山丘上的房屋、树和太阳的线稿）作为参考交给图像模型，按此风格重绘。0.5 s 至 1.35 s，以斜向擦除从草图切换为该风格；画面缓慢放大至 1.045x，持续到 4.0 s；4.0 s 至 4.5 s 淡回草图（单次循环 = 4.7 s，cubic ease-in-out）"
+        ]
+      },
    "use": {
     "ja": "夜の雰囲気や、お店・バーの看板のような見た目にしたいとき。",
-    "en": "For a night-time mood or a shop or bar sign look."
-   },
+    "en": "For a night-time mood or a shop or bar sign look.",
+        "zh-Hans": "适合夜间氛围，或店铺、酒吧招牌的效果。"
+      },
    "tags": [
     "neon",
     "neon sign",
@@ -606,8 +678,9 @@
    },
    "summary": {
     "ja": "同じ線画が、金と黒のポスターに変わる。太陽から直線の光が放射状に広がり、幾何学的な直線の装飾がほぼ左右対称に並ぶ。",
-    "en": "The same line drawing becomes a gold-and-black poster: straight rays spread out from the sun, and geometric straight-line ornament is arranged almost symmetrically."
-   },
+    "en": "The same line drawing becomes a gold-and-black poster: straight rays spread out from the sun, and geometric straight-line ornament is arranged almost symmetrically.",
+        "zh-Hans": "同一张线稿变成金黑配色的海报：直线光芒从太阳向外发散，几何直线装饰近乎对称排列。"
+      },
    "spec": {
     "ja": [
      "色: 金と黒が主役",
@@ -620,12 +693,19 @@
      "Look: radiating straight rays, geometric straight lines and near-symmetrical ornament",
      "Feel: a 1920s poster (no text in the sample)",
      "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
-    ]
-   },
+    ],
+        "zh-Hans": [
+          "配色：以金色和黑色为主",
+          "外观：放射状直线光芒、几何直线和近乎对称的装饰",
+          "氛围：1920 年代海报（示例无文字）",
+          "示例：将同一张基础草图（山丘上的房屋、树和太阳的线稿）作为参考交给图像模型，按此风格重绘。0.5 s 至 1.35 s，以斜向擦除从草图切换为该风格；画面缓慢放大至 1.045x，持续到 4.0 s；4.0 s 至 4.5 s 淡回草图（单次循环 = 4.7 s，cubic ease-in-out）"
+        ]
+      },
    "use": {
     "ja": "高級感やクラシックな華やかさを出したいとき。",
-    "en": "For a luxurious, classic and glamorous look."
-   },
+    "en": "For a luxurious, classic and glamorous look.",
+        "zh-Hans": "适合奢华、古典、华丽的画面。"
+      },
    "tags": [
     "art deco",
     "1920s",
@@ -662,8 +742,9 @@
    },
    "summary": {
     "ja": "同じ線画が、1900年頃のポスターに変わる。輪郭は流れる太い曲線になり、葉・草・太陽の光がつると花の装飾になって家と木を囲む。",
-    "en": "The same line drawing becomes a poster from around 1900: outlines turn into flowing thick curves, and leaves, grass and sun rays become ornaments of vines and flowers around the house and tree."
-   },
+    "en": "The same line drawing becomes a poster from around 1900: outlines turn into flowing thick curves, and leaves, grass and sun rays become ornaments of vines and flowers around the house and tree.",
+        "zh-Hans": "同一张线稿变成约 1900 年的海报：轮廓化为流畅粗曲线，树叶、草和太阳光芒化为藤蔓花卉装饰，环绕房屋与树。"
+      },
    "spec": {
     "ja": [
      "見た目: 流れるような太い曲線の輪郭。つると花の曲線の装飾で縁取る",
@@ -676,12 +757,19 @@
      "Color: muted ochre, olive and dusty vermilion",
      "Feel: a poster from around 1900 (no text in the sample)",
      "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
-    ]
-   },
+    ],
+        "zh-Hans": [
+          "外观：粗而流畅的曲线轮廓，以弯曲藤蔓和花卉装饰围成边框",
+          "配色：柔和的赭石色、橄榄绿和灰朱红",
+          "氛围：约 1900 年的海报（示例无文字）",
+          "示例：将同一张基础草图（山丘上的房屋、树和太阳的线稿）作为参考交给图像模型，按此风格重绘。0.5 s 至 1.35 s，以斜向擦除从草图切换为该风格；画面缓慢放大至 1.045x，持续到 4.0 s；4.0 s 至 4.5 s 淡回草图（单次循环 = 4.7 s，cubic ease-in-out）"
+        ]
+      },
    "use": {
     "ja": "上品で装飾的なパッケージ・ラベル・ポスターに。",
-    "en": "For elegant, decorative packaging, labels or posters."
-   },
+    "en": "For elegant, decorative packaging, labels or posters.",
+        "zh-Hans": "适合优雅而富有装饰感的包装、标签或海报。"
+      },
    "tags": [
     "art nouveau",
     "1900s",
@@ -718,8 +806,9 @@
    },
    "summary": {
     "ja": "同じ線画が、黄と青緑の2色インクで刷った絵に変わる。2つの版が少しずれて重なり、インクの粒と紙の質感が見える。",
-    "en": "The same line drawing becomes a print in two inks, yellow and teal; the two layers overlap slightly out of register, with ink grain and paper texture visible."
-   },
+    "en": "The same line drawing becomes a print in two inks, yellow and teal; the two layers overlap slightly out of register, with ink grain and paper texture visible.",
+        "zh-Hans": "同一张线稿变成黄色和蓝绿色两色油墨的印刷品；两层油墨略有套印错位，油墨颗粒和纸张纹理清晰可见。"
+      },
    "spec": {
     "ja": [
      "画材: 2〜3色のインクで刷る孔版印刷（リソグラフ）",
@@ -732,12 +821,19 @@
      "Look: misregistration between layers, ink grain and paper texture stand out; the sample uses yellow and teal",
      "Note: two colors blended smoothly look like a duotone (#116); keep the offset and grain",
      "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
-    ]
-   },
+    ],
+        "zh-Hans": [
+          "媒介：使用两种或三种油墨的孔版印刷（Risograph）",
+          "外观：突出各层之间的套印错位、油墨颗粒和纸张纹理；示例使用黄色和蓝绿色",
+          "注意：两种颜色平滑混合会看起来像双色调（#116）；应保留错位和颗粒",
+          "示例：将同一张基础草图（山丘上的房屋、树和太阳的线稿）作为参考交给图像模型，按此风格重绘。0.5 s 至 1.35 s，以斜向擦除从草图切换为该风格；画面缓慢放大至 1.045x，持续到 4.0 s；4.0 s 至 4.5 s 淡回草图（单次循环 = 4.7 s，cubic ease-in-out）"
+        ]
+      },
    "use": {
     "ja": "ZINE・フライヤー・インディーなポスターの手触りを出したいとき。",
-    "en": "For the feel of zines, flyers and indie posters."
-   },
+    "en": "For the feel of zines, flyers and indie posters.",
+        "zh-Hans": "适合独立小刊、传单和独立海报的质感。"
+      },
    "tags": [
     "risograph",
     "riso",
@@ -774,8 +870,9 @@
    },
    "summary": {
     "ja": "同じ線画が、切り抜いた色紙を何層も重ねた絵に変わる。層の段差に影が落ち、奥行きが出る。",
-    "en": "The same line drawing becomes many layers of cut colored paper; shadows fall where the layers step, giving depth."
-   },
+    "en": "The same line drawing becomes many layers of cut colored paper; shadows fall where the layers step, giving depth.",
+        "zh-Hans": "同一张线稿变成多层彩色剪纸；各层高差处投下阴影，形成深度。"
+      },
    "spec": {
     "ja": [
      "素材: 切り抜いた色紙を何層にも重ねる",
@@ -786,12 +883,18 @@
      "Material: cut colored paper stacked in many layers",
      "Look: shadows fall at each step between layers, giving depth",
      "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
-    ]
-   },
+    ],
+        "zh-Hans": [
+          "材料：裁切彩纸后多层叠放",
+          "外观：各层高差处投下阴影，形成深度",
+          "示例：将同一张基础草图（山丘上的房屋、树和太阳的线稿）作为参考交给图像模型，按此风格重绘。0.5 s 至 1.35 s，以斜向擦除从草图切换为该风格；画面缓慢放大至 1.045x，持续到 4.0 s；4.0 s 至 4.5 s 淡回草图（单次循环 = 4.7 s，cubic ease-in-out）"
+        ]
+      },
    "use": {
     "ja": "温かみと立体感のある、絵本やカードのようなビジュアルに。",
-    "en": "For warm, dimensional visuals like a picture book or a card."
-   },
+    "en": "For warm, dimensional visuals like a picture book or a card.",
+        "zh-Hans": "适合绘本或贺卡般温暖、有层次的画面。"
+      },
    "tags": [
     "paper cut",
     "layered paper",
@@ -828,8 +931,9 @@
    },
    "summary": {
     "ja": "同じ線画が、輪郭線も影もない平らな色の面だけの絵に変わる。",
-    "en": "The same line drawing becomes a picture made only of flat areas of color, with no outlines and no shadows."
-   },
+    "en": "The same line drawing becomes a picture made only of flat areas of color, with no outlines and no shadows.",
+        "zh-Hans": "同一张线稿变成仅由平涂色块构成的插画，没有轮廓线或阴影。"
+      },
    "spec": {
     "ja": [
      "見た目: 平らな色の塗りだけで形を作る",
@@ -840,12 +944,18 @@
      "Look: shapes made only of flat fills of color",
      "Avoid: outlines, shadows and gradients",
      "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
-    ]
-   },
+    ],
+        "zh-Hans": [
+          "外观：仅以平涂色块构成形状",
+          "避免：轮廓线、阴影和渐变",
+          "示例：将同一张基础草图（山丘上的房屋、树和太阳的线稿）作为参考交给图像模型，按此风格重绘。0.5 s 至 1.35 s，以斜向擦除从草图切换为该风格；画面缓慢放大至 1.045x，持续到 4.0 s；4.0 s 至 4.5 s 淡回草图（单次循环 = 4.7 s，cubic ease-in-out）"
+        ]
+      },
    "use": {
     "ja": "Webサイト・アプリ・資料の、すっきりした挿絵に。",
-    "en": "For clean illustrations on websites, in apps or in slides."
-   },
+    "en": "For clean illustrations on websites, in apps or in slides.",
+        "zh-Hans": "适合网站、应用或幻灯片中的简洁插画。"
+      },
    "tags": [
     "flat",
     "flat design",
@@ -882,8 +992,9 @@
    },
    "summary": {
     "ja": "同じ線画が、クリーム色の紙に濃紺のペン1色で描き込んだ細密な線画に変わる。瓦・葉・草・太陽の光まで線で描く。",
-    "en": "The same line drawing becomes a detailed drawing in one dark navy pen on cream paper, with every roof tile, leaf, blade of grass and sun ray drawn in line."
-   },
+    "en": "The same line drawing becomes a detailed drawing in one dark navy pen on cream paper, with every roof tile, leaf, blade of grass and sun ray drawn in line.",
+        "zh-Hans": "同一张线稿变成奶油色纸上用单支深海军蓝色笔绘制的精细线描，每块屋瓦、每片叶子、每根草和每束太阳光都用线条描出。"
+      },
    "spec": {
     "ja": [
      "画材: クリーム色の紙に濃紺のペン1色",
@@ -896,12 +1007,19 @@
      "Look: fine lines only, with every detail drawn in; the line weight varies",
      "Avoid: fills and shaded areas",
      "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
-    ]
-   },
+    ],
+        "zh-Hans": [
+          "媒介：奶油色纸上使用单支深海军蓝色笔",
+          "外观：仅用细线，描出全部细节，线条粗细有变化",
+          "避免：色块填充和明暗铺色",
+          "示例：将同一张基础草图（山丘上的房屋、树和太阳的线稿）作为参考交给图像模型，按此风格重绘。0.5 s 至 1.35 s，以斜向擦除从草图切换为该风格；画面缓慢放大至 1.045x，持续到 4.0 s；4.0 s 至 4.5 s 淡回草图（单次循环 = 4.7 s，cubic ease-in-out）"
+        ]
+      },
    "use": {
     "ja": "ぬり絵・図鑑・パッケージなど、線の美しさを見せたいとき。",
-    "en": "For coloring pages, field guides or packaging where the beauty of the line should show."
-   },
+    "en": "For coloring pages, field guides or packaging where the beauty of the line should show.",
+        "zh-Hans": "适合需要展示线条之美的涂色页、野外图鉴或包装。"
+      },
    "tags": [
     "line art",
     "pen drawing",
@@ -938,8 +1056,9 @@
    },
    "summary": {
     "ja": "同じ線画が、マス目のドットでできた平らなゲーム風の絵に変わる。立体感はなく、1つ1つのドットがはっきり見える。",
-    "en": "The same line drawing becomes a flat, game-style picture made of square pixels, with no depth and every pixel clearly visible."
-   },
+    "en": "The same line drawing becomes a flat, game-style picture made of square pixels, with no depth and every pixel clearly visible.",
+        "zh-Hans": "同一张线稿变成由方形像素组成的平面游戏风格画面，没有纵深，每个像素都清晰可见。"
+      },
    "spec": {
     "ja": [
      "見た目: 1つ1つのドット（マス目）がはっきり見える低解像度",
@@ -950,12 +1069,18 @@
      "Look: low resolution with every pixel (square) clearly visible",
      "View: a flat picture seen from the front, with no depth (for a build of cubes, see Voxel art #210)",
      "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
-    ]
-   },
+    ],
+        "zh-Hans": [
+          "外观：低分辨率，每个方形像素均清晰可见",
+          "视角：正面平视的平面画面，无纵深（立方体搭建效果参见体素艺术 #210）",
+          "示例：将同一张基础草图（山丘上的房屋、树和太阳的线稿）作为参考交给图像模型，按此风格重绘。0.5 s 至 1.35 s，以斜向擦除从草图切换为该风格；画面缓慢放大至 1.045x，持续到 4.0 s；4.0 s 至 4.5 s 淡回草图（单次循环 = 4.7 s，cubic ease-in-out）"
+        ]
+      },
    "use": {
     "ja": "ゲーム風・レトロな雰囲気のアイコンやバナーに。",
-    "en": "For game-like or retro icons and banners."
-   },
+    "en": "For game-like or retro icons and banners.",
+        "zh-Hans": "适合游戏风格或复古风格的图标和横幅。"
+      },
    "tags": [
     "pixel art",
     "dot art",
@@ -992,8 +1117,9 @@
    },
    "summary": {
     "ja": "同じ線画が、小さな立方体を積んだ3Dのジオラマに変わる。家・木・太陽・丘のどれも立方体の集まりで、上面と側面に光と影がつく。",
-    "en": "The same line drawing becomes a 3D diorama of stacked small cubes; the house, tree, sun and hill are all made of cubes with light on top and shade on the sides."
-   },
+    "en": "The same line drawing becomes a 3D diorama of stacked small cubes; the house, tree, sun and hill are all made of cubes with light on top and shade on the sides.",
+        "zh-Hans": "同一张线稿变成小立方体堆叠的 3D 微缩场景；房屋、树、太阳和山丘都由立方体组成，顶面受光，侧面有阴影。"
+      },
    "spec": {
     "ja": [
      "作り: すべてを小さな立方体のブロックを積んだ3Dの模型にする",
@@ -1006,12 +1132,19 @@
      "Look: light and shade on the top and side faces of each cube so it reads as 3D; rendered slightly from above",
      "Note: not a flat pixel-art picture (#209)",
      "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
-    ]
-   },
+    ],
+        "zh-Hans": [
+          "构造：所有内容均用堆叠的小立方体搭建为 3D 模型",
+          "外观：每个立方体的顶面和侧面有明暗变化，呈现 3D 体积；以略微俯视的角度渲染",
+          "注意：并非平面的像素画（#209）",
+          "示例：将同一张基础草图（山丘上的房屋、树和太阳的线稿）作为参考交给图像模型，按此风格重绘。0.5 s 至 1.35 s，以斜向擦除从草图切换为该风格；画面缓慢放大至 1.045x，持续到 4.0 s；4.0 s 至 4.5 s 淡回草图（单次循环 = 4.7 s，cubic ease-in-out）"
+        ]
+      },
    "use": {
     "ja": "ゲーム風の3Dやかわいいジオラマを見せたいとき。",
-    "en": "For game-like 3D or a cute diorama."
-   },
+    "en": "For game-like 3D or a cute diorama.",
+        "zh-Hans": "适合游戏风格的 3D 画面或可爱的微缩场景。"
+      },
    "tags": [
     "voxel",
     "voxel art",
@@ -1048,8 +1181,9 @@
    },
    "summary": {
     "ja": "同じ線画が、三角形の面だけで組んだ3Dに変わる。面ごとに色の明るさが違い、角ばった立体に見える。",
-    "en": "The same line drawing becomes 3D made only of triangular faces; each face has its own shade, so the forms look faceted."
-   },
+    "en": "The same line drawing becomes 3D made only of triangular faces; each face has its own shade, so the forms look faceted.",
+        "zh-Hans": "同一张线稿变成完全由三角形面组成的 3D 画面；每个面有不同明暗，形体呈现分面效果。"
+      },
    "spec": {
     "ja": [
      "作り: 継ぎ目のない三角形の面だけで組んだ3D",
@@ -1060,12 +1194,18 @@
      "Build: 3D made only of triangular faces with no gaps",
      "Look: each face has its own shade of color; faceted forms",
      "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
-    ]
-   },
+    ],
+        "zh-Hans": [
+          "构造：仅用无缝衔接的三角形面构成 3D 模型",
+          "外观：每个面有独立的颜色明暗，形成分面形体",
+          "示例：将同一张基础草图（山丘上的房屋、树和太阳的线稿）作为参考交给图像模型，按此风格重绘。0.5 s 至 1.35 s，以斜向擦除从草图切换为该风格；画面缓慢放大至 1.045x，持续到 4.0 s；4.0 s 至 4.5 s 淡回草图（单次循环 = 4.7 s，cubic ease-in-out）"
+        ]
+      },
    "use": {
     "ja": "シンプルでモダンな3Dの背景やアイコンに。",
-    "en": "For simple, modern 3D backgrounds or icons."
-   },
+    "en": "For simple, modern 3D backgrounds or icons.",
+        "zh-Hans": "适合简洁现代的 3D 背景或图标。"
+      },
    "tags": [
     "low poly",
     "polygon",
@@ -1102,8 +1242,9 @@
    },
    "summary": {
     "ja": "同じ線画が、色画用紙を折って組み立てた立体模型の写真に変わる。家は箱型、木と太陽は多面体で、折り目・のりしろ・紙の切り口が見える。",
-    "en": "The same line drawing becomes a photo of models folded from colored card stock: the house is a box, the tree and sun are polyhedra, and folds, glue tabs and cut edges show."
-   },
+    "en": "The same line drawing becomes a photo of models folded from colored card stock: the house is a box, the tree and sun are polyhedra, and folds, glue tabs and cut edges show.",
+        "zh-Hans": "同一张线稿变成彩色卡纸折成的模型照片：房屋是盒子，树和太阳是多面体，可见折痕、粘贴片和裁切边缘。"
+      },
    "spec": {
     "ja": [
      "作り: 展開図から切り出して折り、のりで貼って組み立てた色画用紙の立体模型",
@@ -1116,12 +1257,19 @@
      "Look: crisp fold edges, small glue tabs sticking out, white cut edges of the paper; a photo taken on a desk from the front at an angle",
      "Note: not a white-only relief, and not the flat stacked layers of Layered paper art (#206)",
      "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
-    ]
-   },
+    ],
+        "zh-Hans": [
+          "构造：按模板裁切彩色卡纸，再折叠粘合为 3D 模型",
+          "外观：清晰的折边、略微露出的小粘贴片和白色纸张裁切边；在桌面上从正面斜角拍摄的照片",
+          "注意：并非纯白浮雕，也不同于分层纸艺（#206）的平面叠层",
+          "示例：将同一张基础草图（山丘上的房屋、树和太阳的线稿）作为参考交给图像模型，按此风格重绘。0.5 s 至 1.35 s，以斜向擦除从草图切换为该风格；画面缓慢放大至 1.045x，持续到 4.0 s；4.0 s 至 4.5 s 淡回草图（单次循环 = 4.7 s，cubic ease-in-out）"
+        ]
+      },
    "use": {
     "ja": "手作り感のある立体の商品イメージや、工作・教材の見せ方に。",
-    "en": "For hand-made 3D product images, or to show crafts and teaching materials."
-   },
+    "en": "For hand-made 3D product images, or to show crafts and teaching materials.",
+        "zh-Hans": "适合手工感的 3D 产品图片，或展示手工制作和教学材料。"
+      },
    "tags": [
     "papercraft",
     "paper model",
@@ -1158,8 +1306,9 @@
    },
    "summary": {
     "ja": "同じ線画が、粘土で作った立体の模型に変わる。表面に指あとと粘土の質感が残る。",
-    "en": "The same line drawing becomes 3D models made of clay, with fingerprints and clay texture on the surface."
-   },
+    "en": "The same line drawing becomes 3D models made of clay, with fingerprints and clay texture on the surface.",
+        "zh-Hans": "同一张线稿变成黏土制作的 3D 模型，表面保留指纹和黏土纹理。"
+      },
    "spec": {
     "ja": [
      "素材: 粘土で作った立体の模型",
@@ -1170,12 +1319,18 @@
      "Material: 3D models made of modeling clay",
      "Look: rounded forms with fingerprints and clay texture left on the surface",
      "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
-    ]
-   },
+    ],
+        "zh-Hans": [
+          "材料：用造型黏土制作的 3D 模型",
+          "外观：圆润形体，表面保留指纹和黏土纹理",
+          "示例：将同一张基础草图（山丘上的房屋、树和太阳的线稿）作为参考交给图像模型，按此风格重绘。0.5 s 至 1.35 s，以斜向擦除从草图切换为该风格；画面缓慢放大至 1.045x，持续到 4.0 s；4.0 s 至 4.5 s 淡回草图（单次循环 = 4.7 s，cubic ease-in-out）"
+        ]
+      },
    "use": {
     "ja": "親しみやすくユーモアのあるキャラクターや場面に。",
-    "en": "For friendly, playful characters and scenes."
-   },
+    "en": "For friendly, playful characters and scenes.",
+        "zh-Hans": "适合亲切、活泼的角色和场景。"
+      },
    "tags": [
     "claymation",
     "clay",
@@ -1212,8 +1367,9 @@
    },
    "summary": {
     "ja": "同じ線画が、布地に色糸で縫い込んだ刺繍に変わる。糸のステッチと布の織り目が見える。",
-    "en": "The same line drawing becomes embroidery in colored thread on fabric, with the stitches and the weave of the cloth visible."
-   },
+    "en": "The same line drawing becomes embroidery in colored thread on fabric, with the stitches and the weave of the cloth visible.",
+        "zh-Hans": "同一张线稿变成布料上的彩线刺绣，针脚和布料织纹清晰可见。"
+      },
    "spec": {
     "ja": [
      "素材: 布地と色糸",
@@ -1224,12 +1380,18 @@
      "Material: fabric and colored thread",
      "Look: the direction of each stitch and the weave of the cloth are visible",
      "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
-    ]
-   },
+    ],
+        "zh-Hans": [
+          "材料：布料与彩色绣线",
+          "外观：每个针脚的方向和布料织纹均清晰可见",
+          "示例：将同一张基础草图（山丘上的房屋、树和太阳的线稿）作为参考交给图像模型，按此风格重绘。0.5 s 至 1.35 s，以斜向擦除从草图切换为该风格；画面缓慢放大至 1.045x，持续到 4.0 s；4.0 s 至 4.5 s 淡回草图（单次循环 = 4.7 s，cubic ease-in-out）"
+        ]
+      },
    "use": {
     "ja": "手仕事のぬくもりがほしいグッズ・パッケージ・季節の挨拶に。",
-    "en": "For merchandise, packaging or seasonal greetings that should feel warm and hand-made."
-   },
+    "en": "For merchandise, packaging or seasonal greetings that should feel warm and hand-made.",
+        "zh-Hans": "适合需要温暖手工质感的周边商品、包装或节日贺卡。"
+      },
    "tags": [
     "embroidery",
     "stitch",
@@ -1266,8 +1428,9 @@
    },
    "summary": {
     "ja": "同じ線画が、80年代風のネオンの世界に変わる。地面は紫と水色の光る格子、太陽は横縞の入った大きな夕日、家と木はネオンの輪郭になる。",
-    "en": "The same line drawing becomes an 1980s neon world: the ground is a glowing purple and cyan grid, the sun a big striped sunset, and the house and tree neon outlines."
-   },
+    "en": "The same line drawing becomes an 1980s neon world: the ground is a glowing purple and cyan grid, the sun a big striped sunset, and the house and tree neon outlines.",
+        "zh-Hans": "同一张线稿变成 1980 年代的霓虹世界：地面是发光的紫色与青色网格，太阳是带横条纹的巨大落日，房屋和树以霓虹轮廓勾勒。"
+      },
    "spec": {
     "ja": [
      "色: 紫・水色・ピンクのネオン",
@@ -1280,12 +1443,19 @@
      "Look: a neon grid for the ground, a big sunset with horizontal stripes, neon outlines",
      "Feel: 1980s retro-futurism",
      "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out) (this sample is cropped taller so the grid on the ground shows)"
-    ]
-   },
+    ],
+        "zh-Hans": [
+          "配色：紫色、青色和粉色霓虹",
+          "外观：地面霓虹网格、带水平条纹的巨大落日、霓虹轮廓",
+          "氛围：1980 年代复古未来主义",
+          "示例：将同一张基础草图（山丘上的房屋、树和太阳的线稿）作为参考交给图像模型，按此风格重绘。0.5 s 至 1.35 s，以斜向擦除从草图切换为该风格；画面缓慢放大至 1.045x，持续到 4.0 s；4.0 s 至 4.5 s 淡回草图（单次循环 = 4.7 s，cubic ease-in-out）（此示例采用更高的裁切范围，以展示地面网格）"
+        ]
+      },
    "use": {
     "ja": "レトロフューチャーな音楽・ゲーム・イベントのビジュアルに。",
-    "en": "For retro-futuristic music, game or event visuals."
-   },
+    "en": "For retro-futuristic music, game or event visuals.",
+        "zh-Hans": "适合复古未来主义的音乐、游戏或活动视觉。"
+      },
    "tags": [
     "synthwave",
     "retrowave",
@@ -1322,8 +1492,9 @@
    },
    "summary": {
     "ja": "同じ線画が、青い地に白い細線で引いた設計図に変わる。寸法線や補助線が少し入る。",
-    "en": "The same line drawing becomes a technical drawing in fine white lines on blue, with a few dimension and construction lines."
-   },
+    "en": "The same line drawing becomes a technical drawing in fine white lines on blue, with a few dimension and construction lines.",
+        "zh-Hans": "同一张线稿变成蓝底细白线的技术图纸，带少量尺寸标注线和辅助构造线。"
+      },
    "spec": {
     "ja": [
      "見た目: 青い地に白い細線の図面",
@@ -1334,12 +1505,18 @@
      "Look: a drawing in fine white lines on a blue ground",
      "Lines: a few dimension and construction lines (the sample has no numbers or text)",
      "Sample: the same base sketch (a line drawing of a house, a tree and the sun on a hill) was given to an image model as a reference and redrawn in this style. A diagonal wipe turns the sketch into the style from 0.5 s to 1.35 s, the picture slowly zooms to 1.045x until 4.0 s, and it fades back to the sketch from 4.0 s to 4.5 s (one pass = 4.7 s, cubic ease-in-out)"
-    ]
-   },
+    ],
+        "zh-Hans": [
+          "外观：蓝色底面上的细白线图纸",
+          "线条：少量尺寸标注线和辅助构造线（示例无数字或文字）",
+          "示例：将同一张基础草图（山丘上的房屋、树和太阳的线稿）作为参考交给图像模型，按此风格重绘。0.5 s 至 1.35 s，以斜向擦除从草图切换为该风格；画面缓慢放大至 1.045x，持续到 4.0 s；4.0 s 至 4.5 s 淡回草图（单次循环 = 4.7 s，cubic ease-in-out）"
+        ]
+      },
    "use": {
     "ja": "製品の仕組みや「計画中」の雰囲気を見せたいとき。",
-    "en": "To show how a product works, or to give a \"being planned\" feel."
-   },
+    "en": "To show how a product works, or to give a \"being planned\" feel.",
+        "zh-Hans": "适合说明产品工作原理，或营造“正在规划中”的感觉。"
+      },
    "tags": [
     "blueprint",
     "technical drawing",

@@ -19,7 +19,6 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 04
-// 04 アコーディオン（Accordion）
 CELLS[3] = ui((w, h, t) => {
   const ex = eio(seg(t, 1.0, 1.35)) * (1 - eio(seg(t, 3.3, 3.62)));
   let y = 12; const H0 = 34, EX = 58;

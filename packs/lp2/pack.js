@@ -1,55 +1,53 @@
 /* Motion Prompt · pack "lp2" · MIT License (c) 2026 Shohei Ohtaki · https://github.com/showheyohtaki/motion-prompt */
 MotionPrompt.pack('lp2', function () {
   // @kit
-  // LP・Webサイトの演出の名前 第2弾 24（各カード 539x208・1つの動きは4.7秒、パックの周期は9.4秒。各コマは時間 u の純関数）
-  // カードの中にブラウザの窓を1つ描き、その中の簡略化したページで演出を見せる。
-  // きっかけ（スクロールバー・カーソル・クリック）も一緒に描く。色は 地・文字・差し色（朱）＋写真用の青。
+  // 每张卡片为 539 × 208 像素。每帧仅由时间 u 决定。
   const CW = 539, CH = 208;
-  const CYC = 4.7;                                   // 1つの動きは4.7秒
-  const LOOP = CYC * 2;                              // パックの周期は9.4秒。各カードは4.7秒の動きを2回、カウントダウン（20）だけ9.4秒で1回（ループの継ぎ目なし）
+  const CYC = 4.7;
+  const LOOP = CYC * 2;                              // 整包循环为 9.4 秒。大多数卡片每 4.7 秒重复一次，第 20 张倒计时卡片用完整的 9.4 秒。
   const C = {
     desk: '#E7EAF0', win: '#FFFFFF', bar: '#F3F5F8', rule: '#E2E6ED', ink: '#1C2333', sub: '#7D879B',
     faint: '#DCE1EA', soft: '#F3F5F9', skel: '#E4E8EF', acc: '#FF5A2C', accL: '#FFE5DB', blue: '#3B64E8', blueL: '#E1E8FF'
   };
-  const JP = '"Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", system-ui, sans-serif';
+  const JP = '"PingFang SC","Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", system-ui, sans-serif';
   const EN = '"Avenir Next", "Helvetica Neue", system-ui, sans-serif';
   const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
   const lerp = (a, b, x) => a + (b - a) * x;
   const P = (t, a, b) => clamp((t - a) / (b - a));
-  const eIO = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;   // easeInOut（3乗）
-  const eIOs = x => x < .5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2;      // easeInOut（2乗）
-  const eOut = x => 1 - Math.pow(1 - x, 3);                                      // easeOut（3乗）
+  const eIO = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;   // 三次缓入缓出。
+  const eIOs = x => x < .5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2;      // 二次缓入缓出。
+  const eOut = x => 1 - Math.pow(1 - x, 3);                                      // 三次缓出。
   const eIn = x => x * x * x;
   const mod = (a, n) => ((a % n) + n) % n;
-  // 浮動小数の誤差で周期の終わり（4.6999…）と始まり（0）が別のコマ扱いになるのを防ぎ、u を 0〜4.7秒に折り返す
+  // 将 u 折回 0 到 4.7 秒，避免浮点误差使循环末尾的 4.6999… 与开头的 0 落在不同帧。
   const snapU = u => mod(Math.round(u * 1e6) / 1e6, CYC);
-  // GSAP の elastic.out(1, 0.3) と同じ式
+  // 沿用 GSAP 的 elastic.out(1, 0.3) 公式。
   const eEl = x => x <= 0 ? 0 : x >= 1 ? 1 : Math.pow(2, -10 * x) * Math.sin((x - 0.075) * 2 * Math.PI / 0.3) + 1;
   function rr(k, x, y, w, h, r) { k.beginPath(); k.roundRect(x, y, w, h, r); }
   function txt(k, s, x, y, font, col, align = 'left', base = 'alphabetic', ls = '0px') {
     k.font = font; k.fillStyle = col; k.textAlign = align; k.textBaseline = base; k.letterSpacing = ls; k.fillText(s, x, y); k.letterSpacing = '0px';
   }
-  // キーフレーム [[秒, 値], …] を easeInOut（3乗）でつなぐ。u は周期で折り返す
+  // 输入关键帧 [[秒数, 值], …]。用三次缓入缓出连接各帧，u 按周期折返。
   function steps(keys, u) {
     u = mod(u, CYC);
     if (u <= keys[0][0]) return keys[0][1];
     for (let i = 1; i < keys.length; i++) if (u < keys[i][0]) { const [t0, a] = keys[i - 1], [t1, b] = keys[i]; return lerp(a, b, eIO((u - t0) / (t1 - t0))); }
     return keys[keys.length - 1][1];
   }
-  // カーソルの通り道 [[秒, x, y], …]（easeInOut 3乗でつなぐ）
+  // 输入光标路径 [[秒数, x, y], …]，用三次缓入缓出连接各点。
   function path(keys, u) {
     u = mod(u, CYC);
     if (u <= keys[0][0]) return [keys[0][1], keys[0][2]];
     for (let i = 1; i < keys.length; i++) if (u < keys[i][0]) { const a = keys[i - 1], b = keys[i], f = eIO((u - a[0]) / (b[0] - a[0])); return [lerp(a[1], b[1], f), lerp(a[2], b[2], f)]; }
     const l = keys[keys.length - 1]; return [l[1], l[2]];
   }
-  // on(t) が最後に切り替わった時刻から dur 秒の遷移（CSS の transition と同じ考え方）。過去へさかのぼって調べる
+  // 向前回溯 on(t) 最近一次状态切换，模拟持续 dur 秒的 CSS 过渡。
   function trans(on, u, dur, ease = eOut) {
     const s = on(u);
     for (let i = 0, t = u; i < 600; i++, t -= 1 / 120) if (on(t - 1 / 120) !== s) { const q = ease(P(u, t, t + dur)); return s ? q : 1 - q; }
     return s ? 1 : 0;
   }
-  // ブラウザの窓。中のページは V（511x168）の座標で描く
+  // 浏览器窗口内的页面使用 V 的 511 × 168 坐标系。
   const WIN = { x: 14, y: 8, w: 511, h: 192, r: 10, bar: 24 };
   const VW = WIN.w, VH = WIN.h - WIN.bar;
   function frame(k, url = 'example.com') {
@@ -66,13 +64,13 @@ MotionPrompt.pack('lp2', function () {
     k.save(); rr(k, WIN.x, WIN.y + WIN.bar, VW, VH, [0, 0, WIN.r, WIN.r]); k.clip(); k.translate(WIN.x, WIN.y + WIN.bar);
     k.fillStyle = '#fff'; k.fillRect(0, 0, VW, VH); fn(); k.restore();
   }
-  // スクロールバー（つまみだけ。pos 0〜1、ratio＝見えている割合）
+  // 只绘制滚动滑块。pos 为归一化位置，ratio 为内容的可见比例。
   function sbar(k, pos, ratio = 0.42) { const th = (VH - 8) * ratio; k.fillStyle = 'rgba(28,35,51,.38)'; rr(k, VW - 9, 4 + (VH - 8 - th) * clamp(pos), 5, th, 2.5); k.fill(); }
-  // 文字の代わりの棒（n 行。最後の行は短い）
+  // 用 n 条横线模拟文字，末行稍短。
   function bars(k, x, y, w, n, col = C.faint, hh = 6, gap = 11, last = 0.62) {
     k.fillStyle = col; for (let i = 0; i < n; i++) { rr(k, x, y + i * gap, i === n - 1 && n > 1 ? w * last : w, hh, hh / 2); k.fill(); }
   }
-  // 写真の代わりの絵（空・太陽・山）。v で色ちがい、z で中身だけ拡大（枠は固定）
+  // v 切换配色，z 只缩放图像内容，外框保持原尺寸。
   const PICS = [
     { sky: ['#A9C0FF', '#E4EBFF'], sun: '#FF5A2C', sx: .74, sy: .32, m1: '#7D9AF4', m2: '#4B6BDB' },
     { sky: ['#FFC7B2', '#FFEDE5'], sun: '#FFFFFF', sx: .28, sy: .34, m1: '#F4977A', m2: '#DD5F3B' },
@@ -92,23 +90,21 @@ MotionPrompt.pack('lp2', function () {
   function btn(k, x, y, w, h, label, col = C.acc, tcol = '#fff', fs = 12) {
     k.fillStyle = col; rr(k, x, y, w, h, h / 2); k.fill(); txt(k, label, x + w / 2, y + h / 2 + 0.5, `700 ${fs}px ${JP}`, tcol, 'center', 'middle');
   }
-  function logo(k, x, y, col = C.ink) { k.fillStyle = C.acc; rr(k, x, y - 7, 14, 14, 4); k.fill(); txt(k, 'SAMPLE', x + 20, y + 0.5, `800 12px ${EN}`, col, 'left', 'middle', '1px'); }
-  // ページのヘッダー（高さ34）
+  function logo(k, x, y, col = C.ink) { k.fillStyle = C.acc; rr(k, x, y - 7, 14, 14, 4); k.fill(); txt(k, '示例', x + 20, y + 0.5, `800 12px ${EN}`, col, 'left', 'middle', '1px'); }
   const NAVX = [300, 346, 392];
   function header(k, y, active = -1) {
     k.fillStyle = '#fff'; k.fillRect(0, y, VW, 34); k.fillStyle = C.rule; k.fillRect(0, y + 33, VW, 1);
     logo(k, 18, y + 17);
-    ['特長', '料金', 'FAQ'].forEach((s, i) => txt(k, s, NAVX[i], y + 17.5, `600 12px ${JP}`, active === i ? C.acc : C.ink, 'left', 'middle'));
-    btn(k, 428, y + 7, 70, 20, '無料で試す', C.acc, '#fff', 10.5);
+    ['特色', '价格', '常见问题'].forEach((s, i) => txt(k, s, NAVX[i], y + 17.5, `600 12px ${JP}`, active === i ? C.acc : C.ink, 'left', 'middle'));
+    btn(k, 428, y + 7, 70, 20, '免费试用', C.acc, '#fff', 10.5);
   }
-  // マウスのカーソル（矢印）。press で少し縮む
   function cursor(k, x, y, press = 0) {
     const s = 1.2 * (1 - 0.12 * press);
     k.save(); k.translate(x, y); k.scale(s, s); k.beginPath();
     [[0, 0], [0, 16.5], [4.2, 12.6], [7, 19], [9.8, 17.8], [7.1, 11.6], [12.6, 11.6]].forEach(([a, b], i) => i ? k.lineTo(a, b) : k.moveTo(a, b));
     k.closePath(); k.lineJoin = 'round'; k.lineWidth = 1.6; k.strokeStyle = '#fff'; k.fillStyle = C.ink; k.fill(); k.stroke(); k.restore();
   }
-  // クリックした所に出る小さな輪（0.35秒）と、押している間の縮み
+  // 点击圆环持续 0.35 秒，按下期间缩小光标。
   function click(k, x, y, u, times) {
     let press = 0;
     for (const tc of times) {
@@ -118,13 +114,12 @@ MotionPrompt.pack('lp2', function () {
     }
     cursor(k, x, y, clamp(press));
   }
-  // 回る読み込み表示（0.8秒で1回転）
   function spinner(k, x, y, r, u, col = C.acc) {
     const a = u / 0.8 * Math.PI * 2;
     k.lineCap = 'round'; k.lineWidth = r * 0.28; k.strokeStyle = C.faint; k.beginPath(); k.arc(x, y, r, 0, 7); k.stroke();
     k.strokeStyle = col; k.beginPath(); k.arc(x, y, r, a, a + Math.PI * 0.6); k.stroke(); k.lineCap = 'butt';
   }
-  // ページ上の top にある要素が、判定線 line より上に入った時刻（画面の下へ出たらリセット）。過去 CYC 秒をさかのぼる
+  // 回溯最近 CYC 秒，查找页面中 top 位置的元素越过判定线 line 的时刻。元素退回显示区下方时重置。
   function enteredAt(sy, top, line, u) {
     const dt = 1 / 120, y = t => top - sy(t);
     if (y(u) >= VH) return null;
@@ -135,34 +130,32 @@ MotionPrompt.pack('lp2', function () {
     }
     return y(u) < line ? -1e9 : null;
   }
-  // 第2弾で足した道具
   function hex(c) { if (c[0] === 'r') return c.match(/\d+/g).slice(0, 3).map(Number); return [parseInt(c.slice(1, 3), 16), parseInt(c.slice(3, 5), 16), parseInt(c.slice(5, 7), 16)]; }
   function mix(a, b, t) { const A = hex(a), B = hex(b); return `rgb(${Math.round(lerp(A[0], B[0], t))},${Math.round(lerp(A[1], B[1], t))},${Math.round(lerp(A[2], B[2], t))})`; }
   function heartPath(k, s) { k.beginPath(); k.moveTo(0, s * 0.92); k.bezierCurveTo(-s * 1.75, -s * 0.12, -s * 0.85, -s * 1.2, 0, -s * 0.42); k.bezierCurveTo(s * 0.85, -s * 1.2, s * 1.75, -s * 0.12, 0, s * 0.92); k.closePath(); }
-  function check(k, x, y, s, col, lw, f = 1) {   // チェックの線（f で描く途中）
+  function check(k, x, y, s, col, lw, f = 1) {   // f 为对勾的描画进度。
     const pts = [[-0.5, 0.02], [-0.14, 0.38], [0.52, -0.34]], L1 = Math.hypot(0.36, 0.36), L2 = Math.hypot(0.66, 0.72), L = (L1 + L2) * clamp(f);
     k.save(); k.translate(x, y); k.strokeStyle = col; k.lineWidth = lw; k.lineCap = 'round'; k.lineJoin = 'round'; k.beginPath(); k.moveTo(pts[0][0] * s, pts[0][1] * s);
     if (L <= L1) { const q = L / L1; k.lineTo(lerp(pts[0][0], pts[1][0], q) * s, lerp(pts[0][1], pts[1][1], q) * s); }
     else { const q = (L - L1) / L2; k.lineTo(pts[1][0] * s, pts[1][1] * s); k.lineTo(lerp(pts[1][0], pts[2][0], q) * s, lerp(pts[1][1], pts[2][1], q) * s); }
     if (L > 0) k.stroke(); k.restore();
   }
-  // 最後に on(t) が切り替わった時刻（なければ null）
+  // 返回最近一次 on(t) 切换的时刻。尚未切换时返回 null。
   function lastSwitch(on, u) { const s = on(u); for (let i = 0, t = u; i < 600; i++, t -= 1 / 120) if (on(t - 1 / 120) !== s) return t; return null; }
   const GREEN = '#1E9E5A', RED = '#E5383B', HEART = '#F23D5C';
   const CELLS = [];
 
   // @element 01
-  // 01 タイムラインアニメーション（スクロールに合わせて年表の線が上から伸び、線が届いた年が順に現れる）
   CELLS[0] = (k, w, h, u) => {
     u = snapU(u);
     frame(k);
     const y = steps([[0.3, 0], [2.3, 190], [3.0, 190], [4.3, 0]], u);
-    const ROWS = [[72, '2018', '創業'], [126, '2020', '1号店オープン'], [180, '2022', '会員1万人'], [234, '2024', 'アプリ公開'], [288, '2026', '海外へ']];
-    const LX = 168, L = y + 126;                         // 線の先（画面の下から 42px の所までページと一緒に伸びる）
+    const ROWS = [[72, '2018', '创立'], [126, '2020', '首家门店开业'], [180, '2022', '会员突破一万人'], [234, '2024', '应用上线'], [288, '2026', '拓展海外']];
+    const LX = 168, L = y + 126;                         // 线端随页面延伸，最远到窗口底部上方 42 像素处。
     view(k, () => {
       k.save(); k.translate(0, -y);
-      txt(k, 'HISTORY', 34, 34, `800 11px ${EN}`, C.acc, 'left', 'alphabetic', '2px');
-      txt(k, 'あゆみ', 34, 60, `800 20px ${JP}`, C.ink);
+      txt(k, '时间线', 34, 34, `800 11px ${EN}`, C.acc, 'left', 'alphabetic', '2px');
+      txt(k, '发展历程', 34, 60, `800 20px ${JP}`, C.ink);
       pic(k, 34, 76, 100, 62, 0, 6); bars(k, 34, 148, 90, 2);
       k.fillStyle = C.faint; rr(k, LX - 1.5, 52, 3, 248, 1.5); k.fill();
       k.fillStyle = C.acc; rr(k, LX - 1.5, 52, 3, clamp(L - 52, 0, 248), 1.5); k.fill();
@@ -183,16 +176,15 @@ MotionPrompt.pack('lp2', function () {
   };
 
   // @element 02
-  // 02 スクロールテキストリビール（薄い見出しの文字が、スクロールに合わせて左から1文字ずつ濃くなる）
   CELLS[1] = (k, w, h, u) => {
     u = snapU(u);
     frame(k);
     const p = steps([[0.3, 0], [2.6, 1], [3.2, 1], [4.4, 0]], u), y = p * 40;
-    const LINES = ['毎日の小さな工夫が、', '暮らしを少しずつ', '変えていく。'], F = `800 27px ${JP}`;
+    const LINES = ['每天的一点巧思，', '让生活一点一点', '变得更好。'], F = `800 27px ${JP}`;
     const total = LINES.join('').length;
     view(k, () => {
       k.save(); k.translate(0, -y);
-      txt(k, 'ABOUT US', 40, 34, `800 11px ${EN}`, C.acc, 'left', 'alphabetic', '2px');
+      txt(k, '关于我们', 40, 34, `800 11px ${EN}`, C.acc, 'left', 'alphabetic', '2px');
       let n = 0;
       LINES.forEach((s, li) => {
         let x = 40; k.font = F;
@@ -209,12 +201,11 @@ MotionPrompt.pack('lp2', function () {
   };
 
   // @element 03
-  // 03 スタッキングカード（スクロールすると、次のカードが下から来て前のカードに少しずらして重なる）
   CELLS[2] = (k, w, h, u) => {
     u = snapU(u);
     frame(k);
     const s = steps([[0.3, 0], [1.1, 1], [1.6, 1], [2.4, 2], [3.2, 2], [4.4, 0]], u);
-    const CARDS = [[C.blueL, C.ink, C.acc, '01', '企画する', 0], [C.ink, '#fff', C.acc, '02', 'つくる', 2], [C.acc, '#fff', '#fff', '03', '届ける', 1]];
+    const CARDS = [[C.blueL, C.ink, C.acc, '01', '策划', 0], [C.ink, '#fff', C.acc, '02', '制作', 2], [C.acc, '#fff', '#fff', '03', '交付', 1]];
     const X = 70, CWD = 371, CHT = 124, STEP = 170;
     view(k, () => {
       k.fillStyle = C.soft; k.fillRect(0, 0, VW, VH);
@@ -235,7 +226,6 @@ MotionPrompt.pack('lp2', function () {
   };
 
   // @element 04
-  // 04 背景色の切り替え（スクロールでセクションが変わるたび、ページ全体の背景色がなめらかに変わる）
   CELLS[3] = (k, w, h, u) => {
     u = snapU(u);
     frame(k);
@@ -247,14 +237,13 @@ MotionPrompt.pack('lp2', function () {
     view(k, () => {
       k.fillStyle = bg; k.fillRect(0, 0, VW, VH);
       k.save(); k.translate(0, -y);
-      const S = [['01  MORNING', '朝のひととき'], ['02  NIGHT', '夜のくつろぎ'], ['03  HOLIDAY', '休日のおでかけ']];
+      const S = [['01  清晨', '清晨时光'], ['02  夜晚', '夜晚小憩'], ['03  假日', '假日出游']];
       S.forEach(([no, ttl], i) => {
         const y0 = i * VH;
         txt(k, no, 40, y0 + 58, `800 12px ${EN}`, C.acc, 'left', 'alphabetic', '2px');
         txt(k, ttl, 40, y0 + 92, `800 24px ${JP}`, fg);
         k.fillStyle = bc; for (let j = 0; j < 2; j++) { rr(k, 40, y0 + 108 + j * 12, j ? 110 : 180, 6, 3); k.fill(); }
       });
-      // 朝: 太陽 / 夜: 月と星 / 休日: 山の写真
       k.fillStyle = C.acc; k.beginPath(); k.arc(380, 84, 34, 0, 7); k.fill();
       k.strokeStyle = C.acc; k.lineWidth = 4; k.lineCap = 'round';
       for (let j = 0; j < 8; j++) { const a = j * Math.PI / 4; k.beginPath(); k.moveTo(380 + Math.cos(a) * 44, 84 + Math.sin(a) * 44); k.lineTo(380 + Math.cos(a) * 54, 84 + Math.sin(a) * 54); k.stroke(); }
@@ -268,20 +257,19 @@ MotionPrompt.pack('lp2', function () {
   };
 
   // @element 05
-  // 05 隠れるヘッダー（下へスクロールするとヘッダーが上へ引っ込み、上へ戻すとすっと出てくる）
   CELLS[4] = (k, w, h, u) => {
     u = snapU(u);
     frame(k);
     const SY = t => steps([[0.3, 0], [1.1, 170], [1.5, 170], [1.9, 100], [2.4, 100], [2.9, 230], [3.3, 230], [4.3, 0]], t), y = SY(u);
-    // 最後に動いた向きが「下」なら隠す（ページの一番上にいるときは出す）
+    // 最近一次向下滚动时隐藏页眉。滚至页首时始终显示。
     const hidden = t => { const yt = SY(t); if (yt < 34) return false; for (let i = 0, tt = t; i < 600; i++, tt -= 1 / 120) { const d = SY(tt) - SY(tt - 1 / 120); if (Math.abs(d) > 1e-4) return d > 0; } return false; };
     const q = trans(hidden, u, 0.3, eIOs);
     view(k, () => {
       k.save(); k.translate(0, -y);
       pic(k, 24, 48, 214, 110, 1, 8);
-      txt(k, '旅の準備を、', 262, 84, `800 22px ${JP}`, C.ink); txt(k, 'まとめて。', 262, 114, `800 22px ${JP}`, C.ink); bars(k, 262, 128, 200, 2); btn(k, 262, 152, 100, 24, '詳しく見る');
+      txt(k, '旅行准备，', 262, 84, `800 22px ${JP}`, C.ink); txt(k, '一站办妥。', 262, 114, `800 22px ${JP}`, C.ink); bars(k, 262, 128, 200, 2); btn(k, 262, 152, 100, 24, '了解详情');
       k.fillStyle = C.soft; k.fillRect(0, 196, VW, 260);
-      txt(k, '人気のプラン', VW / 2, 232, `800 17px ${JP}`, C.ink, 'center');
+      txt(k, '热门方案', VW / 2, 232, `800 17px ${JP}`, C.ink, 'center');
       for (let r = 0; r < 2; r++) for (let i = 0; i < 3; i++) { const x = 34 + i * 152, y0 = 250 + r * 100; k.fillStyle = '#fff'; rr(k, x, y0, 136, 88, 8); k.fill(); pic(k, x + 8, y0 + 8, 120, 46, (i + r) % 3, 5); bars(k, x + 10, y0 + 64, 100, 2, C.faint, 5, 10); }
       k.restore();
       const hy = -36 * q;
@@ -292,12 +280,11 @@ MotionPrompt.pack('lp2', function () {
   };
 
   // @element 06
-  // 06 スクロールスパイ（左の目次のうち、いま読んでいる見出しの項目が光る）
   CELLS[5] = (k, w, h, u) => {
     u = snapU(u);
     frame(k);
     const y = steps([[0.3, 0], [0.9, 100], [1.35, 100], [1.95, 200], [2.4, 200], [3.0, 300], [3.5, 300], [4.4, 0]], u);
-    const NAMES = ['はじめに', '使い方', '料金', 'よくある質問'], TX = 160;
+    const NAMES = ['开始之前', '使用方法', '价格', '常见问题'], TX = 160;
     const act = t => { const yy = steps([[0.3, 0], [0.9, 100], [1.35, 100], [1.95, 200], [2.4, 200], [3.0, 300], [3.5, 300], [4.4, 0]], t); let a = 0; for (let i = 0; i < 4; i++) if (i * 100 <= yy + 40) a = i; return a; };
     view(k, () => {
       k.save(); k.beginPath(); k.rect(TX - 10, 0, VW, VH); k.clip(); k.translate(0, -y);
@@ -308,7 +295,7 @@ MotionPrompt.pack('lp2', function () {
       });
       k.restore();
       k.fillStyle = C.soft; k.fillRect(0, 0, TX - 10, VH);
-      txt(k, '目次', 20, 30, `800 12px ${JP}`, C.sub);
+      txt(k, '目录', 20, 30, `800 12px ${JP}`, C.sub);
       const a = act(u);
       NAMES.forEach((s, i) => {
         const q = trans(t => act(t) === i, u, 0.25), iy = 54 + i * 30;
@@ -320,7 +307,6 @@ MotionPrompt.pack('lp2', function () {
   };
 
   // @element 07
-  // 07 トップへ戻るボタン（下までスクロールすると右下に丸いボタンが出て、押すと一気に先頭へ戻る）
   CELLS[6] = (k, w, h, u) => {
     u = snapU(u);
     frame(k);
@@ -330,8 +316,8 @@ MotionPrompt.pack('lp2', function () {
     const [cx, cy] = cur(u);
     view(k, () => {
       k.save(); k.translate(0, -y);
-      txt(k, 'BLOG', 70, 32, `800 11px ${EN}`, C.acc, 'left', 'alphabetic', '2px');
-      txt(k, '週末にできる、小さな旅', 70, 58, `800 19px ${JP}`, C.ink);
+      txt(k, '博客', 70, 32, `800 11px ${EN}`, C.acc, 'left', 'alphabetic', '2px');
+      txt(k, '周末来一场短途旅行', 70, 58, `800 19px ${JP}`, C.ink);
       pic(k, 70, 72, 371, 100, 2, 8);
       for (let b = 0; b < 3; b++) { const y0 = 192 + b * 82; k.fillStyle = C.ink; rr(k, 70, y0, 150, 9, 4.5); k.fill(); bars(k, 70, y0 + 22, 371, 4, C.faint, 6, 12); }
       k.fillStyle = C.ink; k.fillRect(0, 438, VW, 80); logo(k, 70, 454, '#fff'); bars(k, 300, 451, 140, 1, 'rgba(255,255,255,.3)');
@@ -350,7 +336,6 @@ MotionPrompt.pack('lp2', function () {
   };
 
   // @element 08
-  // 08 スクロールで拡大（スクロールに合わせて、小さな写真が窓いっぱいまで広がる）
   CELLS[7] = (k, w, h, u) => {
     u = snapU(u);
     frame(k);
@@ -359,19 +344,18 @@ MotionPrompt.pack('lp2', function () {
     view(k, () => {
       const a = 1 - clamp(p * 2.2);
       k.save(); k.globalAlpha = a;
-      txt(k, '景色の中へ', VW / 2, 38, `800 19px ${JP}`, C.ink, 'center');
+      txt(k, '走进风景', VW / 2, 38, `800 19px ${JP}`, C.ink, 'center');
       bars(k, 34, 66, 120, 4, C.faint, 6, 14); bars(k, 357, 66, 120, 4, C.faint, 6, 14);
       k.restore();
       pic(k, x, y, ww, hh, 0, lerp(8, 0, p));
       const b = clamp((p - 0.7) / 0.3);
-      if (b > 0) { k.save(); k.globalAlpha = b; txt(k, '絶景へようこそ', VW / 2, VH / 2 + 2, `800 26px ${JP}`, '#fff', 'center', 'middle', '2px'); k.restore(); }
+      if (b > 0) { k.save(); k.globalAlpha = b; txt(k, '欢迎来到绝美风景', VW / 2, VH / 2 + 2, `800 26px ${JP}`, '#fff', 'center', 'middle', '2px'); k.restore(); }
       sbar(k, p * 0.6, 0.4);
     });
   };
 
   // @element 09
-  // 09 3Dチルト（カーソルの動きに合わせて、カードが奥行きをもって傾く）
-  // カードの面（TC）と縦に傾けた面（TD）を描く下書き用の canvas。拡大して描くときは、その倍率ぶん細かく描く
+  // TC 和 TD 是绘制卡面及纵向倾斜卡面的离屏画布，需按最终绘制倍率提高分辨率。
   const TC = document.createElement('canvas'); TC.width = 220; TC.height = 132; const TCK = TC.getContext('2d');
   const TD = document.createElement('canvas'); TD.width = 300; TD.height = 190; const TDK = TD.getContext('2d');
   const TDW = 300, TDH = 190;
@@ -384,24 +368,23 @@ MotionPrompt.pack('lp2', function () {
     const q = trans(inside, u, 0.4, eOut), [cx, cy] = cur(u);
     const nx = clamp((cx - BX) / (BW / 2), -1, 1), ny = clamp((cy - BY) / (BH / 2), -1, 1);
     const ry = nx * MAXA * q, rx = ny * MAXA * q;
-    // 呼び出し側の拡大率 S（詳細表示などで2倍・3倍に描かれるとき）。下書きの canvas を S 倍の細かさにする
+    // 调用方放大绘制时，离屏画布的分辨率乘以缩放倍率 S。
     const m = k.getTransform(), S = Math.min(4, Math.max(1, Math.hypot(m.a, m.b)));
     const cw = Math.ceil(BW * S), ch = Math.ceil(BH * S), dw = Math.ceil(TDW * S), dh = Math.ceil(TDH * S);
     if (TC.width !== cw || TC.height !== ch) { TC.width = cw; TC.height = ch; }
     if (TD.width !== dw || TD.height !== dh) { TD.width = dw; TD.height = dh; }
-    // カードの面
     const g = TCK; g.clearRect(0, 0, TC.width, TC.height);
     g.save(); g.scale(S, S); rr(g, 0, 0, BW, BH, 14); g.clip();
     const gr = g.createLinearGradient(0, 0, BW, BH); gr.addColorStop(0, '#2B4FD6'); gr.addColorStop(1, '#7D9AF4'); g.fillStyle = gr; g.fillRect(0, 0, BW, BH);
     g.fillStyle = 'rgba(255,255,255,.12)'; g.beginPath(); g.arc(BW - 30, 20, 70, 0, 7); g.fill();
     logo(g, 18, 26, '#fff');
     g.fillStyle = '#FFD9C9'; rr(g, 18, 52, 34, 26, 5); g.fill();
-    txt(g, 'MEMBER CARD', 18, 104, `700 11px ${EN}`, 'rgba(255,255,255,.8)', 'left', 'alphabetic', '2px');
+    txt(g, '会员卡', 18, 104, `700 11px ${EN}`, 'rgba(255,255,255,.8)', 'left', 'alphabetic', '2px');
     txt(g, '0123  4567  8910', 18, 122, `700 13px ${EN}`, '#fff', 'left', 'alphabetic', '1px');
     const gx = (nx * 0.5 + 0.5) * BW, gy = (ny * 0.5 + 0.5) * BH, gl = g.createRadialGradient(gx, gy, 0, gx, gy, 130);
     gl.addColorStop(0, `rgba(255,255,255,${0.42 * q})`); gl.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = gl; g.fillRect(0, 0, BW, BH);
     g.restore();
-    // 縦の傾き（横の帯で描く）→ 横の傾き（縦の帯で描く）
+    // 先用水平条带实现纵向倾斜，再用垂直条带实现横向倾斜。
     const d = TDK; d.clearRect(0, 0, TD.width, TD.height);
     const N = 44;
     for (let i = 0; i < N; i++) {
@@ -422,15 +405,14 @@ MotionPrompt.pack('lp2', function () {
   };
 
   // @element 10
-  // 10 スポットライトホバー（暗いカードの上で、カーソルの周りだけが丸く明るく光る）
   CELLS[9] = (k, w, h, u) => {
     u = snapU(u);
     frame(k);
     const cx = 255 + 190 * Math.sin(2 * Math.PI * u / CYC), cy = 92 + 40 * Math.sin(4 * Math.PI * u / CYC);
     view(k, () => {
       k.fillStyle = '#121828'; k.fillRect(0, 0, VW, VH);
-      txt(k, 'FEATURES', VW / 2, 26, `800 11px ${EN}`, 'rgba(255,255,255,.45)', 'center', 'alphabetic', '3px');
-      const LAB = ['かんたん', 'あんしん', 'はやい'];
+      txt(k, '产品特色', VW / 2, 26, `800 11px ${EN}`, 'rgba(255,255,255,.45)', 'center', 'alphabetic', '3px');
+      const LAB = ['简单', '安心', '快捷'];
       for (let i = 0; i < 3; i++) {
         const x = 22 + i * 160, y = 40, cw = 147, ch = 116;
         k.fillStyle = '#1C2335'; rr(k, x, y, cw, ch, 10); k.fill();
@@ -449,7 +431,6 @@ MotionPrompt.pack('lp2', function () {
   };
 
   // @element 11
-  // 11 ホバーで画像切り替え（商品カードにカーソルを乗せると、写真が別の角度＝後ろ姿に切り替わる）
   function tee(k, x, y, s, col, back) {
     k.save(); k.translate(x, y); k.scale(s, s);
     k.fillStyle = col; k.beginPath();
@@ -463,7 +444,7 @@ MotionPrompt.pack('lp2', function () {
     u = snapU(u);
     frame(k);
     const CX = [44, 271], CY = 10, CWD = 196, IH = 112;
-    const PRODS = [['Tシャツ', '¥3,980', '#FFFFFF', C.blueL, C.blue], ['ロゴTシャツ', '¥4,280', C.acc, C.accL, '#fff']];
+    const PRODS = [['T 恤', '¥3,980', '#FFFFFF', C.blueL, C.blue], ['标志 T 恤', '¥4,280', C.acc, C.accL, '#fff']];
     const cur = t => path([[0, 60, 200], [0.4, 150, 70], [1.6, 160, 80], [2.0, 370, 70], [3.3, 380, 82], [3.8, 470, 200], [4.7, 60, 200]], t);
     view(k, () => {
       for (let i = 0; i < 2; i++) {
@@ -471,7 +452,6 @@ MotionPrompt.pack('lp2', function () {
         const inside = t => { const [a, b] = cur(t); return a > x && a < x + CWD && b > CY && b < CY + IH + 40; };
         const q = trans(inside, u, 0.3, eIOs);
         k.save(); rr(k, x, CY, CWD, IH, 8); k.clip(); k.fillStyle = bg; k.fillRect(x, CY, CWD, IH);
-        // 正面（胸に小さな丸い印）→ 後ろ姿（背中に大きな星の柄）
         k.globalAlpha = 1 - q; tee(k, x + CWD / 2, CY + IH / 2 + 4, 108, col, false);
         k.fillStyle = mark; k.beginPath(); k.arc(x + CWD / 2 + 18, CY + IH / 2 - 16, 7, 0, 7); k.fill();
         k.globalAlpha = q; tee(k, x + CWD / 2, CY + IH / 2 + 4, 108, col, true);
@@ -487,15 +467,14 @@ MotionPrompt.pack('lp2', function () {
   };
 
   // @element 12
-  // 12 テキストロール（メニューの文字にカーソルを乗せると、文字が上に回って同じ文字が下から出てくる）
   CELLS[11] = (k, w, h, u) => {
     u = snapU(u);
     frame(k);
-    const LINKS = ['WORKS', 'ABOUT', 'CONTACT'], F = `800 30px ${EN}`, GAP = 44, LY = 100, LH = 40;
+    const LINKS = ['精选作品', '关于我们', '联系我们'], F = `800 30px ${EN}`, GAP = 44, LY = 100, LH = 40;
     const cur = t => path([[0, 110, 200], [0.4, 120, 92], [1.25, 140, 96], [1.5, 252, 92], [2.35, 268, 96], [2.6, 380, 92], [3.45, 400, 96], [3.9, 450, 200], [4.7, 110, 200]], t);
     view(k, () => {
       k.fillStyle = '#FFF3EA'; k.fillRect(0, 0, VW, VH);
-      logo(k, 24, 28); txt(k, 'MENU', VW - 26, 28.5, `800 11px ${EN}`, C.sub, 'right', 'middle', '2px');
+      logo(k, 24, 28); txt(k, '菜单', VW - 26, 28.5, `800 11px ${EN}`, C.sub, 'right', 'middle', '2px');
       k.font = F; k.letterSpacing = '1px'; const ws = LINKS.map(s => k.measureText(s).width); k.letterSpacing = '0px';
       let x = (VW - ws.reduce((a, b) => a + b, 0) - GAP * (LINKS.length - 1)) / 2;
       LINKS.forEach((s, i) => {
@@ -519,11 +498,10 @@ MotionPrompt.pack('lp2', function () {
   };
 
   // @element 13
-  // 13 ホバーで画像プレビュー（文字だけのリストの行にカーソルを乗せると、その行の写真がカーソルの横に出る）
   CELLS[12] = (k, w, h, u) => {
     u = snapU(u);
     frame(k);
-    const NAMES = ['オーロラの丘', '湖のほとりの小屋', '海辺のヴィラ', '星空のテラス'], RT = 6, RH = 39;
+    const NAMES = ['极光山丘', '湖畔小屋', '海滨别墅', '星空露台'], RT = 6, RH = 39;
     const cur = t => path([[0, 140, 200], [0.4, 150, 26], [1.15, 190, 28], [1.4, 205, 65], [2.15, 230, 67], [2.4, 245, 104], [3.15, 265, 106], [3.4, 280, 143], [3.9, 292, 144], [4.3, 150, 200], [4.7, 140, 200]], t);
     const [cx, cy] = cur(u);
     view(k, () => {
@@ -549,7 +527,6 @@ MotionPrompt.pack('lp2', function () {
   };
 
   // @element 14
-  // 14 フローティングラベル（入力欄の中のラベルが、入力を始めると小さくなって欄の上へ移る）
   CELLS[13] = (k, w, h, u) => {
     u = snapU(u);
     frame(k);
@@ -562,22 +539,21 @@ MotionPrompt.pack('lp2', function () {
     view(k, () => {
       k.fillStyle = C.soft; k.fillRect(0, 0, VW, VH);
       k.save(); k.shadowColor = 'rgba(28,35,51,.1)'; k.shadowBlur = 12; k.shadowOffsetY = 3; k.fillStyle = '#fff'; rr(k, 80, 12, 352, 148, 12); k.fill(); k.restore();
-      txt(k, '会員登録', F.x, 40, `800 15px ${JP}`, C.ink);
+      txt(k, '注册账号', F.x, 40, `800 15px ${JP}`, C.ink);
       k.lineWidth = lerp(1.5, 2.2, fo); k.strokeStyle = mix('#C9D0DC', C.acc, fo); rr(k, F.x, F.y, F.w, F.h, 8); k.stroke();
       const s = TEXT.slice(0, len(u));
       txt(k, s, F.x + 14, F.y + 30, `600 15px ${EN}`, C.ink);
       if (focused(u) && (mod(u, 0.9) < 0.5 || (u > 1 && u < 2.4))) { k.font = `600 15px ${EN}`; const xw = k.measureText(s).width; k.fillStyle = C.ink; k.fillRect(F.x + 14 + xw + 1, F.y + 14, 1.6, 20); }
-      const fs = lerp(15, 11.5, q), ly = lerp(F.y + F.h / 2, F.y, q), lx = F.x + lerp(14, 10, q), LAB = 'メールアドレス';
+      const fs = lerp(15, 11.5, q), ly = lerp(F.y + F.h / 2, F.y, q), lx = F.x + lerp(14, 10, q), LAB = '电子邮箱';
       k.font = `600 ${fs}px ${JP}`; const lw = k.measureText(LAB).width;
       if (q > 0) { k.fillStyle = '#fff'; k.fillRect(lx - 4, ly - 3, lw + 8, 6); }
       txt(k, LAB, lx, ly + 0.5, `600 ${fs}px ${JP}`, mix('#8B94A6', C.acc, fo), 'left', 'middle');
-      btn(k, F.x, 118, F.w, 30, '次へ', C.ink, '#fff', 12);
+      btn(k, F.x, 118, F.w, 30, '下一步', C.ink, '#fff', 12);
       click(k, cx, cy, u, [0.65, 3.95]);
     });
   };
 
   // @element 15
-  // 15 インラインバリデーション（打っている途中は赤で「形式が正しくありません」、正しく打ち終わると緑のチェックとOK）
   CELLS[14] = (k, w, h, u) => {
     u = snapU(u);
     frame(k);
@@ -590,8 +566,8 @@ MotionPrompt.pack('lp2', function () {
     const cur = t => path([[0, 445, 205], [0.3, 262, 80], [0.6, 262, 80], [1.1, 455, 146], [3.8, 455, 146], [4.1, 470, 26], [4.3, 470, 26], [4.65, 445, 205], [4.7, 445, 205]], t);
     const [cx, cy] = cur(u);
     view(k, () => {
-      txt(k, 'お問い合わせ', F.x, 26, `800 15px ${JP}`, C.ink);
-      txt(k, 'メールアドレス', F.x, 47, `700 12px ${JP}`, C.ink);
+      txt(k, '联系我们', F.x, 26, `800 15px ${JP}`, C.ink);
+      txt(k, '电子邮箱', F.x, 47, `700 12px ${JP}`, C.ink);
       k.fillStyle = mix('#FFFFFF', '#FFF1F1', qe); rr(k, F.x, F.y, F.w, F.h, 8); k.fill();
       const bc = mix(mix(mix('#C9D0DC', C.ink, fo), RED, qe), GREEN, qo);
       k.lineWidth = lerp(1.5, 2.2, Math.max(fo, qe, qo)); k.strokeStyle = bc; rr(k, F.x, F.y, F.w, F.h, 8); k.stroke();
@@ -601,14 +577,14 @@ MotionPrompt.pack('lp2', function () {
       if (qe > 0) {
         k.save(); k.globalAlpha = qe;
         k.fillStyle = RED; k.beginPath(); k.arc(F.x + 7, F.y + F.h + 20, 7, 0, 7); k.fill(); txt(k, '!', F.x + 7, F.y + F.h + 20.5, `800 11px ${EN}`, '#fff', 'center', 'middle');
-        txt(k, '形式が正しくありません', F.x + 20, F.y + F.h + 20.5, `700 13px ${JP}`, RED, 'left', 'middle');
+        txt(k, '格式不正确', F.x + 20, F.y + F.h + 20.5, `700 13px ${JP}`, RED, 'left', 'middle');
         k.restore();
       }
       if (qo > 0) {
         k.save(); k.globalAlpha = qo;
         k.fillStyle = GREEN; k.beginPath(); k.arc(F.x + F.w - 22, F.y + F.h / 2, 11 * eEl(qo), 0, 7); k.fill(); check(k, F.x + F.w - 22, F.y + F.h / 2, 12, '#fff', 2.4);
         k.fillStyle = GREEN; k.beginPath(); k.arc(F.x + 7, F.y + F.h + 20, 7, 0, 7); k.fill(); check(k, F.x + 7, F.y + F.h + 20, 8, '#fff', 1.8);
-        txt(k, 'OK', F.x + 20, F.y + F.h + 20.5, `800 13px ${EN}`, GREEN, 'left', 'middle');
+        txt(k, '验证通过', F.x + 20, F.y + F.h + 20.5, `800 13px ${EN}`, GREEN, 'left', 'middle');
         k.restore();
       }
       click(k, cx, cy, u, [0.45, 4.2]);
@@ -616,7 +592,6 @@ MotionPrompt.pack('lp2', function () {
   };
 
   // @element 16
-  // 16 ローディングボタン（押すと丸い読み込み表示に縮んで回り、チェック付きの「完了」に変わる）
   CELLS[15] = (k, w, h, u) => {
     u = snapU(u);
     frame(k);
@@ -628,18 +603,18 @@ MotionPrompt.pack('lp2', function () {
     view(k, () => {
       k.fillStyle = C.blueL; k.fillRect(0, 0, VW, VH);
       k.save(); k.shadowColor = 'rgba(28,35,51,.1)'; k.shadowBlur = 12; k.shadowOffsetY = 3; k.fillStyle = '#fff'; rr(k, 130, 10, 251, 150, 12); k.fill(); k.restore();
-      txt(k, '資料請求', VW / 2, 36, `800 15px ${JP}`, C.ink, 'center');
+      txt(k, '索取资料', VW / 2, 36, `800 15px ${JP}`, C.ink, 'center');
       for (let i = 0; i < 2; i++) { k.strokeStyle = '#D5DBE6'; k.lineWidth = 1.5; rr(k, 150, 50 + i * 32, 211, 24, 6); k.stroke(); bars(k, 160, 59 + i * 32, i ? 90 : 120, 1, '#AEB6C5', 6); }
       const col = fade >= 1 ? '#FF5A2C' : mix('#FF5A2C', GREEN, done), ba = fade >= 1 ? back : 1 - fade;
       k.save(); k.globalAlpha = ba; k.translate(0, fade >= 1 ? 6 * (1 - back) : 0); k.save(); k.shadowColor = 'rgba(28,35,51,.18)'; k.shadowBlur = 8; k.shadowOffsetY = 3; k.fillStyle = col; rr(k, VW / 2 - bw / 2, BY, bw, BHT, BHT / 2); k.fill(); k.restore();
       const idleA = fade >= 1 ? 1 : 1 - clamp(shr * 3);
-      if (idleA > 0) { k.save(); k.globalAlpha = idleA * ba; txt(k, '送信する', VW / 2, BY + BHT / 2 + 0.5, `800 14px ${JP}`, '#fff', 'center', 'middle'); k.restore(); }
+      if (idleA > 0) { k.save(); k.globalAlpha = idleA * ba; txt(k, '提交', VW / 2, BY + BHT / 2 + 0.5, `800 14px ${JP}`, '#fff', 'center', 'middle'); k.restore(); }
       if (u > CLK + 0.3 && u < 2.3) { k.save(); k.globalAlpha = clamp((u - CLK - 0.3) / 0.1) * (1 - clamp((u - 2.2) / 0.08)); k.lineCap = 'round'; k.lineWidth = 3; k.strokeStyle = 'rgba(255,255,255,.35)'; k.beginPath(); k.arc(VW / 2, BY + BHT / 2, 10, 0, 7); k.stroke(); const a = u / 0.7 * Math.PI * 2; k.strokeStyle = '#fff'; k.beginPath(); k.arc(VW / 2, BY + BHT / 2, 10, a, a + Math.PI * 0.7); k.stroke(); k.restore(); }
       if (u >= 2.25 && fade < 1) {
         k.save();
         const ox = lerp(0, -26, grow);
         check(k, VW / 2 + ox, BY + BHT / 2, 16, '#fff', 3, P(u, 2.25, 2.5));
-        if (grow > 0.5) { k.globalAlpha = ba * P(grow, 0.5, 1); txt(k, '完了', VW / 2 + 12, BY + BHT / 2 + 0.5, `800 14px ${JP}`, '#fff', 'center', 'middle'); }
+        if (grow > 0.5) { k.globalAlpha = ba * P(grow, 0.5, 1); txt(k, '完成', VW / 2 + 12, BY + BHT / 2 + 0.5, `800 14px ${JP}`, '#fff', 'center', 'middle'); }
         k.restore();
       }
       k.restore();
@@ -648,19 +623,18 @@ MotionPrompt.pack('lp2', function () {
   };
 
   // @element 17
-  // 17 ビュートランジション（一覧の写真を押すと、その写真がそのまま大きくなって詳細ページの上部になる）
   CELLS[16] = (k, w, h, u) => {
     u = snapU(u);
     const e = u < 2.0 ? eIO(P(u, 0.85, 1.45)) : 1 - eIO(P(u, 3.15, 3.75));
     frame(k, e > 0.5 ? 'example.com/works/02' : 'example.com/works');
-    const G = [24, 184, 344], GY = 44, GW = 143, GH = 80, NM = ['雪の山小屋', '海辺のカフェ', '夜の展望台'], PV = [0, 1, 2];
+    const G = [24, 184, 344], GY = 44, GW = 143, GH = 80, NM = ['雪中山间小屋', '海边咖啡馆', '夜间观景台'], PV = [0, 1, 2];
     const T = { x: 16, y: 10, w: VW - 32, h: 94 };
     const cur = t => path([[0, 420, 205], [0.5, 262, 88], [0.95, 262, 88], [1.6, 380, 150], [2.55, 380, 150], [2.9, 62, 30], [3.2, 62, 30], [3.9, 420, 205], [4.7, 420, 205]], t);
     const [cx, cy] = cur(u);
     view(k, () => {
       const ga = 1 - clamp(e * 1.6);
       k.save(); k.globalAlpha = ga;
-      txt(k, 'WORKS', 24, 30, `800 15px ${EN}`, C.ink, 'left', 'alphabetic', '2px');
+      txt(k, '作品', 24, 30, `800 15px ${EN}`, C.ink, 'left', 'alphabetic', '2px');
       for (let i = 0; i < 3; i++) { if (i !== 1) pic(k, G[i], GY, GW, GH, PV[i], 6); txt(k, NM[i], G[i], GY + GH + 20, `800 13px ${JP}`, C.ink); bars(k, G[i], GY + GH + 30, 90, 1, C.faint, 5); }
       k.restore();
       const x = lerp(G[1], T.x, e), y = lerp(GY, T.y, e), ww = lerp(GW, T.w, e), hh = lerp(GH, T.h, e);
@@ -668,8 +642,8 @@ MotionPrompt.pack('lp2', function () {
       const da = clamp((e - 0.6) / 0.4);
       if (da > 0) {
         k.save(); k.globalAlpha = da;
-        k.fillStyle = 'rgba(255,255,255,.92)'; rr(k, 26, 19, 74, 22, 11); k.fill(); txt(k, '← 一覧へ', 63, 30.5, `700 11px ${JP}`, C.ink, 'center', 'middle');
-        txt(k, '海辺のカフェ', 24, 134, `800 19px ${JP}`, C.ink); bars(k, 200, 122, 280, 3, C.faint, 6, 12, 0.7);
+        k.fillStyle = 'rgba(255,255,255,.92)'; rr(k, 26, 19, 74, 22, 11); k.fill(); txt(k, '← 返回列表', 63, 30.5, `700 11px ${JP}`, C.ink, 'center', 'middle');
+        txt(k, '海边咖啡馆', 24, 134, `800 19px ${JP}`, C.ink); bars(k, 200, 122, 280, 3, C.faint, 6, 12, 0.7);
         k.restore();
       }
       click(k, cx, cy, u, [0.75, 3.05]);
@@ -677,7 +651,6 @@ MotionPrompt.pack('lp2', function () {
   };
 
   // @element 18
-  // 18 ライトボックス（サムネを押すと周りが暗くなり、その上に写真が大きく表示される）
   CELLS[17] = (k, w, h, u) => {
     u = snapU(u);
     frame(k);
@@ -688,7 +661,7 @@ MotionPrompt.pack('lp2', function () {
     const [cx, cy] = cur(u);
     view(k, () => {
       header(k, 0);
-      txt(k, 'ギャラリー', 24, 60, `800 15px ${JP}`, C.ink);
+      txt(k, '作品集', 24, 60, `800 15px ${JP}`, C.ink);
       for (let i = 0; i < 4; i++) pic(k, TX[i], TY, TW, THt, PV[i], 6);
       bars(k, 24, 154, 300, 1, C.faint, 6);
       if (e > 0) {
@@ -708,7 +681,6 @@ MotionPrompt.pack('lp2', function () {
   };
 
   // @element 19
-  // 19 ホットスポット（製品写真の上で点が脈打ち、押すと説明の吹き出しが出る）
   CELLS[18] = (k, w, h, u) => {
     u = snapU(u);
     frame(k);
@@ -719,13 +691,12 @@ MotionPrompt.pack('lp2', function () {
     const [cx, cy] = cur(u);
     view(k, () => {
       k.fillStyle = '#EEF1F6'; k.fillRect(0, 0, 300, VH);
-      // リュック（平面の絵）
       k.strokeStyle = C.ink; k.lineWidth = 6; k.lineCap = 'round'; k.beginPath(); k.arc(150, 30, 16, Math.PI, 0); k.stroke();
       k.fillStyle = '#3B64E8'; rr(k, 92, 26, 116, 134, 28); k.fill();
       k.fillStyle = '#2E50C2'; rr(k, 108, 92, 84, 56, 14); k.fill();
       k.strokeStyle = '#FFD9C9'; k.lineWidth = 2.5; k.beginPath(); k.moveTo(116, 104); k.lineTo(184, 104); k.stroke();
       k.fillStyle = C.acc; rr(k, 140, 54, 20, 8, 4); k.fill();
-      txt(k, 'トラベルリュック', 322, 58, `800 16px ${JP}`, C.ink);
+      txt(k, '旅行背包', 322, 58, `800 16px ${JP}`, C.ink);
       txt(k, '¥12,800', 322, 88, `800 19px ${EN}`, C.acc);
       bars(k, 322, 104, 160, 3);
       [D1, D2].forEach(([x, y], i) => {
@@ -736,22 +707,21 @@ MotionPrompt.pack('lp2', function () {
       const tip = (x, y, q, title, left) => {
         if (q <= 0) return;
         k.save(); k.globalAlpha = q; k.translate(x, y + 6 * (1 - q));
-        const L = left ? 0 : 1;   // 吹き出しを点の左（left）か右に出す
+        const L = left ? 0 : 1;   // left 决定提示框是否显示在热点左侧。
         const bx = L ? 0 : -136;
         k.save(); k.shadowColor = 'rgba(28,35,51,.22)'; k.shadowBlur = 12; k.shadowOffsetY = 4; k.fillStyle = '#fff'; rr(k, bx, -24, 136, 48, 8); k.fill();
         k.beginPath(); if (L) { k.moveTo(0, -6); k.lineTo(-8, 0); k.lineTo(0, 6); } else { k.moveTo(0, -6); k.lineTo(8, 0); k.lineTo(0, 6); } k.fill(); k.restore();
         txt(k, title, bx + 12, -6, `800 13px ${JP}`, C.ink); bars(k, bx + 12, 6, 100, 1, C.faint, 5);
         k.restore();
       };
-      tip(D1[0] - 16, D1[1], q1, '雨をはじく布', true);
-      tip(D2[0] + 16, D2[1], q2, 'PCが入るポケット', false);
+      tip(D1[0] - 16, D1[1], q1, '防泼水面料', true);
+      tip(D2[0] + 16, D2[1], q2, '电脑收纳袋', false);
       click(k, cx, cy, u, [0.9, 2.4, 3.8]);
     });
   };
 
   // @element 20
-  // 20 カウントダウンタイマー（「キャンペーン終了まで」の 時:分:秒 が1秒ごとに入れ替わって減っていく）
-  // このカードだけ1回の動きが9.4秒（パックの周期と同じ）。tp（0〜9.4秒）で描く。1秒ごとに9回減り、途中で分が1回繰り下がる
+  // 这张卡片通过 tp 使用完整的 9.4 秒循环。倒计时每秒减一，共减九次，中途跨过整分钟。
   CELLS[19] = (k, w, h, u) => {
     const tp = mod(Math.round(u * 1e6) / 1e6, LOOP);
     frame(k);
@@ -766,7 +736,7 @@ MotionPrompt.pack('lp2', function () {
       txt(k, String(d), x + TW / 2, TY + TH / 2 + 1.5, `800 32px ${EN}`, '#fff', 'center', 'middle');
       k.restore();
     };
-    // 入れ替わり: 古い数字が上へ抜け、新しい数字が下から入る
+    // 旧数字向上退出，新数字从下方进入。
     const flip = (x, a, b, f) => {
       k.fillStyle = C.ink; rr(k, x, TY, TW, TH, 6); k.fill();
       k.save(); rr(k, x, TY, TW, TH, 6); k.clip();
@@ -777,19 +747,18 @@ MotionPrompt.pack('lp2', function () {
     };
     view(k, () => {
       const g = k.createLinearGradient(0, 0, VW, VH); g.addColorStop(0, '#FF6A3D'); g.addColorStop(1, '#FF4A2C'); k.fillStyle = g; k.fillRect(0, 0, VW, VH);
-      txt(k, 'キャンペーン終了まで', VW / 2, 34, `800 15px ${JP}`, '#fff', 'center');
-      ['時間', '分', '秒'].forEach((lab, gi) => {
+      txt(k, '距离活动结束', VW / 2, 34, `800 15px ${JP}`, '#fff', 'center');
+      ['小时', '分', '秒'].forEach((lab, gi) => {
         const x = X0 + gi * (GW + SEP);
         for (let j = 0; j < 2; j++) { const p = gi * 2 + j, xx = x + j * (TW + 4); if (was[p] !== now[p]) flip(xx, was[p], now[p], fp); else tile(xx, now[p], 2); }
         txt(k, lab, x + GW / 2, TY + TH + 16, `700 11px ${JP}`, 'rgba(255,255,255,.9)', 'center', 'middle');
         if (gi < 2) txt(k, ':', x + GW + SEP / 2, TY + TH / 2, `800 26px ${EN}`, '#fff', 'center', 'middle');
       });
-      btn(k, VW / 2 - 75, 132, 150, 28, '今すぐ申し込む', '#fff', C.acc, 12);
+      btn(k, VW / 2 - 75, 132, 150, 28, '立即申请', '#fff', C.acc, 12);
     });
   };
 
   // @element 21
-  // 21 シェイプディバイダー（セクションの境目の波の形が、ゆっくりゆれ続ける）
   CELLS[20] = (k, w, h, u) => {
     u = snapU(u);
     frame(k);
@@ -798,16 +767,15 @@ MotionPrompt.pack('lp2', function () {
     view(k, () => {
       const g = k.createLinearGradient(0, 0, 0, 120); g.addColorStop(0, '#3B64E8'); g.addColorStop(1, '#8FA9F7'); k.fillStyle = g; k.fillRect(0, 0, VW, VH);
       k.fillStyle = 'rgba(255,255,255,.9)'; k.beginPath(); k.arc(430, 44, 22, 0, 7); k.fill();
-      txt(k, '夏のキャンペーン', 34, 42, `800 22px ${JP}`, '#fff'); btn(k, 34, 56, 96, 24, '詳しく見る', '#fff', C.blue, 11);
+      txt(k, '夏日优惠', 34, 42, `800 22px ${JP}`, '#fff'); btn(k, 34, 56, 96, 24, '了解详情', '#fff', C.blue, 11);
       k.fillStyle = 'rgba(255,255,255,.45)'; wave(100, 8, 260, a + 1, 4, 130, -2 * a); k.fill();
       k.fillStyle = '#fff'; wave(110, 9, 300, -a, 3.5, 110, 2 * a + 0.5); k.fill();
-      txt(k, 'おすすめプラン', 34, 146, `800 15px ${JP}`, C.ink); bars(k, 170, 140, 290, 1, C.faint, 6);
+      txt(k, '推荐方案', 34, 146, `800 15px ${JP}`, C.ink); bars(k, 170, 140, 290, 1, C.faint, 6);
       bars(k, 34, 156, 200, 1, C.faint, 5);
     });
   };
 
   // @element 22
-  // 22 いいねアニメーション（ハートを押すと赤く塗られてポンと弾み、小さな粒が散る。数字が1増える）
   CELLS[21] = (k, w, h, u) => {
     u = snapU(u);
     frame(k);
@@ -826,7 +794,6 @@ MotionPrompt.pack('lp2', function () {
       k.fillStyle = C.blueL; k.beginPath(); k.arc(258, 40, 11, 0, 7); k.fill();
       txt(k, 'sample_trip', 276, 44.5, `700 13px ${EN}`, C.ink);
       bars(k, 248, 62, 220, 2, C.faint, 6, 12, 0.7);
-      // 粒（小さく添える）とリング
       if (d >= 0.08 && d < 0.6) {
         const f = (d - 0.08) / 0.5;
         k.strokeStyle = `rgba(242,61,92,${0.5 * (1 - f)})`; k.lineWidth = 2; k.beginPath(); k.arc(HX, HY, 15 + 18 * eOut(f), 0, 7); k.stroke();
@@ -836,7 +803,6 @@ MotionPrompt.pack('lp2', function () {
       k.save(); k.translate(HX, HY + 2); k.scale(sc, sc); heartPath(k, 14.5);
       if (liked) { k.fillStyle = HEART; k.fill(); } else { k.lineWidth = 2.4; k.strokeStyle = C.ink; k.lineJoin = 'round'; k.stroke(); }
       k.restore();
-      // 数字（128 ⇄ 129 が縦に入れ替わる）
       const nf = liked ? eOut(P(d, 0.05, 0.35)) : eOut(P(d2, 0.05, 0.35)), up = liked;
       k.save(); k.beginPath(); k.rect(292, HY - 13, 60, 26); k.clip();
       const A = up ? '128' : '129', Bn = up ? '129' : '128', dir = up ? -1 : 1, sh = 26 * nf * dir;
@@ -849,29 +815,25 @@ MotionPrompt.pack('lp2', function () {
   };
 
   // @element 23
-  // 23 スクロールダウンの合図（ファーストビューの下で「SCROLL」とマウスの形の中の点が、下へ促す動きをくり返す）
   CELLS[22] = (k, w, h, u) => {
     u = snapU(u);
     frame(k);
     const T = CYC / 3, f = mod(u, T) / T;
     view(k, () => {
       k.fillStyle = '#FFF4EA'; k.fillRect(0, 0, VW, VH);
-      txt(k, 'ようこそ、', 40, 40, `800 22px ${JP}`, C.ink); txt(k, '山の上の宿へ。', 40, 70, `800 22px ${JP}`, C.ink);
+      txt(k, '欢迎来到，', 40, 40, `800 22px ${JP}`, C.ink); txt(k, '山顶旅舍。', 40, 70, `800 22px ${JP}`, C.ink);
       bars(k, 40, 84, 170, 2, '#EAD9CB');
       pic(k, 286, 10, 200, 92, 1, 10);
-      // 合図
       const mx = VW / 2;
-      txt(k, 'SCROLL', mx, 116, `800 11px ${EN}`, C.ink, 'center', 'middle', '3px');
+      txt(k, '向下滚动', mx, 116, `800 11px ${EN}`, C.ink, 'center', 'middle', '3px');
       k.strokeStyle = C.ink; k.lineWidth = 2.2; rr(k, mx - 12, 126, 24, 38, 12); k.stroke();
       const dy = eIOs(clamp(f / 0.7)) * 14, da = 1 - clamp((f - 0.45) / 0.3);
       k.fillStyle = `rgba(255,90,44,${da})`; rr(k, mx - 2.5, 133 + dy, 5, 9, 2.5); k.fill();
-      // 両わきの矢印も下へ流れる
       [mx - 40, mx + 40].forEach(x => { for (let j = 0; j < 2; j++) { const ff = mod(f + j * 0.5, 1), yy = 128 + ff * 24, al = Math.sin(Math.PI * ff); k.strokeStyle = `rgba(28,35,51,${0.8 * al})`; k.lineWidth = 2.5; k.lineCap = 'round'; k.lineJoin = 'round'; k.beginPath(); k.moveTo(x - 8, yy); k.lineTo(x, yy + 8); k.lineTo(x + 8, yy); k.stroke(); } });
     });
   };
 
   // @element 24
-  // 24 背景動画（ファーストビューの背景で雲と波が流れ続け、その上に見出しとボタンが乗っている）
   function cloud(k, x, y, s, a) { k.fillStyle = `rgba(255,255,255,${a})`; k.beginPath(); k.ellipse(x, y, 30 * s, 10 * s, 0, 0, 7); k.ellipse(x - 12 * s, y - 6 * s, 14 * s, 11 * s, 0, 0, 7); k.ellipse(x + 8 * s, y - 10 * s, 17 * s, 14 * s, 0, 0, 7); k.fill(); }
   CELLS[23] = (k, w, h, u) => {
     u = snapU(u);
@@ -880,7 +842,7 @@ MotionPrompt.pack('lp2', function () {
     view(k, () => {
       const g = k.createLinearGradient(0, 0, 0, 120); g.addColorStop(0, '#7C9EF4'); g.addColorStop(1, '#DCE5FF'); k.fillStyle = g; k.fillRect(0, 0, VW, VH);
       k.fillStyle = 'rgba(255,240,230,.95)'; k.beginPath(); k.arc(400, 66, 20, 0, 7); k.fill();
-      // 遠い雲（170px ごとにくり返す柄が、1周期で1柄ぶん流れる）・近い雲（340px）
+      // 远云图案每 170 像素重复一次，近云每 340 像素重复一次。每轮各滚过一个图案宽度。
       for (let x = -170; x < VW + 170; x += 170) { const xx = x + mod(f * 170, 170); cloud(k, xx + 40, 30, 0.7, 0.75); cloud(k, xx + 120, 58, 0.55, 0.6); }
       for (let x = -340; x < VW + 340; x += 340) { const xx = x + mod(f * 340, 340); cloud(k, xx + 90, 44, 1.15, 0.95); cloud(k, xx + 260, 86, 0.9, 0.9); }
       mount(k, VW, 132, [[0, .78], [.18, .66], [.36, .76], [.6, .62], [.82, .74], [1, .68]], '#6E8CEB', 0);
@@ -888,10 +850,9 @@ MotionPrompt.pack('lp2', function () {
       sea(118, 2.5, 90, -2 * Math.PI * f, '#4B6BDB'); sea(130, 3, 60, 2 * Math.PI * f * 2, '#3B5CCF'); sea(146, 2.5, 120, -2 * Math.PI * f, '#2E4DB8');
       k.fillStyle = 'rgba(28,35,51,.12)'; k.fillRect(0, 0, VW, VH);
       { const sg = k.createLinearGradient(0, 0, 300, 0); sg.addColorStop(0, 'rgba(20,28,64,.45)'); sg.addColorStop(1, 'rgba(20,28,64,0)'); k.fillStyle = sg; k.fillRect(0, 0, 300, VH); }
-      k.save(); k.shadowColor = 'rgba(16,24,60,.55)'; k.shadowBlur = 10; k.shadowOffsetY = 2; txt(k, '旅に出よう。', 34, 60, `800 28px ${JP}`, '#fff', 'left', 'alphabetic', '1px'); k.restore();
+      k.save(); k.shadowColor = 'rgba(16,24,60,.55)'; k.shadowBlur = 10; k.shadowOffsetY = 2; txt(k, '出发去旅行。', 34, 60, `800 28px ${JP}`, '#fff', 'left', 'alphabetic', '1px'); k.restore();
       bars(k, 34, 74, 160, 1, 'rgba(255,255,255,.85)');
-      btn(k, 34, 92, 96, 26, '予約する');
-      // 再生中の印（一時停止・音なし）
+      btn(k, 34, 92, 96, 26, '立即预订');
       k.fillStyle = 'rgba(14,18,28,.5)'; rr(k, 420, 134, 76, 24, 12); k.fill();
       k.fillStyle = '#fff'; k.fillRect(435, 140, 3.5, 12); k.fillRect(442, 140, 3.5, 12);
       k.beginPath(); k.moveTo(462, 143); k.lineTo(466, 143); k.lineTo(471, 139); k.lineTo(471, 153); k.lineTo(466, 149); k.lineTo(462, 149); k.closePath(); k.fill();

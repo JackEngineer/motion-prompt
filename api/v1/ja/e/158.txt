@@ -19,7 +19,6 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 14
-// 14 フローティングラベル（入力欄の中のラベルが、入力を始めると小さくなって欄の上へ移る）
 CELLS[13] = (k, w, h, u) => {
   u = snapU(u);
   frame(k);
@@ -32,16 +31,16 @@ CELLS[13] = (k, w, h, u) => {
   view(k, () => {
     k.fillStyle = C.soft; k.fillRect(0, 0, VW, VH);
     k.save(); k.shadowColor = 'rgba(28,35,51,.1)'; k.shadowBlur = 12; k.shadowOffsetY = 3; k.fillStyle = '#fff'; rr(k, 80, 12, 352, 148, 12); k.fill(); k.restore();
-    txt(k, '会員登録', F.x, 40, `800 15px ${JP}`, C.ink);
+    txt(k, '注册账号', F.x, 40, `800 15px ${JP}`, C.ink);
     k.lineWidth = lerp(1.5, 2.2, fo); k.strokeStyle = mix('#C9D0DC', C.acc, fo); rr(k, F.x, F.y, F.w, F.h, 8); k.stroke();
     const s = TEXT.slice(0, len(u));
     txt(k, s, F.x + 14, F.y + 30, `600 15px ${EN}`, C.ink);
     if (focused(u) && (mod(u, 0.9) < 0.5 || (u > 1 && u < 2.4))) { k.font = `600 15px ${EN}`; const xw = k.measureText(s).width; k.fillStyle = C.ink; k.fillRect(F.x + 14 + xw + 1, F.y + 14, 1.6, 20); }
-    const fs = lerp(15, 11.5, q), ly = lerp(F.y + F.h / 2, F.y, q), lx = F.x + lerp(14, 10, q), LAB = 'メールアドレス';
+    const fs = lerp(15, 11.5, q), ly = lerp(F.y + F.h / 2, F.y, q), lx = F.x + lerp(14, 10, q), LAB = '电子邮箱';
     k.font = `600 ${fs}px ${JP}`; const lw = k.measureText(LAB).width;
     if (q > 0) { k.fillStyle = '#fff'; k.fillRect(lx - 4, ly - 3, lw + 8, 6); }
     txt(k, LAB, lx, ly + 0.5, `600 ${fs}px ${JP}`, mix('#8B94A6', C.acc, fo), 'left', 'middle');
-    btn(k, F.x, 118, F.w, 30, '次へ', C.ink, '#fff', 12);
+    btn(k, F.x, 118, F.w, 30, '下一步', C.ink, '#fff', 12);
     click(k, cx, cy, u, [0.65, 3.95]);
   });
 };

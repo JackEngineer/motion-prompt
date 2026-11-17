@@ -18,7 +18,6 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 19
-// モノクロ: 色を抜き、明るさだけで見せる（コントラストを少し強める）
 CELLS[18] = cell((k, u) => {
   const a = env(u);
   const GRAY = mapPal(BASE, c => { const g = clamp((lum(c) - 140) * 1.25 + 140, 0, 255); return toHex([g, g, g]); });

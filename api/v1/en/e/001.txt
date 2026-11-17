@@ -20,7 +20,6 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 01
-// 01 ポップイン（アプリのアイコンがポンと弾んで現れ、通知バッジが遅れてポン）
 CELLS[0] = (k, w, h, u) => {
   stage(k);
   const T = CYC / 2, n = Math.floor(u / T), lu = u - n * T, X = w / 2, Y = h / 2 + 4, S = 116;
@@ -28,7 +27,6 @@ CELLS[0] = (k, w, h, u) => {
   const out = backIn(P(lu, 1.86, 2.12), 2.2);
   const sc = spring(lu - 0.28, 15, 6.5) * (1 - out);
   const rot = (1 - spring(lu - 0.28, 11, 6)) * -0.35;
-  // 床の影
   k.fillStyle = 'rgba(0,0,0,.28)'; k.beginPath(); k.ellipse(X, Y + 78, 62 * clamp(sc), 8 * clamp(sc), 0, 0, 7); k.fill();
   if (sc > 0.002) {
     k.save(); k.translate(X, Y); k.rotate(rot); k.scale(sc, sc);
@@ -38,7 +36,6 @@ CELLS[0] = (k, w, h, u) => {
     if (n % 2) { k.save(); k.translate(0, 2); heartPath(k, 30); k.fill(); k.restore(); }
     else { star(k, 0, 2, 36, 0, 0.48); k.lineJoin = 'round'; k.strokeStyle = '#fff'; k.lineWidth = 6; k.stroke(); k.fill(); }
     k.restore();
-    // 通知バッジ
     const bs = spring(lu - 0.62, 17, 7) * (1 - out);
     if (bs > 0.002) { k.save(); k.translate(X + 52 * sc, Y - 52 * sc); k.scale(bs, bs); k.fillStyle = C.yel; k.beginPath(); k.arc(0, 0, 25, 0, 7); k.fill(); k.strokeStyle = C.navy; k.lineWidth = 5; k.stroke(); txt(k, '1', 0, 2, `800 30px ${DISP}`, C.navy, 'center', 'middle'); k.restore(); }
   }

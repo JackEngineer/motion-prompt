@@ -17,7 +17,6 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 18
-// 18 ブラインド（細い帯ごとのすき間がだんだん広がって、次の画面が開く）
 CELLS[17] = abCell((k, w, h, u, a, b) => {
   const p = eIOs(P(u, TA - 0.1, TB + 0.15)), N = 7, sh = h / N, S = [scrA, scrB];
   S[a](k, w, h);

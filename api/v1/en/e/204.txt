@@ -18,5 +18,4 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 12
-// アールヌーボー: 草花の曲線で縁取る装飾
 CELLS[11] = (k, w, h, u) => gafu(k, w, h, u, '12');

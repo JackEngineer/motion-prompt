@@ -20,7 +20,6 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 24
-// 24 インパクトシェイク（重い見出しの板がドンと落ち、その衝撃で画面ごと揺れる）
 CELLS[23] = (k, w, h, u) => {
   const T = CYC / 2, n = Math.floor(u / T), lu = u - n * T;
   const floor = h - 30, SW = 250, SH = 100, tI = 0.62, tau = lu - tI;
@@ -31,10 +30,8 @@ CELLS[23] = (k, w, h, u) => {
   k.fillStyle = C.navy; k.fillRect(0, 0, w, h);
   k.save(); k.translate(w / 2 + dx, h / 2 + dy); k.rotate(rot); k.translate(-w / 2, -h / 2);
   k.fillStyle = C.navy; k.fillRect(-40, -40, w + 80, h + 80);
-  // 背景の小物（衝撃で少し跳ねる）
   [[34, 62, 86, C.navy2, 0.06], [104, 46, 54, C.navy3, 0.03], [w - 150, 50, 66, C.navy3, 0.03], [w - 90, 62, 104, C.navy2, 0.06]].forEach(([x, bw, bh, col, dl]) => { const t = tau - dl, hop = t > 0 && t < 0.5 ? -24 * Math.sin(Math.PI * t / 0.5) * (1 - t) : 0; k.fillStyle = col; rr(k, x, floor - bh + hop, bw, bh, [10, 10, 0, 0]); k.fill(); k.fillStyle = C.blue; k.globalAlpha = 0.55; rr(k, x + 10, floor - bh + 12 + hop, bw - 20, 8, 4); k.fill(); k.globalAlpha = 1; });
   k.fillStyle = C.navy3; k.fillRect(-40, floor, w + 80, 5);
-  // 衝撃の線とほこり
   if (tau > 0 && tau < 0.55) {
     const q = eOut(tau / 0.55); k.strokeStyle = '#fff'; k.lineCap = 'round'; k.lineWidth = 7 * (1 - q);
     for (let i = 0; i < 6; i++) { const s = i % 2 ? 1 : -1, j = Math.floor(i / 2), a = -0.12 - j * 0.34, r0 = 140 + 46 * q, r1 = r0 + 32; k.beginPath(); k.moveTo(w / 2 + s * Math.cos(a) * r0, floor - 4 + Math.sin(a) * r0); k.lineTo(w / 2 + s * Math.cos(a) * r1, floor - 4 + Math.sin(a) * r1); if (q < 0.97) k.stroke(); }
@@ -44,7 +41,7 @@ CELLS[23] = (k, w, h, u) => {
   k.save(); k.translate(w / 2, y + SH); k.scale(2 - sq, sq);
   k.fillStyle = n ? C.coral : C.yel; rr(k, -SW / 2, -SH, SW, SH, 18); k.fill();
   k.fillStyle = 'rgba(15,26,61,.14)'; rr(k, -SW / 2, -16, SW, 16, [0, 0, 18, 18]); k.fill();
-  txt(k, n ? 'SALE' : 'NEW!', 0, -SH / 2 + 4, `800 74px ${DISP}`, n ? '#fff' : C.navy, 'center', 'middle', '2px');
+  txt(k, n ? '促销' : '上新！', 0, -SH / 2 + 4, `800 74px ${DISP}`, n ? '#fff' : C.navy, 'center', 'middle', '2px');
   k.restore();
   k.restore();
 };

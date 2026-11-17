@@ -17,5 +17,4 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 19
-// ローポリ: 三角形の面で組んだ3D
 CELLS[18] = (k, w, h, u) => gafu(k, w, h, u, '19');

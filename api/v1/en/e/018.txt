@@ -19,7 +19,6 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 18
-// 18 シェイプトランジション（色のついた帯が画面を覆い隠し、抜けると次の画面になっている）
 CELLS[17] = abCell((k, w, h, u, a, b) => {
   const p1 = P(u, TA - 0.12, TA + 0.5), p2 = P(u, TA + 0.62, TA + 1.25), N = 4, sk = 80;
   SCR[p1 >= 1 ? b : a](k, w, h);

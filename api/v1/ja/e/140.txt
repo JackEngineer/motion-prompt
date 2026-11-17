@@ -18,10 +18,9 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 20
-// 20 ページめくり（角から紙がめくれて裏返り、下から次のページが現れる）
 function paper(k, w, h, i) {
   k.fillStyle = i ? C.cream : '#FFFFFF'; k.fillRect(0, 0, w, h);
-  txt(k, i ? 'PAGE 2' : 'PAGE 1', 30, 58, `800 46px ${DISP}`, C.navy, 'left', 'middle', '1px');
+  txt(k, i ? '第 2 页' : '第 1 页', 30, 58, `800 46px ${DISP}`, C.navy, 'left', 'middle', '1px');
   k.fillStyle = i ? '#EBD9B4' : '#D7DCEA';[[96, 230], [122, 250], [148, 200], [174, 236]].forEach(([y, ww]) => { rr(k, 30, y, ww, 12, 6); k.fill(); });
   k.fillStyle = i ? C.mint : C.coral; rr(k, 310, 26, 200, 156, 14); k.fill();
   k.fillStyle = '#fff'; k.beginPath(); k.arc(462, 66, 18, 0, 7); k.fill();
@@ -35,7 +34,6 @@ CELLS[19] = abCell((k, w, h, u, a, b) => {
   const rect = [[0, 0], [w, 0], [w, h], [0, h]], rest = clipHalf(rect, d, sM, false), corner = clipHalf(rect, d, sM, true);
   if (rest.length > 2) { k.save(); polyPath(k, rest); k.clip(); paper(k, w, h, a); k.restore(); }
   if (corner.length > 2 && sM > 0.5) {
-    // 折り目の影（下のページ側）
     k.save(); polyPath(k, corner); k.clip();
     const mx = w + d[0] * sM, my = h + d[1] * sM, gr = k.createLinearGradient(mx, my, mx - d[0] * 50, my - d[1] * 50);
     gr.addColorStop(0, 'rgba(15,26,61,.35)'); gr.addColorStop(1, 'rgba(15,26,61,0)'); k.fillStyle = gr; k.fillRect(0, 0, w, h); k.restore();

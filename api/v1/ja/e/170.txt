@@ -19,6 +19,5 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 02
-// 02 バレルロール: レンズの軸（画面の中央）でカメラを1回転
 CELLS[1] = shot(camCell((k, w, h, p) => world(k, w, h, cam({ roll: p * Math.PI * 2 }), { person: { z: 7 } }),
   p => `↻ ${Math.round(p * 360)}°`, 0.5, 3.6));

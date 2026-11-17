@@ -19,7 +19,6 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 04
-// スプリットライティング: 光が真横（90°）へ回り、顔の右半分が影に沈む
 CELLS[3] = cell((k, u) => {
   const a = env(u), az = lerp(0.35, Math.PI / 2, a);
   stagePortrait(k, pal(BASE, DIM, a));

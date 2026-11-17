@@ -20,16 +20,15 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 04
-// 04 長回し: 歩く人物をカットなしで追い続ける1ショット。画面下の帯は1本のまま（#041 ジャンプカットのように割れない）
 CELLS[3] = shot((k, w, h, u) => {
   const uu = Math.min(u, CYC - RESET);
   const draw = (kk, t) => {
     const p = t / (CYC - RESET);
     const x = lerp(-3.4, 2.8, p), z = lerp(5.2, 9.6, p), cx = lerp(0, 1.4, p);
     world(kk, w, h, cam({ x: cx, y: 1.4, yaw: Math.atan2(x - cx, z) * 0.8 }), { person: { x, z, walk: t * 7 }, fg: [[-2.6, 3.4], [3.6, 4.6, 'rock']] });
-    strip(kk, w, h, [[0, CYC, '1ショット・カットなし', C.blue]], t);
+    strip(kk, w, h, [[0, CYC, '一镜到底，无切镜', C.blue]], t);
   };
   const r = P(u, CYC - RESET, CYC);
   blend(k, kk => draw(kk, uu), kk => draw(kk, 0), eIOs(r));
-  return `NO CUT ${(r > .5 ? 0 : uu).toFixed(1)}s`;
+  return `无切镜 ${(r > .5 ? 0 : uu).toFixed(1)}s`;
 });

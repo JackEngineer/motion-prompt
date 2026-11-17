@@ -19,7 +19,6 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 04
-// 04 アコーディオン（Accordion）
 CELLS[3] = ui((w, h, t) => {
   const ex = eio(seg(t, 1.0, 1.35)) * (1 - eio(seg(t, 3.3, 3.62)));
   let y = 12; const H0 = 34, EX = 58;

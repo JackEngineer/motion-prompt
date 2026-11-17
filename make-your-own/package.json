@@ -1,7 +1,7 @@
 {
   "name": "motion-prompt-make-your-own",
   "version": "1.0.0",
-  "description": "Make looping \"24 names\" cheat-sheet videos (HTML canvas -> mp4) in any language or topic.",
+  "description": "将 HTML 画布渲染为循环术语速查视频，支持不同语言与主题。",
   "type": "module",
   "private": true,
   "license": "MIT",

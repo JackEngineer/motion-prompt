@@ -1,6 +1,6 @@
 {
   "name": "motion-prompt",
-  "description": "Marketplace for the Motion Prompt skill (gallery: showheyohtaki.github.io/motion-prompt)",
+  "description": "用于与 AI 沟通创意的编号术语库，涵盖动态图形、镜头运动、UI 组件、网页效果、摄影、画风和图表，每项都有动态示例。让 AI 打开示例库，在浏览器中选择所需效果，再按既定时序和缓动应用到视频、网页或图像项目。",
   "owner": {
     "name": "Shohei Ohtaki",
     "url": "https://x.com/showheyohtaki"
@@ -9,7 +9,7 @@
     {
       "name": "motion-prompt",
       "source": "./",
-      "description": "A library of names to use with AI (motion-graphics moves, camera moves and transitions, UI components, landing-page and web effects, photo looks and lighting, art styles for image generation, diagrams and charts for slides), each with a moving sample. Ask the agent to open the library, pick in the browser, and it applies your picks to your video, web or image project with the published timings and easing.",
+      "description": "用于与 AI 沟通创意的编号术语库，涵盖动态图形、镜头运动、UI 组件、网页效果、摄影、画风和图表，每项都有动态示例。让 AI 打开示例库，在浏览器中选择所需效果，再按既定时序和缓动应用到视频、网页或图像项目。",
       "category": "design"
     }
   ]

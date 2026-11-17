@@ -18,5 +18,4 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 20
-// ペーパークラフト: 紙を折って組み立てた立体
 CELLS[19] = (k, w, h, u) => gafu(k, w, h, u, '20');

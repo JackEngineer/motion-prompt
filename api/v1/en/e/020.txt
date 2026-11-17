@@ -19,11 +19,10 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 20
-// 20 ズームスルー（文字の「O」の穴へ突っ込んで、その先の画面へ抜ける）
 function ring(k, x, y, col) { k.strokeStyle = col; k.lineWidth = 21; k.beginPath(); k.arc(x, y, 35, 0, 7); k.stroke(); }
 const ZP = [{ x: 228, y: 106, r: 24.5 }, { x: 300, y: 106, r: 24.5 }];
-function scrX(k, w, h) { k.fillStyle = C.yel; k.fillRect(0, 0, w, h); const f = `800 118px ${DISP}`; txt(k, 'Z', 128, 110, f, C.navy, 'center', 'middle'); ring(k, 228, 106, C.navy); ring(k, 324, 106, C.navy); txt(k, 'M', 432, 110, f, C.navy, 'center', 'middle'); }
-function scrY(k, w, h) { k.fillStyle = C.blue; k.fillRect(0, 0, w, h); const f = `800 118px ${DISP}`; txt(k, 'G', 208, 110, f, '#fff', 'center', 'middle'); ring(k, 300, 106, '#fff'); txt(k, '!', 372, 110, f, C.yel, 'center', 'middle'); }
+function scrX(k, w, h) { k.fillStyle = C.yel; k.fillRect(0, 0, w, h); const f = `800 96px ${JP}`; txt(k, '放', 128, 110, f, C.navy, 'center', 'middle'); ring(k, 228, 106, C.navy); ring(k, 324, 106, C.navy); txt(k, '大', 432, 110, f, C.navy, 'center', 'middle'); }
+function scrY(k, w, h) { k.fillStyle = C.blue; k.fillRect(0, 0, w, h); const f = `800 96px ${JP}`; txt(k, '走', 208, 110, f, '#fff', 'center', 'middle'); ring(k, 300, 106, '#fff'); txt(k, '！', 372, 110, f, C.yel, 'center', 'middle'); }
 const SCZ = [scrX, scrY], ZBG = [C.yel, C.blue];
 CELLS[19] = abCell((k, w, h, u, a, b) => {
   const po = ZP[a], Smax = Math.hypot(Math.max(po.x, w - po.x), Math.max(po.y, h - po.y)) / po.r * 1.08;

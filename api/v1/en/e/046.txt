@@ -20,8 +20,7 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 22
-// 22 スマッシュカット（静かな場面 → 急に激しい場面）
-function meter(k, w, h, lv) {   // 音量メーター（左下）
+function meter(k, w, h, lv) {
   const x = 24, y = h - 22, n = 8;
   for (let i = 0; i < n; i++) { k.fillStyle = (i + 0.5) / n < lv ? C.blue : C.g2; k.fillRect(x + i * 9, y - 6 - i * 2.2, 6, 6 + i * 2.2); }
 }
@@ -30,7 +29,7 @@ CELLS[21] = shot((k, w, h, u) => {
   const quiet = (kk, uu) => {
     world(kk, w, h, cam({ y: 1.2 }), {
       buildings: false, sun: [24, 26, 170], sunCol: C.blueXL, extra: [[0.4, 0, 7, (k2) => { k2.fillStyle = C.blue; rr(k2, -0.8, 0, 1.6, 0.34, 0.15); k2.fill(); k2.beginPath(); k2.arc(-0.95, 0.24, 0.17, 0, 7); k2.fill(); }]],
-      after: (k2, cc) => { const p0 = proj(cc, -0.6, 1.0, 7); for (let i = 0; i < 3; i++) { const ph = mod(uu * 0.35 + i / 3, 1); k2.globalAlpha = Math.sin(ph * Math.PI) * 0.8; txt(k2, 'z', p0.x - 10 - ph * 20 - i * 4, p0.y - ph * 50, `600 ${16 + i * 4}px ${EN}`, C.sub, 'center', 'middle'); } k2.globalAlpha = 1; }
+      after: (k2, cc) => { const p0 = proj(cc, -0.6, 1.0, 7); for (let i = 0; i < 3; i++) { const ph = mod(uu * 0.35 + i / 3, 1); k2.globalAlpha = Math.sin(ph * Math.PI) * 0.8; txt(k2, '呼', p0.x - 10 - ph * 20 - i * 4, p0.y - ph * 50, `600 ${16 + i * 4}px ${EN}`, C.sub, 'center', 'middle'); } k2.globalAlpha = 1; }
     });
     meter(kk, w, h, 0.08 + 0.04 * Math.sin(uu * 5));
   };
@@ -46,5 +45,5 @@ CELLS[21] = shot((k, w, h, u) => {
   };
   if (u < cut) quiet(k, u);
   else blend(k, kk => loud(kk, u), kk => quiet(kk, 0), eIOs(r));
-  return u < cut || r > .5 ? '♪ 静か' : '♪ 大音量';
+  return u < cut || r > .5 ? '♪ 安静' : '♪ 高音量';
 });

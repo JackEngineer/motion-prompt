@@ -20,7 +20,6 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 03
-// 03 ハイパーラプス: 街路を前へ進みながらのタイムラプス（太陽・雲・人影が早送り）。#039 タイムラプスはカメラが動かない
 const HL_BLD = [[-7.5, 4, 9, 5], [7.5, 3.4, 12, 9], [-7.5, 3.6, 14, 13], [7.5, 4, 8, 18], [-7.5, 3.2, 11, 22], [7.5, 3.6, 15, 27], [-7.5, 4, 9, 31], [7.5, 3.2, 12, 36], [-7.5, 3.6, 13, 40], [7.5, 4, 10, 45], [-7.5, 3.4, 16, 50], [7.5, 3.6, 9, 55]];
 CELLS[2] = shot(camCell((k, w, h, p) => {
   const z = lerp(0, 22, p), a = lerp(-1.25, 1.25, p);
@@ -29,7 +28,7 @@ CELLS[2] = shot(camCell((k, w, h, p) => {
   for (let i = 0; i < 6; i++) { const ph = mod(p * 6 + i / 6, 1), dir = i % 2 ? 1 : -1; ex.push([dir * lerp(-5.5, 5.5, ph), 0, 7 + i * 7, (kk) => { kk.fillStyle = i % 3 ? C.g4 : C.blueM; kk.fillRect(-0.12, 0, 0.24, 0.9); kk.beginPath(); kk.arc(0, 1.05, 0.13, 0, 7); kk.fill(); }]); }
   world(k, w, h, cam({ z, y: 1.6, pitch: 0.05 }), {
     buildings: false, trees: false, mtnZ: z, sun: [Math.sin(a) * 120, Math.cos(a) * 60 - 8, z + 170], sunCol: C.blueM, clouds, extra: ex, gridX: 24,
-    after: (kk, cc) => {   // 建物の影（太陽と反対側へ）
+    after: (kk, cc) => {
       kk.fillStyle = 'rgba(160,160,165,.22)';
       HL_BLD.forEach(([x, bw, bh, zz]) => { if (zz < cc.z + 1) return; const L = bh * 0.9; const q1 = proj(cc, x - bw / 2, 0, zz), q2 = proj(cc, x + bw / 2, 0, zz), q3 = proj(cc, x + bw / 2 - Math.sin(a) * L, 0, zz - Math.cos(a) * L * 0.4 - 1), q4 = proj(cc, x - bw / 2 - Math.sin(a) * L, 0, zz - Math.cos(a) * L * 0.4 - 1); if (q3.z < NEAR || q4.z < NEAR) return; kk.beginPath(); kk.moveTo(q1.x, q1.y); kk.lineTo(q2.x, q2.y); kk.lineTo(q3.x, q3.y); kk.lineTo(q4.x, q4.y); kk.fill(); });
     }

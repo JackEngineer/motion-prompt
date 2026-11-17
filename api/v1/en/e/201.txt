@@ -17,5 +17,4 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 09
-// ポップアート: 原色の面と太い黒線、少しの網点
 CELLS[8] = (k, w, h, u) => gafu(k, w, h, u, '09');

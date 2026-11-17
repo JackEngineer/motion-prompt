@@ -18,14 +18,13 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 04
-// 04 ピラミッド図: a triangle in four layers, stacked from the bottom up; the top layer is blue
 function pyramid(k, w, h, u) {
   bg(k, w, h);
   k.globalAlpha = fade(u);
   const top = 16, base = 192, hwB = 168, n = 4, gp = 6, cx = w / 2;
   const th = (base - top - gp * (n - 1)) / n, half = y => hwB * (y - top) / (base - top);
   const cols = [C.g3, C.blueL, C.blueM, C.blue];
-  for (let i = 0; i < n; i++) {                       // i = 0 bottom
+  for (let i = 0; i < n; i++) {                       // i = 0 对应最底层。
     const p = easeOut(P(u, 0.4 + i * 0.32, 0.8 + i * 0.32));
     if (p <= 0) continue;
     const yb = base - i * (th + gp), yt = yb - th, dy = (1 - p) * -34;

@@ -18,7 +18,6 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 17
-// 17 プッシュ（次の画面が横から入ってきて、前の画面を一緒に押し出す）
 const SC17 = [scSea, scMtn];
 CELLS[16] = abCell((k, w, h, u, a, b) => {
   const p = eIO(P(u, TA - 0.05, TB + 0.1)), dir = a === 0 ? -1 : 1;

@@ -19,7 +19,6 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 08
-// 08 ストップモーション風（1秒8コマのカクカクした動き。コマごとに位置が少しずつぶれる）
 CELLS[7] = (k, w, h, u) => {
   u = snapU(u);
   stage(k);
@@ -38,6 +37,5 @@ CELLS[7] = (k, w, h, u) => {
   const p = pose(fi);
   k.fillStyle = 'rgba(0,0,0,.3)'; k.beginPath(); k.ellipse(p.x, floor + 6, 30, 5, 0, 0, 7); k.fill();
   draw(p, 1);
-  // 1秒あたりのコマ数
-  txt(k, '8コマ/秒', w - 16, 50, `800 24px ${JP}`, C.dim, 'right', 'middle');
+  txt(k, '每秒 8 帧', w - 16, 50, `800 24px ${JP}`, C.dim, 'right', 'middle');
 };

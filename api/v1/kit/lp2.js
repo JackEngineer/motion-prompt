@@ -1,72 +1,72 @@
 // Motion Prompt #145-168 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#145
 //
-// Kit for pack "lp2" (Landing page & web effects, part 2 / LP・Webサイトの演出 第2弾): the constants and helpers its elements share.
-// Elements #145-168 · 539x208 px · cycle 9.4 s. Element code: https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/<id>.txt (or /ja/).
+// 以下为素材包 "lp2"（落地页与网页效果（第 2 弹））各元素共用的常量和辅助函数。
+// 元素 #145-168 · 539x208 px · 循环时长 9.4 秒
+// 元素代码（简体中文）：../zh-Hans/e/<id>.txt（相对于本辅助代码文件）
+// 其他语言：../en/e/<id>.txt（英文）、../ja/e/<id>.txt（日文）
 //
-// Run one element standalone in a browser:
-//   1. paste this file into a <script>,
-//   2. paste the element code below it (it assigns CELLS[n - 1], n = the element number inside the pack),
-//   3. then add:
+// 在浏览器中单独运行一个元素：
+//   1. 将本文件内容粘贴到 <script> 中。
+//   2. 在其后粘贴元素代码。元素代码会设置 CELLS[n - 1]，其中 n 是元素在素材包内的编号。
+//   3. 接着添加以下代码。
 //        const c = document.createElement('canvas'); c.width = 539; c.height = 208; document.body.append(c);
 //        const k = c.getContext('2d'), cell = CELLS.find(Boolean), t0 = performance.now();
 //        (function loop() {
-//          const u = ((performance.now() - t0) / 1000) % 9.4;   // seconds, 0 <= u < 9.4
+//          const u = ((performance.now() - t0) / 1000) % 9.4;   // 单位为秒，0 <= u < 9.4
 //          k.setTransform(1, 0, 0, 1, 0, 0); k.clearRect(0, 0, 539, 208);
 //          k.save(); cell(k, 539, 208, u); k.restore();
 //          requestAnimationFrame(loop);
 //        })();
-// Every cell is a pure function of u, so the same call renders video frames: u = frame / fps.
+// 各元素的画面只取决于 u，因此可用同一个函数渲染视频帧。将 u 设为 frame / fps。
 
 // @kit
-// LP・Webサイトの演出の名前 第2弾 24（各カード 539x208・1つの動きは4.7秒、パックの周期は9.4秒。各コマは時間 u の純関数）
-// カードの中にブラウザの窓を1つ描き、その中の簡略化したページで演出を見せる。
-// きっかけ（スクロールバー・カーソル・クリック）も一緒に描く。色は 地・文字・差し色（朱）＋写真用の青。
+// 每张卡片为 539 × 208 像素。每帧仅由时间 u 决定。
 const CW = 539, CH = 208;
-const CYC = 4.7;                                   // 1つの動きは4.7秒
-const LOOP = CYC * 2;                              // パックの周期は9.4秒。各カードは4.7秒の動きを2回、カウントダウン（20）だけ9.4秒で1回（ループの継ぎ目なし）
+const CYC = 4.7;
+const LOOP = CYC * 2;                              // 整包循环为 9.4 秒。大多数卡片每 4.7 秒重复一次，第 20 张倒计时卡片用完整的 9.4 秒。
 const C = {
   desk: '#E7EAF0', win: '#FFFFFF', bar: '#F3F5F8', rule: '#E2E6ED', ink: '#1C2333', sub: '#7D879B',
   faint: '#DCE1EA', soft: '#F3F5F9', skel: '#E4E8EF', acc: '#FF5A2C', accL: '#FFE5DB', blue: '#3B64E8', blueL: '#E1E8FF'
 };
-const JP = '"Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", system-ui, sans-serif';
+const JP = '"PingFang SC","Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", "Yu Gothic", system-ui, sans-serif';
 const EN = '"Avenir Next", "Helvetica Neue", system-ui, sans-serif';
 const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
 const lerp = (a, b, x) => a + (b - a) * x;
 const P = (t, a, b) => clamp((t - a) / (b - a));
-const eIO = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;   // easeInOut（3乗）
-const eIOs = x => x < .5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2;      // easeInOut（2乗）
-const eOut = x => 1 - Math.pow(1 - x, 3);                                      // easeOut（3乗）
+const eIO = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;   // 三次缓入缓出。
+const eIOs = x => x < .5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2;      // 二次缓入缓出。
+const eOut = x => 1 - Math.pow(1 - x, 3);                                      // 三次缓出。
 const eIn = x => x * x * x;
 const mod = (a, n) => ((a % n) + n) % n;
-// 浮動小数の誤差で周期の終わり（4.6999…）と始まり（0）が別のコマ扱いになるのを防ぎ、u を 0〜4.7秒に折り返す
+// 将 u 折回 0 到 4.7 秒，避免浮点误差使循环末尾的 4.6999… 与开头的 0 落在不同帧。
 const snapU = u => mod(Math.round(u * 1e6) / 1e6, CYC);
-// GSAP の elastic.out(1, 0.3) と同じ式
+// 沿用 GSAP 的 elastic.out(1, 0.3) 公式。
 const eEl = x => x <= 0 ? 0 : x >= 1 ? 1 : Math.pow(2, -10 * x) * Math.sin((x - 0.075) * 2 * Math.PI / 0.3) + 1;
 function rr(k, x, y, w, h, r) { k.beginPath(); k.roundRect(x, y, w, h, r); }
 function txt(k, s, x, y, font, col, align = 'left', base = 'alphabetic', ls = '0px') {
   k.font = font; k.fillStyle = col; k.textAlign = align; k.textBaseline = base; k.letterSpacing = ls; k.fillText(s, x, y); k.letterSpacing = '0px';
 }
-// キーフレーム [[秒, 値], …] を easeInOut（3乗）でつなぐ。u は周期で折り返す
+// 输入关键帧 [[秒数, 值], …]。用三次缓入缓出连接各帧，u 按周期折返。
 function steps(keys, u) {
   u = mod(u, CYC);
   if (u <= keys[0][0]) return keys[0][1];
   for (let i = 1; i < keys.length; i++) if (u < keys[i][0]) { const [t0, a] = keys[i - 1], [t1, b] = keys[i]; return lerp(a, b, eIO((u - t0) / (t1 - t0))); }
   return keys[keys.length - 1][1];
 }
-// カーソルの通り道 [[秒, x, y], …]（easeInOut 3乗でつなぐ）
+// 输入光标路径 [[秒数, x, y], …]，用三次缓入缓出连接各点。
 function path(keys, u) {
   u = mod(u, CYC);
   if (u <= keys[0][0]) return [keys[0][1], keys[0][2]];
   for (let i = 1; i < keys.length; i++) if (u < keys[i][0]) { const a = keys[i - 1], b = keys[i], f = eIO((u - a[0]) / (b[0] - a[0])); return [lerp(a[1], b[1], f), lerp(a[2], b[2], f)]; }
   const l = keys[keys.length - 1]; return [l[1], l[2]];
 }
-// on(t) が最後に切り替わった時刻から dur 秒の遷移（CSS の transition と同じ考え方）。過去へさかのぼって調べる
+// 向前回溯 on(t) 最近一次状态切换，模拟持续 dur 秒的 CSS 过渡。
 function trans(on, u, dur, ease = eOut) {
   const s = on(u);
   for (let i = 0, t = u; i < 600; i++, t -= 1 / 120) if (on(t - 1 / 120) !== s) { const q = ease(P(u, t, t + dur)); return s ? q : 1 - q; }
   return s ? 1 : 0;
 }
-// ブラウザの窓。中のページは V（511x168）の座標で描く
+// 浏览器窗口内的页面使用 V 的 511 × 168 坐标系。
 const WIN = { x: 14, y: 8, w: 511, h: 192, r: 10, bar: 24 };
 const VW = WIN.w, VH = WIN.h - WIN.bar;
 function frame(k, url = 'example.com') {
@@ -83,13 +83,13 @@ function view(k, fn) {
   k.save(); rr(k, WIN.x, WIN.y + WIN.bar, VW, VH, [0, 0, WIN.r, WIN.r]); k.clip(); k.translate(WIN.x, WIN.y + WIN.bar);
   k.fillStyle = '#fff'; k.fillRect(0, 0, VW, VH); fn(); k.restore();
 }
-// スクロールバー（つまみだけ。pos 0〜1、ratio＝見えている割合）
+// 只绘制滚动滑块。pos 为归一化位置，ratio 为内容的可见比例。
 function sbar(k, pos, ratio = 0.42) { const th = (VH - 8) * ratio; k.fillStyle = 'rgba(28,35,51,.38)'; rr(k, VW - 9, 4 + (VH - 8 - th) * clamp(pos), 5, th, 2.5); k.fill(); }
-// 文字の代わりの棒（n 行。最後の行は短い）
+// 用 n 条横线模拟文字，末行稍短。
 function bars(k, x, y, w, n, col = C.faint, hh = 6, gap = 11, last = 0.62) {
   k.fillStyle = col; for (let i = 0; i < n; i++) { rr(k, x, y + i * gap, i === n - 1 && n > 1 ? w * last : w, hh, hh / 2); k.fill(); }
 }
-// 写真の代わりの絵（空・太陽・山）。v で色ちがい、z で中身だけ拡大（枠は固定）
+// v 切换配色，z 只缩放图像内容，外框保持原尺寸。
 const PICS = [
   { sky: ['#A9C0FF', '#E4EBFF'], sun: '#FF5A2C', sx: .74, sy: .32, m1: '#7D9AF4', m2: '#4B6BDB' },
   { sky: ['#FFC7B2', '#FFEDE5'], sun: '#FFFFFF', sx: .28, sy: .34, m1: '#F4977A', m2: '#DD5F3B' },
@@ -109,23 +109,21 @@ function pic(k, x, y, w, h, v = 0, r = 6, z = 1) {
 function btn(k, x, y, w, h, label, col = C.acc, tcol = '#fff', fs = 12) {
   k.fillStyle = col; rr(k, x, y, w, h, h / 2); k.fill(); txt(k, label, x + w / 2, y + h / 2 + 0.5, `700 ${fs}px ${JP}`, tcol, 'center', 'middle');
 }
-function logo(k, x, y, col = C.ink) { k.fillStyle = C.acc; rr(k, x, y - 7, 14, 14, 4); k.fill(); txt(k, 'SAMPLE', x + 20, y + 0.5, `800 12px ${EN}`, col, 'left', 'middle', '1px'); }
-// ページのヘッダー（高さ34）
+function logo(k, x, y, col = C.ink) { k.fillStyle = C.acc; rr(k, x, y - 7, 14, 14, 4); k.fill(); txt(k, '示例', x + 20, y + 0.5, `800 12px ${EN}`, col, 'left', 'middle', '1px'); }
 const NAVX = [300, 346, 392];
 function header(k, y, active = -1) {
   k.fillStyle = '#fff'; k.fillRect(0, y, VW, 34); k.fillStyle = C.rule; k.fillRect(0, y + 33, VW, 1);
   logo(k, 18, y + 17);
-  ['特長', '料金', 'FAQ'].forEach((s, i) => txt(k, s, NAVX[i], y + 17.5, `600 12px ${JP}`, active === i ? C.acc : C.ink, 'left', 'middle'));
-  btn(k, 428, y + 7, 70, 20, '無料で試す', C.acc, '#fff', 10.5);
+  ['特色', '价格', '常见问题'].forEach((s, i) => txt(k, s, NAVX[i], y + 17.5, `600 12px ${JP}`, active === i ? C.acc : C.ink, 'left', 'middle'));
+  btn(k, 428, y + 7, 70, 20, '免费试用', C.acc, '#fff', 10.5);
 }
-// マウスのカーソル（矢印）。press で少し縮む
 function cursor(k, x, y, press = 0) {
   const s = 1.2 * (1 - 0.12 * press);
   k.save(); k.translate(x, y); k.scale(s, s); k.beginPath();
   [[0, 0], [0, 16.5], [4.2, 12.6], [7, 19], [9.8, 17.8], [7.1, 11.6], [12.6, 11.6]].forEach(([a, b], i) => i ? k.lineTo(a, b) : k.moveTo(a, b));
   k.closePath(); k.lineJoin = 'round'; k.lineWidth = 1.6; k.strokeStyle = '#fff'; k.fillStyle = C.ink; k.fill(); k.stroke(); k.restore();
 }
-// クリックした所に出る小さな輪（0.35秒）と、押している間の縮み
+// 点击圆环持续 0.35 秒，按下期间缩小光标。
 function click(k, x, y, u, times) {
   let press = 0;
   for (const tc of times) {
@@ -135,13 +133,12 @@ function click(k, x, y, u, times) {
   }
   cursor(k, x, y, clamp(press));
 }
-// 回る読み込み表示（0.8秒で1回転）
 function spinner(k, x, y, r, u, col = C.acc) {
   const a = u / 0.8 * Math.PI * 2;
   k.lineCap = 'round'; k.lineWidth = r * 0.28; k.strokeStyle = C.faint; k.beginPath(); k.arc(x, y, r, 0, 7); k.stroke();
   k.strokeStyle = col; k.beginPath(); k.arc(x, y, r, a, a + Math.PI * 0.6); k.stroke(); k.lineCap = 'butt';
 }
-// ページ上の top にある要素が、判定線 line より上に入った時刻（画面の下へ出たらリセット）。過去 CYC 秒をさかのぼる
+// 回溯最近 CYC 秒，查找页面中 top 位置的元素越过判定线 line 的时刻。元素退回显示区下方时重置。
 function enteredAt(sy, top, line, u) {
   const dt = 1 / 120, y = t => top - sy(t);
   if (y(u) >= VH) return null;
@@ -152,18 +149,17 @@ function enteredAt(sy, top, line, u) {
   }
   return y(u) < line ? -1e9 : null;
 }
-// 第2弾で足した道具
 function hex(c) { if (c[0] === 'r') return c.match(/\d+/g).slice(0, 3).map(Number); return [parseInt(c.slice(1, 3), 16), parseInt(c.slice(3, 5), 16), parseInt(c.slice(5, 7), 16)]; }
 function mix(a, b, t) { const A = hex(a), B = hex(b); return `rgb(${Math.round(lerp(A[0], B[0], t))},${Math.round(lerp(A[1], B[1], t))},${Math.round(lerp(A[2], B[2], t))})`; }
 function heartPath(k, s) { k.beginPath(); k.moveTo(0, s * 0.92); k.bezierCurveTo(-s * 1.75, -s * 0.12, -s * 0.85, -s * 1.2, 0, -s * 0.42); k.bezierCurveTo(s * 0.85, -s * 1.2, s * 1.75, -s * 0.12, 0, s * 0.92); k.closePath(); }
-function check(k, x, y, s, col, lw, f = 1) {   // チェックの線（f で描く途中）
+function check(k, x, y, s, col, lw, f = 1) {   // f 为对勾的描画进度。
   const pts = [[-0.5, 0.02], [-0.14, 0.38], [0.52, -0.34]], L1 = Math.hypot(0.36, 0.36), L2 = Math.hypot(0.66, 0.72), L = (L1 + L2) * clamp(f);
   k.save(); k.translate(x, y); k.strokeStyle = col; k.lineWidth = lw; k.lineCap = 'round'; k.lineJoin = 'round'; k.beginPath(); k.moveTo(pts[0][0] * s, pts[0][1] * s);
   if (L <= L1) { const q = L / L1; k.lineTo(lerp(pts[0][0], pts[1][0], q) * s, lerp(pts[0][1], pts[1][1], q) * s); }
   else { const q = (L - L1) / L2; k.lineTo(pts[1][0] * s, pts[1][1] * s); k.lineTo(lerp(pts[1][0], pts[2][0], q) * s, lerp(pts[1][1], pts[2][1], q) * s); }
   if (L > 0) k.stroke(); k.restore();
 }
-// 最後に on(t) が切り替わった時刻（なければ null）
+// 返回最近一次 on(t) 切换的时刻。尚未切换时返回 null。
 function lastSwitch(on, u) { const s = on(u); for (let i = 0, t = u; i < 600; i++, t -= 1 / 120) if (on(t - 1 / 120) !== s) return t; return null; }
 const GREEN = '#1E9E5A', RED = '#E5383B', HEART = '#F23D5C';
 const CELLS = [];

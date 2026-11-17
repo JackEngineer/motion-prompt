@@ -19,7 +19,6 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 10
-// 10 カルーセル（Carousel）
 CELLS[9] = ui((w, h, t) => {
   const p = eio(seg(t, 1.0, 1.4)) + eio(seg(t, 2.1, 2.5)) + eio(seg(t, 3.2, 3.6));
   const sw = 330, gap = 18, cx = w / 2;

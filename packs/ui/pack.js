@@ -1,24 +1,22 @@
 /* Motion Prompt · pack "ui" · MIT License (c) 2026 Shohei Ohtaki · https://github.com/showheyohtaki/motion-prompt */
 MotionPrompt.pack('ui', function () {
   // @kit
-  // UIパーツの名前 24（カード 542x191 = 元動画のカード窓 542x222 から窓の上枠 31px を除いた中身）。
-  // 各コマは時間 u の純関数。1周期 CYC=4.5秒。カーソル（指）の動きがきっかけで部品が動く。
+  // 卡片取自原视频 542 × 222 像素的窗口，去掉 31 像素的顶栏后为 542 × 191 像素。
+  // 每帧仅由时间 u 决定，循环时长为 4.5 秒。组件由光标移动或点击触发。
   const CW = 542, CH = 191, CYC = 4.5;
 
-  // パックの色（地・文字・差し色）
   const C = {
     bg: '#f5f3f1', card: '#ffffff', border: '#dcdbdb', dot: '#dddddd', url: '#eeeeeb', sep: '#ecebe9',
     line: '#e6e4e3', line2: '#d6d4d2', block: '#f0efed', ink: '#111111', en: '#7b7975', hint: '#868482',
     blue: '#1f5ae8', lb: '#eef3fe', mb: '#cad9f9', sb: '#a3bef7', scroll: '#c9c7c5', dark: '#26282c'
   };
-  const JP = '"Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif';
+  const JP = '"PingFang SC","Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif';
   const NUMF = 'system-ui,-apple-system,"Helvetica Neue",sans-serif';
 
-  // 描画の補助関数は元のまま X（2D コンテキスト）に描く。ui() が毎回 X を渡された k に向け、白地を敷いてから描く
+  // 绘图函数共用二维上下文 X。ui() 每次将 X 设为传入的 k，并先铺白底。
   let X = null;
   const ui = draw => (k, w, h, u) => { X = k; k.fillStyle = C.card; k.fillRect(0, 0, w, h); draw(w, h, u); };
 
-  // ---------- helpers ----------
   const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
   const seg = (t, a, b) => clamp((t - a) / (b - a));
   const eo = x => 1 - Math.pow(1 - x, 3);
@@ -43,7 +41,7 @@ MotionPrompt.pack('ui', function () {
     circle(x + w * .82, y + h * .26, Math.min(w, h) * .09, C.mb);
     X.restore();
   }
-  // カーソル（矢印）。keys=[[t,x,y],...]、clicks=[t,...]
+  // 光标轨迹为 keys = [[时刻, x, y], …]，点击时刻为 clicks = [时刻, …]。
   function track(keys, t) {
     if (t <= keys[0][0]) return [keys[0][1], keys[0][2]];
     for (let i = 1; i < keys.length; i++) { const a = keys[i - 1], b = keys[i]; if (t <= b[0]) { const k = eio((t - a[0]) / (b[0] - a[0] || 1)); return [lerp(a[1], b[1], k), lerp(a[2], b[2], k)]; } }
@@ -66,15 +64,13 @@ MotionPrompt.pack('ui', function () {
     ripple(x, y, downs, t);
     circle(x, y, 17, 'rgba(17,17,17,.24)'); ring(x, y, 17, 'rgba(255,255,255,.95)', 2.5);
   }
-  // よく使う背景のワイヤーフレーム
   function pageLines(x, y, w) { bar(x, y, w * .45, C.line2, 11); bar(x, y + 24, w, C.line); bar(x, y + 42, w * .78, C.line); }
   const CELLS = [];
 
   // @element 01
-  // 01 モーダル（Modal dialog）
   CELLS[0] = ui((w, h, t) => {
     pageLines(24, 18, 494);
-    fillRR(24, 92, 120, 36, 8, C.blue); text('開く', 84, 110, 16, '#fff', 600, 'center');
+    fillRR(24, 92, 120, 36, 8, C.blue); text('打开', 84, 110, 16, '#fff', 600, 'center');
     fillRR(170, 92, 348, 36, 8, C.block); fillRR(24, 142, 494, 38, 8, C.block);
     const a = eo(seg(t, 1.0, 1.32)) * (1 - eio(seg(t, 3.3, 3.58)));
     if (a > 0) {
@@ -90,9 +86,8 @@ MotionPrompt.pack('ui', function () {
   });
 
   // @element 02
-  // 02 ドロワー（Drawer (Off-canvas)）
   CELLS[1] = ui((w, h, t) => {
-    strokeRR(24, 14, 110, 34, 8, C.line2, 1.5); text('メニュー', 79, 31, 15, '#555', 600, 'center');
+    strokeRR(24, 14, 110, 34, 8, C.line2, 1.5); text('菜单', 79, 31, 15, '#555', 600, 'center');
     bar(160, 26, 140, C.line2, 11); pageLines(24, 70, 494); fillRR(24, 138, 494, 42, 8, C.block);
     const a = eo(seg(t, 1.0, 1.38)) * (1 - eio(seg(t, 3.3, 3.65)));
     if (a > 0) {
@@ -106,10 +101,9 @@ MotionPrompt.pack('ui', function () {
   });
 
   // @element 03
-  // 03 ボトムシート（Bottom sheet）
   CELLS[2] = ui((w, h, t) => {
     pageLines(24, 16, 494); fillRR(24, 76, 239, 54, 8, C.block); fillRR(279, 76, 239, 54, 8, C.block);
-    fillRR(186, 144, 170, 36, 18, C.blue); text('詳細を見る', 271, 162, 15, '#fff', 600, 'center');
+    fillRR(186, 144, 170, 36, 18, C.blue); text('查看详情', 271, 162, 15, '#fff', 600, 'center');
     const open = eo(seg(t, 1.05, 1.45));
     const drag = eio(seg(t, 3.0, 3.6));
     const a = open * (1 - drag);
@@ -126,7 +120,6 @@ MotionPrompt.pack('ui', function () {
   });
 
   // @element 04
-  // 04 アコーディオン（Accordion）
   CELLS[3] = ui((w, h, t) => {
     const ex = eio(seg(t, 1.0, 1.35)) * (1 - eio(seg(t, 3.3, 3.62)));
     let y = 12; const H0 = 34, EX = 58;
@@ -142,14 +135,13 @@ MotionPrompt.pack('ui', function () {
   });
 
   // @element 05
-  // 05 ドロップダウン（Dropdown menu）
   CELLS[4] = ui((w, h, t) => {
     bar(24, 14, 90, C.line2, 10);
     const open = eo(seg(t, 1.0, 1.25)) * (1 - eio(seg(t, 2.3, 2.45)));
     const chosen = seg(t, 2.32, 2.42) * (1 - seg(t, 3.9, 4.08));
-    const ph = (1 - seg(t, 2.2, 2.3)) + seg(t, 4.1, 4.3); // プレースホルダーは先に消し、名前が消えてから戻す（重ねない）
+    const ph = (1 - seg(t, 2.2, 2.3)) + seg(t, 4.1, 4.3); // 提前隐藏占位文字，等选项名称消失后再恢复，避免重叠。
     strokeRR(24, 34, 260, 38, 8, open > .1 || (chosen > 0 && t < 2.9) ? C.blue : C.line2, open > .1 ? 2 : 1.5);
-    if (ph > 0) { X.globalAlpha = clamp(ph); text('選択してください', 40, 53, 15, '#9a9896', 500); X.globalAlpha = 1; }
+    if (ph > 0) { X.globalAlpha = clamp(ph); text('请选择', 40, 53, 15, '#9a9896', 500); X.globalAlpha = 1; }
     if (chosen > 0) { X.globalAlpha = chosen; text('名古屋', 40, 53, 16, C.ink, 600); X.globalAlpha = 1; }
     chevron(262, 52, 5, Math.PI * open, '#777');
     fillRR(310, 34, 208, 70, 8, C.block); bar(310, 120, 208); bar(310, 138, 160); bar(24, 150, 200); bar(24, 168, 150);
@@ -157,14 +149,13 @@ MotionPrompt.pack('ui', function () {
       X.save(); X.globalAlpha = open; const oy = 78 - 6 * (1 - open);
       shadowed(() => fillRR(24, oy, 260, 112, 8, '#fff'), 18, 6, .18); strokeRR(24, oy, 260, 112, 8, C.border, 1);
       const hi = seg(t, 1.55, 1.75) > 0 ? (t < 1.95 ? 1 : 2) : -1;
-      ['東京', '大阪', '名古屋', '福岡'].forEach((s, i) => { const yy = oy + 4 + i * 26; if (i === hi + (hi === 1 ? 0 : 0) && hi >= 0) fillRR(28, yy, 252, 26, 5, C.lb); text(s, 40, yy + 13, 15, i === hi ? C.blue : '#444', i === hi ? 600 : 500); });
+      ['东京', '大阪', '名古屋', '福冈'].forEach((s, i) => { const yy = oy + 4 + i * 26; if (i === hi + (hi === 1 ? 0 : 0) && hi >= 0) fillRR(28, yy, 252, 26, 5, C.lb); text(s, 40, yy + 13, 15, i === hi ? C.blue : '#444', i === hi ? 600 : 500); });
       X.restore();
     }
     pointer([[.3, w + 30, h + 30], [.95, 200, 56], [1.25, 200, 56], [1.6, 170, 121], [2.0, 170, 147], [2.45, 170, 147], [3.2, 170, 147], [4.2, w + 30, h + 30]], [1.0, 2.3], t);
   });
 
   // @element 06
-  // 06 ツールチップ（Tooltip）
   CELLS[5] = ui((w, h, t) => {
     pageLines(24, 16, 494);
     bar(24, 116, 150, C.line2, 11); ring(196, 121, 13, C.blue, 2.2); text('?', 196, 122, 16, C.blue, 700, 'center', NUMF);
@@ -174,17 +165,16 @@ MotionPrompt.pack('ui', function () {
       X.save(); X.globalAlpha = a; const yy = 64 + 6 * (1 - a);
       fillRR(196 - 92, yy, 184, 36, 8, C.dark);
       X.beginPath(); X.moveTo(196 - 8, yy + 36); X.lineTo(196, yy + 44); X.lineTo(196 + 8, yy + 36); X.fillStyle = C.dark; X.fill();
-      text('小さな説明が出る', 196, yy + 18, 15, '#fff', 600, 'center'); X.restore();
+      text('显示简短说明', 196, yy + 18, 15, '#fff', 600, 'center'); X.restore();
     }
-    // 乗せるだけ（クリックしない）
+    // 示范由悬停触发。
     pointer([[.3, w + 30, h + 30], [1.05, 200, 126], [3.15, 200, 126], [4.1, w + 30, h + 30]], [], t);
   });
 
   // @element 07
-  // 07 ポップオーバー（Popover）
   CELLS[6] = ui((w, h, t) => {
     pageLines(24, 16, 494);
-    strokeRR(24, 112, 108, 36, 8, C.blue, 2); text('詳細', 78, 130, 15, C.blue, 600, 'center');
+    strokeRR(24, 112, 108, 36, 8, C.blue, 2); text('详情', 78, 130, 15, C.blue, 600, 'center');
     fillRR(24, 160, 494, 22, 6, C.block);
     const a = eo(seg(t, 1.0, 1.28)) * (1 - eio(seg(t, 3.3, 3.5)));
     if (a > 0) {
@@ -194,14 +184,13 @@ MotionPrompt.pack('ui', function () {
       X.beginPath(); X.moveTo(px + 1, 122); X.lineTo(px - 10, 130); X.lineTo(px + 1, 138); X.fillStyle = '#fff'; X.fill();
       X.beginPath(); X.moveTo(px, 122); X.lineTo(px - 10, 130); X.lineTo(px, 138); X.strokeStyle = C.border; X.lineWidth = 1; X.stroke();
       bar(px + 18, py + 18, 130, C.ink, 11); bar(px + 18, py + 42, 250); bar(px + 18, py + 60, 200);
-      strokeRR(px + 130, py + 82, 70, 26, 6, C.line2, 1.5); fillRR(px + 210, py + 82, 72, 26, 6, C.blue); text('OK', px + 246, py + 95, 14, '#fff', 700, 'center', NUMF);
+      strokeRR(px + 130, py + 82, 70, 26, 6, C.line2, 1.5); fillRR(px + 210, py + 82, 72, 26, 6, C.blue); text('确定', px + 246, py + 95, 14, '#fff', 700, 'center', NUMF);
       X.restore();
     }
     pointer([[.3, w + 30, h + 30], [.95, 84, 134], [1.6, 84, 134], [3.0, 402, 157], [3.5, 402, 157], [4.2, w + 30, h + 30]], [1.0, 3.3], t);
   });
 
   // @element 08
-  // 08 トースト（Toast notification）
   CELLS[7] = ui((w, h, t) => {
     bar(24, 16, 90, C.line2, 10); strokeRR(24, 34, 300, 34, 7, C.line2, 1.5); bar(24, 82, 90, C.line2, 10); strokeRR(24, 100, 300, 34, 7, C.line2, 1.5);
     fillRR(24, 146, 110, 36, 8, C.blue); text('保存', 79, 164, 16, '#fff', 600, 'center');
@@ -210,16 +199,15 @@ MotionPrompt.pack('ui', function () {
       const tw0 = 214, th = 52, tx = w - 18 - tw0 + (1 - tin) * 240 + tout * 240, ty = h - 16 - th;
       shadowed(() => fillRR(tx, ty, tw0, th, 10, C.dark), 18, 6, .25);
       circle(tx + 26, ty + 24, 11, C.blue); check(tx + 26, ty + 24, 5, '#fff', 2.4);
-      text('保存しました', tx + 46, ty + 24, 15, '#fff', 600);
+      text('已保存', tx + 46, ty + 24, 15, '#fff', 600);
       const life = 1 - seg(t, 1.4, 3.2); fillRR(tx + 10, ty + th - 7, (tw0 - 20) * life, 3, 1.5, C.sb);
     }
     pointer([[.3, -30, h + 30], [.95, 84, 168], [1.5, 84, 168], [2.2, -40, h + 40]], [1.0], t);
   });
 
   // @element 09
-  // 09 タブ（Tabs）
   CELLS[8] = ui((w, h, t) => {
-    const labs = ['概要', '料金', 'レビュー'], xs = [24, 114, 204], ws = [70, 70, 100];
+    const labs = ['概览', '价格', '评价'], xs = [24, 114, 204], ws = [70, 70, 100];
     const c1 = eio(seg(t, 1.0, 1.25)), c2 = eio(seg(t, 2.2, 2.45)), c3 = eio(seg(t, 3.4, 3.65));
     const pos = c1 + c2 - 2 * c3; // 0 -> 1 -> 2 -> 0
     const fi = Math.floor(pos), fr = pos - fi, gi = Math.min(2, fi + 1);
@@ -227,7 +215,7 @@ MotionPrompt.pack('ui', function () {
     const act = t < 1.1 ? 0 : t < 2.3 ? 1 : t < 3.5 ? 2 : 0;
     labs.forEach((s, i) => text(s, xs[i] + ws[i] / 2, 28, 17, i === act ? C.blue : '#8a8886', i === act ? 700 : 500, 'center'));
     X.fillStyle = C.line; X.fillRect(0, 50, w, 2); fillRR(ux, 48, uw, 4, 2, C.blue);
-    // 中身（切替時にクロスフェード）
+    // 切换标签页时对内容做交叉淡化。
     const tabAlpha = [
       1 - seg(t, 1.0, 1.2) + seg(t, 3.45, 3.65),
       seg(t, 1.1, 1.3) - seg(t, 2.2, 2.4),
@@ -243,7 +231,6 @@ MotionPrompt.pack('ui', function () {
   });
 
   // @element 10
-  // 10 カルーセル（Carousel）
   CELLS[9] = ui((w, h, t) => {
     const p = eio(seg(t, 1.0, 1.4)) + eio(seg(t, 2.1, 2.5)) + eio(seg(t, 3.2, 3.6));
     const sw = 330, gap = 18, cx = w / 2;
@@ -262,7 +249,6 @@ MotionPrompt.pack('ui', function () {
   });
 
   // @element 11
-  // 11 トグルスイッチ（Toggle switch）
   CELLS[10] = ui((w, h, t) => {
     const st = [eo(seg(t, 1.0, 1.2)) * (1 - eo(seg(t, 3.0, 3.2))), eo(seg(t, 1.8, 2.0)) * (1 - eo(seg(t, 3.6, 3.8))), 0];
     for (let i = 0; i < 3; i++) {
@@ -276,13 +262,12 @@ MotionPrompt.pack('ui', function () {
   });
 
   // @element 12
-  // 12 セグメントコントロール（Segmented control）
   CELLS[11] = ui((w, h, t) => {
     const pos = eio(seg(t, 1.0, 1.25)) + eio(seg(t, 2.1, 2.35)) - 2 * eio(seg(t, 3.3, 3.55));
     const sx = 121, sy = 12, sw = 300, sh = 40, cw = sw / 3;
     fillRR(sx, sy, sw, sh, 10, '#efedeb');
     shadowed(() => fillRR(sx + 4 + pos * cw, sy + 4, cw - 8, sh - 8, 8, C.blue), 6, 2, .2);
-    ['日', '週', '月'].forEach((s, i) => { const near = 1 - clamp(Math.abs(pos - i)); text(s, sx + cw * i + cw / 2, sy + sh / 2 + 1, 17, near > .5 ? '#fff' : '#6d6b69', 700, 'center'); });
+    ['日', '周', '月'].forEach((s, i) => { const near = 1 - clamp(Math.abs(pos - i)); text(s, sx + cw * i + cw / 2, sy + sh / 2 + 1, 17, near > .5 ? '#fff' : '#6d6b69', 700, 'center'); });
     const sets = [[30, 55, 40, 70, 50, 85, 60], [60, 40, 90, 75, 100, 55, 80], [95, 70, 110, 60, 85, 115, 100]];
     const fi = Math.floor(pos), fr = pos - fi, gi = Math.min(2, fi + 1);
     X.fillStyle = C.line; X.fillRect(60, 182, 422, 1.5);
@@ -291,9 +276,8 @@ MotionPrompt.pack('ui', function () {
   });
 
   // @element 13
-  // 13 チップ（Filter chips）
   CELLS[12] = ui((w, h, t) => {
-    const chips = ['すべて', '新着', '人気', '無料']; let x = 24; const pos = [];
+    const chips = ['全部', '最新', '热门', '免费']; let x = 24; const pos = [];
     const on = [0, eo(seg(t, 0.95, 1.1)) * (1 - eo(seg(t, 3.0, 3.15))), 0, eo(seg(t, 1.75, 1.9)) * (1 - eo(seg(t, 3.6, 3.75)))];
     chips.forEach((s, i) => {
       const k = on[i], cw0 = tw(s, 15, 600) + 32 + (k > 0 ? 18 * k : 0);
@@ -302,7 +286,6 @@ MotionPrompt.pack('ui', function () {
       text(s, x + 16 + 18 * k, 30, 15, k > .5 ? C.blue : '#555', 600);
       pos.push(x + cw0 / 2); x += cw0 + 10;
     });
-    // 一覧：条件に合わないカードが消える
     const vis = [1, 1 - Math.max(on[1], on[3]), 1 - on[3], 1];
     for (let i = 0; i < 4; i++) {
       const cx = 24 + (i % 2) * 252, cy = 60 + Math.floor(i / 2) * 64, a = clamp(.12 + .88 * vis[i]);
@@ -313,16 +296,14 @@ MotionPrompt.pack('ui', function () {
   });
 
   // @element 14
-  // 14 レンジスライダー（Range slider）
   CELLS[13] = ui((w, h, t) => {
-    // つまみ2つで範囲を選ぶ：下限 ¥1,000→¥3,000、上限 ¥10,000→¥8,000、のち元へ戻す
     const LO = tt => .1 + .2 * eio(seg(tt, 1.0, 1.6)) - .2 * eio(seg(tt, 3.55, 3.9));
     const HI = tt => 1.0 - .2 * eio(seg(tt, 2.1, 2.6)) + .2 * eio(seg(tt, 2.95, 3.3));
     const x0 = 54, x1 = 488, ty = 120, X_ = v => lerp(x0, x1, v);
     const lo = LO(t), hi = HI(t), lx = X_(lo), hx = X_(hi);
     const yen = v => '¥' + (Math.round(v * 100) * 100).toLocaleString('en-US');
-    text('価格', 24, 26, 16, '#555', 700);
-    text(yen(lo) + ' 〜 ' + yen(hi), w - 24, 26, 17, C.blue, 700, 'right', NUMF);
+    text('价格', 24, 26, 16, '#555', 700);
+    text(yen(lo) + ' 至 ' + yen(hi), w - 24, 26, 17, C.blue, 700, 'right', NUMF);
     fillRR(x0, ty - 4, x1 - x0, 8, 4, '#e3e1df'); fillRR(lx, ty - 4, hx - lx, 8, 4, C.blue);
     const loAct = (t > 1.0 && t < 1.7) || (t > 3.55 && t < 3.95), hiAct = t > 2.1 && t < 3.3;
     [[lx, lo, loAct], [hx, hi, hiAct]].forEach(([kx, v, act]) => {
@@ -349,7 +330,6 @@ MotionPrompt.pack('ui', function () {
   });
 
   // @element 15
-  // 15 ステッパー（Stepper (+/−)）
   CELLS[14] = ui((w, h, t) => {
     bar(171, 24, 90, C.line2, 10);
     const plus = [.9, 1.35, 1.8], minus = [2.8, 3.25, 3.7];
@@ -368,7 +348,6 @@ MotionPrompt.pack('ui', function () {
   });
 
   // @element 16
-  // 16 ページネーション（Pagination）
   CELLS[15] = ui((w, h, t) => {
     const page = t < 1.05 ? 0 : t < 2.15 ? 1 : t < 3.35 ? 2 : 0;
     const fade = Math.min(...[1.05, 2.15, 3.35].map(c => Math.abs(t - c) < .2 ? Math.abs(t - c) / .2 : 1));
@@ -384,7 +363,6 @@ MotionPrompt.pack('ui', function () {
   });
 
   // @element 17
-  // 17 ハンバーガーメニュー（Hamburger menu）
   CELLS[16] = ui((w, h, t) => {
     const a = eio(seg(t, 1.0, 1.3)) * (1 - eio(seg(t, 3.3, 3.6)));
     pageLines(24, 66, 494); fillRR(24, 134, 494, 46, 8, C.block);
@@ -397,7 +375,6 @@ MotionPrompt.pack('ui', function () {
     }
     X.fillStyle = '#fff'; X.fillRect(0, 0, w, 44); X.fillStyle = C.line; X.fillRect(0, 44, w, 1.5);
     fillRR(24, 15, 76, 16, 4, C.mb);
-    // 三本線 → ×
     const hx = w - 42, hy = 22; X.save(); X.translate(hx, hy); X.strokeStyle = a > .02 ? C.blue : '#333'; X.lineWidth = 3; X.lineCap = 'round';
     X.save(); X.translate(0, -8 * (1 - a)); X.rotate(Math.PI / 4 * a); X.beginPath(); X.moveTo(-12, 0); X.lineTo(12, 0); X.stroke(); X.restore();
     X.globalAlpha = 1 - a; X.beginPath(); X.moveTo(-12, 0); X.lineTo(12, 0); X.stroke(); X.globalAlpha = 1;
@@ -407,31 +384,28 @@ MotionPrompt.pack('ui', function () {
   });
 
   // @element 18
-  // 18 パンくずリスト（Breadcrumbs）
   CELLS[17] = ui((w, h, t) => {
-    const up = eio(seg(t, 1.0, 1.25)) * (1 - eio(seg(t, 2.7, 2.95))); // 1=「講座」の階層にいる
+    const up = eio(seg(t, 1.0, 1.25)) * (1 - eio(seg(t, 2.7, 2.95))); // 状态 1 表示处于课程层级。
     let x = 24; const y = 24;
-    text('ホーム', x, y, 17, C.blue, 600); x += tw('ホーム', 17, 600) + 10; text('›', x, y, 17, '#aaa', 500); x += 18;
-    const kx = x, kw = tw('講座', 17, 700);
+    text('首页', x, y, 17, C.blue, 600); x += tw('首页', 17, 600) + 10; text('›', x, y, 17, '#aaa', 500); x += 18;
+    const kx = x, kw = tw('课程', 17, 700);
     const hoverK = t > .9 && t < 1.2;
-    text('講座', x, y, 17, up > .5 ? C.ink : C.blue, up > .5 ? 700 : 600); if (hoverK) { X.fillStyle = C.blue; X.fillRect(x, y + 12, kw, 2); }
+    text('课程', x, y, 17, up > .5 ? C.ink : C.blue, up > .5 ? 700 : 600); if (hoverK) { X.fillStyle = C.blue; X.fillRect(x, y + 12, kw, 2); }
     x += kw + 10;
-    X.globalAlpha = 1 - up; text('›', x, y, 17, '#aaa', 500); text('Web制作', x + 18, y, 17, C.ink, 700); X.globalAlpha = 1;
+    X.globalAlpha = 1 - up; text('›', x, y, 17, '#aaa', 500); text('网页制作', x + 18, y, 17, C.ink, 700); X.globalAlpha = 1;
     X.fillStyle = C.line; X.fillRect(24, 46, 494, 1.5);
-    // 中身：詳細ページ ⇄ 一覧ページ
     if (up < 1) { X.save(); X.globalAlpha = 1 - up; bar(24, 64, 200, C.ink, 13); bar(24, 92, 494); bar(24, 110, 420); fillRR(24, 132, 494, 48, 8, C.block); X.restore(); }
     if (up > 0) { X.save(); X.globalAlpha = up; for (let k = 0; k < 3; k++) { const cx = 24 + k * 168, hov = k === 0 && t > 2.45 && t < 2.8; strokeRR(cx, 62, 158, 118, 8, hov ? C.blue : C.line2, hov ? 2 : 1.5); mountains(cx + 10, 72, 138, 58, k % 2); bar(cx + 10, 142, 90, k === 0 ? C.sb : C.line2, 10); bar(cx + 10, 160, 120, C.line, 7); } X.restore(); }
     pointer([[.3, w + 30, h + 30], [.95, kx + kw / 2, 30], [1.6, kx + kw / 2, 30], [2.4, 104, 120], [3.1, 104, 120], [3.9, w + 30, h + 30]], [1.0, 2.7], t);
   });
 
   // @element 19
-  // 19 メガメニュー（Mega menu）
   CELLS[18] = ui((w, h, t) => {
     const a = eo(seg(t, 1.05, 1.3)) * (1 - eio(seg(t, 3.15, 3.4)));
     pageLines(24, 62, 494); fillRR(24, 130, 494, 50, 8, C.block);
     X.fillStyle = '#fff'; X.fillRect(0, 0, w, 42); X.fillStyle = C.line; X.fillRect(0, 42, w, 1.5);
     fillRR(24, 14, 70, 16, 4, C.mb);
-    const nav = [['製品', 190], ['料金', 262], ['サポート', 334]];
+    const nav = [['产品', 190], ['价格', 262], ['支持', 334]];
     nav.forEach(([s, x], i) => { const on = i === 0 && a > .3; text(s, x, 22, 16, on ? C.blue : '#555', on ? 700 : 600); if (on) fillRR(x, 36, tw(s, 16, 700), 3, 1.5, C.blue); chevron(x + tw(s, 16, 700) + 10, 22, 3.5, 0, on ? C.blue : '#999', 1.8); });
     if (a > 0) {
       X.save(); X.globalAlpha = a; X.beginPath(); X.rect(0, 43, w, h); X.clip(); const py = 43 - 12 * (1 - a);
@@ -440,17 +414,16 @@ MotionPrompt.pack('ui', function () {
       mountains(414, py + 14, 104, 112);
       X.restore();
     }
-    // 乗せるだけで開く（クリックしない）
+    // 悬停时打开菜单。
     pointer([[.3, w + 30, h + 30], [1.0, 205, 26], [1.4, 205, 26], [1.8, 196, 98], [2.9, 196, 98], [3.2, 300, 200], [3.9, w + 30, h + 30]], [], t);
   });
 
   // @element 20
-  // 20 ステップインジケーター（Step indicator）
   CELLS[19] = ui((w, h, t) => {
     const clicks = [.9, 1.7, 2.5]; let step = 0; clicks.forEach(c => { if (t >= c) step++; });
     const reset = seg(t, 3.75, 4.05), back = seg(t, 4.05, 4.3);
     const showStep = reset >= 1 ? 0 : step;
-    const xs = [80, 207, 334, 461], labs = ['入力', '確認', '支払い', '完了'];
+    const xs = [80, 207, 334, 461], labs = ['填写', '确认', '付款', '完成'];
     const prog = clicks.reduce((s, c) => s + eio(seg(t, c, c + .3)), 0);
     X.save(); X.globalAlpha = reset < 1 ? 1 - reset : back;
     const pr = reset >= 1 ? 0 : prog;
@@ -463,12 +436,11 @@ MotionPrompt.pack('ui', function () {
     });
     X.restore();
     strokeRR(24, 96, 494, 30, 7, C.line2, 1.5); bar(36, 106, 160, C.line); bar(24, 148, 200, C.line);
-    fillRR(w - 24 - 110, 142, 110, 38, 8, C.blue); text('次へ', w - 24 - 55, 161, 16, '#fff', 600, 'center');
+    fillRR(w - 24 - 110, 142, 110, 38, 8, C.blue); text('下一步', w - 24 - 55, 161, 16, '#fff', 600, 'center');
     pointer([[.3, w + 30, h + 30], [.85, w - 74, 166], [2.6, w - 74, 166], [3.3, w + 30, h + 30]], clicks, t);
   });
 
   // @element 21
-  // 21 スケルトン（Skeleton screen）
   CELLS[20] = ui((w, h, t) => {
     const sk = seg(t, 1.05, 1.2) * (1 - seg(t, 3.0, 3.3));
     ring(w - 40, 26, 14, C.line2, 1.8); X.beginPath(); X.arc(w - 40, 26, 7, -Math.PI * .1, Math.PI * 1.4); X.strokeStyle = '#666'; X.lineWidth = 2.2; X.stroke();
@@ -479,7 +451,6 @@ MotionPrompt.pack('ui', function () {
       if (sk > 0) {
         X.save(); X.globalAlpha = sk; const g = '#e9e7e5';
         fillRR(24, y, 96, 56, 8, g); fillRR(136, y + 4, 200, 14, 7, g); fillRR(136, y + 26, 340, 10, 5, g); fillRR(136, y + 42, 260, 10, 5, g);
-        // 光が横に流れる
         const sx = -200 + ((t - 1.1) % 0.9) / 0.9 * (w + 400);
         X.globalCompositeOperation = 'source-atop';
         const gr = X.createLinearGradient(sx - 80, 0, sx + 80, 0); gr.addColorStop(0, 'rgba(255,255,255,0)'); gr.addColorStop(.5, 'rgba(255,255,255,.75)'); gr.addColorStop(1, 'rgba(255,255,255,0)');
@@ -491,12 +462,11 @@ MotionPrompt.pack('ui', function () {
   });
 
   // @element 22
-  // 22 スピナー（Spinner）
   CELLS[21] = ui((w, h, t) => {
     const load = seg(t, 1.05, 1.2) * (1 - seg(t, 2.95, 3.05));
     const done = seg(t, 2.95, 3.15) * (1 - seg(t, 3.75, 4.0));
     pageLines(24, 18, 494); strokeRR(24, 90, 494, 34, 7, C.line2, 1.5);
-    fillRR(w / 2 - 60, 140, 120, 40, 8, C.blue); text('送信', w / 2, 160, 16, '#fff', 600, 'center');
+    fillRR(w / 2 - 60, 140, 120, 40, 8, C.blue); text('提交', w / 2, 160, 16, '#fff', 600, 'center');
     const ov = Math.max(load, done);
     if (ov > 0) {
       X.fillStyle = `rgba(255,255,255,${.78 * ov})`; X.fillRect(0, 0, w, h);
@@ -507,11 +477,9 @@ MotionPrompt.pack('ui', function () {
   });
 
   // @element 23
-  // 23 バッジ（Badge）
   CELLS[22] = ui((w, h, t) => {
     X.fillStyle = '#fff'; X.fillRect(0, 0, w, 54); X.fillStyle = C.line; X.fillRect(0, 54, w, 1.5);
     fillRR(24, 19, 76, 16, 4, C.mb);
-    // ベル
     const bx = w - 60, by = 27; X.save(); X.translate(bx, by);
     X.beginPath(); X.moveTo(-12, 8); X.quadraticCurveTo(-11, -12, 0, -13); X.quadraticCurveTo(11, -12, 12, 8); X.lineTo(15, 11); X.lineTo(-15, 11); X.closePath();
     X.strokeStyle = '#333'; X.lineWidth = 2.4; X.lineJoin = 'round'; X.stroke(); X.beginPath(); X.arc(0, 14, 4, 0, Math.PI); X.stroke(); X.restore();
@@ -520,7 +488,6 @@ MotionPrompt.pack('ui', function () {
     if (n > 0 && clear < 1) {
       const last = arr.filter(c => t >= c).pop(), pop = 1 - seg(t, last, last + .3);
       const s = (n === 1 ? eo(seg(t, .7, .9)) : 1) * (1 + .3 * pop) * (1 - clear);
-      // 届いた合図の波紋
       const k = seg(t, last, last + .5); if (k > 0 && k < 1) ring(bx + 12, by - 12, 12 + 16 * k, `rgba(31,90,232,${.5 * (1 - k)})`, 2.5);
       X.save(); X.translate(bx + 12, by - 12); X.scale(s, s); circle(0, 0, 12, C.blue); ring(0, 0, 12, '#fff', 2.5); text(String(n), 0, 1, 14, '#fff', 800, 'center', NUMF); X.restore();
     }
@@ -529,7 +496,6 @@ MotionPrompt.pack('ui', function () {
   });
 
   // @element 24
-  // 24 エンプティステート（Empty state）
   CELLS[23] = ui((w, h, t) => {
     const r1 = eio(seg(t, 0.95, 1.25)), r2 = eio(seg(t, 1.65, 1.95));
     const back = eo(seg(t, 3.35, 3.7));
@@ -541,7 +507,6 @@ MotionPrompt.pack('ui', function () {
       const y = 40 + i * 58 - (i === 1 ? 58 * (back > 0 ? 0 : r1) : 0);
       X.save(); X.globalAlpha = 1 - gone; X.translate(-60 * gone, 0);
       strokeRR(24, y, 494, 48, 8, C.line2, 1.5); ring(48, y + 24, 9, C.line2, 2); bar(70, y + 12, 200, C.line2, 10); bar(70, y + 28, 140, C.line, 7);
-      // ゴミ箱
       X.strokeStyle = '#888'; X.lineWidth = 2; X.lineJoin = 'round'; X.strokeRect(476, y + 18, 16, 18); X.beginPath(); X.moveTo(472, y + 17); X.lineTo(496, y + 17); X.moveTo(480, y + 13); X.lineTo(488, y + 13); X.stroke();
       X.restore();
     });
@@ -550,8 +515,8 @@ MotionPrompt.pack('ui', function () {
       X.strokeStyle = C.blue; X.lineWidth = 2.6; X.lineJoin = 'round';
       X.beginPath(); X.moveTo(w / 2 - 26, cy - 4); X.lineTo(w / 2 - 18, cy - 22); X.lineTo(w / 2 + 18, cy - 22); X.lineTo(w / 2 + 26, cy - 4); X.lineTo(w / 2 + 26, cy + 16); X.lineTo(w / 2 - 26, cy + 16); X.closePath(); X.stroke();
       X.beginPath(); X.moveTo(w / 2 - 26, cy - 4); X.lineTo(w / 2 - 9, cy - 4); X.lineTo(w / 2 - 6, cy + 3); X.lineTo(w / 2 + 6, cy + 3); X.lineTo(w / 2 + 9, cy - 4); X.lineTo(w / 2 + 26, cy - 4); X.stroke();
-      text('まだ何もありません', w / 2, cy + 40, 16, '#555', 600, 'center');
-      fillRR(w / 2 - 56, cy + 62, 112, 34, 8, C.blue); text('追加する', w / 2, cy + 79, 15, '#fff', 600, 'center');
+      text('暂无内容', w / 2, cy + 40, 16, '#555', 600, 'center');
+      fillRR(w / 2 - 56, cy + 62, 112, 34, 8, C.blue); text('添加', w / 2, cy + 79, 15, '#fff', 600, 'center');
       X.restore();
     }
     pointer([[.3, w + 30, h + 30], [.9, 486, 67], [1.25, 486, 67], [1.6, 486, 67], [2.4, 486, 67], [3.2, w / 2 + 4, 156], [3.5, w / 2 + 4, 156], [4.2, w + 30, h + 30]], [0.95, 1.65, 3.3], t);

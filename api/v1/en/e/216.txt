@@ -17,5 +17,4 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 24
-// ブループリント（設計図風）: 青地に白い線の図面
 CELLS[23] = (k, w, h, u) => gafu(k, w, h, u, '24');

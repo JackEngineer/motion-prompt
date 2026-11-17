@@ -19,16 +19,15 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 05
-// レンブラントライティング: 斜め45°・上からの光。影側の頬に三角形の光が残る
 CELLS[4] = cell((k, u) => {
   const a = env(u), R = PR, W = torsoW(R);
   stagePortrait(k, pal(BASE, DIM, a));
   const lit = mixc(BASE.person, BASE.lit, a), sh = mixc(BASE.person, BASE.shade, a);
   bust(k, PX, PY, R, BASE.person, kk => {
     kk.fillStyle = lit; kk.beginPath(); kk.arc(PX, PY, R, 0, TAU); kk.fill();
-    kk.fillStyle = sh; kk.fillRect(PX + 0.04 * R, PY - R - 2, R * 2, R * 2 + 4);       // 鼻筋から右は影
+    kk.fillStyle = sh; kk.fillRect(PX + 0.04 * R, PY - R - 2, R * 2, R * 2 + 4);
     kk.beginPath(); kk.arc(PX, PY, R, 0, TAU); kk.clip();
-    kk.fillStyle = lit; kk.beginPath();                                                   // 影側の頬に残る光の三角形
+    kk.fillStyle = lit; kk.beginPath();
     kk.moveTo(PX + 0.24 * R, PY - 0.12 * R); kk.lineTo(PX + 0.7 * R, PY - 0.12 * R); kk.lineTo(PX + 0.24 * R, PY + 0.5 * R); kk.closePath(); kk.fill();
   });
   bust(k, PX, PY, R, 'rgba(0,0,0,0)', kk => {

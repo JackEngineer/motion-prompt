@@ -18,5 +18,4 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 18
-// ボクセルアート: 小さな立方体を積んだ3D
 CELLS[17] = (k, w, h, u) => gafu(k, w, h, u, '18');

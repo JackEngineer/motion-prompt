@@ -20,6 +20,5 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 04
-// 04 ズームイン: 位置は固定・焦点距離だけ伸びる（全体が同じ比率で拡大）
 CELLS[3] = shot(camCell((k, w, h, p) => world(k, w, h, cam({ f: F0 * Math.pow(8 / 2.2, p) }), { person: { z: 8 }, fg: [[-1.5, 3.6], [1.6, 4.8, 'rock']] }),
   p => mm(F0 * Math.pow(8 / 2.2, p))));

@@ -6,7 +6,7 @@
 
 Encuentra el nombre y díselo a tu IA. Si agregas cuánto dura, con qué intensidad y qué se mueve, el resultado se acerca más a lo que imaginabas.
 
-![Movimientos de motion graphics, parte 2 — muestra](../../assets/preview-motion2.gif)
+![Movimientos de motion graphics, parte 2 muestra](../../assets/preview-motion2.gif)
 
 ## Técnicas de movimiento
 

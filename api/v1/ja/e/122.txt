@@ -19,7 +19,6 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 02
-// 02 フォロースルー（体が止まった後も、旗としっぽだけが遅れて揺れて収まる）
 const FTAB = (() => {
   const T = CYC / 2, dt = 1 / 600, N = Math.ceil(T / dt) + 2, D = CW - 2 * 118;
   const pos = lu => { const q = P(lu, 0.15, 0.85), c = 1 / 0.85; return (q < 0.3 ? q * q / 0.6 : 0.15 + (q - 0.3)) * c; };
@@ -42,10 +41,8 @@ CELLS[1] = (k, w, h, u) => {
   const floor = h - 26, R = 38, cy = floor - R, a = dir * FTAB.A[i];
   k.fillStyle = C.navy3; rr(k, 26, floor, w - 52, 5, 2.5); k.fill();
   k.fillStyle = 'rgba(0,0,0,.3)'; k.beginPath(); k.ellipse(x, floor + 8, R * 1.1, 6, 0, 0, 7); k.fill();
-  // 滑っている間のスピード線
   const moving = lu > 0.2 && lu < 0.85;
   if (moving) { k.strokeStyle = C.dim; k.lineCap = 'round'; k.lineWidth = 6; k.globalAlpha = 0.7;[[-18, 70], [6, 100], [26, 56]].forEach(([dy, L]) => { const x0 = x - dir * (R + 30); k.beginPath(); k.moveTo(x0, cy + dy); k.lineTo(x0 - dir * L, cy + dy); k.stroke(); }); k.globalAlpha = 1; }
-  // しっぽ（体の後ろ）
   let px = x - dir * (R - 8), py = cy + 10; const pts = [[px, py]];
   for (let j = 1; j <= 7; j++) {
     const ij = Math.max(0, i - j * 22), d = FTAB.B[ij] * (0.55 + j * 0.16), ang0 = Math.PI + 0.25 + d;
@@ -54,12 +51,10 @@ CELLS[1] = (k, w, h, u) => {
   k.lineCap = 'round'; k.lineJoin = 'round'; k.strokeStyle = C.coral;
   for (let j = 1; j < pts.length; j++) { k.lineWidth = lerp(14, 6, j / pts.length); k.beginPath(); k.moveTo(pts[j - 1][0], pts[j - 1][1]); k.lineTo(pts[j][0], pts[j][1]); k.stroke(); }
   k.fillStyle = C.coral; k.beginPath(); k.arc(px, py, 9, 0, 7); k.fill();
-  // 体
   k.fillStyle = C.mint; k.beginPath(); k.arc(x, cy, R, 0, 7); k.fill();
   k.fillStyle = 'rgba(255,255,255,.18)'; k.beginPath(); k.arc(x - 10, cy - 12, R * 0.55, 0, 7); k.fill();
   k.fillStyle = '#fff'; k.beginPath(); k.arc(x + dir * 16, cy - 6, 9, 0, 7); k.fill();
   k.fillStyle = C.navy; k.beginPath(); k.arc(x + dir * 19, cy - 6, 4.5, 0, 7); k.fill();
-  // アンテナの旗
   const L = 58, top = cy - R + 4;
   k.save(); k.translate(x, top); k.rotate(a);
   k.strokeStyle = '#fff'; k.lineWidth = 5; k.beginPath(); k.moveTo(0, 0); k.lineTo(0, -L); k.stroke();

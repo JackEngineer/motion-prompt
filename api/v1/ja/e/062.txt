@@ -19,16 +19,14 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 14
-// 14 レンジスライダー（Range slider）
 CELLS[13] = ui((w, h, t) => {
-  // つまみ2つで範囲を選ぶ：下限 ¥1,000→¥3,000、上限 ¥10,000→¥8,000、のち元へ戻す
   const LO = tt => .1 + .2 * eio(seg(tt, 1.0, 1.6)) - .2 * eio(seg(tt, 3.55, 3.9));
   const HI = tt => 1.0 - .2 * eio(seg(tt, 2.1, 2.6)) + .2 * eio(seg(tt, 2.95, 3.3));
   const x0 = 54, x1 = 488, ty = 120, X_ = v => lerp(x0, x1, v);
   const lo = LO(t), hi = HI(t), lx = X_(lo), hx = X_(hi);
   const yen = v => '¥' + (Math.round(v * 100) * 100).toLocaleString('en-US');
-  text('価格', 24, 26, 16, '#555', 700);
-  text(yen(lo) + ' 〜 ' + yen(hi), w - 24, 26, 17, C.blue, 700, 'right', NUMF);
+  text('价格', 24, 26, 16, '#555', 700);
+  text(yen(lo) + ' 至 ' + yen(hi), w - 24, 26, 17, C.blue, 700, 'right', NUMF);
   fillRR(x0, ty - 4, x1 - x0, 8, 4, '#e3e1df'); fillRR(lx, ty - 4, hx - lx, 8, 4, C.blue);
   const loAct = (t > 1.0 && t < 1.7) || (t > 3.55 && t < 3.95), hiAct = t > 2.1 && t < 3.3;
   [[lx, lo, loAct], [hx, hi, hiAct]].forEach(([kx, v, act]) => {

@@ -19,17 +19,16 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 01
-// 01 タイムラインアニメーション（スクロールに合わせて年表の線が上から伸び、線が届いた年が順に現れる）
 CELLS[0] = (k, w, h, u) => {
   u = snapU(u);
   frame(k);
   const y = steps([[0.3, 0], [2.3, 190], [3.0, 190], [4.3, 0]], u);
-  const ROWS = [[72, '2018', '創業'], [126, '2020', '1号店オープン'], [180, '2022', '会員1万人'], [234, '2024', 'アプリ公開'], [288, '2026', '海外へ']];
-  const LX = 168, L = y + 126;                         // 線の先（画面の下から 42px の所までページと一緒に伸びる）
+  const ROWS = [[72, '2018', '创立'], [126, '2020', '首家门店开业'], [180, '2022', '会员突破一万人'], [234, '2024', '应用上线'], [288, '2026', '拓展海外']];
+  const LX = 168, L = y + 126;                         // 线端随页面延伸，最远到窗口底部上方 42 像素处。
   view(k, () => {
     k.save(); k.translate(0, -y);
-    txt(k, 'HISTORY', 34, 34, `800 11px ${EN}`, C.acc, 'left', 'alphabetic', '2px');
-    txt(k, 'あゆみ', 34, 60, `800 20px ${JP}`, C.ink);
+    txt(k, '时间线', 34, 34, `800 11px ${EN}`, C.acc, 'left', 'alphabetic', '2px');
+    txt(k, '发展历程', 34, 60, `800 20px ${JP}`, C.ink);
     pic(k, 34, 76, 100, 62, 0, 6); bars(k, 34, 148, 90, 2);
     k.fillStyle = C.faint; rr(k, LX - 1.5, 52, 3, 248, 1.5); k.fill();
     k.fillStyle = C.acc; rr(k, LX - 1.5, 52, 3, clamp(L - 52, 0, 248), 1.5); k.fill();

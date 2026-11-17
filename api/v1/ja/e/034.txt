@@ -20,11 +20,10 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 10
-// 10 手持ち
 CELLS[9] = shot((k, w, h, u) => {
-  const T = u * 2 * Math.PI / CYC;   // 周期をサイクルに合わせて継ぎ目なし
+  const T = u * 2 * Math.PI / CYC;   // 让抖动的周期与演示循环对齐，避免首尾跳变。
   const n = (a, b, c2) => Math.sin(T * a + b) * c2;
   const yaw = n(3, 0, .016) + n(7, 1, .008) + n(13, 2, .004), pitch = n(4, 2, .012) + n(9, .5, .006) + n(17, 1.2, .003), roll = n(5, 1, .02) + n(11, 3, .008);
   world(k, w, h, cam({ yaw, pitch, roll, y: 1.5 + n(6, 0, .03) }), { person: { z: 6.5 } });
-  return 'HANDHELD';
+  return '手持';
 });

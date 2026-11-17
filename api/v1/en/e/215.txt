@@ -18,5 +18,4 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 23
-// シンセウェイヴ: 80年代風のネオンの格子と縞の夕日（地面の格子を写すため、切り出し位置が違う下絵を使う）
 CELLS[22] = (k, w, h, u) => gafu(k, w, h, u, '23');

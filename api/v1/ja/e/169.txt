@@ -20,6 +20,5 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 01
-// 01 ペデスタル: カメラごと真上へ平行移動。向き（ピッチ）は変えないので地平線は画面の中央のまま（#031 クレーンアップとの違い）
 CELLS[0] = shot(camCell((k, w, h, p) => world(k, w, h, cam({ y: lerp(1.0, 3.2, p) }), { person: { z: 7 }, tower: [3.5, 26], buildings: true }),
   p => `↕ ${lerp(1.0, 3.2, p).toFixed(1)}m`));

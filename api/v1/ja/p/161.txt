@@ -1,4 +1,4 @@
-「ビュートランジション（View transition (shared element)）」を使ってください。「LP・Webサイトの演出 第2弾」の名前の1つです。
+「ビュートランジション（英文名：View transition (shared element)）」を使ってください。「LP・Webサイトの演出 第2弾」の名前の1つです。
 Motion Prompt #161
 
 どういうものか: 一覧の写真がそのまま詳細へ広がる
@@ -11,6 +11,6 @@ Motion Prompt #161
 - 一覧と詳細の写真に同じ view-transition-name を付けたときの View Transitions API の見え方
 使いどころ: 一覧と詳細を行き来するギャラリーや商品ページで、どの項目を開いたかを見失わせたくないとき。
 
-参考実装（Canvas 2D・時刻だけで絵が決まる関数）: https://showheyohtaki.github.io/motion-prompt/api/v1/ja/e/161.txt
-共通の補助コード: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp2.js
+参考実装（Canvas 2D・時刻だけで絵が決まる関数）: ../e/161.txt
+共通の補助コード: ../../kit/lp2.js
 参考実装の形・タイミング・イージングの数値はそのまま使い、中の文字・色・素材だけ、いま作っている物に合わせてください。

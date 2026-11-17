@@ -19,7 +19,6 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 16
-// 16 帯グラフ（100%積み上げ）: 4 bands of the same length fill from left to right; dashed lines join the borders
 const BD = [[38, 27, 22, 13], [30, 34, 20, 16], [46, 24, 18, 12], [25, 31, 28, 16]];
 function band(k, w, h, u) {
   bg(k, w, h);
@@ -29,7 +28,7 @@ function band(k, w, h, u) {
   const fo = dataFade(u);
   k.save(); k.globalAlpha = fo;
   const edges = BD.map(r => { let a = 0; return r.map(v => (a += v, x0 + bwid * a / 100)); });
-  // dashed lines joining the borders of neighbouring bands (the classic 帯グラフ guide lines)
+  // 用虚线连接相邻条带的分界点。
   const pg = easeInOut(P(u, 1.6, 2.0));
   if (pg > 0) {
     k.save(); k.globalAlpha = fo * pg;
@@ -50,7 +49,7 @@ function band(k, w, h, u) {
       a += ww;
     });
     k.restore();
-    const pt = P(u, t0 + 0.75, t0 + 1.0);   // % on the first part of each band
+    const pt = P(u, t0 + 0.75, t0 + 1.0);
     if (pt > 0) {
       k.save(); k.globalAlpha = fo * pt;
       txt(k, `${row[0]}%`, x0 + bwid * row[0] / 200, y + bh / 2 + 1, `700 16px ${FONT}`, '#FFFFFF', 'center', 'middle');

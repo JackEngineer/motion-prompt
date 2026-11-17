@@ -19,9 +19,8 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 05
-// 05 マインドマップ: a center word, curved branches out to both sides, then smaller twigs
 const MM = [
-  // [side, end dx, end dy, color, twigs [dx, dy]]
+  // 每项为 [分支侧, 终点横向偏移, 终点纵向偏移, 颜色, 子分支列表 [横向偏移, 纵向偏移]]。
   [1, 128, -52, C.blueM, [[204, -72], [204, -32]]],
   [1, 142, 8, C.g4, []],
   [1, 124, 56, C.blueM, [[204, 76]]],
@@ -49,7 +48,7 @@ function mindmap(k, w, h, u) {
   if (s > 0.01) {
     k.save(); k.translate(cx, cy); k.scale(s, s);
     k.fillStyle = C.blue; rr(k, -50, -22, 100, 44, 22); k.fill();
-    txt(k, 'テーマ', 0, 1, `700 19px ${FONT}`, '#FFFFFF', 'center', 'middle');
+    txt(k, '主题', 0, 1, `700 19px ${FONT}`, '#FFFFFF', 'center', 'middle');
     k.restore();
   }
   k.globalAlpha = 1;

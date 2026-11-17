@@ -1,5 +1,5 @@
 <!doctype html>
-<meta charset="utf-8"><title>pack preview</title>
+<html lang="zh-Hans"><meta charset="utf-8"><title>素材包预览</title>
 <style>
 body{margin:20px;background:#f4f3f0;font:13px/1.4 system-ui}
 #g{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
@@ -13,8 +13,12 @@ figcaption{padding:4px 2px;color:#333}
 // dev/preview.html?pack=motion&t=1.2      frozen at u = 1.2s (use this for screenshots)
 // dev/preview.html?pack=motion&only=5     only element 05 (1-based), large
 const q = new URLSearchParams(location.search), id = q.get('pack');
+if (!id || !/^[a-z0-9-]+$/.test(id)) {
+  document.getElementById('info').textContent = '请在地址中指定素材包，例如 ?pack=motion。';
+} else {
 const s = document.createElement('script'); s.src = `../packs/${id}/pack.js`;
 s.onload = async () => {
+  try {
   const p = MotionPrompt.packs[id];
   await MotionPrompt.loadFonts(p, new URL(`../packs/${id}/`, location.href));
   await document.fonts.ready;
@@ -22,7 +26,7 @@ s.onload = async () => {
   const meta = await fetch(`../packs/${id}/meta.json`).then(r => r.json()).catch(() => null);
   const only = +q.get('only') || 0, fixed = q.has('t') ? +q.get('t') : null;
   if (only) document.getElementById('g').style.gridTemplateColumns = '1fr';
-  document.getElementById('info').textContent = `${id}: ${p.cells.length} cells, ${p.width}x${p.height}, cycle ${p.cycle}s`;
+  document.getElementById('info').textContent = `${id}: ${p.cells.length} 个示例，${p.width}x${p.height}，循环 ${p.cycle} 秒`;
   const items = [];
   p.cells.forEach((cell, i) => {
     if (only && only !== i + 1) return;
@@ -30,7 +34,7 @@ s.onload = async () => {
     c.width = p.width; c.height = p.height;
     const el = meta && meta.elements[i];
     f.append(c); const cap = document.createElement('figcaption');
-    cap.textContent = `${String(i + 1).padStart(2, '0')} ${el ? el.name.ja + ' / ' + el.name.en : ''}`;
+    cap.textContent = `${String(i + 1).padStart(2, '0')} ${el ? el.name['zh-Hans'] + ' / ' + el.name.en : ''}`;
     f.append(cap); document.getElementById('g').append(f);
     items.push({ cell, k: c.getContext('2d') });
   });
@@ -40,6 +44,12 @@ s.onload = async () => {
   });
   if (fixed !== null) { draw(fixed % p.cycle); window.READY = true; }
   else { const t0 = performance.now(); (function loop() { draw(((performance.now() - t0) / 1000) % p.cycle); requestAnimationFrame(loop); })(); window.READY = true; }
+  } catch (error) {
+    document.getElementById('info').textContent = '素材包预览加载失败，请检查素材包名称、字体和图片文件。';
+    console.error(error);
+  }
 };
+s.onerror = () => { document.getElementById('info').textContent = '素材包加载失败，请检查名称后重试。'; };
 document.head.append(s);
+}
 </script>

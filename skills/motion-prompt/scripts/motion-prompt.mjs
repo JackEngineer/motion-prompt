@@ -7,14 +7,12 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import http from 'node:http';
 import { spawn } from 'node:child_process';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath, pathToFileURL } from 'node:url';
+import { mpPrompt } from './prompt.mjs';
+import { validateGallery, validateRuntime } from './runtime.mjs';
 
 const VERSION = '0.1.0';
 const SITE = 'https://showheyohtaki.github.io/motion-prompt/';
-const REMOTES = [
-  'https://showheyohtaki.github.io/motion-prompt/api/v1',
-  'https://raw.githubusercontent.com/showheyohtaki/motion-prompt/main/api/v1',
-];
 const MAX_GET = 8;
 const EXIT = { OK: 0, NOT_FOUND: 1, USAGE: 2, NETWORK: 3, TIMEOUT: 4 };
 const PICK_TIMEOUT = 900; // seconds
@@ -42,57 +40,63 @@ function parseArgs(argv) {
     const eq = a.indexOf('=');
     const name = eq === -1 ? a.slice(2) : a.slice(2, eq);
     if (BOOL_FLAGS.has(name)) { flags[name] = true; continue; }
-    if (!VALUE_FLAGS.has(name)) throw new CliError(EXIT.USAGE, `Unknown option --${name}. Run with --help.`);
+    if (!VALUE_FLAGS.has(name)) throw new CliError(EXIT.USAGE, `未知选项 --${name}。请用 --help 查看帮助。`);
     const value = eq === -1 ? argv[++i] : a.slice(eq + 1);
-    if (value === undefined || value === '') throw new CliError(EXIT.USAGE, `Option --${name} needs a value.`);
+    if (value === undefined || value === '') throw new CliError(EXIT.USAGE, `选项 --${name} 需要一个值。`);
     flags[name] = value;
   }
   return { flags, command: rest[0], args: rest.slice(1) };
 }
 
-const HELP = `motion-prompt ${VERSION} — Motion Prompt catalog for coding agents
+const HELP = `motion-prompt ${VERSION} · 面向编程 AI 的 Motion Prompt 目录
 ${SITE}
 
-Usage: node motion-prompt.mjs <command> [options]
+用法：node motion-prompt.mjs <命令> [选项]
 
-  pick                  open the gallery so the user can pick; prints what they picked   [--pack <pack>]
-                        [--timeout <seconds, default ${PICK_TIMEOUT}>] [--no-open] [--local]
-  search <words...>     best matches (English or Japanese words)   [--pack <pack>] [--limit N]
-  list                  packs, categories and counts
-  list --pack <pack>    every element in one pack (or in several: --pack camera,camera2)
-  get <id> [<id>...]    code + spec for up to ${MAX_GET} elements (accepts 12, 012, #012 or a demo URL)
-  prompt <id> [...]     the copy-paste prompt for an element
-  kit <pack>            shared constants and helpers the pack's elements need
-  info                  data source, counts, version, cache folder
+  pick                 打开示例库，等待用户选择并输出结果 [--pack <pack>]
+                       [--timeout <秒数，默认 ${PICK_TIMEOUT}>] [--no-open] [--local]
+  search <关键词...>   搜索名称、标签和描述，可用中文、日文或英文 [--pack <pack>] [--limit N]
+  list                 列出素材包、分类与数量
+  list --pack <pack>   列出素材包中的全部条目，可用逗号指定多个包
+  get <id> [<id>...]   获取代码和规格，每次最多 ${MAX_GET} 条；支持 12、012、#012 或示例 URL
+  prompt <id> [...]    获取可直接复制的提示词
+  kit <pack>           获取素材包共用的常量与辅助函数
+  info                 查看数据来源、数量、版本与缓存目录
 
-Options:
-  --lang ja|en          language of names and text (default en; Japanese search words switch to ja)
-  --pack <pack[,pack]>  pick, search, list: one pack, or several joined by commas (a field's part 1 and part 2 together)
-  --out <dir>           write files into <dir> instead of printing (get, prompt, kit)
-  --refresh             ignore the disk cache
-  --no-open             pick: print the gallery URL instead of opening a browser
-  --local               pick: serve the gallery from this clone of the repository instead of the public site
-Environment:
-  MOTION_PROMPT_BASE    comma-separated data sources (folder path or URL) used instead of the defaults
-  MOTION_PROMPT_CACHE   cache folder (default ~/.cache/motion-prompt, then the temp folder)
-  MOTION_PROMPT_TTL     seconds before the cached catalog is fetched again (default 21600)
-Exit codes: 0 ok · 1 not found · 2 usage · 3 no data source reachable · 4 pick timed out`;
+选项：
+  --lang zh-Hans|ja|en  文案语言，默认 zh-Hans（简体中文）
+  --pack <pack[,pack]>  为 pick、search、list 指定一个或多个素材包
+  --out <dir>          将 get、prompt、kit 结果写入目录，而非输出到终端
+  --refresh            忽略磁盘缓存
+  --no-open            pick：只输出示例库 URL，不打开浏览器
+  --local              兼容选项：断言使用本地选择器（默认已为本地）
+环境变量：
+  MOTION_PROMPT_BASE    显式覆盖 API 目录或 URL；多个候选用逗号分隔，选定后固定来源
+  MOTION_PROMPT_CACHE   缓存目录，默认 ~/.cache/motion-prompt，失败时使用临时目录
+  MOTION_PROMPT_TTL     目录缓存有效秒数，默认 21600
+退出码：0 成功 · 1 未找到 · 2 用法错误 · 3 数据源不可用 · 4 等待选择超时`;
 
 // ---------- data sources ----------
 
 const isUrl = (s) => /^https?:\/\//i.test(s);
 
-function localRepoBase() {
-  const dir = path.resolve(path.dirname(SELF), '..', '..', '..', 'api', 'v1');
-  return fs.existsSync(path.join(dir, 'catalog.json')) ? dir : null;
+function galleryForBase(base) {
+  if (isUrl(base)) return null;
+  const root = path.resolve(base, '..', '..');
+  if (path.resolve(root, 'api/v1') !== path.resolve(base) || !fs.existsSync(path.join(root, 'index.html'))) return null;
+  const validated = fs.existsSync(path.join(root, 'manifest.json')) ? validateRuntime(root) : validateGallery(root);
+  return { galleryRoot: root, ...validated };
 }
 
 function resolveSources() {
-  const env = (ENV.MOTION_PROMPT_BASE || '').split(',').map((s) => s.trim()).filter(Boolean);
-  if (env.length) return { origin: 'MOTION_PROMPT_BASE', bases: env.map((s) => (isUrl(s) ? s.replace(/\/+$/, '') : path.resolve(s))) };
-  const local = localRepoBase();
-  if (local) return { origin: 'local clone', bases: [local] };
-  return { origin: 'default', bases: REMOTES };
+  const explicit = (ENV.MOTION_PROMPT_BASE || '').split(',').map((s) => s.trim()).filter(Boolean);
+  if (explicit.length) return { origin: 'MOTION_PROMPT_BASE', bases: explicit.map((s) => isUrl(s) ? s.replace(/\/+$/, '') : path.resolve(s.startsWith('file:') ? fileURLToPath(s) : s)), galleryRoot: null };
+  const repository = path.resolve(path.dirname(SELF), '../../..');
+  if (fs.existsSync(path.join(repository, 'tools/build.mjs')) && fs.existsSync(path.join(repository, 'packs'))) {
+    return { origin: '本地仓库', bases: [path.join(repository, 'api/v1')], galleryRoot: repository, ...validateGallery(repository) };
+  }
+  const runtime = path.resolve(path.dirname(SELF), '../runtime');
+  return { origin: '随包离线运行时', bases: [path.join(runtime, 'api/v1')], galleryRoot: runtime, ...validateRuntime(runtime) };
 }
 
 function cacheRoots() {
@@ -107,7 +111,8 @@ function cacheRoots() {
 
 class Store {
   constructor({ refresh }) {
-    const { origin, bases } = resolveSources();
+    try { this.source = resolveSources(); } catch (err) { throw new CliError(EXIT.NETWORK, err.message); }
+    const { origin, bases } = this.source;
     this.origin = origin;
     this.bases = bases;
     this.refresh = !!refresh;
@@ -124,7 +129,7 @@ class Store {
   cacheDir() { return this.cacheRoot || path.join(cacheRoots()[0], this.key); }
 
   cacheRead(rel) {
-    if (!this.remote) return null;
+    if (!this.remote || this.bases.length !== 1) return null;
     for (const root of cacheRoots()) {
       const file = path.join(root, this.key, rel);
       try {
@@ -137,7 +142,7 @@ class Store {
   }
 
   cacheWrite(rel, text) {
-    if (!this.remote) return;
+    if (!this.remote || this.bases.length !== 1) return;
     for (const root of cacheRoots()) {
       const file = path.join(root, this.key, rel);
       try {
@@ -151,9 +156,9 @@ class Store {
 
   // Returns { text } on success, { missing: true } when every source answered "no such file",
   // or { down: true } when no source could be reached at all.
-  async readSources(rel) {
+  async readSources(rel, validate = (text) => text) {
     let missing = 0;
-    for (const base of this.bases) {
+    for (const base of this.usedBase ? [this.usedBase] : this.bases) {
       try {
         if (isUrl(base)) {
           const res = await fetch(`${base}/${rel}`, {
@@ -162,40 +167,83 @@ class Store {
           });
           if (res.status === 404) { missing++; this.failures.push(`${base}/${rel} → HTTP 404`); continue; }
           if (!res.ok) throw new Error(`HTTP ${res.status}`);
-          this.usedBase = this.usedBase || base;
-          return { text: await res.text(), base };
+          const text = await res.text();
+          if (rel !== 'catalog.json') this.usedBase = this.usedBase || base;
+          return { text, base, data: validate(text, base) };
         }
         const file = path.join(base, rel);
         if (!fs.existsSync(file)) { missing++; continue; }
-        this.usedBase = this.usedBase || base;
-        return { text: fs.readFileSync(file, 'utf8'), base };
+        const text = fs.readFileSync(file, 'utf8');
+        if (rel !== 'catalog.json') this.usedBase = this.usedBase || base;
+        return { text, base, data: validate(text, base) };
       } catch (err) {
         const cause = err && err.cause && (err.cause.code || err.cause.message);
         this.failures.push(`${base}/${rel} → ${cause || err.name || 'error'}${err.message ? ` (${err.message})` : ''}`);
       }
     }
-    return missing === this.bases.length ? { missing: true } : { down: true };
+    return missing === (this.usedBase ? 1 : this.bases.length) ? { missing: true } : { down: true };
   }
 
   async loadCatalog() {
     if (this.catalog) return this.catalog;
-    const cached = this.refresh ? null : this.cacheRead('catalog.json');
-    let text = null;
-    if (cached && cached.age < this.ttl) { text = cached.text; this.fromCache = true; }
-    if (text === null) {
-      const got = await this.readSources('catalog.json');
-      if (got.text !== undefined) { text = got.text; this.cacheWrite('catalog.json', text); }
+    const cached = this.refresh || this.bases.length !== 1 ? null : this.cacheRead('catalog.json');
+    const parseCatalog = (text, source) => {
+      let data;
+      try { data = JSON.parse(text); } catch { throw new Error(`来自 ${source} 的 catalog.json 不是有效的 JSON。`); }
+      if (!data || !Array.isArray(data.elements)) throw new Error(`来自 ${source} 的 catalog.json 缺少 "elements" 列表。`);
+      const record = (value) => value !== null && typeof value === 'object' && !Array.isArray(value);
+      const textValue = (value) => typeof value === 'string' && !!value.trim();
+      const texts = (value) => record(value) && Object.keys(value).length > 0 && Object.values(value).every(textValue);
+      const textList = (value) => Array.isArray(value) && value.every(textValue);
+      const key = (value) => typeof value === 'string' && /^[\w-]+$/.test(value);
+      const invalid = (field) => { throw new Error(`来自 ${source} 的 catalog.json 结构无效：${field}。`); };
+      if (!record(data) || !data.elements.length) invalid('elements 必须是非空条目列表');
+      const ids = new Set();
+      for (const [index, element] of data.elements.entries()) {
+        if (!record(element) || typeof element.id !== 'string' || !/^\d{3}$/.test(element.id) || ids.has(element.id) || !key(element.pack)) invalid(`elements[${index}] 必须包含唯一三位编号和合法素材包标识`);
+        ids.add(element.id);
+        for (const field of ['name', 'summary', 'use']) if (!texts(element[field])) invalid(`#${element.id}.${field} 必须是语言文本映射`);
+        for (const field of ['meaning', 'ask']) if (element[field] !== undefined && !texts(element[field])) invalid(`#${element.id}.${field} 必须是语言文本映射`);
+        if (!record(element.spec) || !Object.keys(element.spec).length || !Object.values(element.spec).every((value) => textList(value) && value.length > 0)) invalid(`#${element.id}.spec 必须是语言规格列表映射`);
+        if (element.tags !== undefined && !textList(element.tags)) invalid(`#${element.id}.tags 必须是文本列表`);
+        if (element.tagLabels !== undefined && (!record(element.tagLabels) || !Object.values(element.tagLabels).every(textList))) invalid(`#${element.id}.tagLabels 必须是语言标签列表映射`);
+        for (const field of ['slug', 'category']) if (element[field] !== undefined && !key(element[field])) invalid(`#${element.id}.${field} 必须是合法标识`);
+      }
+      if (data.packs !== undefined) {
+        if (!Array.isArray(data.packs)) invalid('packs 必须是素材包列表');
+        const packs = new Set();
+        for (const pack of data.packs) {
+          const name = typeof pack === 'string' ? pack : record(pack) ? packKey(pack) : '';
+          if (!key(name) || packs.has(name)) invalid('packs 必须包含合法且唯一的素材包标识');
+          packs.add(name);
+          if (typeof pack === 'string') continue;
+          if (pack.title !== undefined && !texts(pack.title)) invalid(`packs.${name}.title 必须是语言文本映射`);
+          if (pack.categories !== undefined && (!Array.isArray(pack.categories) || !pack.categories.every((category) => record(category) && key(category.slug)))) invalid(`packs.${name}.categories 必须是类别对象列表`);
+        }
+      }
+      return data;
+    };
+    let data;
+    if (cached && cached.age < this.ttl) {
+      try { data = parseCatalog(cached.text, this.bases[0]); this.fromCache = true; this.usedBase = this.bases[0]; }
+      catch (err) { this.failures.push(err.message); }
+    }
+    if (!data) {
+      const got = await this.readSources('catalog.json', parseCatalog);
+      if (got.text !== undefined) { data = got.data; this.usedBase = got.base; this.cacheWrite('catalog.json', got.text); }
       else {
-        const stale = cached || this.cacheRead('catalog.json');
+        const stale = cached || (this.bases.length === 1 ? this.cacheRead('catalog.json') : null);
         if (stale) {
-          text = stale.text; this.fromCache = true;
-          process.stderr.write('motion-prompt: data source unreachable, using the cached catalog.\n');
-        } else throw this.unreachable('catalog.json', false); // no catalog anywhere = no usable source
+          try { data = parseCatalog(stale.text, this.bases[0]); this.fromCache = true; this.usedBase = this.bases[0]; }
+          catch (err) { this.failures.push(err.message); }
+          if (data) process.stderr.write('motion-prompt：数据源不可用，正在使用目录缓存。\n');
+        }
+        if (!data) throw this.unreachable('catalog.json', false);
       }
     }
-    let data;
-    try { data = JSON.parse(text); } catch { throw new CliError(EXIT.NETWORK, `catalog.json from ${this.usedBase || 'cache'} is not valid JSON.`); }
-    if (!data || !Array.isArray(data.elements)) throw new CliError(EXIT.NETWORK, 'catalog.json has no "elements" list.');
+    if (!this.source.galleryRoot && this.usedBase && !isUrl(this.usedBase)) {
+      try { Object.assign(this.source, galleryForBase(this.usedBase) || {}); } catch (err) { this.source.galleryError = err.message; }
+    }
     this.catalog = data;
     return data;
   }
@@ -215,16 +263,16 @@ class Store {
   }
 
   unreachable(rel, missing) {
-    if (missing) return new CliError(EXIT.NOT_FOUND, `Not found in the Motion Prompt data: ${rel}\nSources checked:\n${this.bases.map((b) => `  ${b}`).join('\n')}`);
+    if (missing) return new CliError(EXIT.NOT_FOUND, `Motion Prompt 数据中未找到：${rel}\n已检查来源：\n${this.bases.map((b) => `  ${b}`).join('\n')}`);
     const lines = [
-      `motion-prompt: could not reach the Motion Prompt data (${rel}) and nothing is cached.`,
-      'Tried:',
+      `motion-prompt：无法读取 Motion Prompt 数据（${rel}），也没有可用缓存。`,
+      '已尝试：',
       ...this.failures.map((f) => `  ${f}`),
       this.failures.length && this.failures.every((f) => f.endsWith('HTTP 404'))
-        ? 'The sources answered, but none of them has this file. The data may not be published at these addresses yet.\nSet MOTION_PROMPT_BASE to a local copy of api/v1 if you have one.'
+        ? '数据源已响应，但都没有这个文件。这些地址可能尚未发布该数据。\n如有 api/v1 本地副本，请将 MOTION_PROMPT_BASE 指向该目录。'
         : this.remote
-        ? 'This command needs HTTPS access to showheyohtaki.github.io or raw.githubusercontent.com.\nAllow network access for this command and run it again, or set MOTION_PROMPT_BASE to a local copy of api/v1.'
-        : 'Check that MOTION_PROMPT_BASE points at a folder that contains catalog.json.',
+        ? '请检查显式配置的 MOTION_PROMPT_BASE 地址，或改用完整的本地 api/v1 副本。'
+        : '请检查 MOTION_PROMPT_BASE 是否指向含有 catalog.json 的目录。',
     ];
     return new CliError(EXIT.NETWORK, lines.join('\n'));
   }
@@ -232,12 +280,13 @@ class Store {
 
 // ---------- catalog helpers ----------
 
-const HAS_JA = /[぀-ヿ㐀-鿿ｦ-ﾟ]/;
+const HAS_JA = /[぀-ヿｦ-ﾟ]/;
 const tx = (v, lang) => (v == null ? '' : typeof v === 'string' ? v : Array.isArray(v) ? v.join(' ') : String(v[lang] ?? v.en ?? v.ja ?? ''));
-const both = (v) => (v == null ? '' : typeof v === 'string' ? v : Array.isArray(v) ? v.join(' ') : `${tx(v.ja, 'ja')} ${tx(v.en, 'en')}`);
+const both = (v) => (v == null ? '' : typeof v === 'string' ? v : Array.isArray(v) ? v.join(' ') : Object.values(v).map((x) => both(x)).join(' '));
 const packKey = (p) => String(p.pack ?? p.id ?? p.slug ?? p.name ?? '');
 const pad = (n) => String(n).padStart(3, '0');
-const demoUrl = (id) => `${SITE}#${id}`;
+const apiBase = (store) => isUrl(store.usedBase || store.bases[0]) ? `${(store.usedBase || store.bases[0]).replace(/\/+$/, '')}/` : pathToFileURL(path.resolve(store.usedBase || store.bases[0]) + path.sep).href;
+const elementRef = (store, id, lang) => `${apiBase(store)}${lang}/e/${id}.txt`;
 
 function packsOf(cat) {
   const listed = Array.isArray(cat.packs) ? cat.packs.map((p) => (typeof p === 'string' ? { pack: p } : p)) : [];
@@ -250,20 +299,20 @@ function categoryLabel(cat, e, lang) {
   const p = packsOf(cat).find((x) => packKey(x) === e.pack);
   const c = p && Array.isArray(p.categories) ? p.categories.find((x) => x.slug === e.category) : null;
   if (!c) return { label: e.category || '', haystack: e.category || '' };
-  return { label: tx(c, lang) || c.slug, haystack: `${c.slug} ${c.ja ?? ''} ${c.en ?? ''}` };
+  return { label: tx(c, lang) || c.slug, haystack: `${c.slug} ${both(c)}` };
 }
 
 function requirePack(cat, name) {
   const wanted = String(name).toLowerCase();
   const found = packsOf(cat).find((p) => packKey(p).toLowerCase() === wanted);
-  if (!found) throw new CliError(EXIT.NOT_FOUND, `No pack named "${name}". Packs: ${packsOf(cat).map(packKey).join(', ')}`);
+  if (!found) throw new CliError(EXIT.NOT_FOUND, `没有名为“${name}”的素材包。可用素材包： ${packsOf(cat).map(packKey).join(', ')}`);
   return packKey(found);
 }
 // "camera" or "camera,camera2": one pack or several, in the order given, each checked, duplicates dropped.
 function requirePacks(cat, names) {
   const keys = [];
   for (const n of String(names).split(',').map((s) => s.trim()).filter(Boolean)) { const k = requirePack(cat, n); if (!keys.includes(k)) keys.push(k); }
-  if (!keys.length) throw new CliError(EXIT.USAGE, '--pack needs a pack name, e.g. --pack camera or --pack camera,camera2.');
+  if (!keys.length) throw new CliError(EXIT.USAGE, '--pack 需要素材包名称，例如 --pack camera 或 --pack camera,camera2。');
   return keys;
 }
 
@@ -273,7 +322,7 @@ function parseId(token) {
 }
 
 function resolveIds(cat, tokens, max) {
-  if (!tokens.length) throw new CliError(EXIT.USAGE, 'Give at least one element id, e.g. 12, #045 or a demo URL.');
+  if (!tokens.length) throw new CliError(EXIT.USAGE, '请提供至少一个条目编号，例如 12、#045 或示例 URL。');
   const ids = [];
   const bad = [];
   for (const t of tokens) {
@@ -283,9 +332,9 @@ function resolveIds(cat, tokens, max) {
   }
   if (bad.length) {
     const all = cat.elements.map((e) => e.id);
-    throw new CliError(EXIT.NOT_FOUND, `No such element: ${bad.join(', ')}. The catalog has ${all.length} elements (#${all[0]}–#${all[all.length - 1]}). Use "search" or "list" to find ids; do not guess them.`);
+    throw new CliError(EXIT.NOT_FOUND, `没有这些条目：${bad.join(', ')}。目录有 ${all.length} 条（#${all[0]}–#${all[all.length - 1]}）。请用 search 或 list 查找编号，不要猜测。`);
   }
-  if (ids.length > max) throw new CliError(EXIT.USAGE, `Too many ids (${ids.length}). Fetch at most ${max} per call, and only the ones you will use.`);
+  if (ids.length > max) throw new CliError(EXIT.USAGE, `编号过多（${ids.length} 个）。每次最多获取 ${max} 条，只获取实际需要的条目。`);
   return ids;
 }
 
@@ -297,8 +346,8 @@ function line(cat, e, lang) {
 
 function score(cat, e, tokens) {
   const name = both(e.name).toLowerCase();
-  const names = [tx(e.name, 'ja'), tx(e.name, 'en')].map((s) => s.toLowerCase());
-  const tags = (e.tags || []).map((t) => String(t).toLowerCase());
+  const names = Object.values(e.name || {}).map((s) => String(s).toLowerCase());
+  const tags = [...(e.tags || []), ...(e.tagLabels?.['zh-Hans'] || [])].map((t) => String(t).toLowerCase());
   const slug = String(e.slug || '').toLowerCase();
   const catHay = `${categoryLabel(cat, e, 'en').haystack} ${e.pack} ${both((packsOf(cat).find((p) => packKey(p) === e.pack) || {}).title)}`.toLowerCase();
   const summary = both(e.summary).toLowerCase();
@@ -334,14 +383,14 @@ function emit(files, outDir) {
   try {
     fs.mkdirSync(dir, { recursive: true });
     for (const f of files) fs.writeFileSync(path.join(dir, f.name), f.text);
-  } catch (err) { throw new CliError(EXIT.USAGE, `Cannot write to ${dir}: ${err.message}`); }
+  } catch (err) { throw new CliError(EXIT.USAGE, `无法写入 ${dir}：${err.message}`); }
   for (const f of files) console.log(path.join(dir, f.name));
 }
 
 // ---------- commands ----------
 
 async function cmdSearch(store, args, flags, lang) {
-  if (!args.length) throw new CliError(EXIT.USAGE, 'search needs at least one word, e.g. "search typewriter" or "search 文字 登場".');
+  if (!args.length) throw new CliError(EXIT.USAGE, 'search 至少需要一个关键词，例如“search 打字机”或“search 文字 入场”。');
   const cat = await store.loadCatalog();
   const packs = flags.pack ? requirePacks(cat, flags.pack) : null;
   const limit = Math.max(1, Math.min(50, Number(flags.limit) || 8));
@@ -352,12 +401,12 @@ async function cmdSearch(store, args, flags, lang) {
     .filter((h) => h.matched > 0)
     .sort((a, b) => b.matched - a.matched || b.total - a.total || a.e.id.localeCompare(b.e.id));
   if (!hits.length) {
-    console.log(`No match for "${args.join(' ')}"${packs ? ` in pack ${packs.join(', ')}` : ''}. Try other words (English tags match best), or browse with "list --pack <pack>".`);
+    console.log(`未找到“${args.join(' ')}”${packs ? `（素材包 ${packs.join(', ')}）` : ''}。请尝试其他关键词，或用 list --pack <pack> 浏览。`);
     return;
   }
   for (const h of hits.slice(0, limit)) console.log(line(cat, h.e, lang));
-  if (hits.length > limit) console.log(`… ${hits.length - limit} more. Narrow with --pack or raise --limit.`);
-  console.log(`\nNext: get <id> for the code and spec. Demo: ${SITE}#<id>`);
+  if (hits.length > limit) console.log(`… 另有 ${hits.length - limit} 条。可用 --pack 缩小范围，或增大 --limit。`);
+  console.log('\n下一步：用 get <id> 获取代码和规格，或用 pick 打开本地示例库。');
 }
 
 async function cmdList(store, flags, lang) {
@@ -387,7 +436,28 @@ async function cmdList(store, flags, lang) {
     }
     for (const [label, n] of counts) console.log(`  - ${label} (${n})`);
   }
-  console.log(`\n${cat.elements.length} elements. Browse one pack with: list --pack <pack>`);
+  console.log(`\n共 ${cat.elements.length} 条。用 list --pack <pack> 查看素材包。`);
+}
+
+function sourceReferences(text, store, lang = 'zh-Hans') {
+  const newline = text.indexOf('\n');
+  const attribution = text.slice(0, newline + 1);
+  const base = apiBase(store);
+  const site = store.source.galleryRoot ? pathToFileURL(store.source.galleryRoot + path.sep).href : null;
+  const codeStart = text.search(/^\/\/ @(?:kit|element)\b/m);
+  if (codeStart < 0) return text;
+  const demo = (id, language) => site ? `${site}index.html?lang=${language}#${id}` : `${base}${language}/e/${id}.txt（当前 API 来源未验证本地图库或素材来源）`;
+  const body = text.slice(newline + 1, codeStart)
+    .replaceAll(`${SITE}api/v1/`, base)
+    .replace(new RegExp(`${SITE.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}#(\\d{3})`, 'g'), (_, id) => demo(id, lang))
+    .replace(/^\/\/ .*https:\/\/showheyohtaki\.github\.io\/motion-prompt\/packs\/([^\s]+).*$/gm, (_, resource) => site ? `// 本地素材参考：${site}packs/${resource}。本文件未复制素材；独立运行时需配置资源基址。` : '// 当前 API 来源未验证图库或素材来源。本文件未复制图片或字体，独立运行前需另行提供素材并配置资源基址。')
+    .replace(/\.\.\/\.\.\/kit\/([\w-]+)\.js/g, (_, pack) => `${base}kit/${pack}.js`)
+    .replace(/\.\.\/\.\.\/\.\.\/\.\.\/index\.html\?lang=([\w-]+)#(\d{3})/g, (_, language, id) => demo(id, language))
+    .replace(/\.\.\/(zh-Hans|en|ja)\/e\/<id>\.txt/g, (_, language) => `${base}${language}/e/<id>.txt`)
+    .replace(/\.\.\/\.\.\/\.\.\/packs\/[^\s]+/g, (resource) => site ? `${site}${resource.slice(9)}` : '（当前 API 来源未验证素材来源）')
+    .replace('以上资源路径相对于本规格文件。', '资源引用指向当前数据源。')
+    .replaceAll('相对于本辅助代码文件', '引用指向当前数据源');
+  return attribution + body + text.slice(codeStart);
 }
 
 async function cmdGet(store, args, flags, lang) {
@@ -396,11 +466,12 @@ async function cmdGet(store, args, flags, lang) {
   const files = [];
   for (const id of ids) {
     const e = cat.elements.find((x) => x.id === id);
-    files.push({ name: `${id}-${e.slug || 'element'}.txt`, text: await store.file(`${lang}/e/${id}.txt`) });
+    const text = sourceReferences(await store.file(`${lang}/e/${id}.txt`), store, lang);
+    files.push({ name: `${id}-${e.slug || 'element'}.txt`, text: `${text.trimEnd()}\n\n// 原始规格文件：${elementRef(store, id, lang)}\n` });
   }
   emit(files, flags.out);
   const kits = [...new Set(ids.map((id) => cat.elements.find((x) => x.id === id).pack))];
-  const note = `Needs kit: ${kits.join(', ')} — run "kit <pack>" once per pack before using this code.`;
+  const note = `需要辅助代码：${kits.join(', ')}。使用此代码前，请为每个素材包运行一次 kit <pack>。`;
   if (flags.out) console.log(note); else process.stdout.write(`\n// ${note}\n`);
 }
 
@@ -408,29 +479,40 @@ async function cmdPrompt(store, args, flags, lang) {
   const cat = await store.loadCatalog();
   const ids = resolveIds(cat, args, MAX_GET);
   const files = [];
-  for (const id of ids) files.push({ name: `${id}-prompt.txt`, text: await store.file(`${lang}/p/${id}.txt`) });
+  for (const id of ids) {
+    const e = cat.elements.find((item) => item.id === id);
+    const p = packsOf(cat).find((item) => packKey(item) === e.pack);
+    if (![e.name?.[lang], e.summary?.[lang], e.use?.[lang], p?.title?.[lang]].every((value) => typeof value === 'string' && value.trim()) || !Array.isArray(e.spec?.[lang]) || !e.spec[lang].length || !e.spec[lang].every((value) => typeof value === 'string' && value.trim())) {
+      throw new CliError(EXIT.NOT_FOUND, `条目 #${id} 缺少 ${lang} 提示词数据。请使用完整的对应语言运行时，或通过 --lang 显式选择已有语言。`);
+    }
+    files.push({ name: `${id}-prompt.txt`, text: mpPrompt(e, p.title[lang], lang, apiBase(store)) });
+  }
   emit(files, flags.out);
 }
 
 async function cmdKit(store, args, flags) {
-  if (args.length !== 1) throw new CliError(EXIT.USAGE, 'kit needs exactly one pack name, e.g. "kit motion".');
+  if (args.length !== 1) throw new CliError(EXIT.USAGE, 'kit 需要一个素材包名称，例如 kit motion。');
   const cat = await store.loadCatalog();
   const pack = requirePack(cat, args[0]);
-  emit([{ name: `kit-${pack}.js`, text: await store.file(`kit/${pack}.js`) }], flags.out);
+  let text = sourceReferences(await store.file(`kit/${pack}.js`), store);
+  const metadata = packsOf(cat).find((item) => packKey(item) === pack);
+  if (metadata?.images?.length || metadata?.fonts?.length) text += '\n// 本文件仅包含辅助代码，未复制图片或字体。独立运行时需一并提供素材并设置正确资源基址。\n';
+  text += `\n// 原始辅助代码：${apiBase(store)}kit/${pack}.js\n`;
+  emit([{ name: `kit-${pack}.js`, text }], flags.out);
 }
 
 async function cmdInfo(store) {
-  console.log(`motion-prompt skill ${VERSION}`);
-  console.log(`Gallery:        ${SITE}`);
-  console.log(`Sources (${store.origin}):`);
+  console.log(`motion-prompt 技能 ${VERSION}`);
+  console.log(`数据源（${store.origin}）：`);
   for (const b of store.bases) console.log(`  ${b}`);
   let cat = null;
   let error = null;
   try { cat = await store.loadCatalog(); } catch (err) { error = err; }
-  console.log(`Cache folder:   ${store.remote ? store.cacheDir() : '(not used for local files)'}`);
-  if (!cat) { console.log('Catalog:        unavailable'); throw error; }
-  console.log(`In use:         ${store.fromCache ? `disk cache${store.usedBase ? '' : ' (no request made)'}` : store.usedBase}`);
-  console.log(`Catalog:        version ${cat.version ?? '?'} · ${cat.elements.length} elements`);
+  console.log(`示例库：        ${store.source.galleryRoot || '当前覆盖来源未提供本地页面'}`);
+  console.log(`缓存目录：      ${store.remote ? store.cacheDir() : '（本地文件不使用缓存）'}`);
+  if (!cat) { console.log('目录：          不可用'); throw error; }
+  console.log(`正在使用：      ${store.fromCache ? `磁盘缓存${store.usedBase ? '' : ' （未发起请求）'}` : store.usedBase}`);
+  console.log(`目录：          版本 ${cat.version ?? '?'} · ${cat.elements.length} 条`);
   for (const p of packsOf(cat)) {
     const n = cat.elements.filter((e) => e.pack === packKey(p)).length;
     if (n) console.log(`  ${packKey(p)}: ${n}`);
@@ -450,17 +532,12 @@ const MIME = {
   '.woff': 'font/woff', '.woff2': 'font/woff2', '.ttf': 'font/ttf', '.otf': 'font/otf', '.mp4': 'video/mp4', '.ico': 'image/x-icon',
 };
 
-function repoRoot() {
-  const dir = path.resolve(path.dirname(SELF), '..', '..', '..');
-  return fs.existsSync(path.join(dir, 'index.html')) && fs.existsSync(path.join(dir, 'assets', 'site.js')) ? dir : null;
-}
-
 const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
 function page(lang, title, body) {
   return `<!doctype html><html lang="${lang}"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light dark"><link rel="icon" href="data:,"><title>${esc(title)} | Motion Prompt</title>
-<style>body{margin:0;font:16px/1.7 system-ui,"Hiragino Sans","Yu Gothic",sans-serif;background:Canvas;color:CanvasText}
+<style>body{margin:0;font:16px/1.7 system-ui,"PingFang SC","Microsoft YaHei",sans-serif;background:Canvas;color:CanvasText}
 main{max-width:34em;margin:12vh auto;padding:0 16px}h1{font-size:24px;line-height:1.4;margin:0 0 8px}p{margin:0 0 12px}
 ol{padding-left:1.4em;margin:16px 0}li{margin:2px 0}code{font-family:ui-monospace,Menlo,monospace;opacity:.7;margin-right:.5em}</style>
 </head><body><main><h1>${esc(title)}</h1>${body}</main></body></html>`;
@@ -471,22 +548,25 @@ function send(res, status, html, extra = {}) {
   res.end(html);
 }
 
-function serveStatic(root, pathname, req, res) {
+function serveStatic(root, allowed, pathname, req, res) {
   let rel;
-  try { rel = decodeURIComponent(pathname); } catch { return send(res, 400, 'Bad request'); }
-  if (rel.includes('\0') || /(^|\/)\./.test(rel)) return send(res, 404, 'Not found');
+  try { rel = decodeURIComponent(pathname); } catch { return send(res, 400, '请求无效'); }
+  if (/[\\\0]/.test(rel) || rel !== path.posix.normalize(rel) || /(^|\/)\./.test(rel)) return send(res, 404, '未找到');
   let file = path.join(root, rel);
-  if (file !== root && !file.startsWith(root + path.sep)) return send(res, 404, 'Not found');
+  if (file !== root && !file.startsWith(root + path.sep)) return send(res, 404, '未找到');
   try { if (fs.statSync(file).isDirectory()) file = path.join(file, 'index.html'); } catch { /* answered below */ }
+  if (!allowed.has(path.relative(root, file).split(path.sep).join('/'))) return send(res, 404, '未找到');
   // Resolve symbolic links and check again, so a link inside the clone cannot expose files outside it.
   try {
     const realRoot = fs.realpathSync(root);
     const realFile = fs.realpathSync(file);
-    if (realFile !== realRoot && !realFile.startsWith(realRoot + path.sep)) return send(res, 404, 'Not found');
+    if (realFile !== realRoot && !realFile.startsWith(realRoot + path.sep)) return send(res, 404, '未找到');
+    if (!allowed.has(path.relative(realRoot, realFile).split(path.sep).join('/'))) return send(res, 404, '未找到');
+    if (!fs.statSync(realFile).isFile()) return send(res, 404, '未找到');
     file = realFile;
-  } catch { return send(res, 404, 'Not found'); }
+  } catch { return send(res, 404, '未找到'); }
   fs.readFile(file, (err, buf) => {
-    if (err) return send(res, 404, 'Not found');
+    if (err) return send(res, 404, '未找到');
     res.writeHead(200, { 'Content-Type': MIME[path.extname(file).toLowerCase()] || 'application/octet-stream', 'Cache-Control': 'no-store' });
     res.end(req.method === 'HEAD' ? undefined : buf);
   });
@@ -508,6 +588,13 @@ function openBrowser(url) {
 }
 
 const PICK_TEXT = {
+  'zh-Hans': {
+    done: '已发送给 AI', close: '可以关闭此页面了。请返回 AI 对话，告诉它如何使用这些选择。',
+    ignored: '以下编号不在目录中，未发送：', bad: '无法读取选择',
+    badBody: '请返回示例库，再次点击“发送给 AI”。AI 仍在等待。',
+    none: '所选编号均不在目录中', other: '此接收地址属于另一个请求',
+    otherBody: '请从 AI 打开的示例库中点击“发送给 AI”提交选择。',
+  },
   ja: {
     done: 'AIに渡しました', close: 'この画面は閉じて大丈夫です。AIの画面に戻って、どう使うかを伝えてください。',
     ignored: 'カタログに無い番号は渡していません: ', bad: '選択を読み取れませんでした',
@@ -524,7 +611,7 @@ const PICK_TEXT = {
   },
 };
 
-function waitForPick(server, { port, token, root, cat, flags, timeoutSec }) {
+function waitForPick(server, { port, token, root, allowed, cat, flags, timeoutSec }) {
   const origin = `http://127.0.0.1:${port}`;
   return new Promise((resolve, reject) => {
     let done = false;
@@ -537,27 +624,27 @@ function waitForPick(server, { port, token, root, cat, flags, timeoutSec }) {
       fn();
     };
     const timer = setTimeout(() => finish(() => reject(new CliError(EXIT.TIMEOUT,
-      `motion-prompt: no selection arrived within ${timeoutSec} s, so nothing was picked.\nAsk the user whether they still want to pick, then run pick again.`))), timeoutSec * 1000);
+      `motion-prompt：${timeoutSec} 秒内未收到选择，未选中任何条目。\n请询问用户是否仍需选择，再次运行 pick。`))), timeoutSec * 1000);
 
     server.on('request', (req, res) => {
       const host = String(req.headers.host || '').toLowerCase();
-      if (host !== `127.0.0.1:${port}` && host !== `localhost:${port}`) return send(res, 403, 'Forbidden'); // DNS rebinding
-      if (req.method !== 'GET' && req.method !== 'HEAD') return send(res, 405, 'Method not allowed', { Allow: 'GET, HEAD' });
+      if (host !== `127.0.0.1:${port}` && host !== `localhost:${port}`) return send(res, 403, '禁止访问'); // DNS rebinding
+      if (req.method !== 'GET' && req.method !== 'HEAD') return send(res, 405, '不支持此请求方法', { Allow: 'GET, HEAD' });
       let url;
-      try { url = new URL(req.url, origin); } catch { return send(res, 400, 'Bad request'); }
+      try { url = new URL(req.url, origin); } catch { return send(res, 400, '请求无效'); }
       const q = url.searchParams;
       if (url.pathname === '/' && q.has('t')) {
-        const lang = flags.lang || (q.get('lang') === 'ja' ? 'ja' : q.get('lang') === 'en' ? 'en' : 'en');
+        const lang = flags.lang || (['zh-Hans', 'ja', 'en'].includes(q.get('lang')) ? q.get('lang') : 'zh-Hans');
         const T = PICK_TEXT[lang];
         const given = Buffer.from(String(q.get('t')));
         const want = Buffer.from(token);
         if (given.length !== want.length || !crypto.timingSafeEqual(given, want)) {
           return send(res, 403, page(lang, T.other, `<p>${esc(T.otherBody)}</p>`));
         }
-        if (req.method !== 'GET') return send(res, 405, 'Method not allowed', { Allow: 'GET' });
+        if (req.method !== 'GET') return send(res, 405, '不支持此请求方法', { Allow: 'GET' });
         const raw = String(q.get('ids') || '');
         if (!/^\d{3}(,\d{3})*$/.test(raw)) {
-          process.stderr.write(`motion-prompt: refused a selection with malformed ids (${JSON.stringify(raw.slice(0, 80))}); still waiting.\n`);
+          process.stderr.write(`motion-prompt：拒绝了编号格式无效的选择（${JSON.stringify(raw.slice(0, 80))}），继续等待。\n`);
           return send(res, 400, page(lang, T.bad, `<p>${esc(T.badBody)}</p>`));
         }
         const ids = [...new Set(raw.split(','))];
@@ -565,7 +652,7 @@ function waitForPick(server, { port, token, root, cat, flags, timeoutSec }) {
         const known = ids.filter((id) => cat.elements.some((e) => e.id === id));
         const unknown = ids.filter((id) => !known.includes(id));
         if (!known.length) {
-          process.stderr.write(`motion-prompt: refused a selection with no known ids (${unknown.join(', ')}); still waiting.\n`);
+          process.stderr.write(`motion-prompt：拒绝了全部编号均不存在的选择（${unknown.join(', ')}），继续等待。\n`);
           return send(res, 400, page(lang, T.none, `<p>${esc(T.badBody)}</p>`));
         }
         const note = String(q.get('note') || '').replace(/[\u0000-\u001f\u007f]+/g, ' ').replace(/\s+/g, ' ').trim().slice(0, NOTE_MAX);
@@ -578,42 +665,45 @@ function waitForPick(server, { port, token, root, cat, flags, timeoutSec }) {
         res.end(html, () => finish(() => resolve({ ids: known, unknown, note, lang })));
         return;
       }
-      if (root) return serveStatic(root, url.pathname, req, res);
-      return send(res, 404, 'Not found');
+      if (root) return serveStatic(root, allowed, url.pathname, req, res);
+      return send(res, 404, '未找到');
     });
   });
 }
 
-function printPick(cat, { ids, unknown, note, lang }) {
-  const other = lang === 'ja' ? 'en' : 'ja';
-  const out = [`The user picked ${ids.length} element${ids.length === 1 ? '' : 's'} in the Motion Prompt gallery, in this order.`];
-  out.push(note ? `Note from the user: ${note}` : 'Note from the user: (none)');
+function printPick(store, cat, { ids, unknown, note, lang }) {
+  const other = lang === 'en' ? 'ja' : 'en';
+  const out = [`用户在 Motion Prompt 示例库中按以下顺序选择了 ${ids.length} 个条目。`];
+  out.push(note ? `用户备注：${note}` : '用户备注：（无）');
   out.push('');
   ids.forEach((id, i) => {
     const e = cat.elements.find((x) => x.id === id);
     const name = tx(e.name, lang);
     const alt = tx(e.name, other);
     out.push(`${i + 1}. #${e.id}  ${name}${alt && alt !== name ? ` / ${alt}` : ''}  [${e.pack} / ${categoryLabel(cat, e, lang).label}]`);
-    if (e.meaning) out.push(`   Meaning: ${tx(e.meaning, lang)}`);
-    if (e.ask) out.push(`   How to ask: ${tx(e.ask, lang)}`);
+    if (e.meaning) out.push(`   含义：${tx(e.meaning, lang)}`);
+    if (e.ask) out.push(`   提问示例：${tx(e.ask, lang)}`);
     const spec = e.spec ? (Array.isArray(e.spec) ? e.spec : e.spec[lang] || e.spec.en || []) : [];
-    if (spec.length) { out.push('   Spec:'); for (const s of spec) out.push(`   - ${s}`); }
-    out.push(`   Demo: ${demoUrl(e.id)}`);
+    if (spec.length) { out.push('   规格：'); for (const s of spec) out.push(`   - ${s}`); }
+    out.push(`   持久参考：${elementRef(store, e.id, lang)}`);
     out.push('');
   });
-  if (unknown.length) out.push(`Ignored (not in the catalog): ${unknown.map((u) => `#${u}`).join(', ')}`, '');
+  if (unknown.length) out.push(`已忽略（不在目录中）： ${unknown.map((u) => `#${u}`).join(', ')}`, '');
   const packs = [...new Set(ids.map((id) => cat.elements.find((x) => x.id === id).pack))];
-  out.push(`Next: use exactly these elements, no more and no fewer. Run "get ${ids.join(' ')}" for the code (at most ${MAX_GET} ids per call) and "kit <pack>" once for each of: ${packs.join(', ')}.`);
+  out.push('下一步：严格使用这些条目，不增不减。按以下命令获取代码及各素材包的辅助代码：');
+  for (let offset = 0; offset < ids.length; offset += MAX_GET) out.push(`get ${ids.slice(offset, offset + MAX_GET).join(' ')} --lang ${lang}`);
+  for (const pack of packs) out.push(`kit ${pack}`);
   process.stdout.write(`${out.join('\n')}\n`);
 }
 
 async function cmdPick(store, args, flags) {
-  if (args.length) throw new CliError(EXIT.USAGE, 'pick takes no ids or words. Options: --pack <pack> --lang ja|en --timeout <seconds> --no-open --local');
+  if (args.length) throw new CliError(EXIT.USAGE, 'pick 不接受编号或关键词。选项：--pack <pack> --lang zh-Hans|ja|en --timeout <seconds> --no-open --local');
   const timeoutSec = flags.timeout === undefined ? PICK_TIMEOUT : Number(flags.timeout);
-  if (!Number.isFinite(timeoutSec) || timeoutSec < 1 || timeoutSec > 86400) throw new CliError(EXIT.USAGE, '--timeout must be a number of seconds between 1 and 86400.');
-  const root = flags.local ? repoRoot() : null;
-  if (flags.local && !root) throw new CliError(EXIT.USAGE, '--local needs a full clone of the repository (index.html and assets/ three folders above this script). Run pick without --local to use the public gallery.');
-  const cat = await store.loadCatalog(); // fail before opening anything if there is no data
+  if (!Number.isFinite(timeoutSec) || timeoutSec < 1 || timeoutSec > 86400) throw new CliError(EXIT.USAGE, '--timeout 必须为 1 至 86400 之间的秒数。');
+  const cat = await store.loadCatalog();
+  const root = store.source.galleryRoot;
+  if (!root) throw new CliError(EXIT.USAGE, store.source.galleryError || 'pick 需要与当前 API 同源的完整本地页面。请将 MOTION_PROMPT_BASE 指向完整副本的 api/v1，或清除此覆盖以使用随包运行时。');
+  const allowed = store.source.publicFiles;
   const pack = flags.pack ? requirePacks(cat, flags.pack).join(',') : null; // the gallery accepts ?pack=camera,camera2 too
 
   const token = crypto.randomBytes(16).toString('hex');
@@ -623,17 +713,18 @@ async function cmdPick(store, args, flags) {
   const origin = `http://127.0.0.1:${port}`;
   const q = new URLSearchParams({ cb: `${origin}/?t=${token}` });
   if (pack) q.set('pack', pack);
-  if (flags.lang) q.set('lang', flags.lang);
-  const galleryUrl = `${root ? `${origin}/` : SITE}?${q}`;
-  const waiting = waitForPick(server, { port, token, root, cat, flags, timeoutSec });
+  q.set('lang', flags.lang || 'zh-Hans');
+  const galleryUrl = `${origin}/?${q}`;
+  const waiting = waitForPick(server, { port, token, root, allowed, cat, flags, timeoutSec });
 
-  console.log(`Gallery: ${galleryUrl}`);
-  if (flags['no-open']) console.log('Not opened (--no-open). Open this URL in a browser, or give it to the user to open.');
-  else if (await openBrowser(galleryUrl)) console.log('Opened in the default browser. If no browser window appeared, open the URL above yourself.');
-  else console.log('Could not open a browser from here. Open the URL above in a browser, or give it to the user to open.');
-  console.log(`Waiting for the user to pick and press "Send to AI" (up to ${timeoutSec} s)…\n`);
+  console.log(`示例库：${galleryUrl}`);
+  console.log('此本地地址仅在等待选择期间有效；回传结果会提供持久文件引用。');
+  if (flags['no-open']) console.log('未打开浏览器（--no-open）。请在浏览器中打开此 URL，或交给用户打开。');
+  else if (await openBrowser(galleryUrl)) console.log('已在默认浏览器中打开。如果没有出现窗口，请手动打开上方 URL。');
+  else console.log('无法在此处打开浏览器。请在浏览器中打开上方 URL，或交给用户打开。');
+  console.log(`正在等待用户选择并点击“发送给 AI”（最多 ${timeoutSec} 秒）…\n`);
 
-  printPick(cat, await waiting);
+  printPick(store, cat, await waiting);
 }
 
 // ---------- main ----------
@@ -642,8 +733,8 @@ async function main() {
   const { flags, command, args } = parseArgs(process.argv.slice(2));
   if (flags.version) { console.log(VERSION); return; }
   if (flags.help || !command || command === 'help') { console.log(HELP); return; }
-  if (flags.lang && !['ja', 'en'].includes(flags.lang)) throw new CliError(EXIT.USAGE, '--lang must be ja or en.');
-  const lang = flags.lang || (command === 'search' && HAS_JA.test(args.join(' ')) ? 'ja' : 'en');
+  if (flags.lang && !['zh-Hans', 'ja', 'en'].includes(flags.lang)) throw new CliError(EXIT.USAGE, '--lang 必须为 zh-Hans、ja 或 en。');
+  const lang = flags.lang || (command === 'search' && HAS_JA.test(args.join(' ')) ? 'ja' : 'zh-Hans');
   const store = new Store({ refresh: flags.refresh });
   switch (command) {
     case 'search': return cmdSearch(store, args, flags, lang);
@@ -653,12 +744,12 @@ async function main() {
     case 'kit': return cmdKit(store, args, flags);
     case 'info': return cmdInfo(store);
     case 'pick': return cmdPick(store, args, flags);
-    default: throw new CliError(EXIT.USAGE, `Unknown command "${command}". Run with --help.`);
+    default: throw new CliError(EXIT.USAGE, `未知命令“${command}”。请用 --help 查看帮助。`);
   }
 }
 
 main().catch((err) => {
   if (err instanceof CliError) { process.stderr.write(`${err.message}\n`); process.exitCode = err.code; return; }
-  process.stderr.write(`motion-prompt: unexpected error: ${err && err.stack ? err.stack : err}\n`);
+  process.stderr.write(`motion-prompt：意外错误： ${err && err.stack ? err.stack : err}\n`);
   process.exitCode = 1;
 });

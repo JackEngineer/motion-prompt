@@ -18,7 +18,6 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 13
-// 13 テキストマスク（太い文字の形にくり抜いて、その中だけに動く景色が見える）
 const G0 = mkCanvas(CW, CH), GK0 = G0.getContext('2d', { willReadFrequently: true });
 function seaPattern(g, w, h, u) {
   g.fillStyle = C.coral; g.fillRect(0, 0, w, h);
@@ -33,15 +32,15 @@ function seaPattern(g, w, h, u) {
 }
 CELLS[12] = (k, w, h, u) => {
   stage(k);
-  let fs = 172; while (fs > 90 && tw(k, 'OCEAN', `900 ${fs}px system-ui`, '2px') > 500) fs -= 2;
-  const font = `900 ${fs}px system-ui`, Y = h / 2 + 6;
+  let fs = 172; while (fs > 90 && tw(k, '海面风光', `900 ${fs}px ${JP}`, '2px') > 500) fs -= 2;
+  const font = `900 ${fs}px ${JP}`, Y = h / 2 + 6;
   const open = smooth(P(u, 3.45, 3.85)) * (1 - smooth(P(u, 4.25, 4.65)));
   TK.setTransform(1, 0, 0, 1, 0, 0); TK.globalCompositeOperation = 'source-over'; TK.clearRect(0, 0, w, h);
-  txt(TK, 'OCEAN', w / 2, Y, font, '#fff', 'center', 'middle', '2px');
+  txt(TK, '海面风光', w / 2, Y, font, '#fff', 'center', 'middle', '2px');
   GK0.setTransform(1, 0, 0, 1, 0, 0); GK0.globalCompositeOperation = 'source-over'; GK0.clearRect(0, 0, w, h); seaPattern(GK0, w, h, u);
   TK.globalCompositeOperation = 'source-in'; TK.drawImage(G0, 0, 0); TK.globalCompositeOperation = 'source-over';
   k.globalAlpha = 0.12 + 0.88 * open; seaPattern(k, w, h, u); k.globalAlpha = 1;
   k.drawImage(TMP, 0, 0);
   k.font = font; k.textAlign = 'center'; k.textBaseline = 'middle'; k.letterSpacing = '2px'; k.lineJoin = 'round';
-  k.strokeStyle = '#fff'; k.lineWidth = 4; k.strokeText('OCEAN', w / 2, Y); k.letterSpacing = '0px';
+  k.strokeStyle = '#fff'; k.lineWidth = 4; k.strokeText('海面风光', w / 2, Y); k.letterSpacing = '0px';
 };

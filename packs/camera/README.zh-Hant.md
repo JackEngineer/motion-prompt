@@ -6,7 +6,7 @@
 
 找到名稱後，直接告訴 AI。再加上「幾秒」「多強」「什麼在動」，結果會更接近你想要的。
 
-![運鏡與轉場 — 範例](../../assets/preview-camera.gif)
+![運鏡與轉場 範例](../../assets/preview-camera.gif)
 
 ## 鏡頭運動
 

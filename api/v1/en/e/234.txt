@@ -18,7 +18,6 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 18
-// 18 タイムライン: one line drawn left to right; dots and short marks appear in order, alternating up/down
 function timeline(k, w, h, u) {
   bg(k, w, h);
   const y = 106, xa = 36, xb = 503, f = fade(u);
@@ -36,7 +35,6 @@ function timeline(k, w, h, u) {
     const pd = P(u, t0, t0 + 0.25); if (pd <= 0) return;
     const up = i % 2 === 0, last = i === XS.length - 1;
     const s = easeOutBack(pd), r = last ? 10 : 7;
-    // short stem + small card
     const ps = appear(u, t0 + 0.1, 0.3);
     const dir = up ? -1 : 1, y1 = y + dir * (r + 4), y2 = y + dir * (r + 4 + 22 * ps);
     k.strokeStyle = last ? C.blue : C.g4; k.lineWidth = 2.5;
@@ -55,7 +53,7 @@ function timeline(k, w, h, u) {
   });
   k.globalAlpha = 1;
 }
-// time at which the line tip (easeInOut over 0.4..2.0) reaches XS[i]
+// 反推线端到达 XS[i] 的时刻。绘制进度在 0.4 至 2 秒间按 easeInOut 变化。
 function tipT(i, XS, xa, xb) {
   const target = (XS[i] - xa) / (xb - xa);
   let lo = 0, hi = 1; for (let n = 0; n < 24; n++) { const m = (lo + hi) / 2; if (easeInOut(m) < target) lo = m; else hi = m; }

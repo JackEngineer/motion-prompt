@@ -18,7 +18,6 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 18
-// 18 ライトボックス（サムネを押すと周りが暗くなり、その上に写真が大きく表示される）
 CELLS[17] = (k, w, h, u) => {
   u = snapU(u);
   frame(k);
@@ -29,7 +28,7 @@ CELLS[17] = (k, w, h, u) => {
   const [cx, cy] = cur(u);
   view(k, () => {
     header(k, 0);
-    txt(k, 'ギャラリー', 24, 60, `800 15px ${JP}`, C.ink);
+    txt(k, '作品集', 24, 60, `800 15px ${JP}`, C.ink);
     for (let i = 0; i < 4; i++) pic(k, TX[i], TY, TW, THt, PV[i], 6);
     bars(k, 24, 154, 300, 1, C.faint, 6);
     if (e > 0) {

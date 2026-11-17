@@ -19,12 +19,11 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 05
-// 05 ステディカム: 低い周波数の小さなうねりだけで、なめらかに前進しながら人物を追う（#034 手持ちの細かい揺れとの違い）
 CELLS[4] = shot((k, w, h, u) => {
-  const v = 8 / CYC, z = u * v, T = u * 2 * Math.PI / CYC;   // 1周で8m進む＝格子（2m）と木（8m）の並びが継ぎ目なく戻る
+  const v = 8 / CYC, z = u * v, T = u * 2 * Math.PI / CYC;   // 相机每轮前进 8 米，恰好跨过四格地面网格和一段树距，首尾画面可以对齐。
   const c = cam({ z, y: 1.45 + 0.035 * Math.sin(T * 2), x: 0.05 * Math.sin(T), yaw: 0.012 * Math.sin(T + 1), roll: 0.006 * Math.sin(T * 2 + 0.5), pitch: -0.02 });
   const ex = [], L = 8, base = Math.floor(z / L) * L;
   for (let i = 0; i < 10; i++) { const zz = base + i * L; ex.push([-5, 0, zz + 2, (kk, s) => tree(kk, s, 3.6)]); ex.push([5, 0, zz + 6, (kk, s) => tree(kk, s, 3.2, C.blueXL)]); }
   world(k, w, h, c, { buildings: false, trees: false, extra: ex, mtnZ: z, sun: [30, 30, z + 170], gridX: 20, person: { z: z + 5, walk: T * 5 } });
-  return 'STEADICAM';
+  return '斯坦尼康';
 });

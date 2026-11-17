@@ -19,18 +19,17 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 18
-// 18 遅延読み込み（画面に入った画像だけ、その時点で読み込まれて表示される）
 CELLS[17] = (k, w, h, u) => {
   frame(k);
   const SY = t => steps([[0.35, 0], [1.1, 110], [1.7, 110], [2.5, 225], [3.5, 225], [4.5, 0]], t), y = SY(u);
   const COLX = [15, 180, 345], IW = 151, IH = 92, ROWS = [12, 168, 276], WAIT = 0.45, FADE = 0.35;
   view(k, () => {
     k.save(); k.translate(0, -y);
-    txt(k, 'ギャラリー', 15, 140, `800 18px ${JP}`, C.ink); bars(k, 120, 128, 200, 1);
+    txt(k, '作品集', 15, 140, `800 18px ${JP}`, C.ink); bars(k, 120, 128, 200, 1);
     ROWS.forEach((top, r) => COLX.forEach((x, c) => {
       const t0 = r === 0 ? -1e9 : enteredAt(SY, top, VH, u), age = t0 === null ? -1 : u - t0 - c * 0.12;
       k.fillStyle = C.skel; rr(k, x, top, IW, IH, 6); k.fill();
-      if (age < WAIT + FADE) {   // まだの画像: 灰色の枠と画像の印
+      if (age < WAIT + FADE) {
         k.save(); k.translate(x + IW / 2, top + IH / 2); k.strokeStyle = '#B9C1CF'; k.lineWidth = 2; k.lineJoin = 'round';
         if (age >= 0 && age < WAIT) spinner(k, 0, 0, 11, u, C.blue);
         else { rr(k, -15, -11, 30, 22, 3); k.stroke(); k.beginPath(); k.moveTo(-11, 7); k.lineTo(-3, -1); k.lineTo(3, 5); k.lineTo(7, 1); k.lineTo(11, 6); k.stroke(); }

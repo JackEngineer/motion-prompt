@@ -18,17 +18,16 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 11
-// 11 マウスストーカー（カーソルのあとを、丸が少し遅れて追いかける）
 CELLS[10] = (k, w, h, u) => {
   frame(k);
   const cur = t => [255 + 175 * Math.sin(2 * Math.PI * t / CYC), 86 + 46 * Math.sin(4 * Math.PI * t / CYC)];
-  // 毎フレーム（60fps）残りの距離の 12% ずつ近づく
+  // 按 60 帧每秒计算，每帧走完剩余距离的 12%。
   let t = u - 2, [fx, fy] = cur(t);
   for (let i = 0; i < 120; i++) { t += 1 / 60; const [tx, ty] = cur(t); fx += (tx - fx) * 0.12; fy += (ty - fy) * 0.12; }
   view(k, () => {
-    txt(k, 'CREATIVE STUDIO', VW / 2, 74, `800 34px ${EN}`, C.ink, 'center', 'alphabetic', '3px');
+    txt(k, '创意工作室', VW / 2, 74, `800 34px ${EN}`, C.ink, 'center', 'alphabetic', '3px');
     bars(k, VW / 2 - 120, 96, 240, 2, C.faint, 6, 12, 0.7);
-    btn(k, VW / 2 - 50, 128, 100, 24, '作品を見る', C.ink);
+    btn(k, VW / 2 - 50, 128, 100, 24, '查看作品', C.ink);
     k.fillStyle = C.acc; k.globalAlpha = 0.88; k.beginPath(); k.arc(fx, fy, 17, 0, 7); k.fill(); k.globalAlpha = 1;
     const [cx, cy] = cur(u); cursor(k, cx, cy);
   });

@@ -18,5 +18,4 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 11
-// アールデコ: 金と黒、放射する直線と左右対称
 CELLS[10] = (k, w, h, u) => gafu(k, w, h, u, '11');

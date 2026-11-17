@@ -20,12 +20,11 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 09
-// 09 ラックフォーカス
 CELLS[8] = shot(camCell((k, w, h, p) => {
   world(k, w, h, cam({ y: 1.1 }), {
     person: { x: 0.9, z: 9 }, blurFg: 7 * p, blurBg: 6 * (1 - p),
     extra: [[-0.75, 0, 2.0, (kk, s) => { kk.fillStyle = C.g3; kk.fillRect(-0.025, 0, 0.05, 0.75); kk.fillStyle = C.blueM; for (let i = 0; i < 6; i++) { kk.beginPath(); kk.ellipse(Math.cos(i) * 0.09, 0.8 + Math.sin(i) * 0.09, 0.08, 0.05, i, 0, 7); kk.fill(); } kk.fillStyle = C.blue; kk.beginPath(); kk.arc(0, 0.8, 0.05, 0, 7); kk.fill(); }, true]],
-    after: (kk, cc) => {   // ピント位置の枠
+    after: (kk, cc) => {
       const a = proj(cc, -0.75, 0.8, 2.0), b = proj(cc, 0.9, 0.9, 9);
       const x = lerp(a.x, b.x, p), y = lerp(a.y, b.y, p), r = lerp(46, 30, p);
       kk.strokeStyle = C.blue; kk.lineWidth = 2; kk.beginPath();

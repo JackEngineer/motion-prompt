@@ -20,7 +20,6 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 22
-// 22 クロスカッティング: 同時に進む2つの場面（走る人物・走る車）を、だんだん短く交互に見せる
 const XC = [0, 1.1, 2.0, 2.7, 3.3, 3.8, 4.2, 4.5, CYC];
 CELLS[21] = shot((k, w, h, u) => {
   const r = P(u, CYC - 0.3, CYC);
@@ -28,8 +27,8 @@ CELLS[21] = shot((k, w, h, u) => {
   const carB = (kk, t) => world(kk, w, h, cam({ y: 1.6, pitch: 0.06 }), { city: true, mountains: false, trees: false, sun: [-26, 40, 150], extra: [[1.0, 0, lerp(17, 4.5, t / CYC), CAR[3]]] });
   let i = 0; while (u >= XC[i + 1]) i++;
   const isA = i % 2 === 0;
-  blend(k, kk => (isA ? runA : carB)(kk, u), kk => runA(kk, 0), eIOs(r));   // 最後の0.3秒で A の開始状態へ戻す
+  blend(k, kk => (isA ? runA : carB)(kk, u), kk => runA(kk, 0), eIOs(r));   // 最后 0.3 秒回到 A 的起始状态。
   const segs = []; for (let j = 0; j < XC.length - 1; j++) segs.push([XC[j], XC[j + 1], j % 2 ? 'B' : 'A', j % 2 ? C.blue : C.g2]);
   strip(k, w, h, segs, u);
-  return r > .5 || isA ? 'SCENE A' : 'SCENE B';
+  return r > .5 || isA ? '场景 A' : '场景 B';
 });

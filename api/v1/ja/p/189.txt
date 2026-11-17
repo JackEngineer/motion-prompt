@@ -1,4 +1,4 @@
-「カットアウェイ（Cutaway）」を使ってください。「カメラワークと切り替え 第2弾」の名前の1つです。
+「カットアウェイ（英文名：Cutaway）」を使ってください。「カメラワークと切り替え 第2弾」の名前の1つです。
 Motion Prompt #189
 
 どういうものか: 別の対象へ切り替えて戻る
@@ -11,6 +11,6 @@ Motion Prompt #189
 - 右上に「SHOT A」→「CUTAWAY」→「SHOT A」。4.7秒で直結で最初に戻る
 使いどころ: 反応を見せるとき、時間の省略や言い間違いのカットをごまかすとき。
 
-参考実装（Canvas 2D・時刻だけで絵が決まる関数）: https://showheyohtaki.github.io/motion-prompt/api/v1/ja/e/189.txt
-共通の補助コード: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/camera2.js
+参考実装（Canvas 2D・時刻だけで絵が決まる関数）: ../e/189.txt
+共通の補助コード: ../../kit/camera2.js
 参考実装の形・タイミング・イージングの数値はそのまま使い、中の文字・色・素材だけ、いま作っている物に合わせてください。

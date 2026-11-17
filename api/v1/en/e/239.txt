@@ -19,7 +19,6 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 23
-// 23 矢羽根図（シェブロン）: arrow-shaped steps line up from left to right, each with short notes below
 function chevron(k, w, h, u) {
   bg(k, w, h);
   const f = fade(u), n = 5, cw = 104, dp = 24, gp = 6, step = cw - dp + gp;
@@ -37,7 +36,6 @@ function chevron(k, w, h, u) {
     k.closePath(); k.fill();
     const tx = x + (i > 0 ? dp : 0) / 2 + (cw - dp) / 2 + (i > 0 ? 0 : -2);
     txt(k, String(i + 1), tx + 4, ym + 1, `700 24px ${FONT}`, i === n - 1 ? '#FFFFFF' : C.mark, 'center', 'middle');
-    // short notes under each step
     const pn = P(u, t0 + 0.25, t0 + 0.55);
     if (pn > 0) {
       k.globalAlpha = f * pn; k.fillStyle = C.g3;

@@ -20,7 +20,6 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 13
-// 13 スローモーション
 CELLS[12] = shot((k, w, h, u) => {
   const q = P(u, 0.5, 4.3);
   world(k, w, h, cam({ y: 1.3 }), { person: { z: 7, y: jumpY(q), armUp: q > 0 && q < 1 }, extra: leaves(u, 1) });

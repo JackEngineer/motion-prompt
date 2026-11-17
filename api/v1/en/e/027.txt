@@ -20,6 +20,5 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 03
-// 03 ドリーイン: カメラ位置が前へ（手前は大きく、奥はほぼそのまま）
 CELLS[2] = shot(camCell((k, w, h, p) => world(k, w, h, cam({ z: lerp(0, 5.8, p) }), { person: { z: 8 }, fg: [[-1.5, 3.6], [1.6, 4.8, 'rock']] }),
   p => mm(F0)));

@@ -20,5 +20,4 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 23
-// 23 Jカット: 音が先に次の場面（B）へ切り替わり、映像が後から追う
 CELLS[22] = shot(splitCell(0.2), 134);

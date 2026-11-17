@@ -1,16 +1,15 @@
 /* Motion Prompt · pack "motion2" · MIT License (c) 2026 Shohei Ohtaki · https://github.com/showheyohtaki/motion-prompt */
 MotionPrompt.pack('motion2', function () {
   // @kit
-  // モーショングラフィックスの演出の名前 第2弾 24（各カード 539x208・4.7秒周期。各コマは時間 u の純関数）
-  // カードの中だけ共通パレット（濃紺の地＋青・コーラル・黄・ミント）。第1弾（motion）と同じ見た目。
+  // 每张卡片为 539 × 208 像素，循环时长为 4.7 秒。每帧仅由时间 u 决定。
   const CW = 539, CH = 208;
-  const CYC = 4.7;                          // 各カードは4.7秒周期（ループの継ぎ目なし）
+  const CYC = 4.7;
   const C = {
     navy: '#0F1A3D', navy2: '#1B2A5E', navy3: '#2A3D80', dim: '#7F90C4',
     blue: '#3B7BFF', coral: '#FF6B5C', yel: '#FFC83D', mint: '#2EDBA8', white: '#FFFFFF', cream: '#FFF1D6'
   };
   const PAL = [C.blue, C.coral, C.yel, C.mint];
-  const JP = '"Hiragino Sans", "Hiragino Kaku Gothic ProN", sans-serif';
+  const JP = '"PingFang SC","Hiragino Sans", "Hiragino Kaku Gothic ProN", sans-serif';
   const DISP = '"Avenir Next", "Helvetica Neue", system-ui, sans-serif';
   const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
   const lerp = (a, b, x) => a + (b - a) * x;
@@ -24,7 +23,7 @@ MotionPrompt.pack('motion2', function () {
   const mod = (a, n) => ((a % n) + n) % n;
   const backOut = (x, s = 1.70158) => 1 + (s + 1) * Math.pow(x - 1, 3) + s * Math.pow(x - 1, 2);
   const backIn = (x, s = 1.70158) => (s + 1) * x * x * x - s * x * x;
-  const spring = (t, w = 14, d = 7) => t <= 0 ? 0 : 1 - Math.exp(-d * t) * Math.cos(w * t);   // 0→行き過ぎ→1
+  const spring = (t, w = 14, d = 7) => t <= 0 ? 0 : 1 - Math.exp(-d * t) * Math.cos(w * t);   // 从 0 开始，越过 1 后回到 1。
   function mkCanvas(w, h) { const c = document.createElement('canvas'); c.width = w; c.height = h; return c; }
   function rr(ctx, x, y, w, h, r) { ctx.beginPath(); ctx.roundRect(x, y, w, h, r); }
   function txt(ctx, s, x, y, font, col, align = 'left', base = 'alphabetic', ls = '0px') {
@@ -36,8 +35,8 @@ MotionPrompt.pack('motion2', function () {
   function mix(a, b, t) { const A = hex(a), B = hex(b); return `rgb(${Math.round(lerp(A[0], B[0], t))},${Math.round(lerp(A[1], B[1], t))},${Math.round(lerp(A[2], B[2], t))})`; }
   function star(k, x, y, R, rot = 0, inner = 0.5, n = 5) { k.beginPath(); for (let i = 0; i < n * 2; i++) { const r = i % 2 ? R * inner : R, a = rot - Math.PI / 2 + i * Math.PI / n; const px = x + Math.cos(a) * r, py = y + Math.sin(a) * r; i ? k.lineTo(px, py) : k.moveTo(px, py); } k.closePath(); }
   function heartPath(k, s) { k.beginPath(); k.moveTo(0, s * 0.92); k.bezierCurveTo(-s * 1.75, -s * 0.12, -s * 0.85, -s * 1.2, 0, -s * 0.42); k.bezierCurveTo(s * 0.85, -s * 1.2, s * 1.75, -s * 0.12, 0, s * 0.92); k.closePath(); }
-  // 整数→0..1 の決まった乱数（コマ番号ごとの揺れ・入れ替わりに使う。描画時の Math.random は使わない）
-  // 浮動小数の誤差で周期の終わり（4.6999…）と始まり（0）が別のコマ扱いになるのを防ぐ
+  // 用整数生成 0 至 1 之间的可复现随机数，供逐帧抖动和切换使用。
+  // 避免浮点误差使循环末尾的 4.6999… 与开头的 0 落在不同帧。
   const snapU = u => mod(Math.round(u * 1e6) / 1e6, CYC);
   function H01(n) { n = Math.imul((n | 0) ^ 0x9e3779b9, 0x85ebca6b); n ^= n >>> 13; n = Math.imul(n, 0xc2b2ae35); n ^= n >>> 16; return (n >>> 0) / 4294967296; }
   const TMP = mkCanvas(CW, CH), TK = TMP.getContext('2d');
@@ -48,7 +47,6 @@ MotionPrompt.pack('motion2', function () {
   const CELLS = [];
 
   // @element 01
-  // 01 アンティシペーション（進む向きと逆へ少し引いて、つぶれて溜めてから、勢いよく飛び出す）
   CELLS[0] = (k, w, h, u) => {
     u = snapU(u);
     stage(k);
@@ -64,11 +62,8 @@ MotionPrompt.pack('motion2', function () {
       sx = 1 + 0.55 * st; sy = 1 - 0.28 * st; rot = dir * 0.08 * st;
       const land = lu - 1.38; if (land > 0) { const wob = 0.13 * Math.exp(-7 * land) * Math.sin(17 * land); sy = 1 - wob; sx = 1 + wob; }
     }
-    // 飛び出した地点の土けむり
     if (go > 0 && go < 0.7) { const q = go / 0.7; k.fillStyle = C.dim; k.globalAlpha = 0.8 * (1 - q); for (let i = 0; i < 3; i++) { k.beginPath(); k.arc(xs - dir * (BACK + 30 + i * 22 + q * 30), floor - 8 - i * 6 - q * 10, 7 + q * 12 - i * 2, 0, 7); k.fill(); } k.globalAlpha = 1; }
-    // 影
     k.fillStyle = 'rgba(0,0,0,.3)'; k.beginPath(); k.ellipse(x, floor + 8, S * 0.62 * sx, 6, 0, 0, 7); k.fill();
-    // スピード線
     if (go > 0.02 && go < 0.8) { const a = 1 - go / 0.8; k.strokeStyle = C.yel; k.lineCap = 'round'; k.lineWidth = 8; k.globalAlpha = a;[0.28, 0.55, 0.8].forEach((f, i) => { const y = floor - S * sy * f, x0 = x - dir * (S * sx / 2 + 12), L = 120 * a + 20; k.beginPath(); k.moveTo(x0, y); k.lineTo(x0 - dir * L * (i === 1 ? 1 : 0.7), y); k.stroke(); }); k.globalAlpha = 1; }
     k.save(); k.translate(x, floor); k.rotate(rot); k.scale(sx, sy);
     k.fillStyle = C.coral; rr(k, -S / 2, -S, S, S, 24); k.fill();
@@ -79,7 +74,6 @@ MotionPrompt.pack('motion2', function () {
   };
 
   // @element 02
-  // 02 フォロースルー（体が止まった後も、旗としっぽだけが遅れて揺れて収まる）
   const FTAB = (() => {
     const T = CYC / 2, dt = 1 / 600, N = Math.ceil(T / dt) + 2, D = CW - 2 * 118;
     const pos = lu => { const q = P(lu, 0.15, 0.85), c = 1 / 0.85; return (q < 0.3 ? q * q / 0.6 : 0.15 + (q - 0.3)) * c; };
@@ -102,10 +96,8 @@ MotionPrompt.pack('motion2', function () {
     const floor = h - 26, R = 38, cy = floor - R, a = dir * FTAB.A[i];
     k.fillStyle = C.navy3; rr(k, 26, floor, w - 52, 5, 2.5); k.fill();
     k.fillStyle = 'rgba(0,0,0,.3)'; k.beginPath(); k.ellipse(x, floor + 8, R * 1.1, 6, 0, 0, 7); k.fill();
-    // 滑っている間のスピード線
     const moving = lu > 0.2 && lu < 0.85;
     if (moving) { k.strokeStyle = C.dim; k.lineCap = 'round'; k.lineWidth = 6; k.globalAlpha = 0.7;[[-18, 70], [6, 100], [26, 56]].forEach(([dy, L]) => { const x0 = x - dir * (R + 30); k.beginPath(); k.moveTo(x0, cy + dy); k.lineTo(x0 - dir * L, cy + dy); k.stroke(); }); k.globalAlpha = 1; }
-    // しっぽ（体の後ろ）
     let px = x - dir * (R - 8), py = cy + 10; const pts = [[px, py]];
     for (let j = 1; j <= 7; j++) {
       const ij = Math.max(0, i - j * 22), d = FTAB.B[ij] * (0.55 + j * 0.16), ang0 = Math.PI + 0.25 + d;
@@ -114,12 +106,10 @@ MotionPrompt.pack('motion2', function () {
     k.lineCap = 'round'; k.lineJoin = 'round'; k.strokeStyle = C.coral;
     for (let j = 1; j < pts.length; j++) { k.lineWidth = lerp(14, 6, j / pts.length); k.beginPath(); k.moveTo(pts[j - 1][0], pts[j - 1][1]); k.lineTo(pts[j][0], pts[j][1]); k.stroke(); }
     k.fillStyle = C.coral; k.beginPath(); k.arc(px, py, 9, 0, 7); k.fill();
-    // 体
     k.fillStyle = C.mint; k.beginPath(); k.arc(x, cy, R, 0, 7); k.fill();
     k.fillStyle = 'rgba(255,255,255,.18)'; k.beginPath(); k.arc(x - 10, cy - 12, R * 0.55, 0, 7); k.fill();
     k.fillStyle = '#fff'; k.beginPath(); k.arc(x + dir * 16, cy - 6, 9, 0, 7); k.fill();
     k.fillStyle = C.navy; k.beginPath(); k.arc(x + dir * 19, cy - 6, 4.5, 0, 7); k.fill();
-    // アンテナの旗
     const L = 58, top = cy - R + 4;
     k.save(); k.translate(x, top); k.rotate(a);
     k.strokeStyle = '#fff'; k.lineWidth = 5; k.beginPath(); k.moveTo(0, 0); k.lineTo(0, -L); k.stroke();
@@ -130,7 +120,6 @@ MotionPrompt.pack('motion2', function () {
   };
 
   // @element 03
-  // 03 バウンス（ボールが落ちて、だんだん低く弾みながら止まる）
   const BNC = (() => { const g = 1900, e = 0.56, d = 190, t0 = Math.sqrt(2 * d / g), v0 = g * t0; const segs = []; let t = t0, v = v0 * e; while (v > 35) { segs.push({ t, v }); t += 2 * v / g; v *= e; } const imp = [{ t: t0, v: v0 }]; segs.forEach((s, i) => { if (i) imp.push({ t: s.t, v: segs[i - 1].v }); }); return { g, d, t0, segs, imp, end: t }; })();
   function bounceH(t) { const B = BNC; if (t < B.t0) return B.d - 0.5 * B.g * Math.max(0, t) * Math.max(0, t) * (t < 0 ? 0 : 1); for (const s of B.segs) { const tau = t - s.t; if (tau >= 0 && tau < 2 * s.v / B.g) return s.v * tau - 0.5 * B.g * tau * tau; } return 0; }
   CELLS[2] = (k, w, h, u) => {
@@ -140,7 +129,6 @@ MotionPrompt.pack('motion2', function () {
     const floor = h - 26, R = 26, rest = floor - R, x = lerp(150, 390, eOut(P(lu, 0.1, 1.8)));
     const hg = t < 0 ? BNC.d : bounceH(t), out = 1 - backIn(P(lu, 1.95, 2.25), 2);
     k.fillStyle = C.navy3; rr(k, 26, floor, w - 52, 5, 2.5); k.fill();
-    // 着地の印
     let sq = 0;
     for (const im of BNC.imp) {
       const dtI = t - im.t;
@@ -158,7 +146,6 @@ MotionPrompt.pack('motion2', function () {
   };
 
   // @element 04
-  // 04 ウィグル（ベルが、小刻みに不規則に揺れ続ける。1回の衝撃ではなく、ずっと続く細かい揺れ）
   const WGF = 2 * Math.PI / CYC;
   const wsum = (u, arr) => arr.reduce((s, [kk, am, ph]) => s + am * Math.sin(WGF * kk * u + ph), 0);
   CELLS[3] = (k, w, h, u) => {
@@ -166,12 +153,11 @@ MotionPrompt.pack('motion2', function () {
     const rot = wsum(u, [[23, 0.085, 0.3], [31, 0.065, 1.9], [43, 0.05, 4.2], [59, 0.035, 2.6]]);
     const dx = wsum(u, [[29, 4, 0.7], [47, 3, 3.1], [61, 2, 5.0]]), dy = wsum(u, [[37, 2.4, 2.2], [53, 1.8, 0.4]]);
     const X = w / 2 + dx, Y = 34 + dy;
-    // 両わきの振動の線（揺れているあいだ、ずっと出ている）
     k.strokeStyle = '#fff'; k.lineCap = 'round'; k.lineWidth = 6;
     [[86, 0.85], [110, 0.5]].forEach(([r, al], j) => { const fl = 0.55 + 0.45 * Math.abs(Math.sin(WGF * (41 + j * 12) * u)); k.globalAlpha = al * fl;[0, Math.PI].forEach(base => { k.beginPath(); k.arc(w / 2, 104, r, base - 0.42, base + 0.42); k.stroke(); }); });
     k.globalAlpha = 1;
     k.save(); k.translate(X, Y); k.rotate(rot);
-    // 舌（ベルと逆にふれる）
+    // 铃舌朝铃身摆动的反方向摆动。
     k.fillStyle = C.coral; k.beginPath(); k.arc(-rot * 70, 128, 13, 0, 7); k.fill();
     k.fillStyle = C.yel;
     k.beginPath(); k.arc(0, 8, 10, 0, 7); k.fill();
@@ -182,7 +168,6 @@ MotionPrompt.pack('motion2', function () {
   };
 
   // @element 05
-  // 05 パルス（ハートが鼓動のように、ドクン・ドクンと大きさを脈打たせる）
   CELLS[4] = (k, w, h, u) => {
     stage(k);
     const T = CYC / 4, lu = mod(u, T), X = w / 2, Y = h / 2 + 10;
@@ -199,14 +184,12 @@ MotionPrompt.pack('motion2', function () {
   };
 
   // @element 06
-  // 06 モーションパス（点線の道に沿って、紙飛行機が向きを変えながら進む）
   const MPX = th => 270 + 112 * th - 150 * Math.sin(th), MPY = th => 106 - 74 * Math.cos(th);
   const MP = (() => { const pts = []; for (let i = 0; i <= 400; i++) { const th = -Math.PI + 2 * Math.PI * i / 400; pts.push([MPX(th), MPY(th)]); } return pts; })();
   CELLS[5] = (k, w, h, u) => {
     stage(k);
     k.save(); k.setLineDash([2, 15]); k.lineCap = 'round'; k.strokeStyle = C.dim; k.lineWidth = 6; k.beginPath(); MP.forEach((p, i) => i ? k.lineTo(p[0], p[1]) : k.moveTo(p[0], p[1])); k.stroke(); k.restore();
     const th = -Math.PI + 2 * Math.PI * (u / CYC);
-    // 通ったあとの線
     k.lineCap = 'round';
     for (let j = 0; j < 24; j++) { const a = th - j * 0.03, b = th - (j + 1) * 0.03; k.strokeStyle = C.mint; k.globalAlpha = 0.9 * (1 - j / 24); k.lineWidth = 7 * (1 - j / 30); k.beginPath(); k.moveTo(MPX(a), MPY(a)); k.lineTo(MPX(b), MPY(b)); k.stroke(); }
     k.globalAlpha = 1;
@@ -219,7 +202,6 @@ MotionPrompt.pack('motion2', function () {
   };
 
   // @element 07
-  // 07 ピンポンループ（端まで行ったら、同じ道を逆再生のように戻ってくる。往復をくり返す）
   CELLS[6] = (k, w, h, u) => {
     u = snapU(u);
     stage(k);
@@ -228,9 +210,7 @@ MotionPrompt.pack('motion2', function () {
     k.save(); k.setLineDash([2, 12]); k.lineCap = 'round'; k.strokeStyle = C.navy3; k.lineWidth = 5; k.beginPath();
     for (let i = 0; i <= 150; i++) { const [px, py] = pos(i / 150); i ? k.lineTo(px, py - S / 2) : k.moveTo(px, py - S / 2); } k.stroke(); k.restore();
     k.fillStyle = C.navy3; rr(k, X0 - 40, base + 2, X1 - X0 + 80, 5, 2.5); k.fill();
-    // 両端の折り返し点
     [X0, X1].forEach(xx => { k.fillStyle = C.navy3; rr(k, xx - 4, base - 70, 8, 72, 4); k.fill(); });
-    // 残像
     for (let j = 4; j >= 1; j--) { const qq = mod(u - j * 0.045, CYC) / CYC, gg = qq < 0.5 ? 2 * qq : 2 - 2 * qq, [gx, gy] = pos(gg); k.globalAlpha = 0.1 * (5 - j); k.fillStyle = C.mint; k.save(); k.translate(gx, gy - S / 2); k.rotate(gg * Math.PI * 2); rr(k, -S / 2, -S / 2, S, S, 13); k.fill(); k.restore(); }
     k.globalAlpha = 1;
     const [x, y] = pos(g);
@@ -238,17 +218,15 @@ MotionPrompt.pack('motion2', function () {
     k.fillStyle = C.mint; rr(k, -S / 2, -S / 2, S, S, 13); k.fill();
     k.fillStyle = '#fff'; k.beginPath(); k.arc(S / 2 - 13, -S / 2 + 13, 6.5, 0, 7); k.fill();
     k.restore();
-    // 再生バー
     const ty = 184, tx0 = 196, tx1 = w - 34;
     k.fillStyle = fwd ? C.blue : C.coral; rr(k, 22, ty - 20, 158, 40, 20); k.fill();
-    txt(k, fwd ? '▶ 再生' : '◀ 逆再生', 101, ty + 1, `800 25px ${JP}`, '#fff', 'center', 'middle');
+    txt(k, fwd ? '▶ 正放' : '◀ 倒放', 101, ty + 1, `800 25px ${JP}`, '#fff', 'center', 'middle');
     k.fillStyle = C.navy3; rr(k, tx0, ty - 5, tx1 - tx0, 10, 5); k.fill();
     k.fillStyle = fwd ? C.blue : C.coral; rr(k, tx0, ty - 5, Math.max(10, (tx1 - tx0) * g), 10, 5); k.fill();
     k.fillStyle = C.yel; k.beginPath(); k.arc(tx0 + (tx1 - tx0) * g, ty, 12, 0, 7); k.fill();
   };
 
   // @element 08
-  // 08 ストップモーション風（1秒8コマのカクカクした動き。コマごとに位置が少しずつぶれる）
   CELLS[7] = (k, w, h, u) => {
     u = snapU(u);
     stage(k);
@@ -267,20 +245,18 @@ MotionPrompt.pack('motion2', function () {
     const p = pose(fi);
     k.fillStyle = 'rgba(0,0,0,.3)'; k.beginPath(); k.ellipse(p.x, floor + 6, 30, 5, 0, 0, 7); k.fill();
     draw(p, 1);
-    // 1秒あたりのコマ数
-    txt(k, '8コマ/秒', w - 16, 50, `800 24px ${JP}`, C.dim, 'right', 'middle');
+    txt(k, '每秒 8 帧', w - 16, 50, `800 24px ${JP}`, C.dim, 'right', 'middle');
   };
 
 
   // @element 09
-  // 09 テキストスクランブル（ランダムな文字が入れ替わり続け、左から順に正しい単語に決まる）
-  const SCR_GL = 'ABCDEFGHJKLMNPQRSTUVWXYZ0123456789#$%&@?';
+  const SCR_GL = '春夏秋冬风花雪月山川河海星辰光影云雨霜露0123456789#$%&@?';
   CELLS[8] = (k, w, h, u) => {
     u = snapU(u);
     stage(k);
-    const T = CYC / 2, n = Math.floor(u / T), lu = u - n * T, word = n ? 'WORLD' : 'HELLO', N = 5;
-    const f = `700 92px Menlo, "SF Mono", monospace`; k.font = f;
-    const cw = k.measureText('M').width + 16, x0 = w / 2 - cw * (N - 1) / 2, Y = h / 2 - 8;
+    const T = CYC / 2, n = Math.floor(u / T), lu = u - n * T, word = n ? '创意进行时' : '动效进行中', N = 5;
+    const f = `700 80px ${JP}`; k.font = f;
+    const cw = k.measureText('动').width + 16, x0 = w / 2 - cw * (N - 1) / 2, Y = h / 2 - 8;
     const step = Math.floor(u / (CYC / 76));
     for (let i = 0; i < N; i++) {
       const tl = 0.45 + i * 0.18, tu = 1.85 + (N - 1 - i) * 0.08, locked = lu >= tl && lu < tu;
@@ -294,10 +270,9 @@ MotionPrompt.pack('motion2', function () {
   };
 
   // @element 10
-  // 10 ウェーブテキスト（1文字ずつ、波のように順に上下する）
   CELLS[9] = (k, w, h, u) => {
     stage(k);
-    const f = `800 70px ${DISP}`, cs = chars(k, 'WAVE TEXT', f, 4), Y = h / 2 + 2, ph = 2 * Math.PI * 3 * u / CYC;
+    const f = `800 70px ${JP}`, cs = chars(k, '文字随波起伏', f, 4), Y = h / 2 + 2, ph = 2 * Math.PI * 3 * u / CYC;
     cs.forEach((c, i) => {
       if (c.ch === ' ') return;
       const s = Math.sin(ph - i * 0.62), y = -28 * s;
@@ -307,12 +282,11 @@ MotionPrompt.pack('motion2', function () {
   };
 
   // @element 11
-  // 11 テキストオンパス（文字列が、波打つ線に沿って流れていく）
   const TOP = (() => { const pts = []; for (let x = -70; x <= CW + 70; x += 4) pts.push([x, 118 + 42 * Math.sin(x * 2 * Math.PI / 330 + 0.6)]); return { pts, cum: pathLen(pts) }; })();
   CELLS[10] = (k, w, h, u) => {
     stage(k);
     k.save(); k.setLineDash([14, 10]); k.strokeStyle = C.navy3; k.lineWidth = 5; k.lineCap = 'round'; k.beginPath(); TOP.pts.forEach((p, i) => i ? k.lineTo(p[0], p[1] + 6) : k.moveTo(p[0], p[1] + 6)); k.stroke(); k.restore();
-    const f = `800 42px ${DISP}`, S = 'ALONG THE LINE • '; k.font = f;
+    const f = `800 42px ${JP}`, S = '文字沿着波浪线前行 • '; k.font = f;
     const ws = [...S].map(ch => k.measureText(ch).width + 2), run = ws.reduce((a, b) => a + b, 0), L = TOP.cum[TOP.cum.length - 1], shift = (u / CYC) * run;
     for (let r = -2; r * run + shift < L; r++) {
       let s = r * run + shift;
@@ -326,14 +300,13 @@ MotionPrompt.pack('motion2', function () {
   };
 
   // @element 12
-  // 12 可変フォントアニメーション（同じ単語の太さが、細→極太→細となめらかに変わる）
   CELLS[11] = (k, w, h, u) => {
     stage(k);
     const v = 0.5 - 0.5 * Math.cos(2 * Math.PI * 2 * u / CYC), wt = Math.round(100 + 800 * v);
-    txt(k, 'MOTION', w / 2, 80, `${wt} 112px system-ui`, '#fff', 'center', 'middle', '2px');
+    txt(k, '动态设计', w / 2, 80, `${wt} 112px ${JP}`, '#fff', 'center', 'middle', '2px');
     const x0 = 112, x1 = w - 112, y = 180, kx = x0 + (x1 - x0) * v;
-    txt(k, '細', x0 - 34, y + 1, `300 30px ${JP}`, C.dim, 'center', 'middle');
-    txt(k, '太', x1 + 34, y + 1, `900 30px ${JP}`, C.dim, 'center', 'middle');
+    txt(k, '细', x0 - 34, y + 1, `300 30px ${JP}`, C.dim, 'center', 'middle');
+    txt(k, '粗', x1 + 34, y + 1, `900 30px ${JP}`, C.dim, 'center', 'middle');
     k.fillStyle = C.navy3; rr(k, x0, y - 5, x1 - x0, 10, 5); k.fill();
     k.fillStyle = C.blue; rr(k, x0, y - 5, Math.max(10, kx - x0), 10, 5); k.fill();
     k.fillStyle = C.yel; k.beginPath(); k.arc(kx, y, 14, 0, 7); k.fill();
@@ -341,7 +314,6 @@ MotionPrompt.pack('motion2', function () {
   };
 
   // @element 13
-  // 13 テキストマスク（太い文字の形にくり抜いて、その中だけに動く景色が見える）
   const G0 = mkCanvas(CW, CH), GK0 = G0.getContext('2d', { willReadFrequently: true });
   function seaPattern(g, w, h, u) {
     g.fillStyle = C.coral; g.fillRect(0, 0, w, h);
@@ -356,21 +328,20 @@ MotionPrompt.pack('motion2', function () {
   }
   CELLS[12] = (k, w, h, u) => {
     stage(k);
-    let fs = 172; while (fs > 90 && tw(k, 'OCEAN', `900 ${fs}px system-ui`, '2px') > 500) fs -= 2;
-    const font = `900 ${fs}px system-ui`, Y = h / 2 + 6;
+    let fs = 172; while (fs > 90 && tw(k, '海面风光', `900 ${fs}px ${JP}`, '2px') > 500) fs -= 2;
+    const font = `900 ${fs}px ${JP}`, Y = h / 2 + 6;
     const open = smooth(P(u, 3.45, 3.85)) * (1 - smooth(P(u, 4.25, 4.65)));
     TK.setTransform(1, 0, 0, 1, 0, 0); TK.globalCompositeOperation = 'source-over'; TK.clearRect(0, 0, w, h);
-    txt(TK, 'OCEAN', w / 2, Y, font, '#fff', 'center', 'middle', '2px');
+    txt(TK, '海面风光', w / 2, Y, font, '#fff', 'center', 'middle', '2px');
     GK0.setTransform(1, 0, 0, 1, 0, 0); GK0.globalCompositeOperation = 'source-over'; GK0.clearRect(0, 0, w, h); seaPattern(GK0, w, h, u);
     TK.globalCompositeOperation = 'source-in'; TK.drawImage(G0, 0, 0); TK.globalCompositeOperation = 'source-over';
     k.globalAlpha = 0.12 + 0.88 * open; seaPattern(k, w, h, u); k.globalAlpha = 1;
     k.drawImage(TMP, 0, 0);
     k.font = font; k.textAlign = 'center'; k.textBaseline = 'middle'; k.letterSpacing = '2px'; k.lineJoin = 'round';
-    k.strokeStyle = '#fff'; k.lineWidth = 4; k.strokeText('OCEAN', w / 2, Y); k.letterSpacing = '0px';
+    k.strokeStyle = '#fff'; k.lineWidth = 4; k.strokeText('海面风光', w / 2, Y); k.letterSpacing = '0px';
   };
 
   // @element 14
-  // 14 リピーター（1つの図形が複製されて円に並び、少しずつずれながら回る）
   CELLS[13] = (k, w, h, u) => {
     u = snapU(u);
     stage(k);
@@ -389,7 +360,6 @@ MotionPrompt.pack('motion2', function () {
   };
 
   // @element 15
-  // 15 カレイドスコープ（万華鏡のように、8分割の対称な模様が回りながら広がる）
   const KAL = (() => { const R = rand(1515), a = []; for (let i = 0; i < 13; i++) a.push({ r0: R() * 300, th: 0.06 + R() * 0.66, kind: i % 3, col: PAL[i % 4], sz: 0.7 + R() * 0.7, ph: R() * 6 }); return a; })();
   CELLS[14] = (k, w, h, u) => {
     stage(k);
@@ -413,7 +383,6 @@ MotionPrompt.pack('motion2', function () {
   };
 
   // @element 16
-  // 16 ラインボイル（手描き風の線の絵が、数コマごとに小刻みに揺らぐ。絵は動かない）
   function densify(pts, closed, step) { const out = [], n = pts.length, m = closed ? n : n - 1; for (let i = 0; i < m; i++) { const a = pts[i], b = pts[(i + 1) % n], d = Math.hypot(b[0] - a[0], b[1] - a[1]), c = Math.max(1, Math.round(d / step)); for (let j = 0; j < c; j++) out.push([lerp(a[0], b[0], j / c), lerp(a[1], b[1], j / c)]); } if (!closed) out.push(pts[n - 1]); return out; }
   const LB = (() => {
     const st = []; for (let i = 0; i < 10; i++) { const r = i % 2 ? 30 : 70, a = -Math.PI / 2 + i * Math.PI / 5; st.push([150 + Math.cos(a) * r, 112 + Math.sin(a) * r]); }
@@ -449,13 +418,13 @@ MotionPrompt.pack('motion2', function () {
   };
 
   // @shared
-  // 場面（昼・夜・海・山・街・野原）。同じ絵柄がそろわないよう、カードごとに組み合わせを変える
+  // 各张转场卡片采用不同的场景组合，避免相邻卡片出现同样的画面。
   const SUN = [112, 104], MOON = [CW - 112, 104];
   function scrA(k, w, h) {
     k.fillStyle = C.cream; k.fillRect(0, 0, w, h);
     k.fillStyle = '#FFD9A8'; k.beginPath(); k.arc(SUN[0], SUN[1], 66, 0, 7); k.fill();
     k.fillStyle = C.coral; k.beginPath(); k.arc(SUN[0], SUN[1], 44, 0, 7); k.fill();
-    txt(k, 'DAY', 214, h / 2 + 4, `800 96px ${DISP}`, C.navy, 'left', 'middle', '2px');
+    txt(k, '白天', 214, h / 2 + 4, `800 96px ${DISP}`, C.navy, 'left', 'middle', '2px');
     k.fillStyle = '#fff'; rr(k, 400, 34, 96, 26, 13); k.fill(); rr(k, 430, 20, 50, 26, 13); k.fill();
   }
   function scrB(k, w, h) {
@@ -463,7 +432,7 @@ MotionPrompt.pack('motion2', function () {
     k.fillStyle = '#fff';[[40, 30, 3], [150, 170, 2.5], [250, 24, 2.5], [330, 180, 3], [500, 30, 2.5], [20, 150, 2]].forEach(s => { k.beginPath(); k.arc(s[0], s[1], s[2], 0, 7); k.fill(); });
     k.fillStyle = C.yel; k.beginPath(); k.arc(MOON[0], MOON[1], 46, 0, 7); k.fill();
     k.fillStyle = '#16255A'; k.beginPath(); k.arc(MOON[0] + 22, MOON[1] - 14, 38, 0, 7); k.fill();
-    txt(k, 'NIGHT', 40, h / 2 + 4, `800 88px ${DISP}`, '#fff', 'left', 'middle', '1px');
+    txt(k, '夜晚', 40, h / 2 + 4, `800 88px ${DISP}`, '#fff', 'left', 'middle', '1px');
   }
   function clipX(k, x0, x1, h) { k.beginPath(); k.rect(x0, 0, x1 - x0, h); k.clip(); }
   function pnSea(k, x0, x1, h, t, label) {
@@ -476,7 +445,7 @@ MotionPrompt.pack('motion2', function () {
     const bx = c + 26 * Math.sin(2 * Math.PI * t / CYC) + (label ? 110 : 0), by = 124 + 3 * Math.sin(2 * Math.PI * 3 * t / CYC);
     k.fillStyle = '#fff'; k.beginPath(); k.moveTo(bx, by - 62); k.lineTo(bx, by - 8); k.lineTo(bx + 42, by - 8); k.closePath(); k.fill();
     k.fillStyle = C.coral; k.beginPath(); k.moveTo(bx - 40, by - 4); k.lineTo(bx + 50, by - 4); k.lineTo(bx + 36, by + 14); k.lineTo(bx - 28, by + 14); k.closePath(); k.fill();
-    if (label) txt(k, 'SEA', x0 + 30, 82, `800 76px ${DISP}`, C.navy, 'left', 'middle', '2px');
+    if (label) txt(k, '海边', x0 + 30, 82, `800 76px ${DISP}`, C.navy, 'left', 'middle', '2px');
     k.restore();
   }
   function pnMtn(k, x0, x1, h, t, label) {
@@ -489,7 +458,7 @@ MotionPrompt.pack('motion2', function () {
     tri(c - 110, c + 50, 30, c + 210, C.navy3); snow(c - 110, c + 50, 30, c + 210, 0.22);
     tri(c + 80, c + 190, 86, c + 330, C.blue); snow(c + 80, c + 190, 86, c + 330, 0.2);
     k.fillStyle = C.mint; k.fillRect(x0, h - 20, x1 - x0, 20);
-    if (label) txt(k, 'MOUNTAIN', x0 + 26, 54, `800 44px ${DISP}`, C.navy, 'left', 'middle', '1px');
+    if (label) txt(k, '山峦', x0 + 26, 54, `800 44px ${DISP}`, C.navy, 'left', 'middle', '1px');
     k.restore();
   }
   const BLD = [[-250, 70, 116, 0], [-175, 62, 150, 1], [-108, 80, 96, 0], [-22, 64, 172, 1], [48, 92, 122, 0], [146, 58, 150, 1], [210, 80, 108, 0]];
@@ -502,7 +471,7 @@ MotionPrompt.pack('motion2', function () {
       const bx = c + dx, by = h - bh; k.fillStyle = ci ? C.blue : C.navy3; k.fillRect(bx, by, bw, bh);
       let wi = 0; for (let y = by + 14; y < h - 16; y += 22) for (let x = bx + 10; x < bx + bw - 14; x += 18) { const on = H01(bi * 97 + wi * 13 + stp * 7) > 0.35; wi++; k.fillStyle = on ? C.yel : 'rgba(15,26,61,.45)'; k.fillRect(x, y, 9, 11); }
     });
-    if (label) { k.fillStyle = 'rgba(15,26,61,.55)'; rr(k, x0 + 18, 28, 196, 70, 14); k.fill(); txt(k, 'CITY', x0 + 34, 64, `800 66px ${DISP}`, '#fff', 'left', 'middle', '2px'); }
+    if (label) { k.fillStyle = 'rgba(15,26,61,.55)'; rr(k, x0 + 18, 28, 196, 70, 14); k.fill(); txt(k, '城市', x0 + 34, 64, `800 66px ${DISP}`, '#fff', 'left', 'middle', '2px'); }
     k.restore();
   }
   function pnField(k, x0, x1, h, t, label) {
@@ -516,7 +485,7 @@ MotionPrompt.pack('motion2', function () {
     for (let i = 0; i < 4; i++) { k.save(); k.translate(mx, my); k.rotate(ang + i * Math.PI / 2); k.beginPath(); k.moveTo(0, -3); k.lineTo(58, -10); k.lineTo(58, 8); k.lineTo(0, 3); k.closePath(); k.fill(); k.restore(); }
     k.fillStyle = C.yel; k.beginPath(); k.arc(mx, my, 8, 0, 7); k.fill();
     [[-200, 176, 0], [-120, 186, 1], [-40, 172, 0], [40, 184, 1], [180, 178, 0], [230, 190, 1]].forEach(([dx, y, ci]) => { k.fillStyle = ci ? C.yel : C.coral; k.beginPath(); k.arc(c + dx, y, 7, 0, 7); k.fill(); });
-    if (label) txt(k, 'FIELD', x0 + 28, 70, `800 70px ${DISP}`, C.navy, 'left', 'middle', '2px');
+    if (label) txt(k, '田野', x0 + 28, 70, `800 70px ${DISP}`, C.navy, 'left', 'middle', '2px');
     k.restore();
   }
   const scSea = (k, w, h) => pnSea(k, 0, w, h, 0, true), scMtn = (k, w, h) => pnMtn(k, 0, w, h, 0, true);
@@ -524,11 +493,10 @@ MotionPrompt.pack('motion2', function () {
   const SEG3 = CYC / 2;
   function abCell(trans) { return (k, w, h, u) => { u = snapU(u); const sgi = Math.min(1, Math.floor(u / SEG3)), uu = u - sgi * SEG3; trans(k, w, h, uu, sgi, 1 - sgi); }; }
   const TA = 0.5, TB = 1.5;
-  // 破片や紙の形（多角形）のパス。ページめくり（20）とガラス割れ（22）で使う
+  // 第 20 张翻页和第 22 张玻璃破碎共用多边形描画函数。
   function polyPath(k, pts) { k.beginPath(); pts.forEach((p, i) => i ? k.lineTo(p[0], p[1]) : k.moveTo(p[0], p[1])); k.closePath(); }
 
   // @element 17
-  // 17 プッシュ（次の画面が横から入ってきて、前の画面を一緒に押し出す）
   const SC17 = [scSea, scMtn];
   CELLS[16] = abCell((k, w, h, u, a, b) => {
     const p = eIO(P(u, TA - 0.05, TB + 0.1)), dir = a === 0 ? -1 : 1;
@@ -541,7 +509,6 @@ MotionPrompt.pack('motion2', function () {
   });
 
   // @element 18
-  // 18 ブラインド（細い帯ごとのすき間がだんだん広がって、次の画面が開く）
   CELLS[17] = abCell((k, w, h, u, a, b) => {
     const p = eIOs(P(u, TA - 0.1, TB + 0.15)), N = 7, sh = h / N, S = [scrA, scrB];
     S[a](k, w, h);
@@ -550,7 +517,6 @@ MotionPrompt.pack('motion2', function () {
   });
 
   // @element 19
-  // 19 キューブ（立方体が回るように、前の面が奥へ倒れて次の面が現れる）
   const CFW = 250, CFH = 146, CF = [mkCanvas(CFW, CFH), mkCanvas(CFW, CFH)];
   function cubeFace(i) {
     const g = CF[i].getContext('2d'); g.setTransform(1, 0, 0, 1, 0, 0); g.clearRect(0, 0, CFW, CFH);
@@ -582,10 +548,9 @@ MotionPrompt.pack('motion2', function () {
   });
 
   // @element 20
-  // 20 ページめくり（角から紙がめくれて裏返り、下から次のページが現れる）
   function paper(k, w, h, i) {
     k.fillStyle = i ? C.cream : '#FFFFFF'; k.fillRect(0, 0, w, h);
-    txt(k, i ? 'PAGE 2' : 'PAGE 1', 30, 58, `800 46px ${DISP}`, C.navy, 'left', 'middle', '1px');
+    txt(k, i ? '第 2 页' : '第 1 页', 30, 58, `800 46px ${DISP}`, C.navy, 'left', 'middle', '1px');
     k.fillStyle = i ? '#EBD9B4' : '#D7DCEA';[[96, 230], [122, 250], [148, 200], [174, 236]].forEach(([y, ww]) => { rr(k, 30, y, ww, 12, 6); k.fill(); });
     k.fillStyle = i ? C.mint : C.coral; rr(k, 310, 26, 200, 156, 14); k.fill();
     k.fillStyle = '#fff'; k.beginPath(); k.arc(462, 66, 18, 0, 7); k.fill();
@@ -599,7 +564,6 @@ MotionPrompt.pack('motion2', function () {
     const rect = [[0, 0], [w, 0], [w, h], [0, h]], rest = clipHalf(rect, d, sM, false), corner = clipHalf(rect, d, sM, true);
     if (rest.length > 2) { k.save(); polyPath(k, rest); k.clip(); paper(k, w, h, a); k.restore(); }
     if (corner.length > 2 && sM > 0.5) {
-      // 折り目の影（下のページ側）
       k.save(); polyPath(k, corner); k.clip();
       const mx = w + d[0] * sM, my = h + d[1] * sM, gr = k.createLinearGradient(mx, my, mx - d[0] * 50, my - d[1] * 50);
       gr.addColorStop(0, 'rgba(15,26,61,.35)'); gr.addColorStop(1, 'rgba(15,26,61,0)'); k.fillStyle = gr; k.fillRect(0, 0, w, h); k.restore();
@@ -611,7 +575,6 @@ MotionPrompt.pack('motion2', function () {
   });
 
   // @element 21
-  // 21 ピクセレート（画面がだんだん粗いモザイクになり、いちばん粗いところで切り替わって細かく戻る）
   const SMC = mkCanvas(CW, CH), SMK = SMC.getContext('2d');
   const BLV = [1, 2, 3, 4, 6, 8, 11, 15, 20, 27, 36];
   CELLS[20] = abCell((k, w, h, u, a, b) => {
@@ -625,7 +588,6 @@ MotionPrompt.pack('motion2', function () {
   });
 
   // @element 22
-  // 22 ガラス割れ（画面がガラスのようにひび割れ、破片が飛び散って次の画面が現れる）
   const SHARDS = (() => {
     const R = rand(2222), I = [304, 92], NA = 13, RAD = [0, 40, 98, 175, 360], V = [];
     const angs = []; for (let i = 0; i < NA; i++) angs.push((i + (R() - 0.5) * 0.6) / NA * Math.PI * 2);
@@ -666,12 +628,11 @@ MotionPrompt.pack('motion2', function () {
   });
 
   // @element 23
-  // 23 分解図（スマホの部品が層ごとにばらけて中の構造を見せ、また組み上がる）
   const XL = [
     { name: '背面', o: [-27, -50, 54, 100, 10], side: '#B8483D', draw: g => { g.fillStyle = C.coral; rr(g, -27, -50, 54, 100, 10); g.fill(); g.fillStyle = C.navy; g.beginPath(); g.arc(-12, -34, 7, 0, 7); g.fill(); g.beginPath(); g.arc(2, -34, 5, 0, 7); g.fill(); } },
-    { name: '電池', o: [-21, -40, 42, 68, 6], side: '#17946F', draw: g => { g.fillStyle = C.mint; rr(g, -21, -40, 42, 68, 6); g.fill(); g.fillStyle = '#fff'; g.fillRect(-3, -18, 6, 20); g.fillRect(-10, -11, 20, 6); } },
+    { name: '电池', o: [-21, -40, 42, 68, 6], side: '#17946F', draw: g => { g.fillStyle = C.mint; rr(g, -21, -40, 42, 68, 6); g.fill(); g.fillStyle = '#fff'; g.fillRect(-3, -18, 6, 20); g.fillRect(-10, -11, 20, 6); } },
     { name: '基板', o: [-25, -48, 50, 96, 6], side: '#2550B5', draw: g => { g.fillStyle = C.blue; rr(g, -25, -48, 50, 96, 6); g.fill(); g.fillStyle = C.yel; g.fillRect(-16, -38, 16, 14); g.fillRect(4, -30, 12, 10); g.fillRect(-14, 8, 26, 14); g.fillStyle = C.mint; g.fillRect(-18, -14, 34, 3); g.fillRect(-4, 26, 3, 16); } },
-    { name: '画面', o: [-27, -50, 54, 100, 10], side: '#AEB8D4', draw: g => { g.fillStyle = '#fff'; rr(g, -27, -50, 54, 100, 10); g.fill(); g.fillStyle = C.navy2; rr(g, -22, -44, 44, 88, 6); g.fill(); for (let i = 0; i < 6; i++) { g.fillStyle = PAL[i % 4]; rr(g, -16 + (i % 2) * 18, -36 + Math.floor(i / 2) * 18, 13, 13, 3); g.fill(); } } },
+    { name: '屏幕', o: [-27, -50, 54, 100, 10], side: '#AEB8D4', draw: g => { g.fillStyle = '#fff'; rr(g, -27, -50, 54, 100, 10); g.fill(); g.fillStyle = C.navy2; rr(g, -22, -44, 44, 88, 6); g.fill(); for (let i = 0; i < 6; i++) { g.fillStyle = PAL[i % 4]; rr(g, -16 + (i % 2) * 18, -36 + Math.floor(i / 2) * 18, 13, 13, 3); g.fill(); } } },
   ];
   const ISO = (px, py) => [(px - py) * 0.866, (px + py) * 0.5];
   CELLS[22] = (k, w, h, u) => {
@@ -681,13 +642,11 @@ MotionPrompt.pack('motion2', function () {
     const ex = i => backOut(P(u, 0.45 + i * 0.08, 1.2 + i * 0.08), 1.3) * (1 - eIO(P(u, 3.25 + (3 - i) * 0.07, 3.95 + (3 - i) * 0.07)));
     const E = XL.map((_, i) => ex(i)), zs = E.map((e, i) => i * 7 + e * i * SP + 3 * Math.sin(2 * Math.PI * 2 * u / CYC + i) * clamp(e));
     k.fillStyle = 'rgba(0,0,0,.3)'; k.beginPath(); k.ellipse(X, Y + 40, 64, 13, 0, 0, 7); k.fill();
-    // 縦の補助線（ばらけたときだけ）
     const e3 = clamp(E[3]); if (e3 > 0.03) { k.save(); k.setLineDash([4, 7]); k.strokeStyle = C.dim; k.lineWidth = 2; k.globalAlpha = e3;[[-27, -50], [27, 50], [-27, 50]].forEach(([px, py]) => { const [ix, iy] = ISO(px * SC, py * SC); k.beginPath(); k.moveTo(X + ix, Y + iy - zs[0]); k.lineTo(X + ix, Y + iy - zs[3]); k.stroke(); }); k.restore(); }
     XL.forEach((L, i) => {
       const z = zs[i];
       for (let dz = 6; dz >= 1; dz--) { k.save(); k.translate(X, Y - z + dz); k.scale(SC, SC); k.transform(0.866, 0.5, -0.866, 0.5, 0, 0); k.fillStyle = L.side; rr(k, ...L.o); k.fill(); k.restore(); }
       k.save(); k.translate(X, Y - z); k.scale(SC, SC); k.transform(0.866, 0.5, -0.866, 0.5, 0, 0); L.draw(k); k.restore();
-      // ラベル
       const a = clamp(E[i]); if (a > 0.03) {
         const [rx, ry] = ISO((L.o[0] + L.o[2]) * SC, L.o[1] * SC), sx = X + rx + 6, sy = Y + ry - z + 4, lx = 352, ly = Y + 8 - z - i * 2;
         k.globalAlpha = a; k.strokeStyle = C.dim; k.lineWidth = 2; k.beginPath(); k.moveTo(sx, sy); k.lineTo(lx - 10, ly); k.stroke();
@@ -698,7 +657,6 @@ MotionPrompt.pack('motion2', function () {
   };
 
   // @element 24
-  // 24 スプリットスクリーン（1枚の画面が2つ、3つに分かれて、別々の場面が同時に動く）
   CELLS[23] = (k, w, h, u) => {
     u = snapU(u);
     const s2 = eIO(P(u, 0.45, 0.95)), s3 = eIO(P(u, 1.4, 1.9)), m = eIO(P(u, 3.75, 4.4));

@@ -19,12 +19,11 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 14
-// 14 ディープフォーカス: 手前の花から奥の建物まで、全部に同時にピントが合う（#033 ラックフォーカスは片方ずつ）
 CELLS[13] = shot(camCell((k, w, h, p) => {
   world(k, w, h, cam({ y: 1.1 }), {
     person: { x: 0.9, z: 9 }, blurFg: 5 * (1 - p), blurBg: 6 * (1 - p),
     extra: [[-0.75, 0, 2.0, (kk, s) => { kk.fillStyle = C.g3; kk.fillRect(-0.025, 0, 0.05, 0.75); kk.fillStyle = C.blueM; for (let i = 0; i < 6; i++) { kk.beginPath(); kk.ellipse(Math.cos(i) * 0.09, 0.8 + Math.sin(i) * 0.09, 0.08, 0.05, i, 0, 7); kk.fill(); } kk.fillStyle = C.blue; kk.beginPath(); kk.arc(0, 0.8, 0.05, 0, 7); kk.fill(); }, true]],
-    after: (kk, cc) => {   // ピントの枠を手前と奥の両方に（合うにつれて濃く）
+    after: (kk, cc) => {
       kk.globalAlpha = p; kk.strokeStyle = C.blue; kk.lineWidth = 2; kk.beginPath();
       [[proj(cc, -0.75, 0.8, 2.0), 46], [proj(cc, 0.9, 0.9, 9), 30]].forEach(([q, r]) => [[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(([sx, sy]) => { kk.moveTo(q.x + sx * r, q.y + sy * r - sy * 9); kk.lineTo(q.x + sx * r, q.y + sy * r); kk.lineTo(q.x + sx * r - sx * 9, q.y + sy * r); }));
       kk.stroke(); kk.globalAlpha = 1;

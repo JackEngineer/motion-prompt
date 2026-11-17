@@ -19,7 +19,6 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 05
-// 05 横スクロール（縦にスクロールすると、カードの列が横へ流れる）
 CELLS[4] = (k, w, h, u) => {
   frame(k);
   const y = steps([[0.3, 0], [3.0, 420], [3.5, 420], [4.5, 0]], u);
@@ -27,7 +26,7 @@ CELLS[4] = (k, w, h, u) => {
   const top = y < PIN0 ? PIN0 - y : 0, p = clamp((y - PIN0) / PD);
   const travel = 34 * 2 + N * PWD + (N - 1) * GAP - VW;
   view(k, () => {
-    txt(k, 'WORKS', 34, 30 - y, `800 20px ${EN}`, C.ink, 'left', 'alphabetic', '2px');
+    txt(k, '作品', 34, 30 - y, `800 20px ${EN}`, C.ink, 'left', 'alphabetic', '2px');
     k.save(); k.translate(0, top);
     k.fillStyle = C.soft; k.fillRect(0, 0, VW, VH + 40);
     for (let i = 0; i < N; i++) {

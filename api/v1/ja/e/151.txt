@@ -18,7 +18,6 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 07
-// 07 トップへ戻るボタン（下までスクロールすると右下に丸いボタンが出て、押すと一気に先頭へ戻る）
 CELLS[6] = (k, w, h, u) => {
   u = snapU(u);
   frame(k);
@@ -28,8 +27,8 @@ CELLS[6] = (k, w, h, u) => {
   const [cx, cy] = cur(u);
   view(k, () => {
     k.save(); k.translate(0, -y);
-    txt(k, 'BLOG', 70, 32, `800 11px ${EN}`, C.acc, 'left', 'alphabetic', '2px');
-    txt(k, '週末にできる、小さな旅', 70, 58, `800 19px ${JP}`, C.ink);
+    txt(k, '博客', 70, 32, `800 11px ${EN}`, C.acc, 'left', 'alphabetic', '2px');
+    txt(k, '周末来一场短途旅行', 70, 58, `800 19px ${JP}`, C.ink);
     pic(k, 70, 72, 371, 100, 2, 8);
     for (let b = 0; b < 3; b++) { const y0 = 192 + b * 82; k.fillStyle = C.ink; rr(k, 70, y0, 150, 9, 4.5); k.fill(); bars(k, 70, y0 + 22, 371, 4, C.faint, 6, 12); }
     k.fillStyle = C.ink; k.fillRect(0, 438, VW, 80); logo(k, 70, 454, '#fff'); bars(k, 300, 451, 140, 1, 'rgba(255,255,255,.3)');

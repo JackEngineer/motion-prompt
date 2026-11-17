@@ -20,7 +20,6 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 11
-// 長時間露光: シャッターを開け続けると、夜道の車は消え、ライトだけが光の線になる
 CELLS[10] = cell((k, u) => {
   const a = env(u), x = lerp(-60, 600, u / CYC);
   const p = pal(BASE, NIGHT, a);
@@ -28,17 +27,14 @@ CELLS[10] = cell((k, u) => {
     car: false, person: false,
     after: D => {
       const kk = D.k;
-      // 車の通った跡: 尾灯（赤）と前照灯（白〜アンバー）の線。車の後ろに伸びる
       kk.save(); kk.globalAlpha = a; kk.lineCap = 'round';
       const x0 = -60, x1 = Math.min(x, CW + 40);
       const ln = (ya, yb, c1, c2, w1, w2) => { kk.strokeStyle = c1; kk.lineWidth = w1; kk.beginPath(); kk.moveTo(x0, ya); kk.lineTo(x1, ya); kk.stroke(); kk.strokeStyle = c2; kk.lineWidth = w2; kk.beginPath(); kk.moveTo(x0, yb); kk.lineTo(x1, yb); kk.stroke(); };
       ln(145, 149, '#FF5B4D', '#FF8A6E', 2.6, 1.4);
-      // 反対車線の車たちの跡（画面いっぱい）
       for (const [y, c, lw] of [[135, '#FFE9B8', 2.6], [138.5, BASE.lit, 1.6], [141.5, '#FFE9B8', 1.2]]) { kk.strokeStyle = c; kk.lineWidth = lw; kk.beginPath(); kk.moveTo(-10, y); kk.lineTo(CW + 10, y); kk.stroke(); }
       kk.restore();
     }
   });
-  // 車の本体は露光が長いほど薄く写る
   k.save(); k.globalAlpha = 1 - 0.9 * a; const D = pen(k);
   car(D, x, p, { head: BASE.lit, tail: '#FF5B4D' }); k.restore();
   figure(pen(k), FIG[0], FIG[1], FIG[2], p.person);

@@ -1,41 +1,41 @@
 // Motion Prompt #049-072 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#049
 //
-// Kit for pack "ui" (UI component names / UIパーツの名前): the constants and helpers its elements share.
-// Elements #049-072 · 542x191 px · cycle 4.5 s. Element code: https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/<id>.txt (or /ja/).
+// 以下为素材包 "ui"（UI 组件）各元素共用的常量和辅助函数。
+// 元素 #049-072 · 542x191 px · 循环时长 4.5 秒
+// 元素代码（简体中文）：../zh-Hans/e/<id>.txt（相对于本辅助代码文件）
+// 其他语言：../en/e/<id>.txt（英文）、../ja/e/<id>.txt（日文）
 //
-// Run one element standalone in a browser:
-//   1. paste this file into a <script>,
-//   2. paste the element code below it (it assigns CELLS[n - 1], n = the element number inside the pack),
-//   3. then add:
+// 在浏览器中单独运行一个元素：
+//   1. 将本文件内容粘贴到 <script> 中。
+//   2. 在其后粘贴元素代码。元素代码会设置 CELLS[n - 1]，其中 n 是元素在素材包内的编号。
+//   3. 接着添加以下代码。
 //        const c = document.createElement('canvas'); c.width = 542; c.height = 191; document.body.append(c);
 //        const k = c.getContext('2d'), cell = CELLS.find(Boolean), t0 = performance.now();
 //        (function loop() {
-//          const u = ((performance.now() - t0) / 1000) % 4.5;   // seconds, 0 <= u < 4.5
+//          const u = ((performance.now() - t0) / 1000) % 4.5;   // 单位为秒，0 <= u < 4.5
 //          k.setTransform(1, 0, 0, 1, 0, 0); k.clearRect(0, 0, 542, 191);
 //          k.save(); cell(k, 542, 191, u); k.restore();
 //          requestAnimationFrame(loop);
 //        })();
-// Every cell is a pure function of u, so the same call renders video frames: u = frame / fps.
+// 各元素的画面只取决于 u，因此可用同一个函数渲染视频帧。将 u 设为 frame / fps。
 
 // @kit
-// UIパーツの名前 24（カード 542x191 = 元動画のカード窓 542x222 から窓の上枠 31px を除いた中身）。
-// 各コマは時間 u の純関数。1周期 CYC=4.5秒。カーソル（指）の動きがきっかけで部品が動く。
+// 卡片取自原视频 542 × 222 像素的窗口，去掉 31 像素的顶栏后为 542 × 191 像素。
+// 每帧仅由时间 u 决定，循环时长为 4.5 秒。组件由光标移动或点击触发。
 const CW = 542, CH = 191, CYC = 4.5;
 
-// パックの色（地・文字・差し色）
 const C = {
   bg: '#f5f3f1', card: '#ffffff', border: '#dcdbdb', dot: '#dddddd', url: '#eeeeeb', sep: '#ecebe9',
   line: '#e6e4e3', line2: '#d6d4d2', block: '#f0efed', ink: '#111111', en: '#7b7975', hint: '#868482',
   blue: '#1f5ae8', lb: '#eef3fe', mb: '#cad9f9', sb: '#a3bef7', scroll: '#c9c7c5', dark: '#26282c'
 };
-const JP = '"Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif';
+const JP = '"PingFang SC","Hiragino Sans","Hiragino Kaku Gothic ProN",sans-serif';
 const NUMF = 'system-ui,-apple-system,"Helvetica Neue",sans-serif';
 
-// 描画の補助関数は元のまま X（2D コンテキスト）に描く。ui() が毎回 X を渡された k に向け、白地を敷いてから描く
+// 绘图函数共用二维上下文 X。ui() 每次将 X 设为传入的 k，并先铺白底。
 let X = null;
 const ui = draw => (k, w, h, u) => { X = k; k.fillStyle = C.card; k.fillRect(0, 0, w, h); draw(w, h, u); };
 
-// ---------- helpers ----------
 const clamp = (v, a = 0, b = 1) => Math.max(a, Math.min(b, v));
 const seg = (t, a, b) => clamp((t - a) / (b - a));
 const eo = x => 1 - Math.pow(1 - x, 3);
@@ -60,7 +60,7 @@ function mountains(x, y, w, h, tint = 0) {
   circle(x + w * .82, y + h * .26, Math.min(w, h) * .09, C.mb);
   X.restore();
 }
-// カーソル（矢印）。keys=[[t,x,y],...]、clicks=[t,...]
+// 光标轨迹为 keys = [[时刻, x, y], …]，点击时刻为 clicks = [时刻, …]。
 function track(keys, t) {
   if (t <= keys[0][0]) return [keys[0][1], keys[0][2]];
   for (let i = 1; i < keys.length; i++) { const a = keys[i - 1], b = keys[i]; if (t <= b[0]) { const k = eio((t - a[0]) / (b[0] - a[0] || 1)); return [lerp(a[1], b[1], k), lerp(a[2], b[2], k)]; } }
@@ -83,6 +83,5 @@ function finger(keys, downs, t, visible) {
   ripple(x, y, downs, t);
   circle(x, y, 17, 'rgba(17,17,17,.24)'); ring(x, y, 17, 'rgba(255,255,255,.95)', 2.5);
 }
-// よく使う背景のワイヤーフレーム
 function pageLines(x, y, w) { bar(x, y, w * .45, C.line2, 11); bar(x, y + 24, w, C.line); bar(x, y + 42, w * .78, C.line); }
 const CELLS = [];

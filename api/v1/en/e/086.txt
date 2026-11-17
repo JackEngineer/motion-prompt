@@ -18,10 +18,9 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 14
-// 14 下線アニメーション（リンクにカーソルを乗せると下線が左から伸び、離れると右へ抜ける）
 CELLS[13] = (k, w, h, u) => {
   frame(k);
-  const LINKS = ['サービス', '実績', '会社概要'], F = `800 20px ${JP}`, GAP = 56, LY = 84, DUR = 0.3;
+  const LINKS = ['服务', '案例', '公司简介'], F = `800 20px ${JP}`, GAP = 56, LY = 84, DUR = 0.3;
   const cur = t => path([[0, 120, 150], [0.45, 170, 80], [1.3, 186, 84], [1.55, 268, 80], [2.4, 282, 84], [2.65, 372, 80], [3.5, 390, 84], [3.95, 430, 150], [4.8, 120, 150]], t);
   view(k, () => {
     logo(k, 22, 28); bars(k, 90, 132, 331, 2, C.faint, 6, 12, 0.6);
@@ -29,7 +28,7 @@ CELLS[13] = (k, w, h, u) => {
     LINKS.forEach((s, i) => {
       const x0 = x, x1 = x + ws[i], inside = t => { const [a, b] = cur(t); return a > x0 - 6 && a < x1 + 6 && b > LY - 22 && b < LY + 14; };
       txt(k, s, x0, LY, F, C.ink);
-      // 最後に乗った・離れた時刻から 0.3秒（乗る: 左端から伸びる / 離れる: 左端から縮んで右へ抜ける）
+      // 光标移入和移出都用 0.3 秒。移入时下划线自左侧伸长，移出时向右缩短至消失。
       const on = inside(u); let tc = null; for (let j = 0, t = u; j < 600; j++, t -= 1 / 120) if (inside(t - 1 / 120) !== on) { tc = t; break; }
       if (tc !== null) {
         const q = eOut(P(u, tc, tc + DUR)), a = on ? 0 : q, b = on ? q : 1;

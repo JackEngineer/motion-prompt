@@ -6,10 +6,127 @@
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   var root = document.documentElement;
-  if (!CAT || !PROMPT || !MP) return;
+  var localSite = /^(?:localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname);
+  if (!CAT || !PROMPT || !MP) { $('#load-error').hidden = false; return; }
 
   // ------------------------------------------------------------------ text
   var I18N = {
+    'zh-Hans': {
+      "title": "Motion Prompt｜与 AI 沟通创意的术语库",
+      "skip": "跳转到示例库",
+      "navLabel": "站内导航",
+      "navHow": "使用方法",
+      "navFound": "社区案例",
+      "langLabel": "语言",
+      "themeToDark": "切换到深色模式",
+      "themeToLight": "切换到浅色模式",
+      "eyebrow": "与 AI 沟通创意的术语库",
+      "h1": "让 AI 理解你的创意",
+      "lead": "收录动态图形、镜头运动、UI 组件、网页效果、摄影风格、绘画风格及演示图表等 {n} 个术语，每项都有动态示例。复制提示词时，会同时附上动效规格和参考实现。",
+      "factMoves": "术语",
+      "factPacks": "素材包",
+      "factLicense": "许可证",
+      "installSkillH": "通过技能安装",
+      "installSkillP": "在终端运行以下命令。安装后，向 AI 说“打开 motion-prompt 示例库”，即可浏览并选择示例，再点击“发送给 AI”。",
+      "installPromptH": "通过提示词安装",
+      "installPromptP": "把下面这段话粘贴到 Claude Code 或 Codex，让 AI 安装技能并说明用法。",
+      "installPrompt": "请阅读 https://github.com/JackEngineer/motion-prompt 并在当前环境安装 motion-prompt 技能。安装完成后，用三行中文介绍用法。",
+      "copy": "复制",
+      "copied": "已复制",
+      "copyFailed": "复制失败",
+      "copyCmdLabel": "复制安装命令",
+      "copyInstallLabel": "复制安装提示词",
+      "galleryH": "动态示例库",
+      "packFilterLabel": "按素材包筛选",
+      "catFilterLabel": "按类别筛选",
+      "all": "全部",
+      "allIn": "此素材包全部",
+      "searchLabel": "搜索示例",
+      "searchPh": "搜索名称、编号或标签",
+      "pause": "暂停",
+      "play": "播放",
+      "pauseLabel": "暂停所有示例",
+      "playLabel": "播放所有示例",
+      "count": "{n} 项",
+      "countOf": "显示 {n} 项，共 {total} 项",
+      "empty": "没有找到匹配的示例，请换个词或编号试试。",
+      "openLabel": "打开 #{id} {name} 的详情",
+      "loadFailed": "加载失败",
+      "howH": "使用方法",
+      "s1h": "让 AI 打开示例库",
+      "s1p": "向已安装 motion-prompt 技能的 AI 说“打开 motion-prompt 示例库”，浏览器就会打开此页面。",
+      "s2h": "边看边选",
+      "s2p": "点击想用的示例上的“选择”，可以多选。选中的示例会出现在屏幕底部，还可以添加“用于开场标题”等简短备注。",
+      "s3h": "发送给 AI，再提出需求",
+      "s3p": "点击“发送给 AI”，选择就会传给 AI。然后告诉它“请把这段视频的开头改成这种效果”。此按钮仅在 AI 打开示例库并等待接收时显示。",
+      "skillH": "可以这样说",
+      "skillP": "不需要记住名称或编号。不知道某种效果叫什么时，让 AI 打开示例库，像查字典一样查找即可。",
+      "say1": "打开 motion-prompt 示例库",
+      "say2": "有哪些镜头运动？给我看看列表。",
+      "say3": "（发送选择后）请把这段视频的开头改成这种效果。",
+      "altH": "未安装技能，或已知编号时",
+      "altP1": "如果 AI 没有安装技能，点击屏幕底部的“复制所选示例”，将内容粘贴到对话中，其中包含示例和规格链接。只用一项时，也可以在详情中点击“复制提示词”。",
+      "altP2": "如果知道编号，可以直接说“使用 motion-prompt 的 #012 和 #045”。",
+      "implH": "关于参考实现",
+      "implP": "所有示例都由 Canvas 2D 函数绘制，画面只取决于传入的时间，不依赖外部库。支持逐帧绘制，也可用于导出视频。",
+      "author": "作者",
+      "authorName": "Shohei Ohtaki",
+      "thanks1": "动态示例配合可复制提示词的形式受到",
+      "thanks2": "的启发，感谢原作者。",
+      "whyLink": "创作缘由",
+      "makeLink": "制作自己的领域或语言版本",
+      "addLink": "贡献你所在领域的术语",
+      "listLink": "术语列表",
+      "removeP1": "如需删除或更正收录内容，请使用",
+      "removeLink": "GitHub Issue 表单",
+      "removeP2": "提交申请，核实后会尽快处理。",
+      "dAsk": "向 AI 提出需求的示例",
+      "ownP": "这里展示的是示例。你也可以为自己的领域制作同类术语库，并使用自己的语言。",
+      "ownLink": "制作方法与提示词（make-your-own）",
+      "langsP": "术语列表提供英语、日语、西班牙语、简体中文和繁体中文版本。",
+      "langsLink": "五种语言的术语列表",
+      "dSpec": "动效规格",
+      "dUse": "适用场景",
+      "tagsLabel": "标签",
+      "promptLabel": "将复制的提示词",
+      "copyPrompt": "复制提示词",
+      "copyCode": "复制代码",
+      "showCode": "查看代码",
+      "prev": "上一项",
+      "next": "下一项",
+      "close": "关闭",
+      "kitLink": "共用辅助代码（kit/{pack}.js）",
+      "txtLink": "含规格的代码（{id}.txt）",
+      "codeLoading": "正在加载…",
+      "codeFailed": "代码加载失败。",
+      "size": "{w}×{h} 像素，每轮 {c} 秒",
+      "pick": "选择",
+      "picked": "已选择",
+      "pickLabel": "选择 #{id} {name}",
+      "unpickLabel": "移除 #{id} {name}",
+      "trayCount": "已选 {n} 项",
+      "pickLimit": "每次最多选择 {n} 项。超过上限时，请移除多余示例后再发送。",
+      "trayWait": "AI 正在等待。选好后请点击“发送给 AI”。",
+      "trayEmpty": "点击示例上的“选择”，即可添加到这里。",
+      "noteLabel": "备注（可选）",
+      "notePh": "例如：用于开场标题",
+      "send": "发送给 AI",
+      "sending": "正在发送给 AI…",
+      "copyPicked": "复制所选示例",
+      "shareUrl": "复制此选择的分享链接",
+      "localShare": "复制本机链接",
+      "localNotice": "本机链接仅在此服务运行期间有效，不能跨设备打开。保存效果请复制所选示例并保留编号。",
+      "localReference": "以上链接仅供当前本机服务使用。稍后可分批运行 {gets} 获取规格，再分别运行 {kits} 获取辅助代码。",
+      "clearAll": "清空选择",
+      "pickedLive": "已选择 #{id} {name}，共选中 {n} 项。",
+      "unpickedLive": "已移除 #{id} {name}，共选中 {n} 项。",
+      "clearedLive": "已清空所有选择。",
+      "outIntro": "我在 motion-prompt 示例库中选择了以下 {n} 项，请使用它们完成编辑。",
+      "outDemo": "动态示例",
+      "outSpec": "规格与代码",
+      "outNote": "备注",
+      "outEnd": "可通过 motion-prompt 技能的 get 命令获取完整规格；未安装技能时，请读取各项的“规格与代码”链接。"
+    },
     ja: {
       title: 'Motion Prompt｜AIに頼むための「名前」のライブラリ',
       skip: '見本の一覧へ移動', navLabel: 'サイト内', navHow: '使い方', navFound: '事例', langLabel: '言語',
@@ -60,10 +177,11 @@
       codeLoading: '読み込み中です…', codeFailed: 'コードを読み込めませんでした。',
       size: '{w}×{h}px・1周{c}秒',
       pick: '選ぶ', picked: '選択中', pickLabel: '#{id} {name}を選ぶ', unpickLabel: '#{id} {name}を外す',
+      pickLimit: '一度に選べるのは{n}個までです。上限を超えた場合は、余分な項目を削除してから送信してください。',
       trayCount: '選んだ物 {n}個', trayWait: 'AIが待っています。選んだら「AIに渡す」を押してください。',
       trayEmpty: '見本の「選ぶ」を押すと、ここに並びます。',
       noteLabel: 'メモ（任意）', notePh: '例: 冒頭のタイトルに',
-      send: 'AIに渡す', sending: 'AIに渡しています…', copyPicked: '選んだ物をコピー', shareUrl: '選択を共有するURL', clearAll: 'すべて外す',
+      send: 'AIに渡す', sending: 'AIに渡しています…', copyPicked: '選んだ物をコピー', shareUrl: '選択を共有するURL', localShare: 'この端末のリンクをコピー', localNotice: 'このリンクは、この端末のサービスが動作中のみ有効です。保存するには選択内容と番号をコピーしてください。', localReference: 'リンクは現在のローカルサービス用です。後で {gets} と {kits} をそれぞれ実行してください。', clearAll: 'すべて外す',
       pickedLive: '#{id} {name}を選びました。選んだ物は{n}個です。', unpickedLive: '#{id} {name}を外しました。選んだ物は{n}個です。',
       clearedLive: '選択をすべて外しました。',
       outIntro: 'motion-prompt のギャラリーで、次の{n}個を選びました。これを使って編集してください。',
@@ -120,10 +238,11 @@
       codeLoading: 'Loading…', codeFailed: 'Could not load the code.',
       size: '{w}×{h} px, {c} s loop',
       pick: 'Pick', picked: 'Picked', pickLabel: 'Pick #{id} {name}', unpickLabel: 'Remove #{id} {name}',
+      pickLimit: 'Select up to {n} items at a time. If the limit is exceeded, remove extra items before sending.',
       trayCount: '{n} picked', trayWait: 'Your AI is waiting. When you are done, press "Send to AI".',
       trayEmpty: 'Press "Pick" on a sample and it appears here.',
       noteLabel: 'Note (optional)', notePh: 'e.g. for the opening title',
-      send: 'Send to AI', sending: 'Sending to your AI…', copyPicked: 'Copy picks', shareUrl: 'Copy link to this selection', clearAll: 'Clear all',
+      send: 'Send to AI', sending: 'Sending to your AI…', copyPicked: 'Copy picks', shareUrl: 'Copy link to this selection', localShare: 'Copy local link', localNotice: 'Local links work only on this device while the service is running. Copy the selected examples and IDs to save them.', localReference: 'These links require the current local service. Later, run each of {gets} and {kits} to retrieve the code.', clearAll: 'Clear all',
       pickedLive: 'Picked #{id} {name}. {n} picked.', unpickedLive: 'Removed #{id} {name}. {n} picked.',
       clearedLive: 'Cleared all picks.',
       outIntro: 'I picked these {n} from the motion-prompt gallery. Please use them for the edit.',
@@ -140,7 +259,7 @@
   var reduceMotion = window.matchMedia ? window.matchMedia('(prefers-reduced-motion: reduce)') : { matches: false };
   var darkQuery = window.matchMedia ? window.matchMedia('(prefers-color-scheme: dark)') : { matches: false };
   var state = {
-    lang: root.lang === 'en' ? 'en' : 'ja',
+    lang: I18N[root.lang] ? root.lang : 'zh-Hans',
     pack: 'all', cat: 'all', q: '',
     playing: !reduceMotion.matches,
     open: null,           // id shown in the detail view
@@ -161,7 +280,7 @@
   }
   function names(el) {
     var ja = state.lang === 'ja';
-    return { main: ja ? el.name.ja : el.name.en, sub: ja ? el.name.en : el.name.ja };
+    return { main: el.name[state.lang] || el.name.en, sub: ja ? el.name.en : state.lang === 'zh-Hans' ? '英文名：' + el.name.en : el.name.ja };
   }
   function h(tag, attrs, kids) {
     var n = document.createElement(tag);
@@ -226,6 +345,8 @@
     if (tl.broken) return;
     tl.broken = true;
     tl.a.classList.add('is-broken');
+    tl.canvas.hidden = true;
+    tl.a.querySelector('.tile-stage').appendChild(h('span', { text: t('loadFailed'), role: 'status' }));
   }
   function markDirty(pack) {
     tiles.forEach(function (tl) { if (!pack || tl.el.pack === pack) tl.dirty = true; });
@@ -243,6 +364,7 @@
         if (state.playing) detail.u = (detail.u + dt) % el.cycle;
         if (!paint(detail.ctx, el, detail.u, detail.scale)) detail.broken = true;
       }
+      $('#d-error').hidden = !(detail.broken || (el && ready[el.pack] === 'failed'));
       return;
     }
     for (var i = 0; i < tiles.length; i++) {
@@ -316,7 +438,7 @@
     var p = packBy[el.pack];
     var c = p.categories.filter(function (x) { return x.slug === el.category; })[0] || {};
     return ['#' + el.id, el.id, String(+el.id), el.slug, el.pack, el.name.ja, el.name.en, el.meaning ? el.meaning.ja + ' ' + el.meaning.en : '', el.summary.ja, el.summary.en,
-      el.tags.join(' '), p.title.ja, p.title.en, c.ja || '', c.en || ''].join(' ').toLowerCase();
+      el.tags.join(' '), (el.tagLabels && el.tagLabels['zh-Hans'] || []).join(' '), p.title.ja, p.title.en, c.ja || '', c.en || '', el.name['zh-Hans'], el.meaning && el.meaning['zh-Hans'], el.summary['zh-Hans'], p.title['zh-Hans'], c['zh-Hans'] || ''].join(' ').toLowerCase();
   }
   function matches(el) {
     if (state.pack !== 'all' && state.pack.split(',').indexOf(el.pack) < 0) return false; // one pack, or several joined by commas (camera,camera2)
@@ -442,6 +564,7 @@
     var p = packBy[el.pack], nm = names(el), lang = state.lang;
     var c = p.categories.filter(function (x) { return x.slug === el.category; })[0];
     detail.el = el; detail.broken = false;
+    $('#d-error').hidden = ready[el.pack] !== 'failed';
     detail.u = state.playing ? 0 : STILL * el.cycle; // start from the top of the move
     detail.ctx = detail.canvas.getContext('2d');
     detail.canvas.style.aspectRatio = el.width + '/' + el.height;
@@ -457,8 +580,8 @@
     el.spec[lang].forEach(function (s) { spec.appendChild(h('li', { text: s })); });
     $('#d-use').textContent = el.use[lang];
     var tags = $('#d-tags'); tags.textContent = '';
-    el.tags.forEach(function (s) { tags.appendChild(h('li', { text: s })); });
-    $('#d-prompt').textContent = PROMPT(el, p.title[lang], lang);
+    (lang === 'zh-Hans' ? el.tagLabels['zh-Hans'] : el.tags).forEach(function (s) { tags.appendChild(h('li', { text: s })); });
+    $('#d-prompt').textContent = PROMPT(el, p.title[lang], lang, new URL('api/v1/', document.baseURI).href) + (localSite ? '\n\n' + t('localReference', { gets: 'get ' + el.id + ' --lang ' + lang, kits: 'kit ' + el.pack }) : '');
     var kit = $('#d-kit'), txt = $('#d-txt');
     kit.href = 'api/v1/kit/' + el.pack + '.js'; kit.textContent = t('kitLink', { pack: el.pack });
     txt.href = 'api/v1/' + lang + '/e/' + el.id + '.txt'; txt.textContent = t('txtLink', { id: el.id });
@@ -552,8 +675,8 @@
   // ------------------------------------------------------------------ picks (choose → copy, share, or send to the waiting agent)
   // The "pick" command of the skill opens this page with ?cb=http://127.0.0.1:<port>/?t=<token>. "Send to AI" then
   // navigates the whole tab there (a top-level GET, not fetch: an https page may not fetch from 127.0.0.1).
-  var SITE = CAT.site || 'https://showheyohtaki.github.io/motion-prompt/';
-  var PICK_KEY = 'mp-pick', PICK_CB_KEY = 'mp-pick-cb', NOTE_MAX = 300;
+  var SITE = new URL('./', document.baseURI).href;
+  var PICK_KEY = 'mp-pick', PICK_CB_KEY = 'mp-pick-cb', NOTE_MAX = 300, PICK_MAX = 60;
   var CHECK_SVG = '<svg viewBox="0 0 16 16" width="14" height="14"><path d="M3.5 8.4l3 3 6-6.6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
   var X_SVG = '<svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>';
   var tray = $('#tray'), trayList = $('#tray-list'), trayToggle = $('#tray-toggle'), trayBody = $('#tray-body'), trayNote = $('#tray-note');
@@ -628,6 +751,7 @@
     var el = elBy[id];
     if (!el) return;
     var i = state.picks.indexOf(id);
+    if (i < 0 && state.picks.length >= PICK_MAX) { announce(t('pickLimit', { n: PICK_MAX })); return; }
     if (i >= 0) state.picks.splice(i, 1); else state.picks.push(id);
     savePicks();
     tiles.forEach(function (tl) { if (tl.el.id === id) markTile(tl); });
@@ -639,13 +763,19 @@
     tray.hidden = !n && !cb;
     root.classList.toggle('has-tray', !tray.hidden);
     $('#tray-count').textContent = t('trayCount', { n: n });
+    $('#tray-limit').hidden = n < PICK_MAX;
+    $('#tray-limit').textContent = t('pickLimit', { n: PICK_MAX });
+    $('#tray-local-note').hidden = !localSite;
+    $('#tray-local-note').textContent = t('localNotice');
+    $('#tray-share').textContent = t(localSite ? 'localShare' : 'shareUrl');
     $('#tray-wait').hidden = !cb;
     $('#tray-empty').hidden = n > 0;
     var main = $('#tray-main');
     if (!main._label && !main._sending) main.textContent = t(cb ? 'send' : 'copyPicked');
-    main.disabled = !n || !!main._sending;
+    main.disabled = !n || n > PICK_MAX || !!main._sending;
     $('#tray-copy').hidden = !cb;
-    $('#tray-copy').disabled = $('#tray-share').disabled = $('#tray-clear').disabled = !n;
+    $('#tray-copy').disabled = $('#tray-share').disabled = !n || n > PICK_MAX;
+    $('#tray-clear').disabled = !n;
     trayToggle.setAttribute('aria-expanded', trayOpen ? 'true' : 'false');
     trayBody.hidden = !trayOpen;
     if (trayNote.value !== state.note) trayNote.value = state.note;
@@ -678,15 +808,20 @@
     });
     if (state.note) lines.push('', t('outNote') + ': ' + state.note);
     lines.push('', t('outEnd'));
+    if (localSite) {
+      var getCommands = [];
+      for (var start = 0; start < state.picks.length; start += 8) getCommands.push('get ' + state.picks.slice(start, start + 8).join(' ') + ' --lang ' + lang);
+      lines.push('', t('localReference', { gets: getCommands.join('；'), kits: state.picks.map(function (id) { return elBy[id].pack; }).filter(function (pack, i, all) { return all.indexOf(pack) === i; }).map(function (pack) { return 'kit ' + pack; }).join('；') }));
+    }
     return lines.join('\n');
   }
   function copyPicked(btn) {
-    if (!state.picks.length) return;
+    if (!state.picks.length || state.picks.length > PICK_MAX) return;
     copyText(pickedText()).then(function (ok) { flash(btn, ok); });
   }
   function sendPicks() {
     var main = $('#tray-main');
-    if (!state.cb || !state.picks.length || main._sending) return;
+    if (!state.cb || !state.picks.length || state.picks.length > PICK_MAX || main._sending) return;
     var u = new URL(state.cb);
     u.searchParams.set('ids', state.picks.join(','));
     if (state.note) u.searchParams.set('note', state.note);
@@ -699,8 +834,8 @@
   $('#tray-copy').addEventListener('click', function () { copyPicked(this); });
   $('#tray-share').addEventListener('click', function () {
     var btn = this;
-    if (!state.picks.length) return;
-    copyText(SITE + '?pick=' + state.picks.join(',')).then(function (ok) { flash(btn, ok); });
+    if (!state.picks.length || state.picks.length > PICK_MAX) return;
+    copyText(SITE + '?lang=' + state.lang + '&pick=' + state.picks.join(',')).then(function (ok) { flash(btn, ok); });
   });
   $('#tray-clear').addEventListener('click', function () {
     state.picks = []; savePicks();

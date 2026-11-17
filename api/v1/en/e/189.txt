@@ -19,7 +19,6 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 21
-// 21 カットアウェイ: 話す人物から、別の対象（聞いている客席）へ切り替えて戻る。17 インサートは同じ場面の細部
 const CUT = [1.7, 3.0];
 CELLS[20] = shot((k, w, h, u) => {
   const away = u >= CUT[0] && u < CUT[1];
@@ -29,6 +28,6 @@ CELLS[20] = shot((k, w, h, u) => {
     [[-1.6, 3.2], [-0.2, 3.6], [1.3, 3.1], [0.6, 4.4], [-1.1, 4.6]].forEach(([x, z], i) => ex.push([x, 0, z, (kk) => { kk.save(); kk.translate(0, Math.abs(Math.sin(t * 9 + i)) * 0.05); person(kk, 1, { armUp: true, col: i % 2 ? C.blue : C.blueM }); kk.restore(); }]));
     world(k, w, h, cam({ y: 1.6, pitch: -0.08 }), { buildings: false, trees: false, mountains: false, sun: null, extra: ex });
   }
-  strip(k, w, h, [[0, CUT[0], 'A', C.g2], [CUT[0], CUT[1], '別の対象', C.blue], [CUT[1], CYC, 'A', C.g2]], u);
-  return away ? 'CUTAWAY' : 'SHOT A';
+  strip(k, w, h, [[0, CUT[0], 'A', C.g2], [CUT[0], CUT[1], '另一个主体', C.blue], [CUT[1], CYC, 'A', C.g2]], u);
+  return away ? '切出' : '镜头 A';
 });

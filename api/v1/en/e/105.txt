@@ -20,13 +20,12 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 09
-// ボケ: 絞りを開けると、人物はくっきりのまま、背景の灯りが大きな丸になってにじむ
 CELLS[8] = cell((k, u) => {
   const a = env(u), p = pal(BASE, DIM, a);
   const [B, kb] = layer('bokeh'); stageStreet(kb, p, { person: false });
   const [Bb, kbb] = layer('bokeh-b'); kbb.filter = `blur(${(6 * a).toFixed(2)}px)`; kbb.drawImage(B, 0, 0); kbb.filter = 'none';
   k.drawImage(B, 0, 0); k.drawImage(Bb, 0, 0);
-  // 灯り: 街灯3つと、窓や遠くの灯り12個（横に45pxおき・高さと大きさは固定シード）。絞りを開くほど丸が大きく薄くなる
+  // 使用三个路灯和十二处窗灯或远处光源。远处光源每隔 45 像素排布，高度和大小由固定种子生成。
   const pts = once('bokeh-pts', () => {
     const o = LAMPS.map(x => [x + 9, ROAD - 53, 1.25, 0]), r = rng(9);
     for (let i = 0; i < 12; i++) o.push([22 + i * 45 + r() * 20, 44 + r() * 70, 0.6 + r() * 0.6, 1]);

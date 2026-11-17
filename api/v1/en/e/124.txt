@@ -19,7 +19,6 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 04
-// 04 ウィグル（ベルが、小刻みに不規則に揺れ続ける。1回の衝撃ではなく、ずっと続く細かい揺れ）
 const WGF = 2 * Math.PI / CYC;
 const wsum = (u, arr) => arr.reduce((s, [kk, am, ph]) => s + am * Math.sin(WGF * kk * u + ph), 0);
 CELLS[3] = (k, w, h, u) => {
@@ -27,12 +26,11 @@ CELLS[3] = (k, w, h, u) => {
   const rot = wsum(u, [[23, 0.085, 0.3], [31, 0.065, 1.9], [43, 0.05, 4.2], [59, 0.035, 2.6]]);
   const dx = wsum(u, [[29, 4, 0.7], [47, 3, 3.1], [61, 2, 5.0]]), dy = wsum(u, [[37, 2.4, 2.2], [53, 1.8, 0.4]]);
   const X = w / 2 + dx, Y = 34 + dy;
-  // 両わきの振動の線（揺れているあいだ、ずっと出ている）
   k.strokeStyle = '#fff'; k.lineCap = 'round'; k.lineWidth = 6;
   [[86, 0.85], [110, 0.5]].forEach(([r, al], j) => { const fl = 0.55 + 0.45 * Math.abs(Math.sin(WGF * (41 + j * 12) * u)); k.globalAlpha = al * fl;[0, Math.PI].forEach(base => { k.beginPath(); k.arc(w / 2, 104, r, base - 0.42, base + 0.42); k.stroke(); }); });
   k.globalAlpha = 1;
   k.save(); k.translate(X, Y); k.rotate(rot);
-  // 舌（ベルと逆にふれる）
+  // 铃舌朝铃身摆动的反方向摆动。
   k.fillStyle = C.coral; k.beginPath(); k.arc(-rot * 70, 128, 13, 0, 7); k.fill();
   k.fillStyle = C.yel;
   k.beginPath(); k.arc(0, 8, 10, 0, 7); k.fill();

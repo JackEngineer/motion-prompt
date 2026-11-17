@@ -18,20 +18,19 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 05
-// 05 隠れるヘッダー（下へスクロールするとヘッダーが上へ引っ込み、上へ戻すとすっと出てくる）
 CELLS[4] = (k, w, h, u) => {
   u = snapU(u);
   frame(k);
   const SY = t => steps([[0.3, 0], [1.1, 170], [1.5, 170], [1.9, 100], [2.4, 100], [2.9, 230], [3.3, 230], [4.3, 0]], t), y = SY(u);
-  // 最後に動いた向きが「下」なら隠す（ページの一番上にいるときは出す）
+  // 最近一次向下滚动时隐藏页眉。滚至页首时始终显示。
   const hidden = t => { const yt = SY(t); if (yt < 34) return false; for (let i = 0, tt = t; i < 600; i++, tt -= 1 / 120) { const d = SY(tt) - SY(tt - 1 / 120); if (Math.abs(d) > 1e-4) return d > 0; } return false; };
   const q = trans(hidden, u, 0.3, eIOs);
   view(k, () => {
     k.save(); k.translate(0, -y);
     pic(k, 24, 48, 214, 110, 1, 8);
-    txt(k, '旅の準備を、', 262, 84, `800 22px ${JP}`, C.ink); txt(k, 'まとめて。', 262, 114, `800 22px ${JP}`, C.ink); bars(k, 262, 128, 200, 2); btn(k, 262, 152, 100, 24, '詳しく見る');
+    txt(k, '旅行准备，', 262, 84, `800 22px ${JP}`, C.ink); txt(k, '一站办妥。', 262, 114, `800 22px ${JP}`, C.ink); bars(k, 262, 128, 200, 2); btn(k, 262, 152, 100, 24, '了解详情');
     k.fillStyle = C.soft; k.fillRect(0, 196, VW, 260);
-    txt(k, '人気のプラン', VW / 2, 232, `800 17px ${JP}`, C.ink, 'center');
+    txt(k, '热门方案', VW / 2, 232, `800 17px ${JP}`, C.ink, 'center');
     for (let r = 0; r < 2; r++) for (let i = 0; i < 3; i++) { const x = 34 + i * 152, y0 = 250 + r * 100; k.fillStyle = '#fff'; rr(k, x, y0, 136, 88, 8); k.fill(); pic(k, x + 8, y0 + 8, 120, 46, (i + r) % 3, 5); bars(k, x + 10, y0 + 64, 100, 2, C.faint, 5, 10); }
     k.restore();
     const hy = -36 * q;

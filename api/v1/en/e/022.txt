@@ -19,7 +19,6 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 22
-// 22 ライトスイープ（ロゴの表面を、光の帯が斜めに横切る）
 CELLS[21] = (k, w, h, u) => {
   stage(k);
   const T = CYC / 2, lu = mod(u, T), p = eIOs(P(lu, 0.45, 1.5));
@@ -27,7 +26,7 @@ CELLS[21] = (k, w, h, u) => {
   k.fillStyle = 'rgba(0,0,0,.3)'; rr(k, X + 3, Y + 9, BW, BH, 28); k.fill();
   const g = k.createLinearGradient(X, Y, X + BW, Y + BH); g.addColorStop(0, '#2B62E0'); g.addColorStop(1, '#4E8BFF'); k.fillStyle = g; rr(k, X, Y, BW, BH, 28); k.fill();
   k.fillStyle = C.yel; star(k, X + 64, Y + BH / 2, 30, 0, 0.5); k.lineJoin = 'round'; k.strokeStyle = C.yel; k.lineWidth = 5; k.stroke(); k.fill();
-  txt(k, 'PREMIUM', X + 112, Y + BH / 2 + 3, `800 50px ${DISP}`, '#fff', 'left', 'middle', '3px');
+  txt(k, '精选品质', X + 112, Y + BH / 2 + 3, `800 50px ${DISP}`, '#fff', 'left', 'middle', '3px');
   if (p > 0 && p < 1) {
     k.save(); rr(k, X, Y, BW, BH, 28); k.clip();
     k.translate(lerp(X - 130, X + BW + 130, p), Y + BH / 2); k.rotate(0.42);
@@ -35,6 +34,5 @@ CELLS[21] = (k, w, h, u) => {
     k.fillStyle = gr; k.fillRect(-58, -160, 116, 320); k.fillStyle = 'rgba(255,255,255,.5)'; k.fillRect(78, -160, 12, 320);
     k.restore();
   }
-  // 抜けぎわのきらめき
   const tt = lu - 1.38; if (tt > 0 && tt < 0.6) { const q = tt / 0.6, sc = Math.sin(Math.PI * q) * (1 + 0.2 * (1 - q)); k.save(); k.translate(X + BW - 8, Y + 6); k.rotate(q * 0.9); k.fillStyle = '#fff'; star(k, 0, 0, 30 * sc, 0, 0.22, 4); k.fill(); k.restore(); }
 };

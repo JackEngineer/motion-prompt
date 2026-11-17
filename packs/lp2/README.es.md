@@ -6,7 +6,7 @@
 
 Encuentra el nombre y díselo a tu IA. Si agregas cuánto dura, con qué intensidad y qué se mueve, el resultado se acerca más a lo que imaginabas.
 
-![Efectos de landing pages y sitios web, parte 2 — muestra](../../assets/preview-lp2.gif)
+![Efectos de landing pages y sitios web, parte 2 muestra](../../assets/preview-lp2.gif)
 
 ## Efectos al hacer scroll
 

@@ -1,266 +1,231 @@
 # Motion Prompt
 
-**English** | [日本語](README.ja.md)
+[English](README.en.md) | [日本語](README.ja.md) | **简体中文**
 
-> 日本語の説明は [README.ja.md](README.ja.md) にあります。
-> 中文用户：所有名称一览都有简体中文和繁體中文版本，见 [`packs/`](packs/README.md)。
-> En español: todas las listas de nombres están en español en [`packs/`](packs/README.md).
-> The name lists are in English, Japanese, Spanish, Simplified Chinese and Traditional Chinese (see [`packs/`](packs/README.md)); the gallery is in English and Japanese. For another language, give [`make-your-own/prompts/en/01-translate.md`](make-your-own/prompts/en/01-translate.md) to a coding AI.
+这是一个帮助你向 AI 描述创作需求的术语库。每个名称都有动态示例、一句话释义和提问示例。目前共有十个素材包，每包 24 个术语，合计 240 个。分类包括动态图形（`motion`）、镜头运动（`camera`）、UI 组件（`ui`）、落地页与网页效果（`lp`）、摄影表现、布光与风格（`photo`）、动态图形第二辑（`motion2`）、网页效果第二辑（`lp2`）、镜头运动与转场第二辑（`camera2`）、图像生成画风（`artstyle`）、演示文稿图解与图表（`diagram`）。项目也提供提示词，帮助你用自己的语言，为熟悉的领域制作同类术语库。
 
-A library of names for the things you ask an AI to make. Each name comes with a moving sample, a one-line meaning and an example of how to ask for it. Ten sets are in it now, 24 names each and 240 in all: motion-graphics moves (`motion`), camera moves (`camera`), UI component names (`ui`), landing page and web effects (`lp`), photo looks, lighting and styles (`photo`), motion-graphics moves, part 2 (`motion2`), landing page and web effects, part 2 (`lp2`), camera moves and transitions, part 2 (`camera2`), art styles for image generation (`artstyle`), and diagrams and charts for slides (`diagram`). It also comes with the prompts to make the same kind of library for your own field, in your own language.
+简体中文是本仓库的默认语言，术语列表也提供英文、日文、西班牙文和繁体中文。从本地工作区使用中文示例库、API 和技能。制作其他语言版本可使用[翻译提示词](make-your-own/prompts/zh-Hans/01-translate.md)。
 
-| Motion graphics | Camera moves |
+| 动态图形 | 镜头运动 |
 |---|---|
-| ![Motion graphics names 01–08](assets/preview-motion.gif) | ![Camera move names 01–08](assets/preview-camera.gif) |
+| ![动态图形术语 01–08](assets/preview-motion-zh-Hans.gif) | ![镜头运动术语 01–08](assets/preview-camera-zh-Hans.gif) |
 
-- Gallery (every sample, moving): https://showheyohtaki.github.io/motion-prompt/
-- Name lists you can read here on GitHub: [`packs/`](packs/README.md)
-- Examples from other people who share names with samples (embeds and links to their posts on X): https://showheyohtaki.github.io/motion-prompt/found.html
+- [简体中文术语列表](packs/README.zh-Hans.md)
+- [在本机运行示例库](#在本机运行示例库)
+- [原作者的在线示例库（英文和日文）](https://showheyohtaki.github.io/motion-prompt/)
 
-## Why I made this
+## 为什么做这个项目
 
-I posted a few short videos that put names to motion-graphics moves and camera moves, and over the next few days a lot of comments came in. One of them said, in essence, that what had been holding them back was not a lack of imagination. It was not knowing what this kind of movement is called.
+我发过几条介绍动态图形和镜头运动名称的短视频，之后几天收到了很多评论。其中一条评论提到，他能想象出画面，却不知道这种运动叫什么。
 
-Reading that, I thought: if people who know their field, in many languages, laid out the "common language" you need to work well with AI as a library you can look through, it would be really useful. So I tried making that as a GitHub repository.
+看到这条评论，我想，如果各领域的专业人士用不同语言，把与 AI 协作所需的“共同语言”整理成一个可以翻阅的资料库，应该会很有用。于是我尝试把它做成了 GitHub 仓库。
 
-This is not one style to copy. It is a place where you can use the prompts and instructions here to make motion graphics like these, and to make the same kind of name samples for your own field, in your own language, with whatever look you like.
+这里并不要求大家模仿同一种风格。你可以使用这里的提示词和说明制作类似的动态图形，也可以用自己的语言、喜欢的视觉风格，为自己的领域制作术语示例。
 
-Another comment said: "this is how you become a creative director". Exactly. I think it would be a wonderful thing if there were more creative directors all over the world, doing great work together with AI.
+另一条评论说“这就是成为创意总监的方法”。如果世界各地能有更多创意总监与 AI 一起完成出色的作品，那会是一件很好的事。
 
-Shohei Ohtaki
+原作者 Shohei Ohtaki
 
-## The names in here now
+## 目前收录的术语
 
-| Numbers | Pack | Names | Lists |
+| 编号 | 素材包 | 数量 | 简体中文列表 |
 |---|---|---|---|
-| 001–024 | `motion`: motion graphics moves | 24 | [English](packs/motion/README.md) · [日本語](packs/motion/README.ja.md) · [Español](packs/motion/README.es.md) · [简体中文](packs/motion/README.zh-Hans.md) · [繁體中文](packs/motion/README.zh-Hant.md) |
-| 025–048 | `camera`: camera moves and transitions | 24 | [English](packs/camera/README.md) · [日本語](packs/camera/README.ja.md) · [Español](packs/camera/README.es.md) · [简体中文](packs/camera/README.zh-Hans.md) · [繁體中文](packs/camera/README.zh-Hant.md) |
-| 049–072 | `ui`: UI component names | 24 | [English](packs/ui/README.md) · [日本語](packs/ui/README.ja.md) · [Español](packs/ui/README.es.md) · [简体中文](packs/ui/README.zh-Hans.md) · [繁體中文](packs/ui/README.zh-Hant.md) |
-| 073–096 | `lp`: landing page and web effects | 24 | [English](packs/lp/README.md) · [日本語](packs/lp/README.ja.md) · [Español](packs/lp/README.es.md) · [简体中文](packs/lp/README.zh-Hans.md) · [繁體中文](packs/lp/README.zh-Hant.md) |
-| 097–120 | `photo`: photo looks, lighting and styles | 24 | [English](packs/photo/README.md) · [日本語](packs/photo/README.ja.md) · [Español](packs/photo/README.es.md) · [简体中文](packs/photo/README.zh-Hans.md) · [繁體中文](packs/photo/README.zh-Hant.md) |
-| 121–144 | `motion2`: motion graphics moves, part 2 | 24 | [English](packs/motion2/README.md) · [日本語](packs/motion2/README.ja.md) · [Español](packs/motion2/README.es.md) · [简体中文](packs/motion2/README.zh-Hans.md) · [繁體中文](packs/motion2/README.zh-Hant.md) |
-| 145–168 | `lp2`: landing page and web effects, part 2 | 24 | [English](packs/lp2/README.md) · [日本語](packs/lp2/README.ja.md) · [Español](packs/lp2/README.es.md) · [简体中文](packs/lp2/README.zh-Hans.md) · [繁體中文](packs/lp2/README.zh-Hant.md) |
-| 169–192 | `camera2`: camera moves and transitions, part 2 | 24 | [English](packs/camera2/README.md) · [日本語](packs/camera2/README.ja.md) · [Español](packs/camera2/README.es.md) · [简体中文](packs/camera2/README.zh-Hans.md) · [繁體中文](packs/camera2/README.zh-Hant.md) |
-| 193–216 | `artstyle`: art styles for image generation | 24 | [English](packs/artstyle/README.md) · [日本語](packs/artstyle/README.ja.md) · [Español](packs/artstyle/README.es.md) · [简体中文](packs/artstyle/README.zh-Hans.md) · [繁體中文](packs/artstyle/README.zh-Hant.md) |
-| 217–240 | `diagram`: diagrams and charts for slides | 24 | [English](packs/diagram/README.md) · [日本語](packs/diagram/README.ja.md) · [Español](packs/diagram/README.es.md) · [简体中文](packs/diagram/README.zh-Hans.md) · [繁體中文](packs/diagram/README.zh-Hant.md) |
+| 001–024 | `motion`：动态图形 | 24 | [查看](packs/motion/README.zh-Hans.md) |
+| 025–048 | `camera`：镜头运动与转场 | 24 | [查看](packs/camera/README.zh-Hans.md) |
+| 049–072 | `ui`：UI 组件 | 24 | [查看](packs/ui/README.zh-Hans.md) |
+| 073–096 | `lp`：落地页与网页效果 | 24 | [查看](packs/lp/README.zh-Hans.md) |
+| 097–120 | `photo`：摄影表现、布光与风格 | 24 | [查看](packs/photo/README.zh-Hans.md) |
+| 121–144 | `motion2`：动态图形第二辑 | 24 | [查看](packs/motion2/README.zh-Hans.md) |
+| 145–168 | `lp2`：网页效果第二辑 | 24 | [查看](packs/lp2/README.zh-Hans.md) |
+| 169–192 | `camera2`：镜头运动与转场第二辑 | 24 | [查看](packs/camera2/README.zh-Hans.md) |
+| 193–216 | `artstyle`：图像生成画风 | 24 | [查看](packs/artstyle/README.zh-Hans.md) |
+| 217–240 | `diagram`：演示文稿图解与图表 | 24 | [查看](packs/diagram/README.zh-Hans.md) |
 
-Each list gives the number, the name, what it means and an example of how to ask an AI for it, in English, Japanese, Spanish, Simplified Chinese and Traditional Chinese. The same names move in the [gallery](https://showheyohtaki.github.io/motion-prompt/).
+每个列表都给出编号、名称、含义和向 AI 提出需求的示例。列表顶部可切换语言。每个术语也可以在[本地示例库](#在本机运行示例库)中播放。
 
-Each pack has its own look. The motion and motion2 packs are dark navy with four colors. The camera and camera2 packs are light gray with one blue. The ui pack is warm off-white with black and one blue, and a cursor sets each part moving. The lp and lp2 packs draw a white browser window on a pale gray desk, with a vermilion accent and blue for the pictures on the page. The photo pack has no shared palette: each card is painted in the colors of its own scene, and the effect fades in and back out so you can compare. The artstyle pack is the one pack with pictures instead of drawings: the same base sketch was given to an image model and redrawn in each style, and a diagonal wipe turns the sketch into the style. The diagram pack draws on pale gray in flat grays and three blues, and each card builds its diagram or chart piece by piece, holds it, and clears it again. That is on purpose. What a pack has to get right is the names, not a house style.
+各素材包有自己的视觉风格。motion 和 motion2 使用深海军蓝背景及四种颜色；camera 和 camera2 使用浅灰和一种蓝色；ui 使用暖白、黑色和蓝色，由光标触发组件演示。lp 和 lp2 在浅灰桌面上绘制白色浏览器窗口，以朱红色强调重点，页面图片使用蓝色。photo 不统一配色，每张卡片使用对应场景的颜色，效果逐渐出现再消失，便于对比。artstyle 使用图片而非代码绘图：将同一底稿交给图像模型，按不同画风重绘，再用对角线擦除显示变化。diagram 使用浅灰背景、平涂灰色和三种蓝色，逐步构建图解或图表，停留后再清除。这样的差异是有意的。素材包需要准确呈现术语，不必遵循统一的品牌风格。
 
-## Three ways to use it
+## 三种用法
 
-### 1. Open the library, pick, and send your picks to your AI
+### 1. 打开资料库，选择示例并发送给 AI
 
-With the `motion-prompt` skill installed in Claude Code or Codex, asking is enough to open this gallery. You do not need to remember names or numbers. When you are not sure what something is called, have the library opened, the way you would look a word up in a dictionary.
+先在 Claude Code 或 Codex 中[安装技能](#安装)。知道想要的画面、还不确定术语时，可以直接浏览动态示例。
 
-```sh
-npx skills add showheyohtaki/motion-prompt
-```
-
-1. Ask your AI:
+1. 向 AI 发送以下指令。
    ```text
-   Open the motion-prompt library.
+   打开 motion-prompt 资料库。
    ```
-2. The gallery opens in your browser. Press "Pick" on the samples you want, as many as you like. The note field at the bottom of the screen takes a short line such as "for the opening title".
-3. Press "Send to AI" and your picks reach the AI. Go back to it and say what you want done:
+2. 浏览器打开后，在需要的示例上点击“选择”，每次最多选 60 项。页面底部可添加“用于片头标题”之类的简短备注。
+3. 点击“发送给 AI”，然后回到 AI 对话说明需求。
    ```text
-   Edit the opening of this video like this.
+   按照这些效果修改视频开头。
    ```
 
-The agent uses only what you picked. It fetches their specs and reference code and builds them into your video or site the way your project works. Name a kind, as in "show me the camera moves", and the gallery opens filtered to that field's packs (part 1 and part 2 together where there is one).
+代理只使用你选择的效果，读取其规格和参考代码，再按项目现有技术实现到视频或网站中。说“给我看看镜头运动”时，示例库会筛选出镜头运动的两辑。
 
-For an AI without the skill, pick in the gallery, press "Copy picks" at the bottom of the screen and paste the text into the chat. It includes the demo and spec URLs.
+AI 未安装技能时，可在示例库选择后点击底部的“复制所选示例”，将所选编号、规格链接和备注粘贴到对话中。临时选择页面的链接会在该次会话结束后失效。
 
-**When you know the numbers**, you can skip the gallery and ask by number:
+知道编号时，可以直接提出需求。
 
 ```text
-Use the motion-prompt skill with #012 and #045 to make this product video look professional.
+使用 motion-prompt 技能中的 #012 和 #045，让这个产品视频更专业。
 ```
 
 ```text
-Replace the part where the title appears with #005 from motion-prompt. Keep the length and the transitions before and after it.
+把标题出现的部分替换为 motion-prompt 的 #005。保留时长，以及前后的转场。
 ```
 
 ```text
-Turn the camera move in motion-prompt #032 into an English prompt for Veo. The subject is a coffee cup on a desk.
+把 motion-prompt #032 的镜头运动改写成适合 Veo 的英文提示词。主体是桌上的咖啡杯。
 ```
 
-Other ways to install, and what the agent does, are in [Skill reference](#skill-reference) below.
+命令和代理行为见[技能参考](#技能参考)。
 
-### 2. Look up the name and say it to your AI
+### 2. 查到术语后，直接告诉 AI
 
-Open a [list](packs/README.md) or the gallery, find the thing you have in mind, and use its name in your prompt. Adding how long, how strong and what moves makes the result closer to what you want.
+打开[列表](packs/README.zh-Hans.md)或示例库，找到想要的效果，在提示词中使用其名称。补充时长、幅度和运动对象，结果会更接近预期。
 
 ```text
-Bring the title in with a mask reveal from below, 0.6 s, each line slightly after the one before.
+让标题从下方通过遮罩揭示入场，时长 0.6 s，各行依次稍晚出现。
 ```
 
 ```text
-Slow dolly in toward her face; move the camera, do not zoom.
+缓慢向她的脸推进。移动摄影机，保持焦距不变。
 ```
 
-No install is needed for this. The names work in a coding AI, a video-generation model or a brief to a person.
+这种用法不需要安装。术语可以用于编程 AI、视频生成模型，也可以写进给其他人的创作简报。
 
-### 3. Make a version for your own field or language
+### 3. 为自己的领域或语言制作版本
 
-[`make-your-own/`](make-your-own/README.md) has copy-and-paste prompts for a coding AI, a script that renders the videos, and the two finished examples (HTML source, three videos and a cheat-sheet image each).
+[`make-your-own/`](make-your-own/README.zh-Hans.md) 提供可直接复制给编程 AI 的中文提示词、渲染脚本和两套中文 HTML 模板。每套可导出三页视频和帧预览图。目录也保留原发布的视频与速查图。
 
-| Goal | Prompt |
+| 目标 | 提示词 |
 |---|---|
-| The same videos in another language | [`01-translate.md`](make-your-own/prompts/en/01-translate.md) |
-| The names of your own field, with your own look | [`02-your-own-field.md`](make-your-own/prompts/en/02-your-own-field.md) |
-| The one-page cheat-sheet image | [`03-cheatsheet-image.md`](make-your-own/prompts/en/03-cheatsheet-image.md) |
+| 将同一套视频翻译成其他语言 | [`01-translate.md`](make-your-own/prompts/zh-Hans/01-translate.md) |
+| 用自己的视觉风格介绍熟悉领域的术语 | [`02-your-own-field.md`](make-your-own/prompts/zh-Hans/02-your-own-field.md) |
+| 制作单页速查图 | [`03-cheatsheet-image.md`](make-your-own/prompts/zh-Hans/03-cheatsheet-image.md) |
 
-The field does not have to be video. Lighting, sound, UI, photography, cooking, architecture: any field where knowing the name is what lets you ask for the thing.
+领域不必局限于视频。布光、声音、UI、摄影、烹饪、建筑等，只要知道名称就更容易描述需求，都适用。
 
-## Add the names of your field
+## 添加你熟悉领域的术语
 
-If you know a field well, please add its common language here, in your language. [CONTRIBUTING.md](CONTRIBUTING.md) explains how to add a pack or add a language to an existing pack, and what a name needs before it goes in. A coding AI can do most of the building with the prompts above.
+欢迎熟悉某个领域的人，用自己的语言补充共同术语。[贡献指南](CONTRIBUTING.zh-Hans.md) 介绍如何添加素材包、为已有素材包添加语言，以及术语的收录要求。编程 AI 可以根据上面的提示词完成大部分实现工作。
 
-## Original posts
+## 原始帖子
 
-The videos this started from (X, in Japanese):
+项目起源的视频以日文发布在 X。
 
 - https://x.com/showheyohtaki/status/2108065874511077598
 - https://x.com/showheyohtaki/status/2109112248832503895
 - https://x.com/showheyohtaki/status/2109840044554891464
 
-The set from the first post (names of animations for websites and landing pages) is not in this repository yet. The `lp` pack is a different set. Some names overlap with that post (parallax, scroll snap and others), but the selection and the samples were made new for this repository. The `ui` pack is based on "UIパーツ名24" (24 UI part names), posted on X on October 10, and `photo` was also made new for this repository.
+第一条帖子中的网站与落地页动效集合尚未收入本仓库。`lp` 的选题和示例为本仓库制作，其中也有视差、滚动吸附等术语。`ui` 基于 10 月 10 日发布于 X 的“UIパーツ名24”（24 个 UI 组件名称），`photo` 也为本仓库重新制作。
 
-## Skill reference
+## 技能参考
 
-Node.js 18 or later is required.
+需要 Node.js 18 或更高版本。
 
-### Install
+### 安装
 
-**With a prompt.** Paste this into Claude Code or Codex:
+从当前工作区复制完整的 `skills/motion-prompt/` 目录，其中的 `runtime/` 包含离线示例库、API 和素材。源码仓库为 [JackEngineer/motion-prompt](https://github.com/JackEngineer/motion-prompt)。
 
-```text
-Read https://github.com/showheyohtaki/motion-prompt and install the motion-prompt skill in this environment. When it is installed, tell me how to use it in three lines.
-```
+| 位置 | 作用范围 |
+|---|---|
+| `~/.claude/skills/` | Claude Code 的所有项目 |
+| `~/.agents/skills/` | Codex 等代理的所有项目 |
+| 当前项目的 `.claude/skills/` | 当前 Claude Code 项目 |
+| 当前项目的 `.agents/skills/` | 当前 Codex 等代理项目 |
 
-**With a command.** This uses the `skills` installer, which works with Claude Code, Codex and other agents that read Agent Skills:
+例如，在目标 Codex 项目中运行以下命令。将第一行替换为当前 Motion Prompt 工作区的绝对路径。Claude Code 项目使用 `.claude/skills`。
 
 ```sh
-npx skills add showheyohtaki/motion-prompt
+repo=/path/to/motion-prompt
+mkdir -p .agents/skills
+cp -R "$repo/skills/motion-prompt" .agents/skills/
+node .agents/skills/motion-prompt/scripts/motion-prompt.mjs info
+node .agents/skills/motion-prompt/scripts/motion-prompt.mjs get 001
+node .agents/skills/motion-prompt/scripts/motion-prompt.mjs prompt 001
 ```
 
-**As a Claude Code plugin.**
+确认 `info` 报告本地数据源及目录数量，`get` 和 `prompt` 输出中文内容。另运行 `node .agents/skills/motion-prompt/scripts/motion-prompt.mjs pick`，浏览示例并发送一次选择，验证浏览器回传。退出码 3 表示数据源不可用，检查安装目录中的 `runtime/` 是否完整。
+
+也可以将这条指令发送给代理。
 
 ```text
-/plugin marketplace add showheyohtaki/motion-prompt
-/plugin install motion-prompt@motion-prompt
+从本地 Motion Prompt 工作区将 skills/motion-prompt 完整复制到当前项目的技能目录。
+验证 info、get 001 和 prompt 001 能读取本地中文数据，并阅读 SKILL.md。
 ```
 
-**By hand.** Copy the `skills/motion-prompt` folder to one of these places:
+### 代理如何工作
 
-| Location | Scope |
+- 用户请求资料库时，代理在浏览器打开示例库，最多等待 15 分钟，直到用户选择并点击“发送给 AI”。
+- 代理读取项目，判断视频通过 Canvas、Remotion、CSS、After Effects 还是视频模型提示词实现。
+- 只使用用户选择的效果或给出的编号。用户尚未选择时，建议打开示例库；用户让代理代选时，按场景搜索目录。
+- 在项目中重建效果，保持已发布的时序、缓动和幅度，将文字、颜色和图片替换为用户素材。
+- 最后列出所用编号、对应场景、修改内容及可以再次打开的示例或规格引用。
+
+### 实现方式
+
+- 每个元素是一个函数 `cells[i](ctx, w, h, u)`。`ctx` 是 Canvas 2D 上下文，`w`、`h` 是卡片尺寸，`u` 是周期内的秒数。
+- 图像仅由 `u` 决定。绘制时不读取时钟或产生随机数，因此实时播放和逐帧渲染会得到相同画面。
+- 颜色、尺寸、周期和共用辅助函数组成各素材包的 kit。元素需要对应素材包的 kit。
+- 不依赖外部库。
+
+技能入口为 [SKILL.md](skills/motion-prompt/SKILL.md)，技术细节见[移植说明](skills/motion-prompt/references/porting.zh-Hans.md)。CLI `scripts/motion-prompt.mjs` 仅使用 Node.js 标准库，并随附 `runtime/`。
+
+| 命令 | 功能 |
 |---|---|
-| `~/.claude/skills/` | Claude Code, all projects |
-| `~/.agents/skills/` | Codex and others, all projects |
-| `.claude/skills/` in a project | Claude Code, that project only |
-| `.agents/skills/` in a project | Codex and others, that project only |
+| `pick` / `pick --pack camera` | 打开示例库，接收“发送给 AI”的编号、名称、规格和备注，最多等待 15 分钟 |
+| `search 打字机` | 按名称、释义或标签搜索，支持中文、英文和日文关键词 |
+| `list` / `list --pack motion` | 列出所有素材包概况，或逐条列出某个素材包 |
+| `get 12 045` | 输出对应编号的规格和代码，一次最多 8 个 |
+| `kit motion` | 输出素材包的共用代码 |
+| `prompt 12` | 输出某个元素可复制的提示词 |
+| `info` | 显示数据来源、数量和缓存位置 |
 
-### Install steps for agents
+默认使用简体中文。显式使用 `--lang en` 或 `--lang ja` 可查阅英文或日文。CLI 在完整工作区使用仓库数据，独立安装时使用技能目录中的 `runtime/`。默认 `pick` 在 `127.0.0.1` 启动临时示例库并接收所选编号和备注。
 
-This section is for an AI agent that received the prompt in "With a prompt".
-
-1. Check that Node.js 18 or later is available with `node --version`.
-2. In the user's project folder, run the command below. If it asks which agent to install for, choose the one you are.
-   ```sh
-   npx skills add showheyohtaki/motion-prompt -y
-   ```
-3. If step 2 is not possible, fetch the repository and copy the folder. Copy to `.claude/skills/` if you are Claude Code and to `.agents/skills/` otherwise (or to `~/.claude/skills/` or `~/.agents/skills/` for all projects).
-   ```sh
-   git clone --depth 1 https://github.com/showheyohtaki/motion-prompt.git /tmp/motion-prompt
-   mkdir -p .claude/skills
-   cp -R /tmp/motion-prompt/skills/motion-prompt .claude/skills/
-   ```
-4. Confirm the install. Replace `<skill-dir>` with the path where the skill was installed (the one with `SKILL.md` in it). It worked if the data source and the element count are printed.
-   ```sh
-   node <skill-dir>/scripts/motion-prompt.mjs info
-   ```
-   Exit code 3 means the data source could not be reached. Get network permission and run it again.
-5. Read `<skill-dir>/SKILL.md` and tell the user how to use the skill in three lines. For example:
-   - Say "open the motion-prompt library" and the gallery opens. Press "Pick" on what you want, then "Send to AI".
-   - Then say what to do with them, for example "edit the opening of this video like this".
-   - If you know the numbers, you can also ask directly: "use #012 and #045".
-
-Do not change existing settings files or other skills.
-
-### What the agent does
-
-- When you ask for the library, it opens the gallery in your browser and waits (up to 15 minutes) until you pick and press "Send to AI".
-- It works out how your project produces video: Canvas, Remotion, CSS, After Effects, or prompts for a video-generation model.
-- It uses what you picked, or the numbers you gave, and nothing else. When you have not chosen, it suggests opening the gallery; if you ask it to choose, it searches the catalog for each scene.
-- It rebuilds those moves in your project. Timings, easing and amounts stay as published, while the words, colors and images become yours.
-- Its reply ends with a list of the numbers it used, the scene each went into, what it changed, and a link to each sample.
-
-### How it works
-
-- One element is one function, `cells[i](ctx, w, h, u)`. `ctx` is a Canvas 2D context, `w` and `h` are the card size, and `u` is the time in seconds within the cycle.
-- The picture depends only on `u`. The function does not read the clock or use random numbers when it draws, so live playback and frame-by-frame rendering give the same frames.
-- Colors, sizes, the cycle length and shared helper functions are collected in a "kit" for each pack. An element needs the kit of its pack.
-- There are no external libraries.
-
-Three files make up the skill: the instructions (`SKILL.md`), notes on moving an element into each kind of video project (`references/porting.md`), and a Node script that looks elements up (`scripts/motion-prompt.mjs`, standard library only).
-
-| Command | What it does |
+| 文件 | 内容 |
 |---|---|
-| `pick` / `pick --pack camera` | opens the gallery and prints what arrives with "Send to AI": numbers, names, specs and your note. Waits up to 15 minutes |
-| `search typewriter text` / `search 文字 登場` | finds elements for a scene (English or Japanese words) |
-| `list` / `list --pack motion` | an overview of all packs, or one pack listed element by element |
-| `get 12 #045` | prints the spec and then the code for those numbers (8 at most in one call) |
-| `kit motion` | the shared code of a pack |
-| `prompt 12` | the copy-paste prompt for an element |
-| `info` | shows where data is coming from, how much there is, and where it is cached |
+| `catalog.json` | 版本、数量、素材包，以及每个元素的名称、含义、描述、规格、原始标签和中文显示标签 |
+| `{ja,en,zh-Hans}/catalog.tsv` | 制表符分隔的索引，列为 id、pack、category、title、tags、summary |
+| `{ja,en,zh-Hans}/e/{id}.txt` | 单个元素的署名行、描述、规格和代码 |
+| `{ja,en,zh-Hans}/p/{id}.txt` | 单个元素的复制提示词 |
+| `kit/{pack}.js` | 素材包的共用代码 |
 
-The script makes GET requests for the text files below and nothing else. Nothing from your project is uploaded. `pick` also opens a temporary listener on your own machine (127.0.0.1) that receives only the numbers and note sent by "Send to AI" in the gallery.
+中文数据缺失时，CLI 会报告安装或来源问题。设置 `MOTION_PROMPT_BASE` 可切换到明确指定的本地 API 目录或 URL。仅有 API 的来源可用于查询。用 `pick` 还需要与 API 配套的本地示例库。
 
-1. `https://showheyohtaki.github.io/motion-prompt/api/v1/`
-2. if that is unreachable: `https://raw.githubusercontent.com/showheyohtaki/motion-prompt/main/api/v1/`
-
-| File | Contents |
+| 环境变量 | 默认行为 |
 |---|---|
-| `catalog.json` | version, count, packs, and every element's names, meaning, summary, spec and tags |
-| `{ja,en}/catalog.tsv` | the index as tab-separated text (id, pack, category, title, tags, summary) |
-| `{ja,en}/e/{id}.txt` | a single element: attribution line, what it shows, the spec, then its code |
-| `{ja,en}/p/{id}.txt` | the copy-paste prompt for one element |
-| `kit/{pack}.js` | the shared code of a pack |
+| `MOTION_PROMPT_BASE` | 替换默认数据源，可指定本地目录或 URL。多个来源以逗号分隔 |
+| `MOTION_PROMPT_CACHE` | 下载缓存目录，默认为 `~/.cache/motion-prompt`。主目录只读时改用系统临时目录 |
+| `MOTION_PROMPT_TTL` | 目录缓存有效期，单位为秒，默认 `21600`，即 6 小时 |
 
-If you clone this whole repository, the CLI reads the local `api/v1` first and needs no network. Downloaded data is kept on disk, and the saved copy is used when the source cannot be reached.
-
-| Variable | Default |
-|---|---|
-| `MOTION_PROMPT_BASE` | read from here instead of the default sources: a local folder or a URL, several separated by commas |
-| `MOTION_PROMPT_CACHE` | where downloads are kept; `~/.cache/motion-prompt`, or the system temp folder when the home folder is read-only |
-| `MOTION_PROMPT_TTL` | how long a saved catalog is trusted, in seconds; `21600` (6 hours) |
-
-### Run the gallery yourself
+### 在本机运行示例库
 
 ```sh
-git clone https://github.com/showheyohtaki/motion-prompt.git
-cd motion-prompt
-python3 -m http.server 8000
+cd /path/to/motion-prompt
+python3 -m http.server 8765 --bind 127.0.0.1
 ```
 
-Open `http://localhost:8000/` to see the gallery (`index.html`). In a clone, `node skills/motion-prompt/scripts/motion-prompt.mjs pick --local` opens your local copy of the gallery for picking. The file formats are described in [FORMAT.md](FORMAT.md).
+打开 `http://127.0.0.1:8765/` 浏览示例。访问同一地址下的 `found.html` 可查看社区案例，加载 X 原帖需联网。要在浏览器选择并回传给代理，运行 `node skills/motion-prompt/scripts/motion-prompt.mjs pick`。
 
-## License
+修改源数据或页面后，运行 `node tools/build.mjs` 和 `node tools/build-skill.mjs` 更新 API 与离线技能包。运行 `node tools/build.mjs --verify` 精确核对生成文件，再运行 `node tools/build-skill.mjs --check` 检查离线包，运行 `node tools/check-skill.mjs` 验证复制安装。编辑数据见[格式说明](FORMAT.zh-Hans.md)。
 
-[MIT](LICENSE) © 2026 Shohei Ohtaki
+## 许可证
 
-Commercial use is allowed, for the code, the videos and the images. When you use an element's code, keep its first line (`// Motion Prompt #ID · MIT License (c) 2026 Shohei Ohtaki · …`).
+[MIT 许可证](LICENSE) © 2026 Shohei Ohtaki
 
-To ask for something to be removed or corrected, use the [removal or correction form](https://github.com/showheyohtaki/motion-prompt/issues/new?template=3-removal.yml). We act on it as soon as the request is confirmed.
+代码、视频和图片均允许商业使用。使用元素代码时，请保留首行署名 `// Motion Prompt #ID · MIT License (c) 2026 Shohei Ohtaki · …`。
 
-## Acknowledgements
+需要删除或更正内容时，请使用[删除或更正申请表](https://github.com/JackEngineer/motion-prompt/issues/new?template=3-removal.yml)。请求确认后会尽快处理。
 
-The idea of pairing a gallery of live examples with an agent skill comes from [Lucian UX/UI Prompt](https://lucianlabs.dev/uxui-prompt/). The CLI's command set and the layout of the static data files follow that project too; see [THIRD-PARTY-NOTICES.md](THIRD-PARTY-NOTICES.md).
+## 致谢
 
-The name lists in other languages began with translations from [@daddydanielt](https://github.com/daddydanielt) (Traditional Chinese), [@herberthcr](https://github.com/herberthcr) (Spanish) and [@xhonye](https://github.com/xhonye) (Simplified Chinese). Thank you.
+将动态示例库与代理技能结合的思路来自 [Lucian UX/UI Prompt](https://lucianlabs.dev/uxui-prompt/)。CLI 命令和静态数据文件的组织方式也参考了该项目，详见[第三方声明](THIRD-PARTY-NOTICES.zh-Hans.md)。
 
-## Author
+其他语言的术语列表最初来自 [@daddydanielt](https://github.com/daddydanielt) 的繁体中文翻译、[@herberthcr](https://github.com/herberthcr) 的西班牙文翻译，以及 [@xhonye](https://github.com/xhonye) 的简体中文翻译。感谢他们的贡献。
 
-Shohei Ohtaki (株式会社デイトラ) / X [@showheyohtaki](https://x.com/showheyohtaki)
+## 作者
+
+Shohei Ohtaki（株式会社デイトラ）/ X [@showheyohtaki](https://x.com/showheyohtaki)

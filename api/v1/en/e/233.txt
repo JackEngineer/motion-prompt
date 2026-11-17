@@ -19,11 +19,9 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 17
-// 17 ガントチャート: date scale on top, bars start at staggered columns and grow to the right
 function gantt(k, w, h, u) {
   bg(k, w, h);
   const x0 = 84, cols = 8, cw = 52, yAxis = 44, f = fade(u);
-  // skeleton: date scale + grid (always visible)
   for (let i = 0; i < cols; i++) txt(k, String(i + 1), x0 + cw * i + cw / 2, 34, `500 18px ${FONT}`, C.sub, 'center');
   k.strokeStyle = C.g2; k.lineWidth = 2;
   for (let i = 0; i <= cols; i++) { k.beginPath(); k.moveTo(x0 + cw * i, yAxis); k.lineTo(x0 + cw * i, 194); k.stroke(); }

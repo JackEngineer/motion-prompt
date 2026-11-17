@@ -19,13 +19,12 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 21
-// 21 フリップ（カードが軸で回って裏返り、裏の面が出る）
 const FW = 300, FH = 156, FC = mkCanvas(FW, FH), FK = FC.getContext('2d');
 function flipFace(i) {
   FK.setTransform(1, 0, 0, 1, 0, 0); FK.clearRect(0, 0, FW, FH);
   FK.fillStyle = i ? C.yel : C.blue; rr(FK, 0, 0, FW, FH, 22); FK.fill();
   FK.strokeStyle = i ? 'rgba(15,26,61,.18)' : 'rgba(255,255,255,.3)'; FK.lineWidth = 4; rr(FK, 12, 12, FW - 24, FH - 24, 13); FK.stroke();
-  txt(FK, i ? 'A' : 'Q', 92, FH / 2 + 4, `800 112px ${DISP}`, i ? C.navy : '#fff', 'center', 'middle');
+  txt(FK, i ? '答' : '问', 92, FH / 2 + 4, `800 112px ${JP}`, i ? C.navy : '#fff', 'center', 'middle');
   FK.fillStyle = i ? C.navy : '#fff'; FK.globalAlpha = i ? 0.85 : 0.9; rr(FK, 164, 50, 100, 14, 7); FK.fill(); FK.globalAlpha = i ? 0.4 : 0.5; rr(FK, 164, 76, 76, 12, 6); FK.fill(); rr(FK, 164, 98, 90, 12, 6); FK.fill(); FK.globalAlpha = 1;
 }
 CELLS[20] = abCell((k, w, h, u, a, b) => {

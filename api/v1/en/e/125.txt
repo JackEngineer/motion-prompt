@@ -18,7 +18,6 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 05
-// 05 パルス（ハートが鼓動のように、ドクン・ドクンと大きさを脈打たせる）
 CELLS[4] = (k, w, h, u) => {
   stage(k);
   const T = CYC / 4, lu = mod(u, T), X = w / 2, Y = h / 2 + 10;

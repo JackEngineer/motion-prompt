@@ -20,7 +20,6 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 19
-// 19 ファネル図: separate center-aligned bars, each shorter than the one above, with light funnel joints
 function funnel(k, w, h, u) {
   bg(k, w, h);
   const cx0 = w / 2, bh = 34, gap = 10, y0 = 21, f = fade(u);
@@ -30,7 +29,6 @@ function funnel(k, w, h, u) {
     const t0 = 0.4 + i * 0.36, p = appear(u, t0, 0.45);
     if (p <= 0) return;
     const y = y0 + i * (bh + gap);
-    // joint from the bar above
     if (i > 0) {
       const wa = WD[i - 1], ya = y - gap;
       k.globalAlpha = f * p * 0.8; k.fillStyle = C.g3;

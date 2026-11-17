@@ -19,14 +19,13 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 21
-// 21 ツリーマップ: one outer rectangle gets filled by rectangles of different sizes, biggest first
 function treemap(k, w, h, u) {
   bg(k, w, h);
   const f = fade(u);
   const X0 = 50, Y0 = 18, X1 = 489, Y1 = 190;
   k.strokeStyle = C.g3; k.lineWidth = 2; k.setLineDash([6, 6]);
   rr(k, X0, Y0, X1 - X0, Y1 - Y0, 6); k.stroke(); k.setLineDash([]);
-  const RS = [                                  // x, y, w, h, color, label
+  const RS = [                                  // 每项为 [横坐标, 纵坐标, 宽度, 高度, 颜色, 标签]。
     [50, 18, 206, 172, C.blue, 'A'],
     [260, 18, 140, 96, C.blueM, 'B'],
     [404, 18, 85, 96, C.blueL, 'C'],

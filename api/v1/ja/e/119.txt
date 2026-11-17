@@ -18,12 +18,11 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 23
-// ライトリーク: 右端から、フィルムに光がもれたような赤と橙のにじみが帯になって入る
 CELLS[22] = cell((k, u) => {
   const a = env(u), w = Math.sin(u / CYC * TAU);
   stageLand(k, BASE);
   k.save();
-  // 縦長の楕円を右端の外に中心を置いて重ねる（外ほど淡い黄、端ほど赤）
+  // 将纵向拉长的椭圆叠加到画面右侧，圆心位于边缘外。内侧偏红，外围呈淡黄色。
   const band = (rx, col, al) => { k.globalAlpha = al * a; k.fillStyle = col; k.beginPath(); k.ellipse(CW + 30 + 6 * w, CH / 2, rx * a, CH * 1.1, 0, 0, TAU); k.fill(); };
   band(250, '#FFD089', 0.35); band(170, '#FF9A3D', 0.4); band(95, '#FF5A3A', 0.45); band(45, '#FF3B30', 0.5);
   k.restore();

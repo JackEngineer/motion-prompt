@@ -17,5 +17,4 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 21
-// クレイアニメ風: 粘土で作った指あとの残る立体
 CELLS[20] = (k, w, h, u) => gafu(k, w, h, u, '21');

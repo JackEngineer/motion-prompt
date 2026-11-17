@@ -19,7 +19,6 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 18
-// ローキー: 画面の大半が暗く沈み、横からの光が当たる縁だけが浮かぶ
 CELLS[17] = cell((k, u) => {
   const a = env(u);
   const LOW = Object.assign({}, DARK, { sun: DARK.sky, glow: DARK.sky, person: '#25272E', lit: '#FFB547' });

@@ -1,4 +1,4 @@
-「背景色の切り替え（Background color change on scroll）」を使ってください。「LP・Webサイトの演出 第2弾」の名前の1つです。
+「背景色の切り替え（英文名：Background color change on scroll）」を使ってください。「LP・Webサイトの演出 第2弾」の名前の1つです。
 Motion Prompt #148
 
 どういうものか: セクションごとに背景の色が変わる
@@ -11,6 +11,6 @@ Motion Prompt #148
 - 各セクションの絵（太陽・月と星・山の写真）はページと一緒に動く。右端のスクロールバーも連動
 使いどころ: 章ごとに雰囲気を変えたいストーリー型のページや、昼と夜・季節など場面の違いを見せたいとき。
 
-参考実装（Canvas 2D・時刻だけで絵が決まる関数）: https://showheyohtaki.github.io/motion-prompt/api/v1/ja/e/148.txt
-共通の補助コード: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp2.js
+参考実装（Canvas 2D・時刻だけで絵が決まる関数）: ../e/148.txt
+共通の補助コード: ../../kit/lp2.js
 参考実装の形・タイミング・イージングの数値はそのまま使い、中の文字・色・素材だけ、いま作っている物に合わせてください。

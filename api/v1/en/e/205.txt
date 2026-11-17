@@ -18,5 +18,4 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 13
-// リソグラフ: 2〜3色のインクがずれて重なる
 CELLS[12] = (k, w, h, u) => gafu(k, w, h, u, '13');

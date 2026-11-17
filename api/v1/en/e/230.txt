@@ -18,9 +18,8 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 14
-// 14 複合グラフ（棒＋折れ線）: bars on the left scale (gray ticks), a dotted line on the right scale (blue ticks)
-const CB = [42, 55, 50, 66, 74, 88];       // bars (left scale, % of height)
-const CL = [26, 34, 52, 46, 64, 80];       // line (right scale, % of height)
+const CB = [42, 55, 50, 66, 74, 88];       // 柱高以左侧刻度为准，数值为绘图区高度的百分比。
+const CL = [26, 34, 52, 46, 64, 80];       // 线上的点以右侧刻度为准，数值为绘图区高度的百分比。
 function combo(k, w, h, u) {
   bg(k, w, h);
   const floor = 186, top = 24, sc = (floor - top) / 100, x0 = 86, x1 = 452, slot = (x1 - x0) / CB.length, bw = 36;
@@ -28,7 +27,7 @@ function combo(k, w, h, u) {
   seg(k, x0, top, x0, floor, C.g4, 2.5);
   seg(k, x1, top, x1, floor, C.blue, 2.5);
   seg(k, x0, floor, x1, floor, C.g4, 2.5);
-  for (let i = 0; i <= 4; i++) {   // two different scales: gray ticks on the left, blue ticks on the right
+  for (let i = 0; i <= 4; i++) {   // 左侧灰色刻度对应柱形，右侧蓝色刻度对应折线。
     const y = lerp(floor, top, i / 4);
     seg(k, x0 - 10, y, x0, y, C.g4, 2.5);
     seg(k, x1, y, x1 + 10, y, C.blue, 2.5);

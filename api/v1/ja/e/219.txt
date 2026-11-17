@@ -19,7 +19,6 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 03
-// 03 ロジックツリー: one box on the left branches to the right, 1 -> 2 -> 4, with elbow lines
 function tree(k, w, h, u) {
   bg(k, w, h);
   k.globalAlpha = fade(u);

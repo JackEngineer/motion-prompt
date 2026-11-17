@@ -19,7 +19,6 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 10
-// 10 オーバーシュート（メーターの針が、目標を行き過ぎてから戻って止まる）
 CELLS[9] = (k, w, h, u) => {
   stage(k);
   const X = w / 2, Y = h - 26, R = 128, TG = 0.7;
@@ -29,13 +28,11 @@ CELLS[9] = (k, w, h, u) => {
   k.lineCap = 'round';
   k.strokeStyle = C.navy2; k.lineWidth = 26; k.beginPath(); k.arc(X, Y, R, ang(0), ang(1)); k.stroke();
   if (v > 0.005) { const g = k.createLinearGradient(X - R, 0, X + R, 0); g.addColorStop(0, C.blue); g.addColorStop(1, C.mint); k.strokeStyle = g; k.beginPath(); k.arc(X, Y, R, ang(0), ang(v)); k.stroke(); }
-  // 行き過ぎた分（目標より先）はコーラルで見せる
+  // 用珊瑚色标记超过目标的范围。
   if (v > TG + 0.004) { k.strokeStyle = C.coral; k.lineCap = 'butt'; k.beginPath(); k.arc(X, Y, R, ang(TG), ang(v)); k.stroke(); k.lineCap = 'round'; }
-  // 目標の印
   const ta = ang(TG);
   k.strokeStyle = C.yel; k.lineWidth = 7; k.beginPath(); k.moveTo(X + Math.cos(ta) * (R - 22), Y + Math.sin(ta) * (R - 22)); k.lineTo(X + Math.cos(ta) * (R + 30), Y + Math.sin(ta) * (R + 30)); k.stroke();
   k.fillStyle = C.yel; k.beginPath(); k.arc(X + Math.cos(ta) * (R + 38), Y + Math.sin(ta) * (R + 38), 8, 0, 7); k.fill();
-  // 針
   const a = ang(v);
   k.strokeStyle = '#fff'; k.lineWidth = 9; k.beginPath(); k.moveTo(X, Y); k.lineTo(X + Math.cos(a) * (R - 26), Y + Math.sin(a) * (R - 26)); k.stroke();
   k.fillStyle = '#fff'; k.beginPath(); k.arc(X, Y, 17, 0, 7); k.fill(); k.fillStyle = C.coral; k.beginPath(); k.arc(X, Y, 8, 0, 7); k.fill();

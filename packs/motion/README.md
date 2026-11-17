@@ -6,7 +6,7 @@
 
 Find the name, then say it to your AI. Add how long, how strong and what moves, and the result gets closer to what you had in mind.
 
-![Motion graphics moves — preview](../../assets/preview-motion.gif)
+![Motion graphics moves preview](../../assets/preview-motion.gif)
 
 ## Entrances & text
 

@@ -19,14 +19,13 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 06
-// バタフライライティング: 顔の正面・高い位置からの光。顔は左右対称に明るく、あごの下にだけ小さな影
 CELLS[5] = cell((k, u) => {
   const a = env(u), R = PR, W = torsoW(R);
   stagePortrait(k, pal(BASE, DIM, a));
   const lit = mixc(BASE.person, BASE.lit, a), sh = mixc(BASE.person, BASE.shade, a);
   bust(k, PX, PY, R, BASE.person, kk => {
     torso(kk, PX, PY, R, PX - 0.8 * W, PX + 0.8 * W, lit);
-    kk.fillStyle = sh; kk.beginPath(); kk.ellipse(PX, PY + R * 1.06, R * 0.72, R * 0.38, 0, 0, TAU); kk.fill();    // あごの下の影（左右対称）
+    kk.fillStyle = sh; kk.beginPath(); kk.ellipse(PX, PY + R * 1.06, R * 0.72, R * 0.38, 0, 0, TAU); kk.fill();
     kk.fillStyle = lit; kk.beginPath(); kk.arc(PX, PY, R, 0, TAU); kk.fill();
   });
   plan(k, [[0, a]]);

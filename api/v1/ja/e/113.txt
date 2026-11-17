@@ -18,7 +18,6 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 17
-// ハイキー: 明るい色だけになり、影はごく薄く、明るさの山が右端へ寄る
 CELLS[16] = cell((k, u) => {
   const a = env(u);
   const HIGH = {

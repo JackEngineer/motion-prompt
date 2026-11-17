@@ -6,7 +6,7 @@
 
 Find the name, then say it to your AI. Add how long, how strong and what moves, and the result gets closer to what you had in mind.
 
-![Landing page & web effects, part 2 — preview](../../assets/preview-lp2.gif)
+![Landing page & web effects, part 2 preview](../../assets/preview-lp2.gif)
 
 ## Scroll effects
 

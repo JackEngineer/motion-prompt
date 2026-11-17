@@ -19,12 +19,11 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 03
-// 03 スタッキングカード（スクロールすると、次のカードが下から来て前のカードに少しずらして重なる）
 CELLS[2] = (k, w, h, u) => {
   u = snapU(u);
   frame(k);
   const s = steps([[0.3, 0], [1.1, 1], [1.6, 1], [2.4, 2], [3.2, 2], [4.4, 0]], u);
-  const CARDS = [[C.blueL, C.ink, C.acc, '01', '企画する', 0], [C.ink, '#fff', C.acc, '02', 'つくる', 2], [C.acc, '#fff', '#fff', '03', '届ける', 1]];
+  const CARDS = [[C.blueL, C.ink, C.acc, '01', '策划', 0], [C.ink, '#fff', C.acc, '02', '制作', 2], [C.acc, '#fff', '#fff', '03', '交付', 1]];
   const X = 70, CWD = 371, CHT = 124, STEP = 170;
   view(k, () => {
     k.fillStyle = C.soft; k.fillRect(0, 0, VW, VH);

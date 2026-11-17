@@ -1,12 +1,15 @@
 # Contributing: add the names of your field
 
+[简体中文](CONTRIBUTING.zh-Hans.md)
+
+
 **English** | [日本語](CONTRIBUTING.ja.md)
 
 This repository is a library of names: the words people in a field use for the things you can ask an AI to make. It started with two of the sets posted on X, motion graphics and camera moves, and UI component names, landing page and web effects, photo looks, art styles for image generation and diagrams and charts for slides have been added since. **Please add the common language of your own field, in your own language.**
 
 Fields outside video are welcome: lighting, sound, UI and interaction, photography, typography, illustration, cooking, architecture, fashion, music, dance, games. If people in a field say "do a ___" to each other and an outsider would not know the word, that word belongs here.
 
-You do not have to write the code yourself. The prompts in [`make-your-own/prompts/`](make-your-own/prompts/) let a coding AI (Claude Code, Codex, Cursor, and so on) do most of the building. What only you can bring is knowing which names are real.
+You do not have to write the code yourself. The prompts in [`make-your-own/prompts/`](make-your-own/README.md) let a coding AI (Claude Code, Codex, Cursor, and so on) do most of the building. What only you can bring is knowing which names are real.
 
 ## Three ways in
 

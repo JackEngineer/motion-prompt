@@ -18,8 +18,6 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 07
-// 07 サイクル図: four steps on a ring; arrows draw one after another until the ring closes,
-// then the highlight goes round the ring once
 function cycle(k, w, h, u) {
   bg(k, w, h);
   k.globalAlpha = fade(u);
@@ -35,7 +33,7 @@ function cycle(k, w, h, u) {
     }
     pen(k, C.blueM, 3); trace(k, pts, t, 13, C.blueM);
   }
-  // highlight going round: 2.2s -> 3.8s, 0.4s per step, soft edges
+  // 高亮从 2.2 秒开始，在 3.8 秒时走完一圈。每步持续 0.4 秒，边缘采用渐变。
   const hp = P(u, 2.2, 3.8) * n;
   for (let i = 0; i < n; i++) {
     const s = pop(u, 0.4 + i * 0.32, 0.28);

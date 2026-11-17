@@ -1,38 +1,37 @@
 /* Motion Prompt · pack "diagram" · MIT License (c) 2026 Shohei Ohtaki · https://github.com/showheyohtaki/motion-prompt */
 MotionPrompt.pack('diagram', function () {
   // @kit
-  // 資料で使う図解・グラフの名前24（各カード 539x208・4.7秒周期。各コマは時間 u の純関数）
-  // 薄いグレーの地に、グレー3段・青3段・濃いグレーの平面だけで描く。Xの動画（1ページ9.4秒で各カードが2周）と同じ絵。
-  // どのカードも「空 → 図が組み上がる → 止める → 4.1〜4.5秒で消える → 空」で1周する（u = 4.7 は u = 0 と同じ）。
-  // 数字のグラフ（09〜16）は軸・目盛り・マス目を出したままにして、データだけを出し入れする。
+  // 每张卡片为 539 × 208 像素，循环时长为 4.7 秒。每帧仅由时间 u 决定。
+  // 卡片从空白开始，图形依次出现并停留，在 4.1 至 4.5 秒间淡出。第 4.7 秒与起始帧一致。
+  // 第 09 至 16 张卡片始终显示坐标轴、刻度和网格，只改变数据图形。
   const CW = 539, CH = 208, CYC = 4.7;
   const C = {
     stage: '#F1F0EE', sub: '#8E8E93', mark: '#3A3A3E',
     blue: '#2F6BEB', blueM: '#9DB8F6', blueL: '#C9D8FB', g2: '#E2E1DE', g3: '#CFCECB', g4: '#A9A8A5'
   };
-  const FONT = '"Hiragino Sans", "Helvetica Neue", "PingFang SC", "Noto Sans", "Noto Sans CJK JP", system-ui, sans-serif';
+  const FONT = '"PingFang SC","Hiragino Sans", "Helvetica Neue", "PingFang SC", "Noto Sans", "Noto Sans CJK JP", system-ui, sans-serif';
   const TAU = Math.PI * 2;
 
   const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
   const lerp = (a, b, x) => a + (b - a) * x;
-  const P = (t, a, b) => clamp((t - a) / (b - a));                       // 0..1 progress of t between a and b
+  const P = (t, a, b) => clamp((t - a) / (b - a));                       // t 在 a 到 b 区间内的进度，限制在 0 到 1。
   const easeInOut = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;   // cubic-bezier(0.65,0,0.35,1)
   const easeOut = x => 1 - Math.pow(1 - x, 3);                                       // cubic-bezier(0.33,1,0.68,1)
   const easeOutBack = x => { const c1 = 1.70158, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };  // cubic-bezier(0.34,1.56,0.64,1)
-  function rand(seed) { let s = seed >>> 0; return () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; }; } // seeded random
+  function rand(seed) { let s = seed >>> 0; return () => { s = (s * 1664525 + 1013904223) >>> 0; return s / 4294967296; }; } // 使用种子生成可复现的随机数。
   function rr(k, x, y, w, h, r) { k.beginPath(); k.roundRect(x, y, w, h, r); }
   function txt(k, s, x, y, font, col, align = 'left', base = 'alphabetic') {
     k.font = font; k.fillStyle = col; k.textAlign = align; k.textBaseline = base; k.fillText(s, x, y);
   }
   function bg(k, w, h) { k.fillStyle = C.stage; k.fillRect(0, 0, w, h); }
-  function fade(u) { return 1 - easeInOut(P(u, 4.1, 4.5)); }              // the whole figure fades out at the end of the cycle
+  function fade(u) { return 1 - easeInOut(P(u, 4.1, 4.5)); }
   const CELLS = [];
 
   // @shared
-  // 01〜08（整理する図）の部品: 弾んで出る箱、線を途中まで引く、矢じり
+  // 第 01 至 08 张卡片共用的弹出框、渐进描线和箭头。
   function pop(u, a, d = 0.3) { const p = P(u, a, a + d); return p <= 0 ? 0 : easeOutBack(p); }   // 0 -> ~1.1 -> 1
   function pen(k, col, lw) { k.strokeStyle = col; k.lineWidth = lw; k.lineCap = 'round'; k.lineJoin = 'round'; }
-  // point at distance d along a polyline: {x, y, a (direction), i (segment end index)}
+  // 取折线上距起点 d 的点，返回 x、y、方向角 a 和线段终点索引 i。
   function along(pts, d) {
     for (let i = 1; i < pts.length; i++) {
       const [x0, y0] = pts[i - 1], [x1, y1] = pts[i], s = Math.hypot(x1 - x0, y1 - y0);
@@ -42,7 +41,7 @@ MotionPrompt.pack('diagram', function () {
     return { x: pts[0][0], y: pts[0][1], a: 0, i: 1 };
   }
   function pathLen(pts) { let L = 0; for (let i = 1; i < pts.length; i++) L += Math.hypot(pts[i][0] - pts[i - 1][0], pts[i][1] - pts[i - 1][1]); return L; }
-  // stroke the first fraction t of a polyline. arrow: arrowhead size at the moving tip (0 = none)
+  // 描出折线前 t 比例的路径。arrow 为末端箭头的大小，设为 0 时隐藏箭头。
   function trace(k, pts, t, arrow = 0, col = null) {
     if (t <= 0) return;
     const L = pathLen(pts), d = t * L, tip = along(pts, d), end = along(pts, Math.max(0, d - arrow * 0.7));
@@ -65,14 +64,12 @@ MotionPrompt.pack('diagram', function () {
     }
     return out;
   }
-  // rounded box scaled from its center
   function box(k, cx, cy, bw, bh, r, s, col) {
     if (s <= 0.01) return;
     k.save(); k.translate(cx, cy); k.scale(s, s); k.fillStyle = col; rr(k, -bw / 2, -bh / 2, bw, bh, r); k.fill(); k.restore();
   }
 
   // @element 01
-  // 01 ベン図: two circles slide in from the sides and overlap; only the shared part turns blue
   function venn(k, w, h, u) {
     bg(k, w, h);
     const app = easeOut(P(u, 0.3, 0.7)), m = easeInOut(P(u, 0.5, 1.6));
@@ -81,7 +78,7 @@ MotionPrompt.pack('diagram', function () {
     k.save(); k.globalAlpha = fade(u) * app;
     k.fillStyle = C.blueL; k.beginPath(); k.arc(ax, cy, r, 0, TAU); k.fill();
     k.fillStyle = C.g2; k.beginPath(); k.arc(bx, cy, r, 0, TAU); k.fill();
-    // shared part: B inside A
+    // 将 B 裁剪到 A 的范围内，只为交集着色。
     k.save(); k.beginPath(); k.arc(ax, cy, r, 0, TAU); k.clip();
     k.fillStyle = C.blue; k.beginPath(); k.arc(bx, cy, r, 0, TAU); k.fill(); k.restore();
     pen(k, C.blueM, 3); k.beginPath(); k.arc(ax, cy, r, 0, TAU); k.stroke();
@@ -93,13 +90,11 @@ MotionPrompt.pack('diagram', function () {
   CELLS[0] = venn;
 
   // @element 02
-  // 02 4象限マトリクス: two axes cross in the middle, four areas appear, items are placed; top-right is the target
   const MDOTS = [[0.55, -0.55, 1], [0.25, -0.3, 0], [-0.5, -0.45, 0], [-0.3, 0.5, 0], [-0.62, 0.22, 0], [0.45, 0.4, 0], [0.7, 0.62, 0]];
   function matrix(k, w, h, u) {
     bg(k, w, h);
     k.globalAlpha = fade(u);
     const cx = w / 2, cy = h / 2, hw = 168, hh = 86, gap = 8;
-    // four areas
     [[1, -1], [-1, -1], [-1, 1], [1, 1]].forEach(([sx, sy], i) => {
       const a = easeOut(P(u, 1.0 + i * 0.08, 1.35 + i * 0.08));
       if (a <= 0) return;
@@ -108,7 +103,6 @@ MotionPrompt.pack('diagram', function () {
       const x = sx > 0 ? cx + gap : cx - gap - (hw - 14), y = sy > 0 ? cy + gap : cy - gap - (hh - 8);
       rr(k, x, y, hw - 14, hh - 8, 10); k.fill(); k.restore();
     });
-    // axes grow from the center out
     const g = easeInOut(P(u, 0.4, 1.0));
     if (g > 0) {
       pen(k, C.mark, 3);
@@ -117,7 +111,6 @@ MotionPrompt.pack('diagram', function () {
       const hs = 11 * clamp((g - 0.15) * 3);
       if (hs > 1) { arrowAt(k, cx + hw * g + 2, cy, 0, hs, C.mark); arrowAt(k, cx, cy - hh * g - 2, -Math.PI / 2, hs, C.mark); }
     }
-    // items
     MDOTS.forEach(([dx, dy, hot], i) => {
       const s = pop(u, 1.45 + i * 0.1, 0.3);
       if (s <= 0) return;
@@ -130,7 +123,6 @@ MotionPrompt.pack('diagram', function () {
   CELLS[1] = matrix;
 
   // @element 03
-  // 03 ロジックツリー: one box on the left branches to the right, 1 -> 2 -> 4, with elbow lines
   function tree(k, w, h, u) {
     bg(k, w, h);
     k.globalAlpha = fade(u);
@@ -150,14 +142,13 @@ MotionPrompt.pack('diagram', function () {
   CELLS[2] = tree;
 
   // @element 04
-  // 04 ピラミッド図: a triangle in four layers, stacked from the bottom up; the top layer is blue
   function pyramid(k, w, h, u) {
     bg(k, w, h);
     k.globalAlpha = fade(u);
     const top = 16, base = 192, hwB = 168, n = 4, gp = 6, cx = w / 2;
     const th = (base - top - gp * (n - 1)) / n, half = y => hwB * (y - top) / (base - top);
     const cols = [C.g3, C.blueL, C.blueM, C.blue];
-    for (let i = 0; i < n; i++) {                       // i = 0 bottom
+    for (let i = 0; i < n; i++) {                       // i = 0 对应最底层。
       const p = easeOut(P(u, 0.4 + i * 0.32, 0.8 + i * 0.32));
       if (p <= 0) continue;
       const yb = base - i * (th + gp), yt = yb - th, dy = (1 - p) * -34;
@@ -173,9 +164,8 @@ MotionPrompt.pack('diagram', function () {
   CELLS[3] = pyramid;
 
   // @element 05
-  // 05 マインドマップ: a center word, curved branches out to both sides, then smaller twigs
   const MM = [
-    // [side, end dx, end dy, color, twigs [dx, dy]]
+    // 每项为 [分支侧, 终点横向偏移, 终点纵向偏移, 颜色, 子分支列表 [横向偏移, 纵向偏移]]。
     [1, 128, -52, C.blueM, [[204, -72], [204, -32]]],
     [1, 142, 8, C.g4, []],
     [1, 124, 56, C.blueM, [[204, 76]]],
@@ -203,7 +193,7 @@ MotionPrompt.pack('diagram', function () {
     if (s > 0.01) {
       k.save(); k.translate(cx, cy); k.scale(s, s);
       k.fillStyle = C.blue; rr(k, -50, -22, 100, 44, 22); k.fill();
-      txt(k, 'テーマ', 0, 1, `700 19px ${FONT}`, '#FFFFFF', 'center', 'middle');
+      txt(k, '主题', 0, 1, `700 19px ${FONT}`, '#FFFFFF', 'center', 'middle');
       k.restore();
     }
     k.globalAlpha = 1;
@@ -211,13 +201,11 @@ MotionPrompt.pack('diagram', function () {
   CELLS[4] = mindmap;
 
   // @element 06
-  // 06 フローチャート: start -> step -> decision (diamond) -> step -> end, with a "No" loop back;
-  // then a marker walks the path once (loops back once, then goes on to the end)
   function flow(k, w, h, u) {
     bg(k, w, h);
     k.globalAlpha = fade(u);
     const y = 80, S = [64, y], A = [158, y], D = [262, y], B = [364, y], E = [460, y], LY = 172;
-    const dw = 46, dh = 36;                                   // diamond half sizes
+    const dw = 46, dh = 36;
     const arrows = [
       [[S[0] + 34, y], [A[0] - 36, y]],
       [[A[0] + 36, y], [D[0] - dw, y]],
@@ -229,7 +217,6 @@ MotionPrompt.pack('diagram', function () {
     pen(k, C.g4, 3);
     arrows.forEach((pts, i) => trace(k, pts, easeInOut(P(u, tA[i], tA[i] + 0.22)), 10, C.g4));
     trace(k, loop, easeInOut(P(u, 2.0, 2.45)), 10, C.g4);
-    // shapes
     const pill = (c, s, col) => box(k, c[0], c[1], 66, 36, 18, s, col);
     pill(S, pop(u, 0.4), C.g3);
     box(k, A[0], A[1], 72, 40, 6, pop(u, 0.8), C.blueL);
@@ -242,7 +229,7 @@ MotionPrompt.pack('diagram', function () {
     }
     box(k, B[0], B[1], 72, 40, 6, pop(u, 1.6), C.blueL);
     pill(E, pop(u, 1.95), C.g3);
-    // marker: start -> A -> D -> (No) loop -> A -> D -> (Yes) -> B -> E
+    // 播放标记从起点到达 A 和 D，沿否定分支回到 A，再经 D 的肯定分支、B 到终点。
     const path = [S, A, D, [D[0], LY], [A[0], LY], A, D, B, E];
     const m = P(u, 2.6, 3.8);
     const a = Math.min(P(u, 2.5, 2.65), 1 - P(u, 3.8, 4.0));
@@ -255,8 +242,6 @@ MotionPrompt.pack('diagram', function () {
   CELLS[5] = flow;
 
   // @element 07
-  // 07 サイクル図: four steps on a ring; arrows draw one after another until the ring closes,
-  // then the highlight goes round the ring once
   function cycle(k, w, h, u) {
     bg(k, w, h);
     k.globalAlpha = fade(u);
@@ -272,7 +257,7 @@ MotionPrompt.pack('diagram', function () {
       }
       pen(k, C.blueM, 3); trace(k, pts, t, 13, C.blueM);
     }
-    // highlight going round: 2.2s -> 3.8s, 0.4s per step, soft edges
+    // 高亮从 2.2 秒开始，在 3.8 秒时走完一圈。每步持续 0.4 秒，边缘采用渐变。
     const hp = P(u, 2.2, 3.8) * n;
     for (let i = 0; i < n; i++) {
       const s = pop(u, 0.4 + i * 0.32, 0.28);
@@ -291,30 +276,25 @@ MotionPrompt.pack('diagram', function () {
   CELLS[6] = cycle;
 
   // @element 08
-  // 08 フィッシュボーン図: a spine runs right to the head (the result); slanted bones join it from above
-  // and below, each with small side bones (the causes)
   function fishbone(k, w, h, u) {
     bg(k, w, h);
     k.globalAlpha = fade(u);
     const y = h / 2, x0 = 52, x1 = 404, hx = 452;
-    // tail
     const ta = easeOut(P(u, 0.35, 0.6));
     if (ta > 0) {
       k.save(); k.globalAlpha *= ta; pen(k, C.mark, 3);
       k.beginPath(); k.moveTo(x0 - 26, y - 22); k.lineTo(x0, y); k.lineTo(x0 - 26, y + 22); k.stroke(); k.restore();
     }
-    // spine
     const sp = easeInOut(P(u, 0.45, 1.0));
     if (sp > 0) { pen(k, C.mark, 3); trace(k, [[x0, y], [x1, y]], sp, 14, C.mark); }
-    // head
     const hs = pop(u, 0.95);
     if (hs > 0.01) {
       k.save(); k.translate(hx, y); k.scale(hs, hs);
       k.fillStyle = C.blue; rr(k, -38, -28, 92, 56, 12); k.fill();
-      txt(k, '結果', 8, 1, `700 20px ${FONT}`, '#FFFFFF', 'center', 'middle');
+      txt(k, '结果', 8, 1, `700 20px ${FONT}`, '#FFFFFF', 'center', 'middle');
       k.restore();
     }
-    // big bones: root on the spine at bx, tip up-left / down-left
+    // 主鱼骨从主轴上的 bx 处连向左上或左下方。
     const bones = [[150, -1], [258, -1], [366, -1], [150, 1], [258, 1], [366, 1]];
     bones.forEach(([bx, sd], i) => {
       const a = 1.1 + (i % 3) * 0.14 + (sd > 0 ? 0.07 : 0);
@@ -322,7 +302,7 @@ MotionPrompt.pack('diagram', function () {
       if (t <= 0) return;
       const tip = [bx - 62, y + sd * 80];
       pen(k, C.blueM, 3); trace(k, [[bx, y], tip], t);
-      // small bones (horizontal, pointing left) at 1/3 and 2/3 of the bone
+      // 两条次鱼骨在主鱼骨的三分之一和三分之二处水平向左伸出。
       [0.36, 0.68].forEach((f, j) => {
         const st = easeOut(P(u, a + 0.38 + j * 0.08, a + 0.6 + j * 0.08));
         if (st <= 0) return;
@@ -335,9 +315,9 @@ MotionPrompt.pack('diagram', function () {
   CELLS[7] = fishbone;
 
   // @shared
-  // 09〜16（数字を見せるグラフ）の部品: 色を混ぜる、直線、L字の軸と目盛り線、点。軸は1周ずっと出したまま、データだけ 4.15〜4.55秒で消える
+  // 第 09 至 16 张卡片共用的坐标轴与绘图函数。坐标轴始终可见，数据在 4.15 至 4.55 秒间淡出。
   function hexRGB(c) { const n = parseInt(c.slice(1), 16); return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; }
-  function mix(a, b, t) {   // hex in, hex out
+  function mix(a, b, t) {   // 接收十六进制颜色值，返回同格式的混合结果。
     const A = hexRGB(a), B = hexRGB(b);
     return '#' + [0, 1, 2].map(i => Math.round(lerp(A[i], B[i], clamp(t))).toString(16).padStart(2, '0')).join('');
   }
@@ -348,17 +328,15 @@ MotionPrompt.pack('diagram', function () {
     k.beginPath(); k.moveTo(x0, y0); k.lineTo(x1, y1); k.stroke();
     if (dash) k.setLineDash([]);
   }
-  // L-shaped axes with a few light grid lines
   function axes(k, x0, y0, x1, y1, grid = 3) {
     for (let i = 1; i <= grid; i++) { const y = lerp(y1, y0, i / (grid + 0.4)); seg(k, x0 + 4, y, x1, y, C.g2, 2); }
     seg(k, x0, y0, x0, y1, C.g4, 2.5);
     seg(k, x0, y1, x1, y1, C.g4, 2.5);
   }
   function dot(k, x, y, r, col) { if (r <= 0.05) return; k.fillStyle = col; k.beginPath(); k.arc(x, y, r, 0, Math.PI * 2); k.fill(); }
-  const SC = { x0: 96, x1: 448, y0: 24, y1: 184 };   // plot area shared by 09 scatter and 10 bubble
+  const SC = { x0: 96, x1: 448, y0: 24, y1: 184 };   // 第 09 张散点图和第 10 张气泡图共用的绘图区。
 
   // @element 09
-  // 09 散布図: many small dots pop in from left to right, rising to the right; a dashed trend line follows
   const SCPTS = (() => {
     const r = rand(907), pts = [];
     for (let i = 0; i < 52; i++) {
@@ -374,7 +352,7 @@ MotionPrompt.pack('diagram', function () {
     const fo = dataFade(u);
     k.save(); k.globalAlpha = fo;
     const X = x => lerp(A.x0 + 10, A.x1 - 8, x), Y = y => lerp(A.y1 - 8, A.y0 + 6, y);
-    // trend line (drawn after the dots)
+    // 趋势线在散点之后绘制。
     const tl = easeInOut(P(u, 1.85, 2.5));
     if (tl > 0) {
       const xa = X(0.02), ya = Y(0.11), xb = X(0.98), yb = Y(0.83);
@@ -390,8 +368,7 @@ MotionPrompt.pack('diagram', function () {
   CELLS[8] = scatter;
 
   // @element 10
-  // 10 バブルチャート: a few semi-transparent circles of different sizes grow on the axes
-  const BB = [   // x, y (0..1 in the plot), radius px, emphasized
+  const BB = [   // 前两项为绘图区内归一化到 0 至 1 的坐标，后两项为像素半径和高亮标记。
     [0.16, 0.30, 18, 0], [0.34, 0.64, 34, 0], [0.53, 0.34, 25, 0], [0.67, 0.6, 44, 1], [0.89, 0.30, 14, 0],
   ];
   function bubble(k, w, h, u) {
@@ -415,7 +392,6 @@ MotionPrompt.pack('diagram', function () {
   CELLS[9] = bubble;
 
   // @element 11
-  // 11 ヒートマップ: a table of cells; shades of blue sweep across it like a wave
   const HM = (() => {
     const r = rand(1103), cols = 12, rows = 5, v = [];
     for (let j = 0; j < rows; j++) for (let i = 0; i < cols; i++) {
@@ -429,7 +405,7 @@ MotionPrompt.pack('diagram', function () {
     bg(k, w, h);
     const { cols, rows, v } = HM;
     const cw = 30, ch = 28, g = 4, gx = 96, gy = (h - (rows * (ch + g) - g)) / 2;
-    // row labels (short gray bars) so it reads as a table
+    // 用短灰条模拟表格的行标签。
     for (let j = 0; j < rows; j++) { rr(k, 46, gy + j * (ch + g) + ch / 2 - 4, 36, 8, 4); k.fillStyle = C.g3; k.fill(); }
     for (let j = 0; j < rows; j++) for (let i = 0; i < cols; i++) {
       const tin = 0.4 + i * 0.075 + j * 0.06;
@@ -441,7 +417,6 @@ MotionPrompt.pack('diagram', function () {
   CELLS[10] = heatmap;
 
   // @element 12
-  // 12 レーダーチャート: a spider-web scale; a gray polygon, then the blue polygon spreads out from the center
   const RA = [0.92, 0.58, 0.84, 0.4, 0.76, 0.52];
   const RB = [0.55, 0.74, 0.46, 0.72, 0.5, 0.66];
   function radarPath(k, cx, cy, R, vals, s) {
@@ -475,7 +450,7 @@ MotionPrompt.pack('diagram', function () {
       k.strokeStyle = C.g4; k.lineWidth = 2.5; k.stroke();
       k.restore();
     }
-    const qa = P(u, 0.95, 1.85), sa = lerp(easeOut(qa), easeOutBack(qa), 0.45);   // mild overshoot, stays near the web
+    const qa = P(u, 0.95, 1.85), sa = lerp(easeOut(qa), easeOutBack(qa), 0.45);
     if (sa > 0.01) {
       k.save(); k.globalAlpha = fo;
       radarPath(k, cx, cy, R, RA, sa);
@@ -491,12 +466,11 @@ MotionPrompt.pack('diagram', function () {
   CELLS[11] = radar;
 
   // @element 13
-  // 13 ゲージチャート: a half-circle meter; the needle swings past and settles at 72%
   function gauge(k, w, h, u) {
     bg(k, w, h);
     const cx = w / 2, cy = 152, R = 120, T = 30, V = 0.72;
     const t = Math.max(0, u - 0.5);
-    const s = u <= 0.5 ? 0 : 1 - Math.exp(-3.2 * t) * Math.cos(7.5 * t);   // overshoot, wobble, settle
+    const s = u <= 0.5 ? 0 : 1 - Math.exp(-3.2 * t) * Math.cos(7.5 * t);
     const f = V * s * (1 - easeInOut(P(u, 4.1, 4.5)));
     k.lineCap = 'butt';
     k.strokeStyle = C.g2; k.lineWidth = T;
@@ -505,7 +479,7 @@ MotionPrompt.pack('diagram', function () {
       k.strokeStyle = C.blue; k.lineWidth = T;
       k.beginPath(); k.arc(cx, cy, R - T / 2, Math.PI, Math.PI + Math.PI * f); k.stroke();
     }
-    for (let i = 0; i <= 10; i++) {   // ticks every 10%
+    for (let i = 0; i <= 10; i++) {
       const a = Math.PI + Math.PI * i / 10, r0 = R - T - 12, r1 = R - T - (i % 5 === 0 ? 24 : 18);
       seg(k, cx + Math.cos(a) * r0, cy + Math.sin(a) * r0, cx + Math.cos(a) * r1, cy + Math.sin(a) * r1, C.g4, 2.5);
     }
@@ -524,9 +498,8 @@ MotionPrompt.pack('diagram', function () {
   CELLS[12] = gauge;
 
   // @element 14
-  // 14 複合グラフ（棒＋折れ線）: bars on the left scale (gray ticks), a dotted line on the right scale (blue ticks)
-  const CB = [42, 55, 50, 66, 74, 88];       // bars (left scale, % of height)
-  const CL = [26, 34, 52, 46, 64, 80];       // line (right scale, % of height)
+  const CB = [42, 55, 50, 66, 74, 88];       // 柱高以左侧刻度为准，数值为绘图区高度的百分比。
+  const CL = [26, 34, 52, 46, 64, 80];       // 线上的点以右侧刻度为准，数值为绘图区高度的百分比。
   function combo(k, w, h, u) {
     bg(k, w, h);
     const floor = 186, top = 24, sc = (floor - top) / 100, x0 = 86, x1 = 452, slot = (x1 - x0) / CB.length, bw = 36;
@@ -534,7 +507,7 @@ MotionPrompt.pack('diagram', function () {
     seg(k, x0, top, x0, floor, C.g4, 2.5);
     seg(k, x1, top, x1, floor, C.blue, 2.5);
     seg(k, x0, floor, x1, floor, C.g4, 2.5);
-    for (let i = 0; i <= 4; i++) {   // two different scales: gray ticks on the left, blue ticks on the right
+    for (let i = 0; i <= 4; i++) {   // 左侧灰色刻度对应柱形，右侧蓝色刻度对应折线。
       const y = lerp(floor, top, i / 4);
       seg(k, x0 - 10, y, x0, y, C.g4, 2.5);
       seg(k, x1, y, x1 + 10, y, C.blue, 2.5);
@@ -566,8 +539,7 @@ MotionPrompt.pack('diagram', function () {
   CELLS[13] = combo;
 
   // @element 15
-  // 15 絵グラフ（ピクトグラム）: 10 people in one row pop in gray, then 3 of them turn blue and "30%" counts up
-  // faceless pictogram person (the same parts as the camera packs). x,y = feet, h = height in px. o.col: color
+  // 人物图标沿用相机包。x 和 y 是脚的位置，h 是像素高度，o.col 控制颜色。
   function person(k, x, y, h, o = {}) {
     k.save(); k.translate(x, y); const s = h / 1.8; k.scale(s, -s); if (o.lean) k.rotate(o.lean);
     k.fillStyle = o.col || C.blue;
@@ -589,12 +561,11 @@ MotionPrompt.pack('diagram', function () {
       if (i < HI) { const pc = easeInOut(P(u, 1.25 + i * 0.22, 1.5 + i * 0.22)); col = mix(C.g3, C.blue, pc); }
       person(k, xs + i * sp, foot, ph * s, { col });
     }
-    // the share, counting up while the people turn blue
     const pc = easeInOut(P(u, 1.25, 1.94));
     if (pc > 0) {
       const v = Math.round(30 * pc);
       txt(k, `${v}%`, 164, 112, `800 46px ${FONT}`, C.blue, 'right', 'middle');
-      txt(k, '10人中3人', 164, 148, `600 16px ${FONT}`, C.sub, 'right', 'middle');
+      txt(k, '10 人中有 3 人', 164, 148, `600 16px ${FONT}`, C.sub, 'right', 'middle');
     }
     seg(k, xs - 22, foot + 6, xs + (n - 1) * sp + 18, foot + 6, C.g3, 2);
     k.restore();
@@ -602,7 +573,6 @@ MotionPrompt.pack('diagram', function () {
   CELLS[14] = picto;
 
   // @element 16
-  // 16 帯グラフ（100%積み上げ）: 4 bands of the same length fill from left to right; dashed lines join the borders
   const BD = [[38, 27, 22, 13], [30, 34, 20, 16], [46, 24, 18, 12], [25, 31, 28, 16]];
   function band(k, w, h, u) {
     bg(k, w, h);
@@ -612,7 +582,7 @@ MotionPrompt.pack('diagram', function () {
     const fo = dataFade(u);
     k.save(); k.globalAlpha = fo;
     const edges = BD.map(r => { let a = 0; return r.map(v => (a += v, x0 + bwid * a / 100)); });
-    // dashed lines joining the borders of neighbouring bands (the classic 帯グラフ guide lines)
+    // 用虚线连接相邻条带的分界点。
     const pg = easeInOut(P(u, 1.6, 2.0));
     if (pg > 0) {
       k.save(); k.globalAlpha = fo * pg;
@@ -633,7 +603,7 @@ MotionPrompt.pack('diagram', function () {
         a += ww;
       });
       k.restore();
-      const pt = P(u, t0 + 0.75, t0 + 1.0);   // % on the first part of each band
+      const pt = P(u, t0 + 0.75, t0 + 1.0);
       if (pt > 0) {
         k.save(); k.globalAlpha = fo * pt;
         txt(k, `${row[0]}%`, x0 + bwid * row[0] / 200, y + bh / 2 + 1, `700 16px ${FONT}`, '#FFFFFF', 'center', 'middle');
@@ -645,9 +615,9 @@ MotionPrompt.pack('diagram', function () {
   CELLS[15] = band;
 
   // @shared
-  // 17〜24（流れと全体を見せる図）の部品: 出てくる速さ、向きを指定する矢じり
-  const appear = (u, a, d) => easeOut(P(u, a, a + d));              // 0..1 appear progress
-  function arrowTo(k, x, y, dx, dy, s, col) {                       // filled arrow head pointing along (dx,dy)
+  // 第 17 至 24 张卡片共用的入场进度和箭头函数。
+  const appear = (u, a, d) => easeOut(P(u, a, a + d));
+  function arrowTo(k, x, y, dx, dy, s, col) {                       // 绘制朝向 (dx, dy) 的实心箭头。
     const L = Math.hypot(dx, dy) || 1, ux = dx / L, uy = dy / L;
     k.fillStyle = col; k.beginPath();
     k.moveTo(x + ux * 2, y + uy * 2);
@@ -657,11 +627,9 @@ MotionPrompt.pack('diagram', function () {
   }
 
   // @element 17
-  // 17 ガントチャート: date scale on top, bars start at staggered columns and grow to the right
   function gantt(k, w, h, u) {
     bg(k, w, h);
     const x0 = 84, cols = 8, cw = 52, yAxis = 44, f = fade(u);
-    // skeleton: date scale + grid (always visible)
     for (let i = 0; i < cols; i++) txt(k, String(i + 1), x0 + cw * i + cw / 2, 34, `500 18px ${FONT}`, C.sub, 'center');
     k.strokeStyle = C.g2; k.lineWidth = 2;
     for (let i = 0; i <= cols; i++) { k.beginPath(); k.moveTo(x0 + cw * i, yAxis); k.lineTo(x0 + cw * i, 194); k.stroke(); }
@@ -683,7 +651,6 @@ MotionPrompt.pack('diagram', function () {
   CELLS[16] = gantt;
 
   // @element 18
-  // 18 タイムライン: one line drawn left to right; dots and short marks appear in order, alternating up/down
   function timeline(k, w, h, u) {
     bg(k, w, h);
     const y = 106, xa = 36, xb = 503, f = fade(u);
@@ -701,7 +668,6 @@ MotionPrompt.pack('diagram', function () {
       const pd = P(u, t0, t0 + 0.25); if (pd <= 0) return;
       const up = i % 2 === 0, last = i === XS.length - 1;
       const s = easeOutBack(pd), r = last ? 10 : 7;
-      // short stem + small card
       const ps = appear(u, t0 + 0.1, 0.3);
       const dir = up ? -1 : 1, y1 = y + dir * (r + 4), y2 = y + dir * (r + 4 + 22 * ps);
       k.strokeStyle = last ? C.blue : C.g4; k.lineWidth = 2.5;
@@ -720,7 +686,7 @@ MotionPrompt.pack('diagram', function () {
     });
     k.globalAlpha = 1;
   }
-  // time at which the line tip (easeInOut over 0.4..2.0) reaches XS[i]
+  // 反推线端到达 XS[i] 的时刻。绘制进度在 0.4 至 2 秒间按 easeInOut 变化。
   function tipT(i, XS, xa, xb) {
     const target = (XS[i] - xa) / (xb - xa);
     let lo = 0, hi = 1; for (let n = 0; n < 24; n++) { const m = (lo + hi) / 2; if (easeInOut(m) < target) lo = m; else hi = m; }
@@ -729,7 +695,6 @@ MotionPrompt.pack('diagram', function () {
   CELLS[17] = timeline;
 
   // @element 19
-  // 19 ファネル図: separate center-aligned bars, each shorter than the one above, with light funnel joints
   function funnel(k, w, h, u) {
     bg(k, w, h);
     const cx0 = w / 2, bh = 34, gap = 10, y0 = 21, f = fade(u);
@@ -739,7 +704,6 @@ MotionPrompt.pack('diagram', function () {
       const t0 = 0.4 + i * 0.36, p = appear(u, t0, 0.45);
       if (p <= 0) return;
       const y = y0 + i * (bh + gap);
-      // joint from the bar above
       if (i > 0) {
         const wa = WD[i - 1], ya = y - gap;
         k.globalAlpha = f * p * 0.8; k.fillStyle = C.g3;
@@ -760,9 +724,7 @@ MotionPrompt.pack('diagram', function () {
   CELLS[18] = funnel;
 
   // @element 20
-  // 20 カスタマージャーニーマップ: stage headers as plain boxes (columns), an action card under each,
-  // then the feeling line goes up and down across the stages, with a smile / frown mark on each point
-  const JV = [0.35, 0.7, -0.6, 0.15, 0.85];     // feeling per stage (+ up = good)
+  const JV = [0.35, 0.7, -0.6, 0.15, 0.85];     // 数值为正时，情绪曲线在中线以上。
   function face(k, x, y, r, good, col) {
     k.fillStyle = col; k.beginPath(); k.arc(x, y, r, 0, Math.PI * 2); k.fill();
     k.fillStyle = '#FFFFFF';
@@ -779,10 +741,9 @@ MotionPrompt.pack('diagram', function () {
     const f = fade(u), n = 5, xl = 22, xr = w - 22, cw = (xr - xl) / n;
     const cx = i => xl + cw * (i + 0.5);
     const yMid = 150, amp = 36;
-    // column separators and the neutral line stay as the frame
+    // 列分隔线和情绪中线始终可见。
     for (let i = 1; i < n; i++) seg(k, xl + cw * i, 14, xl + cw * i, h - 12, C.g2, 2);
     k.globalAlpha = f;
-    // stage headers: plain rounded boxes (not arrows), the stage names as short bars
     for (let i = 0; i < n; i++) {
       const p = appear(u, 0.35 + i * 0.1, 0.3);
       if (p <= 0) continue;
@@ -791,7 +752,6 @@ MotionPrompt.pack('diagram', function () {
       rr(k, cx(i) - 22, 25, 44, 5, 2.5); k.fillStyle = '#FFFFFF'; k.fill();
       k.restore();
     }
-    // action cards (what the customer does at each stage)
     for (let i = 0; i < n; i++) {
       const p = appear(u, 0.6 + i * 0.1, 0.3);
       if (p <= 0) continue;
@@ -806,7 +766,6 @@ MotionPrompt.pack('diagram', function () {
     k.globalAlpha = 1;
     seg(k, xl + 4, yMid, xr - 4, yMid, C.g3, 2, [5, 6]);
     k.globalAlpha = f;
-    // feeling line (smooth through the 5 points), drawn left to right
     const pts = JV.map((v, i) => [cx(i), yMid - v * amp]);
     const pl = easeInOut(P(u, 1.25, 2.25));
     if (pl > 0) {
@@ -830,14 +789,13 @@ MotionPrompt.pack('diagram', function () {
   CELLS[19] = journey;
 
   // @element 21
-  // 21 ツリーマップ: one outer rectangle gets filled by rectangles of different sizes, biggest first
   function treemap(k, w, h, u) {
     bg(k, w, h);
     const f = fade(u);
     const X0 = 50, Y0 = 18, X1 = 489, Y1 = 190;
     k.strokeStyle = C.g3; k.lineWidth = 2; k.setLineDash([6, 6]);
     rr(k, X0, Y0, X1 - X0, Y1 - Y0, 6); k.stroke(); k.setLineDash([]);
-    const RS = [                                  // x, y, w, h, color, label
+    const RS = [                                  // 每项为 [横坐标, 纵坐标, 宽度, 高度, 颜色, 标签]。
       [50, 18, 206, 172, C.blue, 'A'],
       [260, 18, 140, 96, C.blueM, 'B'],
       [404, 18, 85, 96, C.blueL, 'C'],
@@ -860,12 +818,10 @@ MotionPrompt.pack('diagram', function () {
   CELLS[20] = treemap;
 
   // @element 22
-  // 22 スイムレーン図: lane names on the left; boxes and arrows move across the lanes step by step
   function swimlane(k, w, h, u) {
     bg(k, w, h);
     const f = fade(u), X0 = 22, X1 = 517, HW = 62, Y0 = 13, LH = 60, NL = 3;
-    const NAMES = ['顧客', '営業', '制作'];
-    // skeleton: lanes
+    const NAMES = ['客户', '销售', '制作'];
     for (let i = 0; i < NL; i++) {
       const y = Y0 + i * LH;
       k.fillStyle = '#FFFFFF'; k.fillRect(X0 + HW, y, X1 - X0 - HW, LH);
@@ -876,13 +832,12 @@ MotionPrompt.pack('diagram', function () {
     for (let i = 1; i < NL; i++) { k.beginPath(); k.moveTo(X0, Y0 + i * LH); k.lineTo(X1, Y0 + i * LH); k.stroke(); }
     k.beginPath(); k.moveTo(X0 + HW, Y0); k.lineTo(X0 + HW, Y0 + NL * LH); k.stroke();
     rr(k, X0, Y0, X1 - X0, NL * LH, 6); k.stroke();
-    // steps
     const BX = [138, 224, 310, 396, 474], BL = [0, 1, 2, 1, 0], bw = 56, bh = 30;
     const cyOf = l => Y0 + l * LH + LH / 2;
     k.globalAlpha = f;
     for (let i = 0; i < BX.length; i++) {
       const t0 = 0.4 + i * 0.38;
-      // arrow from previous box: right, then down/up into this box
+      // 从上一框先向右画箭头，再向上或向下接入当前框。
       if (i > 0) {
         const pa = easeInOut(P(u, t0 - 0.24, t0 + 0.02));
         if (pa > 0) {
@@ -913,7 +868,6 @@ MotionPrompt.pack('diagram', function () {
   CELLS[21] = swimlane;
 
   // @element 23
-  // 23 矢羽根図（シェブロン）: arrow-shaped steps line up from left to right, each with short notes below
   function chevron(k, w, h, u) {
     bg(k, w, h);
     const f = fade(u), n = 5, cw = 104, dp = 24, gp = 6, step = cw - dp + gp;
@@ -931,7 +885,6 @@ MotionPrompt.pack('diagram', function () {
       k.closePath(); k.fill();
       const tx = x + (i > 0 ? dp : 0) / 2 + (cw - dp) / 2 + (i > 0 ? 0 : -2);
       txt(k, String(i + 1), tx + 4, ym + 1, `700 24px ${FONT}`, i === n - 1 ? '#FFFFFF' : C.mark, 'center', 'middle');
-      // short notes under each step
       const pn = P(u, t0 + 0.25, t0 + 0.55);
       if (pn > 0) {
         k.globalAlpha = f * pn; k.fillStyle = C.g3;
@@ -945,12 +898,10 @@ MotionPrompt.pack('diagram', function () {
   CELLS[22] = chevron;
 
   // @element 24
-  // 24 同心円図: circles appear one inside another around the same center (TAM > SAM > SOM)
   function concentric(k, w, h, u) {
     bg(k, w, h);
     const f = fade(u), cx0 = w / 2, cy0 = h / 2 + 2;
     const RR = [91, 61, 31], COL = [C.blueL, C.blueM, C.blue], LB = ['TAM', 'SAM', 'SOM'];
-    // skeleton: faint outer ring guide
     k.strokeStyle = C.g2; k.lineWidth = 2; k.beginPath(); k.arc(cx0, cy0, RR[0], 0, 7); k.stroke();
     k.globalAlpha = f;
     RR.forEach((r, i) => {

@@ -20,7 +20,6 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 18
-// 18 マッチカット（投げたボール → 同じ位置・大きさの太陽）
 CELLS[17] = shot((k, w, h, u) => {
   const cut = 2.3;
   const BX = 120, BY = -46, BR = 17;
@@ -37,8 +36,7 @@ CELLS[17] = shot((k, w, h, u) => {
       after: (kk) => { kk.fillStyle = C.blue; kk.beginPath(); kk.arc(BX, BY + q * 14, BR, 0, 7); kk.fill(); }
     });
   }
-  // 形がそろっていることを示す点線の円
   const g = Math.max(0, 1 - Math.abs(u - cut) / 0.7);
   if (g > 0) { k.save(); k.translate(w / 2, h / 2); k.globalAlpha = g; k.strokeStyle = C.blue; k.lineWidth = 2; k.setLineDash([5, 4]); k.beginPath(); k.arc(BX, BY + (u > cut ? P(u, cut, CYC) * 14 : 0), BR + 9, 0, 7); k.stroke(); k.restore(); }
-  return u < cut ? 'SHOT 1' : 'SHOT 2';
+  return u < cut ? '镜头 1' : '镜头 2';
 });

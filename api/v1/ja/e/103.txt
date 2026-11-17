@@ -20,7 +20,6 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 07
-// ゴールデンアワー: 太陽が地平線近くまで下り、全体が橙に染まって影が長く伸びる
 CELLS[6] = cell((k, u) => {
   const a = env(u), R = PR, W = torsoW(R);
   const GOLD = {

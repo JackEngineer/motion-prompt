@@ -18,12 +18,11 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 13
-// 13 ゲージチャート: a half-circle meter; the needle swings past and settles at 72%
 function gauge(k, w, h, u) {
   bg(k, w, h);
   const cx = w / 2, cy = 152, R = 120, T = 30, V = 0.72;
   const t = Math.max(0, u - 0.5);
-  const s = u <= 0.5 ? 0 : 1 - Math.exp(-3.2 * t) * Math.cos(7.5 * t);   // overshoot, wobble, settle
+  const s = u <= 0.5 ? 0 : 1 - Math.exp(-3.2 * t) * Math.cos(7.5 * t);
   const f = V * s * (1 - easeInOut(P(u, 4.1, 4.5)));
   k.lineCap = 'butt';
   k.strokeStyle = C.g2; k.lineWidth = T;
@@ -32,7 +31,7 @@ function gauge(k, w, h, u) {
     k.strokeStyle = C.blue; k.lineWidth = T;
     k.beginPath(); k.arc(cx, cy, R - T / 2, Math.PI, Math.PI + Math.PI * f); k.stroke();
   }
-  for (let i = 0; i <= 10; i++) {   // ticks every 10%
+  for (let i = 0; i <= 10; i++) {
     const a = Math.PI + Math.PI * i / 10, r0 = R - T - 12, r1 = R - T - (i % 5 === 0 ? 24 : 18);
     seg(k, cx + Math.cos(a) * r0, cy + Math.sin(a) * r0, cx + Math.cos(a) * r1, cy + Math.sin(a) * r1, C.g4, 2.5);
   }

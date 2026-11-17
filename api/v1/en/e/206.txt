@@ -17,5 +17,4 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 14
-// 重ね切り絵: 色紙を切って重ね、段差の影で奥行き
 CELLS[13] = (k, w, h, u) => gafu(k, w, h, u, '14');

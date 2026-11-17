@@ -1,6 +1,6 @@
 # Motion Prompt
 
-[English](README.md) | **日本語**
+[English](README.en.md) | **日本語** | [简体中文](README.zh-Hans.md)
 
 AIに何かを作ってもらうときに使う「名前」のライブラリです。名前の1つずつに、動く見本・一言の意味・AIへの頼み方の例が付いています。いま入っているのは、モーショングラフィックスの動き（`motion`）、カメラワーク（`camera`）、UIパーツの名前（`ui`）、LP・Webサイトの演出（`lp`）、写真の表現・光と画風（`photo`）、モーショングラフィックスの演出 第2弾（`motion2`）、LP・Webサイトの演出 第2弾（`lp2`）、カメラワークと切り替え 第2弾（`camera2`）、画像生成で使う画風の名前（`artstyle`）、資料で使う図解・グラフの名前（`diagram`）の10種類で、それぞれ24個、合わせて240個です。同じような名前の見本を、自分の分野・自分の言語で作るためのプロンプトも入っています。
 
@@ -8,9 +8,9 @@ AIに何かを作ってもらうときに使う「名前」のライブラリで
 |---|---|
 | ![モーショングラフィックスの名前 01–08](assets/preview-motion.gif) | ![カメラワークの名前 01–08](assets/preview-camera.gif) |
 
-- ギャラリー（全部の見本が動きます）: https://showheyohtaki.github.io/motion-prompt/
+- [オリジナルのギャラリー（英語・日本語）](https://showheyohtaki.github.io/motion-prompt/)
 - GitHub の上でそのまま読める名前の一覧: [`packs/`](packs/README.md)
-- 名前と見本を公開しているほかの人たちの事例（X のポストの埋め込みとリンク）: https://showheyohtaki.github.io/motion-prompt/found.html
+- [オリジナルの事例一覧](https://showheyohtaki.github.io/motion-prompt/found.html)
 
 ## なぜ作ったか
 
@@ -39,7 +39,7 @@ AIに何かを作ってもらうときに使う「名前」のライブラリで
 | 193–216 | `artstyle`: 画像生成で使う画風の名前 | 24 | [日本語](packs/artstyle/README.ja.md) · [English](packs/artstyle/README.md) · [Español](packs/artstyle/README.es.md) · [简体中文](packs/artstyle/README.zh-Hans.md) · [繁體中文](packs/artstyle/README.zh-Hant.md) |
 | 217–240 | `diagram`: 資料で使う図解・グラフの名前 | 24 | [日本語](packs/diagram/README.ja.md) · [English](packs/diagram/README.md) · [Español](packs/diagram/README.es.md) · [简体中文](packs/diagram/README.zh-Hans.md) · [繁體中文](packs/diagram/README.zh-Hant.md) |
 
-一覧には、番号・名前・英語名・一言の意味・AIへの頼み方の例が並んでいます。一覧は日本語・英語・スペイン語・中国語（簡体字・繁体字）で読めます（ギャラリーの画面は日本語と英語）。同じ名前が[ギャラリー](https://showheyohtaki.github.io/motion-prompt/)で動きます。
+一覧には、番号・名前・英語名・一言の意味・AIへの頼み方の例が並んでいます。一覧は日本語・英語・スペイン語・中国語（簡体字・繁体字）で読めます（手元のギャラリーは簡体字・日本語・英語に対応）。同じ名前が[ギャラリー](https://showheyohtaki.github.io/motion-prompt/)で動きます。
 
 パックごとに見た目が違います。モーショングラフィックス（第1弾・第2弾）は濃紺に4色、カメラワーク（第1弾・第2弾）は薄いグレーに青1色です。UIパーツは温かみのある白に黒と青1色で、カーソルが触れると部品が動きます。LP・Webサイトの演出（第1弾・第2弾）は、薄いグレーの机の上に白いブラウザの窓を描き、差し色は朱、ページの中の写真には青を使います。写真の表現には共通の色がなく、カードごとにその場面の色で描き、効果がかかっては戻るので前後を見比べられます。画風の名前だけは図形で描かず、同じ下絵を画像生成AIに渡してそれぞれの画風で描き直させた画像を使い、下絵から斜めのワイプで切り替えています。図解・グラフの名前は、薄いグレーの地にグレーと3段の青だけの平面で、図やグラフが少しずつ組み上がり、止まってから消えます。わざとそうしています。パックがそろえるべきなのは名前であって、決まった見た目ではありません。
 
@@ -49,15 +49,13 @@ AIに何かを作ってもらうときに使う「名前」のライブラリで
 
 Claude Code や Codex に `motion-prompt` スキルを入れると、AIに頼むだけでこのギャラリーが開きます。名前や番号を覚えていなくてかまいません。分からないときに、辞書を引くように出してもらう使い方です。
 
-```sh
-npx skills add showheyohtaki/motion-prompt
-```
+先に[スキルを導入](#入れ方)します。
 
 1. AIに頼みます。
    ```text
    motion-prompt のライブラリ出して
    ```
-2. ブラウザでギャラリーが開きます。使いたい見本の「選ぶ」を押します。いくつでも選べます。画面の下のメモ欄に「冒頭のタイトルに」のような一言も書けます。
+2. ブラウザでギャラリーが開きます。使いたい見本の「選ぶ」を押します。一度に 60 個まで選べます。画面の下のメモ欄に「冒頭のタイトルに」のような一言も書けます。
 3. 「AIに渡す」を押すと、選んだ物がAIに届きます。AIの画面に戻って、どうしたいかを伝えます。
    ```text
    この動画の冒頭をこんな感じに編集して
@@ -81,7 +79,7 @@ motion-prompt スキルで #012 と #045 を使って、このサービス紹介
 motion-prompt の #032 のカメラワークを、Veo に渡す英語のプロンプトにしてください。被写体は机の上のコーヒーカップです。
 ```
 
-ほかの入れ方と、AI が何をするかは、下の[スキルの説明](#スキルの説明)にあります。
+操作の詳細は下の[スキルの説明](#スキルの説明)を参照してください。
 
 ### 2. 名前を調べて、そのままAIに頼む
 
@@ -129,26 +127,7 @@ Node.js 18 以上が必要です。
 
 ### 入れ方
 
-**プロンプトで入れる。** Claude Code や Codex に、次の文を貼ります。
-
-```text
-https://github.com/showheyohtaki/motion-prompt を読んで、motion-prompt スキルをこの環境に入れてください。入れたら、使い方を3行で教えてください。
-```
-
-**コマンドで入れる。** Agent Skills に対応したエージェント（Claude Code、Codex など）で使えます。
-
-```sh
-npx skills add showheyohtaki/motion-prompt
-```
-
-**Claude Code のプラグインとして入れる。**
-
-```text
-/plugin marketplace add showheyohtaki/motion-prompt
-/plugin install motion-prompt@motion-prompt
-```
-
-**手でコピーする。** `skills/motion-prompt` フォルダを、次のどれかにコピーします。
+手元の作業コピーから `skills/motion-prompt/` フォルダごとコピーします。オフライン実行に必要な `runtime/` も一緒にコピーしてください。フォークのソースは [JackEngineer/motion-prompt](https://github.com/JackEngineer/motion-prompt) にあります。
 
 | 置き場所 | 対象 |
 |---|---|
@@ -157,32 +136,18 @@ npx skills add showheyohtaki/motion-prompt
 | プロジェクトの `.claude/skills/` | Claude Code（そのプロジェクトだけ） |
 | プロジェクトの `.agents/skills/` | Codex など（そのプロジェクトだけ） |
 
-### エージェント向けの導入手順
+Codex を使うプロジェクトのルートで、コピー元のパスを置き換えて次を実行します。Claude Code の場合は `.claude/skills/` を使用します。
 
-この節は、上の「プロンプトで入れる」の文を受け取った AI エージェントが読む手順です。
+```sh
+repo=/path/to/motion-prompt
+mkdir -p .agents/skills
+cp -R "$repo/skills/motion-prompt" .agents/skills/
+node .agents/skills/motion-prompt/scripts/motion-prompt.mjs info
+node .agents/skills/motion-prompt/scripts/motion-prompt.mjs get 001 --lang ja
+node .agents/skills/motion-prompt/scripts/motion-prompt.mjs prompt 001 --lang ja
+```
 
-1. `node --version` で Node.js 18 以上が使えることを確かめます。
-2. 利用者のプロジェクトのフォルダで、次を実行します。どのエージェントに入れるか聞かれたら、いま動いている自分自身を選びます。
-   ```sh
-   npx skills add showheyohtaki/motion-prompt -y
-   ```
-3. 2 が使えない場合は、リポジトリを取得してフォルダをコピーします。コピー先は、自分が Claude Code なら `.claude/skills/`、それ以外なら `.agents/skills/` です（全プロジェクトで使うなら `~/.claude/skills/` または `~/.agents/skills/`）。
-   ```sh
-   git clone --depth 1 https://github.com/showheyohtaki/motion-prompt.git /tmp/motion-prompt
-   mkdir -p .claude/skills
-   cp -R /tmp/motion-prompt/skills/motion-prompt .claude/skills/
-   ```
-4. 入ったことを確かめます。`<skill-dir>` は `SKILL.md` があるフォルダです。取得元と要素の件数が表示されれば成功です。
-   ```sh
-   node <skill-dir>/scripts/motion-prompt.mjs info
-   ```
-   終了コード 3 は、データの取得元に届いていないという意味です。ネットワークの許可を得てもう一度実行してください。
-5. `<skill-dir>/SKILL.md` を読み、利用者に使い方を 3 行で伝えます。例:
-   - 「motion-prompt のライブラリ出して」と言うと、ギャラリーが開きます。使いたい物の「選ぶ」を押して、「AIに渡す」を押してください。
-   - 渡したあとは「この動画の冒頭をこんな感じに編集して」のように、どうしたいかを伝えてください。
-   - 番号が分かっていれば、「#012 と #045 を使って」と直接頼むこともできます。
-
-既存の設定ファイルやほかのスキルは変更しないでください。
+`pick --lang ja` で日本語のギャラリーを開き、選んだ項目を送信できます。既定の表示言語は簡体字中国語です。
 
 ### AI がすること
 
@@ -202,32 +167,29 @@ AI は次の順に進めます。
 - 色・寸法・周期・共通の補助関数は、パックごとの「kit」にまとまっています。要素を使うときは、そのパックの kit も一緒に読み込みます。
 - 外部ライブラリは使っていません。
 
-スキルの中身は、`SKILL.md`、移植の手引き（`references/porting.md`）、依存なしの小さな CLI（`scripts/motion-prompt.mjs`）です。
+スキルには[エントリーポイント（簡体字）](skills/motion-prompt/SKILL.md)、[移植ガイド（英語）](skills/motion-prompt/references/porting.md)、Node.js CLI とオフライン用の `runtime/` があります。
 
 | コマンド | 内容 |
 |---|---|
 | `pick` / `pick --pack camera` | ギャラリーを開き、「AIに渡す」で届いた選択（番号・名前・仕様・メモ）を表示する。最大15分待つ |
 | `search typewriter text` / `search 文字 登場` | 場面に合う要素を探す（英語・日本語） |
 | `list` / `list --pack motion` | パックとカテゴリの一覧、または 1 パックの全要素 |
-| `get 12 #045` | 選んだ要素の仕様とコード（1 回に 8 個まで） |
+| `get 12 045` | 選んだ要素の仕様とコード（1 回に 8 個まで） |
 | `kit motion` | そのパックの共通コード |
 | `prompt 12` | その要素のコピー用プロンプト |
 | `info` | 取得元・件数・版・キャッシュの場所 |
 
-データは静的ファイルで、次の場所から読みます。CLI はこれらを取得するだけで、あなたのプロジェクトの情報を送信しません。`pick` は手元（127.0.0.1）に一時的な受け口を開き、ギャラリーの「AIに渡す」から、選んだ番号とメモだけを受け取ります。
-
-1. `https://showheyohtaki.github.io/motion-prompt/api/v1/`
-2. 1 に届かないとき: `https://raw.githubusercontent.com/showheyohtaki/motion-prompt/main/api/v1/`
+CLI は作業コピーまたはスキルの `runtime/` にある静的ファイルを読みます。`pick` は `127.0.0.1` で一時的なギャラリーを開き、選ばれた番号とメモを受け取ります。
 
 | ファイル | 内容 |
 |---|---|
 | `catalog.json` | 版、件数、パック、全要素の名前・一言の意味・要約・仕様・タグ |
-| `{ja,en}/catalog.tsv` | 1 行 1 要素の一覧（id、pack、category、title、tags、summary） |
-| `{ja,en}/e/{id}.txt` | 要素 1 個: ライセンス行、説明、仕様、コード |
-| `{ja,en}/p/{id}.txt` | 要素 1 個のコピー用プロンプト |
+| `{ja,en,zh-Hans}/catalog.tsv` | 1 行 1 要素の一覧（id、pack、category、title、tags、summary） |
+| `{ja,en,zh-Hans}/e/{id}.txt` | 要素 1 個: ライセンス行、説明、仕様、コード |
+| `{ja,en,zh-Hans}/p/{id}.txt` | 要素 1 個のコピー用プロンプト |
 | `kit/{pack}.js` | パックの共通コード |
 
-このリポジトリを丸ごと clone して使う場合、CLI は手元の `api/v1` を優先して読むので、ネットワークは不要です。取得したデータはディスクに保存され、取得元に届かないときは保存済みの分を使います。
+`MOTION_PROMPT_BASE` で別の API を指定できます。`pick` には、指定した API に対応するローカルのギャラリーファイルが必要です。
 
 | 環境変数 | 既定 |
 |---|---|
@@ -238,12 +200,11 @@ AI は次の順に進めます。
 ### ギャラリーを手元で動かす
 
 ```sh
-git clone https://github.com/showheyohtaki/motion-prompt.git
-cd motion-prompt
-python3 -m http.server 8000
+cd /path/to/motion-prompt
+python3 -m http.server 8765 --bind 127.0.0.1
 ```
 
-ブラウザで `http://localhost:8000/` を開くと、ギャラリー（`index.html`）が表示されます。clone したリポジトリでは、`node skills/motion-prompt/scripts/motion-prompt.mjs pick --local` で、手元のギャラリーを開いて選ぶこともできます。ファイルの形式は [FORMAT.md](FORMAT.md) に書いてあります。
+`http://127.0.0.1:8765/?lang=ja` で日本語のギャラリーが表示されます。選んだ項目を CLI に送るには `node skills/motion-prompt/scripts/motion-prompt.mjs pick --lang ja` を実行します。ファイル形式は[仕様（英語）](FORMAT.md)を参照してください。
 
 ## ライセンス
 

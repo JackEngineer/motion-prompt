@@ -18,16 +18,15 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 22
-// 22 マーキー（文字の帯が、途切れずに横へ流れ続ける）
 CELLS[21] = (k, w, h, u) => {
   frame(k);
-  const WORDS = ['WEB DESIGN', 'BRANDING', 'MOTION', 'UI/UX'], F = `800 30px ${EN}`, GAPW = 64;
+  const WORDS = ['网页设计', '品牌设计', '动态设计', '界面与体验'], F = `800 30px ${EN}`, GAPW = 64;
   view(k, () => {
     bars(k, 34, 20, 180, 1, C.ink, 10); bars(k, 34, 38, 300, 1);
     k.fillStyle = C.ink; k.fillRect(0, 58, VW, 58);
     k.font = F; k.letterSpacing = '1px'; const ws = WORDS.map(s => k.measureText(s).width); k.letterSpacing = '0px';
     const unit = ws.reduce((a, b) => a + b + GAPW, 0);
-    let x = -mod(u / CYC, 1) * unit;                 // 1周期で1組ぶん左へ
+    let x = -mod(u / CYC, 1) * unit;                 // 每轮向左滚动一组内容的宽度。
     for (let rep = 0; x < VW; rep++) WORDS.forEach((s, i) => {
       txt(k, s, x, 88, F, '#fff', 'left', 'middle', '1px');
       k.fillStyle = C.acc; k.beginPath(); k.arc(x + ws[i] + GAPW / 2, 88, 6, 0, 7); k.fill();

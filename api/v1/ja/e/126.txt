@@ -18,14 +18,12 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 06
-// 06 モーションパス（点線の道に沿って、紙飛行機が向きを変えながら進む）
 const MPX = th => 270 + 112 * th - 150 * Math.sin(th), MPY = th => 106 - 74 * Math.cos(th);
 const MP = (() => { const pts = []; for (let i = 0; i <= 400; i++) { const th = -Math.PI + 2 * Math.PI * i / 400; pts.push([MPX(th), MPY(th)]); } return pts; })();
 CELLS[5] = (k, w, h, u) => {
   stage(k);
   k.save(); k.setLineDash([2, 15]); k.lineCap = 'round'; k.strokeStyle = C.dim; k.lineWidth = 6; k.beginPath(); MP.forEach((p, i) => i ? k.lineTo(p[0], p[1]) : k.moveTo(p[0], p[1])); k.stroke(); k.restore();
   const th = -Math.PI + 2 * Math.PI * (u / CYC);
-  // 通ったあとの線
   k.lineCap = 'round';
   for (let j = 0; j < 24; j++) { const a = th - j * 0.03, b = th - (j + 1) * 0.03; k.strokeStyle = C.mint; k.globalAlpha = 0.9 * (1 - j / 24); k.lineWidth = 7 * (1 - j / 30); k.beginPath(); k.moveTo(MPX(a), MPY(a)); k.lineTo(MPX(b), MPY(b)); k.stroke(); }
   k.globalAlpha = 1;

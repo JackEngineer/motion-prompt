@@ -1,4 +1,4 @@
-「スクロールプログレスバー（Scroll progress bar）」を使ってください。「LP・Webサイトの演出」の名前の1つです。
+「スクロールプログレスバー（英文名：Scroll progress bar）」を使ってください。「LP・Webサイトの演出」の名前の1つです。
 Motion Prompt #079
 
 どういうものか: 読み進めた割合を上の線で見せる
@@ -10,6 +10,6 @@ Motion Prompt #079
 - 伸びる幅 = 511px × スクロール量 / 430（スクロールの割合そのまま。CSS の animation-timeline: scroll() と同じ）
 使いどころ: 長い記事やコラムで、あとどれくらいで読み終わるかを伝えたいとき。
 
-参考実装（Canvas 2D・時刻だけで絵が決まる関数）: https://showheyohtaki.github.io/motion-prompt/api/v1/ja/e/079.txt
-共通の補助コード: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/lp.js
+参考実装（Canvas 2D・時刻だけで絵が決まる関数）: ../e/079.txt
+共通の補助コード: ../../kit/lp.js
 参考実装の形・タイミング・イージングの数値はそのまま使い、中の文字・色・素材だけ、いま作っている物に合わせてください。

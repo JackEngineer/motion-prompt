@@ -20,16 +20,14 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 13
-// レンズフレア: 建物の陰から太陽が出ると、画面の中心をはさんで反対側へ光の玉が並ぶ
 CELLS[12] = cell((k, u) => {
   const a = env(u), sx = lerp(428, 474, a), sy = lerp(74, 30, a);
   stageStreet(k, BASE, { sun: [sx, sy, 13, 1] });
   const cx = CW / 2, cy = CH / 2, dx = cx - sx, dy = cy - sy;
   k.save();
-  // 太陽の光の筋
   k.globalAlpha = 0.75 * a; k.strokeStyle = BASE.lit; k.lineWidth = 1.6; k.lineCap = 'round';
   for (let i = 0; i < 8; i++) { const t = i / 8 * TAU + 0.2, L = i % 2 ? 26 : 44; k.beginPath(); k.moveTo(sx + Math.cos(t) * 17, sy + Math.sin(t) * 17); k.lineTo(sx + Math.cos(t) * L, sy + Math.sin(t) * L); k.stroke(); }
-  // 光の玉: 太陽から中心を通る線の上（t = 0.45〜2.0）
+  // 光斑沿太阳与画面中心的连线分布，t 的取值范围为 0.45 至 2。
   const G = [[0.45, 7, 'c', 0.6], [0.8, 13, 'h', 0.55], [1.15, 5, 'c', 0.7], [1.45, 22, 'h', 0.4], [1.75, 9, 'c', 0.55], [2.0, 30, 'r', 0.55]];
   for (const [t, r, kind, al] of G) {
     const x = sx + dx * t, y = sy + dy * t;

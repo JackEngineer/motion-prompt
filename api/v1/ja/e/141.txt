@@ -17,7 +17,6 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 21
-// 21 ピクセレート（画面がだんだん粗いモザイクになり、いちばん粗いところで切り替わって細かく戻る）
 const SMC = mkCanvas(CW, CH), SMK = SMC.getContext('2d');
 const BLV = [1, 2, 3, 4, 6, 8, 11, 15, 20, 27, 36];
 CELLS[20] = abCell((k, w, h, u, a, b) => {

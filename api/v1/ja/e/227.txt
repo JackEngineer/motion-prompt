@@ -19,7 +19,6 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 11
-// 11 ヒートマップ: a table of cells; shades of blue sweep across it like a wave
 const HM = (() => {
   const r = rand(1103), cols = 12, rows = 5, v = [];
   for (let j = 0; j < rows; j++) for (let i = 0; i < cols; i++) {
@@ -33,7 +32,7 @@ function heatmap(k, w, h, u) {
   bg(k, w, h);
   const { cols, rows, v } = HM;
   const cw = 30, ch = 28, g = 4, gx = 96, gy = (h - (rows * (ch + g) - g)) / 2;
-  // row labels (short gray bars) so it reads as a table
+  // 用短灰条模拟表格的行标签。
   for (let j = 0; j < rows; j++) { rr(k, 46, gy + j * (ch + g) + ch / 2 - 4, 36, 8, 4); k.fillStyle = C.g3; k.fill(); }
   for (let j = 0; j < rows; j++) for (let i = 0; i < cols; i++) {
     const tin = 0.4 + i * 0.075 + j * 0.06;

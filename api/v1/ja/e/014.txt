@@ -19,7 +19,6 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 14
-// 14 モーショントレイル（動いた跡に、残像が尾を引く）
 CELLS[13] = (k, w, h, u) => {
   stage(k);
   const X = w / 2, Y = h / 2 + 2, A = 196, B = 62, th = u / CYC * Math.PI * 2;

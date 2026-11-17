@@ -1,33 +1,34 @@
 // Motion Prompt #121-144 · MIT License (c) 2026 Shohei Ohtaki · https://showheyohtaki.github.io/motion-prompt/#121
 //
-// Kit for pack "motion2" (Motion graphics moves, part 2 / モーショングラフィックスの演出 第2弾): the constants and helpers its elements share.
-// Elements #121-144 · 539x208 px · cycle 4.7 s. Element code: https://showheyohtaki.github.io/motion-prompt/api/v1/en/e/<id>.txt (or /ja/).
+// 以下为素材包 "motion2"（动态图形（第 2 弹））各元素共用的常量和辅助函数。
+// 元素 #121-144 · 539x208 px · 循环时长 4.7 秒
+// 元素代码（简体中文）：../zh-Hans/e/<id>.txt（相对于本辅助代码文件）
+// 其他语言：../en/e/<id>.txt（英文）、../ja/e/<id>.txt（日文）
 //
-// Run one element standalone in a browser:
-//   1. paste this file into a <script>,
-//   2. paste the element code below it (it assigns CELLS[n - 1], n = the element number inside the pack),
-//   3. then add:
+// 在浏览器中单独运行一个元素：
+//   1. 将本文件内容粘贴到 <script> 中。
+//   2. 在其后粘贴元素代码。元素代码会设置 CELLS[n - 1]，其中 n 是元素在素材包内的编号。
+//   3. 接着添加以下代码。
 //        const c = document.createElement('canvas'); c.width = 539; c.height = 208; document.body.append(c);
 //        const k = c.getContext('2d'), cell = CELLS.find(Boolean), t0 = performance.now();
 //        (function loop() {
-//          const u = ((performance.now() - t0) / 1000) % 4.7;   // seconds, 0 <= u < 4.7
+//          const u = ((performance.now() - t0) / 1000) % 4.7;   // 单位为秒，0 <= u < 4.7
 //          k.setTransform(1, 0, 0, 1, 0, 0); k.clearRect(0, 0, 539, 208);
 //          k.save(); cell(k, 539, 208, u); k.restore();
 //          requestAnimationFrame(loop);
 //        })();
-// Every cell is a pure function of u, so the same call renders video frames: u = frame / fps.
+// 各元素的画面只取决于 u，因此可用同一个函数渲染视频帧。将 u 设为 frame / fps。
 
 // @kit
-// モーショングラフィックスの演出の名前 第2弾 24（各カード 539x208・4.7秒周期。各コマは時間 u の純関数）
-// カードの中だけ共通パレット（濃紺の地＋青・コーラル・黄・ミント）。第1弾（motion）と同じ見た目。
+// 每张卡片为 539 × 208 像素，循环时长为 4.7 秒。每帧仅由时间 u 决定。
 const CW = 539, CH = 208;
-const CYC = 4.7;                          // 各カードは4.7秒周期（ループの継ぎ目なし）
+const CYC = 4.7;
 const C = {
   navy: '#0F1A3D', navy2: '#1B2A5E', navy3: '#2A3D80', dim: '#7F90C4',
   blue: '#3B7BFF', coral: '#FF6B5C', yel: '#FFC83D', mint: '#2EDBA8', white: '#FFFFFF', cream: '#FFF1D6'
 };
 const PAL = [C.blue, C.coral, C.yel, C.mint];
-const JP = '"Hiragino Sans", "Hiragino Kaku Gothic ProN", sans-serif';
+const JP = '"PingFang SC","Hiragino Sans", "Hiragino Kaku Gothic ProN", sans-serif';
 const DISP = '"Avenir Next", "Helvetica Neue", system-ui, sans-serif';
 const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
 const lerp = (a, b, x) => a + (b - a) * x;
@@ -41,7 +42,7 @@ const smooth = x => x * x * (3 - 2 * x);
 const mod = (a, n) => ((a % n) + n) % n;
 const backOut = (x, s = 1.70158) => 1 + (s + 1) * Math.pow(x - 1, 3) + s * Math.pow(x - 1, 2);
 const backIn = (x, s = 1.70158) => (s + 1) * x * x * x - s * x * x;
-const spring = (t, w = 14, d = 7) => t <= 0 ? 0 : 1 - Math.exp(-d * t) * Math.cos(w * t);   // 0→行き過ぎ→1
+const spring = (t, w = 14, d = 7) => t <= 0 ? 0 : 1 - Math.exp(-d * t) * Math.cos(w * t);   // 从 0 开始，越过 1 后回到 1。
 function mkCanvas(w, h) { const c = document.createElement('canvas'); c.width = w; c.height = h; return c; }
 function rr(ctx, x, y, w, h, r) { ctx.beginPath(); ctx.roundRect(x, y, w, h, r); }
 function txt(ctx, s, x, y, font, col, align = 'left', base = 'alphabetic', ls = '0px') {
@@ -53,8 +54,8 @@ function hex(c) { return [parseInt(c.slice(1, 3), 16), parseInt(c.slice(3, 5), 1
 function mix(a, b, t) { const A = hex(a), B = hex(b); return `rgb(${Math.round(lerp(A[0], B[0], t))},${Math.round(lerp(A[1], B[1], t))},${Math.round(lerp(A[2], B[2], t))})`; }
 function star(k, x, y, R, rot = 0, inner = 0.5, n = 5) { k.beginPath(); for (let i = 0; i < n * 2; i++) { const r = i % 2 ? R * inner : R, a = rot - Math.PI / 2 + i * Math.PI / n; const px = x + Math.cos(a) * r, py = y + Math.sin(a) * r; i ? k.lineTo(px, py) : k.moveTo(px, py); } k.closePath(); }
 function heartPath(k, s) { k.beginPath(); k.moveTo(0, s * 0.92); k.bezierCurveTo(-s * 1.75, -s * 0.12, -s * 0.85, -s * 1.2, 0, -s * 0.42); k.bezierCurveTo(s * 0.85, -s * 1.2, s * 1.75, -s * 0.12, 0, s * 0.92); k.closePath(); }
-// 整数→0..1 の決まった乱数（コマ番号ごとの揺れ・入れ替わりに使う。描画時の Math.random は使わない）
-// 浮動小数の誤差で周期の終わり（4.6999…）と始まり（0）が別のコマ扱いになるのを防ぐ
+// 用整数生成 0 至 1 之间的可复现随机数，供逐帧抖动和切换使用。
+// 避免浮点误差使循环末尾的 4.6999… 与开头的 0 落在不同帧。
 const snapU = u => mod(Math.round(u * 1e6) / 1e6, CYC);
 function H01(n) { n = Math.imul((n | 0) ^ 0x9e3779b9, 0x85ebca6b); n ^= n >>> 13; n = Math.imul(n, 0xc2b2ae35); n ^= n >>> 16; return (n >>> 0) / 4294967296; }
 const TMP = mkCanvas(CW, CH), TK = TMP.getContext('2d');
@@ -65,13 +66,13 @@ function ptAt(pts, cum, f) { const L = cum[cum.length - 1] * clamp(f); let i = 1
 const CELLS = [];
 
 // @shared
-// 場面（昼・夜・海・山・街・野原）。同じ絵柄がそろわないよう、カードごとに組み合わせを変える
+// 各张转场卡片采用不同的场景组合，避免相邻卡片出现同样的画面。
 const SUN = [112, 104], MOON = [CW - 112, 104];
 function scrA(k, w, h) {
   k.fillStyle = C.cream; k.fillRect(0, 0, w, h);
   k.fillStyle = '#FFD9A8'; k.beginPath(); k.arc(SUN[0], SUN[1], 66, 0, 7); k.fill();
   k.fillStyle = C.coral; k.beginPath(); k.arc(SUN[0], SUN[1], 44, 0, 7); k.fill();
-  txt(k, 'DAY', 214, h / 2 + 4, `800 96px ${DISP}`, C.navy, 'left', 'middle', '2px');
+  txt(k, '白天', 214, h / 2 + 4, `800 96px ${DISP}`, C.navy, 'left', 'middle', '2px');
   k.fillStyle = '#fff'; rr(k, 400, 34, 96, 26, 13); k.fill(); rr(k, 430, 20, 50, 26, 13); k.fill();
 }
 function scrB(k, w, h) {
@@ -79,7 +80,7 @@ function scrB(k, w, h) {
   k.fillStyle = '#fff';[[40, 30, 3], [150, 170, 2.5], [250, 24, 2.5], [330, 180, 3], [500, 30, 2.5], [20, 150, 2]].forEach(s => { k.beginPath(); k.arc(s[0], s[1], s[2], 0, 7); k.fill(); });
   k.fillStyle = C.yel; k.beginPath(); k.arc(MOON[0], MOON[1], 46, 0, 7); k.fill();
   k.fillStyle = '#16255A'; k.beginPath(); k.arc(MOON[0] + 22, MOON[1] - 14, 38, 0, 7); k.fill();
-  txt(k, 'NIGHT', 40, h / 2 + 4, `800 88px ${DISP}`, '#fff', 'left', 'middle', '1px');
+  txt(k, '夜晚', 40, h / 2 + 4, `800 88px ${DISP}`, '#fff', 'left', 'middle', '1px');
 }
 function clipX(k, x0, x1, h) { k.beginPath(); k.rect(x0, 0, x1 - x0, h); k.clip(); }
 function pnSea(k, x0, x1, h, t, label) {
@@ -92,7 +93,7 @@ function pnSea(k, x0, x1, h, t, label) {
   const bx = c + 26 * Math.sin(2 * Math.PI * t / CYC) + (label ? 110 : 0), by = 124 + 3 * Math.sin(2 * Math.PI * 3 * t / CYC);
   k.fillStyle = '#fff'; k.beginPath(); k.moveTo(bx, by - 62); k.lineTo(bx, by - 8); k.lineTo(bx + 42, by - 8); k.closePath(); k.fill();
   k.fillStyle = C.coral; k.beginPath(); k.moveTo(bx - 40, by - 4); k.lineTo(bx + 50, by - 4); k.lineTo(bx + 36, by + 14); k.lineTo(bx - 28, by + 14); k.closePath(); k.fill();
-  if (label) txt(k, 'SEA', x0 + 30, 82, `800 76px ${DISP}`, C.navy, 'left', 'middle', '2px');
+  if (label) txt(k, '海边', x0 + 30, 82, `800 76px ${DISP}`, C.navy, 'left', 'middle', '2px');
   k.restore();
 }
 function pnMtn(k, x0, x1, h, t, label) {
@@ -105,7 +106,7 @@ function pnMtn(k, x0, x1, h, t, label) {
   tri(c - 110, c + 50, 30, c + 210, C.navy3); snow(c - 110, c + 50, 30, c + 210, 0.22);
   tri(c + 80, c + 190, 86, c + 330, C.blue); snow(c + 80, c + 190, 86, c + 330, 0.2);
   k.fillStyle = C.mint; k.fillRect(x0, h - 20, x1 - x0, 20);
-  if (label) txt(k, 'MOUNTAIN', x0 + 26, 54, `800 44px ${DISP}`, C.navy, 'left', 'middle', '1px');
+  if (label) txt(k, '山峦', x0 + 26, 54, `800 44px ${DISP}`, C.navy, 'left', 'middle', '1px');
   k.restore();
 }
 const BLD = [[-250, 70, 116, 0], [-175, 62, 150, 1], [-108, 80, 96, 0], [-22, 64, 172, 1], [48, 92, 122, 0], [146, 58, 150, 1], [210, 80, 108, 0]];
@@ -118,7 +119,7 @@ function pnCity(k, x0, x1, h, t, label) {
     const bx = c + dx, by = h - bh; k.fillStyle = ci ? C.blue : C.navy3; k.fillRect(bx, by, bw, bh);
     let wi = 0; for (let y = by + 14; y < h - 16; y += 22) for (let x = bx + 10; x < bx + bw - 14; x += 18) { const on = H01(bi * 97 + wi * 13 + stp * 7) > 0.35; wi++; k.fillStyle = on ? C.yel : 'rgba(15,26,61,.45)'; k.fillRect(x, y, 9, 11); }
   });
-  if (label) { k.fillStyle = 'rgba(15,26,61,.55)'; rr(k, x0 + 18, 28, 196, 70, 14); k.fill(); txt(k, 'CITY', x0 + 34, 64, `800 66px ${DISP}`, '#fff', 'left', 'middle', '2px'); }
+  if (label) { k.fillStyle = 'rgba(15,26,61,.55)'; rr(k, x0 + 18, 28, 196, 70, 14); k.fill(); txt(k, '城市', x0 + 34, 64, `800 66px ${DISP}`, '#fff', 'left', 'middle', '2px'); }
   k.restore();
 }
 function pnField(k, x0, x1, h, t, label) {
@@ -132,7 +133,7 @@ function pnField(k, x0, x1, h, t, label) {
   for (let i = 0; i < 4; i++) { k.save(); k.translate(mx, my); k.rotate(ang + i * Math.PI / 2); k.beginPath(); k.moveTo(0, -3); k.lineTo(58, -10); k.lineTo(58, 8); k.lineTo(0, 3); k.closePath(); k.fill(); k.restore(); }
   k.fillStyle = C.yel; k.beginPath(); k.arc(mx, my, 8, 0, 7); k.fill();
   [[-200, 176, 0], [-120, 186, 1], [-40, 172, 0], [40, 184, 1], [180, 178, 0], [230, 190, 1]].forEach(([dx, y, ci]) => { k.fillStyle = ci ? C.yel : C.coral; k.beginPath(); k.arc(c + dx, y, 7, 0, 7); k.fill(); });
-  if (label) txt(k, 'FIELD', x0 + 28, 70, `800 70px ${DISP}`, C.navy, 'left', 'middle', '2px');
+  if (label) txt(k, '田野', x0 + 28, 70, `800 70px ${DISP}`, C.navy, 'left', 'middle', '2px');
   k.restore();
 }
 const scSea = (k, w, h) => pnSea(k, 0, w, h, 0, true), scMtn = (k, w, h) => pnMtn(k, 0, w, h, 0, true);
@@ -140,5 +141,5 @@ const scCity = (k, w, h) => pnCity(k, 0, w, h, 0, true), scField = (k, w, h) => 
 const SEG3 = CYC / 2;
 function abCell(trans) { return (k, w, h, u) => { u = snapU(u); const sgi = Math.min(1, Math.floor(u / SEG3)), uu = u - sgi * SEG3; trans(k, w, h, uu, sgi, 1 - sgi); }; }
 const TA = 0.5, TB = 1.5;
-// 破片や紙の形（多角形）のパス。ページめくり（20）とガラス割れ（22）で使う
+// 第 20 张翻页和第 22 张玻璃破碎共用多边形描画函数。
 function polyPath(k, pts) { k.beginPath(); pts.forEach((p, i) => i ? k.lineTo(p[0], p[1]) : k.moveTo(p[0], p[1])); k.closePath(); }

@@ -1,4 +1,4 @@
-「カスタマージャーニーマップ（Customer journey map）」を使ってください。「資料で使う図解・グラフの名前」の名前の1つです。
+「カスタマージャーニーマップ（英文名：Customer journey map）」を使ってください。「資料で使う図解・グラフの名前」の名前の1つです。
 Motion Prompt #236
 
 どういうものか: 段階ごとの行動と気持ちの上下を並べる
@@ -12,6 +12,6 @@ Motion Prompt #236
 - 終わり: 4.1〜4.5秒で図全体がフェードアウトし、空のまま4.7秒で1周
 使いどころ: 顧客が段階ごとに何をして、どこで気持ちが下がるかを見つけるとき。
 
-参考実装（Canvas 2D・時刻だけで絵が決まる関数）: https://showheyohtaki.github.io/motion-prompt/api/v1/ja/e/236.txt
-共通の補助コード: https://showheyohtaki.github.io/motion-prompt/api/v1/kit/diagram.js
+参考実装（Canvas 2D・時刻だけで絵が決まる関数）: ../e/236.txt
+共通の補助コード: ../../kit/diagram.js
 参考実装の形・タイミング・イージングの数値はそのまま使い、中の文字・色・素材だけ、いま作っている物に合わせてください。

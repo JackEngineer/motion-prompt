@@ -18,12 +18,11 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 06
-// 06 スクロールスパイ（左の目次のうち、いま読んでいる見出しの項目が光る）
 CELLS[5] = (k, w, h, u) => {
   u = snapU(u);
   frame(k);
   const y = steps([[0.3, 0], [0.9, 100], [1.35, 100], [1.95, 200], [2.4, 200], [3.0, 300], [3.5, 300], [4.4, 0]], u);
-  const NAMES = ['はじめに', '使い方', '料金', 'よくある質問'], TX = 160;
+  const NAMES = ['开始之前', '使用方法', '价格', '常见问题'], TX = 160;
   const act = t => { const yy = steps([[0.3, 0], [0.9, 100], [1.35, 100], [1.95, 200], [2.4, 200], [3.0, 300], [3.5, 300], [4.4, 0]], t); let a = 0; for (let i = 0; i < 4; i++) if (i * 100 <= yy + 40) a = i; return a; };
   view(k, () => {
     k.save(); k.beginPath(); k.rect(TX - 10, 0, VW, VH); k.clip(); k.translate(0, -y);
@@ -34,7 +33,7 @@ CELLS[5] = (k, w, h, u) => {
     });
     k.restore();
     k.fillStyle = C.soft; k.fillRect(0, 0, TX - 10, VH);
-    txt(k, '目次', 20, 30, `800 12px ${JP}`, C.sub);
+    txt(k, '目录', 20, 30, `800 12px ${JP}`, C.sub);
     const a = act(u);
     NAMES.forEach((s, i) => {
       const q = trans(t => act(t) === i, u, 0.25), iy = 54 + i * 30;

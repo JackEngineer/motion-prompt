@@ -18,7 +18,6 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 16
-// 16 パララックス（手前ほど大きく、奥ほど小さく動いて、奥行きが出る）
 const PLX = (() => {
   const R = rand(16), ridge = (base, amp, step, seed) => { const r = rand(seed), pts = []; for (let x = -220; x <= CW + 220; x += step) pts.push([x, base - amp * (0.35 + 0.65 * r())], [x + step / 2, base + amp * 0.1 * r()]); return pts; };
   const stars = []; for (let i = 0; i < 16; i++) stars.push([R() * (CW + 80) - 40, 12 + R() * 80, 1.5 + R() * 2]);
@@ -29,14 +28,11 @@ CELLS[15] = (k, w, h, u) => {
   const pan = 108 * Math.sin(u / CYC * Math.PI * 2);
   const g = k.createLinearGradient(0, 0, 0, h); g.addColorStop(0, '#0F1A3D'); g.addColorStop(1, '#27408F'); k.fillStyle = g; k.fillRect(0, 0, w, h);
   k.fillStyle = '#fff'; for (const s of PLX.stars) { k.globalAlpha = 0.8; k.beginPath(); k.arc(s[0] - pan * 0.05, s[1], s[2], 0, 7); k.fill(); } k.globalAlpha = 1;
-  // 月（いちばん奥・ほぼ動かない）
   k.fillStyle = C.yel; k.beginPath(); k.arc(390 - pan * 0.1, 56, 30, 0, 7); k.fill();
   const poly = (pts, m, col) => { k.fillStyle = col; k.beginPath(); k.moveTo(-260, h + 10); pts.forEach(p => k.lineTo(p[0] - pan * m, p[1])); k.lineTo(w + 260, h + 10); k.closePath(); k.fill(); };
   poly(PLX.far, 0.28, '#31499C');
   poly(PLX.mid, 0.6, C.blue);
-  // 手前の丘と木
   k.fillStyle = C.mint; k.beginPath(); k.moveTo(-300, h + 10); for (let x = -300; x <= w + 300; x += 20) k.lineTo(x - pan * 1.25, 176 + 12 * Math.sin(x * 0.012)); k.lineTo(w + 300, h + 10); k.closePath(); k.fill();
   for (const t of PLX.trees) { const x = t[0] - pan * 1.25, by = 180 + 12 * Math.sin(t[0] * 0.012), hh = t[1] * 1.45; k.fillStyle = C.navy; k.fillRect(x - 4, by - 16, 8, 22); k.fillStyle = t[2] === 0 ? C.coral : '#12A57B'; k.beginPath(); k.moveTo(x, by - hh); k.lineTo(x + 20, by - 12); k.lineTo(x - 20, by - 12); k.closePath(); k.fill(); }
-  // いちばん手前（ボケた葉影のように大きく速く動く）
   k.fillStyle = '#0A1230';[[-40, 60], [300, 44], [620, 66]].forEach(([x, r]) => { k.beginPath(); k.arc(x - pan * 2.1, h + 18, r, 0, 7); k.fill(); });
 };

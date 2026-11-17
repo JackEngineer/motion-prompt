@@ -18,7 +18,6 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 11
-// 11 ホバーで画像切り替え（商品カードにカーソルを乗せると、写真が別の角度＝後ろ姿に切り替わる）
 function tee(k, x, y, s, col, back) {
   k.save(); k.translate(x, y); k.scale(s, s);
   k.fillStyle = col; k.beginPath();
@@ -32,7 +31,7 @@ CELLS[10] = (k, w, h, u) => {
   u = snapU(u);
   frame(k);
   const CX = [44, 271], CY = 10, CWD = 196, IH = 112;
-  const PRODS = [['Tシャツ', '¥3,980', '#FFFFFF', C.blueL, C.blue], ['ロゴTシャツ', '¥4,280', C.acc, C.accL, '#fff']];
+  const PRODS = [['T 恤', '¥3,980', '#FFFFFF', C.blueL, C.blue], ['标志 T 恤', '¥4,280', C.acc, C.accL, '#fff']];
   const cur = t => path([[0, 60, 200], [0.4, 150, 70], [1.6, 160, 80], [2.0, 370, 70], [3.3, 380, 82], [3.8, 470, 200], [4.7, 60, 200]], t);
   view(k, () => {
     for (let i = 0; i < 2; i++) {
@@ -40,7 +39,6 @@ CELLS[10] = (k, w, h, u) => {
       const inside = t => { const [a, b] = cur(t); return a > x && a < x + CWD && b > CY && b < CY + IH + 40; };
       const q = trans(inside, u, 0.3, eIOs);
       k.save(); rr(k, x, CY, CWD, IH, 8); k.clip(); k.fillStyle = bg; k.fillRect(x, CY, CWD, IH);
-      // 正面（胸に小さな丸い印）→ 後ろ姿（背中に大きな星の柄）
       k.globalAlpha = 1 - q; tee(k, x + CWD / 2, CY + IH / 2 + 4, 108, col, false);
       k.fillStyle = mark; k.beginPath(); k.arc(x + CWD / 2 + 18, CY + IH / 2 - 16, 7, 0, 7); k.fill();
       k.globalAlpha = q; tee(k, x + CWD / 2, CY + IH / 2 + 4, 108, col, true);

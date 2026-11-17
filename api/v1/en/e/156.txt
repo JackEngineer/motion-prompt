@@ -18,15 +18,14 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 12
-// 12 テキストロール（メニューの文字にカーソルを乗せると、文字が上に回って同じ文字が下から出てくる）
 CELLS[11] = (k, w, h, u) => {
   u = snapU(u);
   frame(k);
-  const LINKS = ['WORKS', 'ABOUT', 'CONTACT'], F = `800 30px ${EN}`, GAP = 44, LY = 100, LH = 40;
+  const LINKS = ['精选作品', '关于我们', '联系我们'], F = `800 30px ${EN}`, GAP = 44, LY = 100, LH = 40;
   const cur = t => path([[0, 110, 200], [0.4, 120, 92], [1.25, 140, 96], [1.5, 252, 92], [2.35, 268, 96], [2.6, 380, 92], [3.45, 400, 96], [3.9, 450, 200], [4.7, 110, 200]], t);
   view(k, () => {
     k.fillStyle = '#FFF3EA'; k.fillRect(0, 0, VW, VH);
-    logo(k, 24, 28); txt(k, 'MENU', VW - 26, 28.5, `800 11px ${EN}`, C.sub, 'right', 'middle', '2px');
+    logo(k, 24, 28); txt(k, '菜单', VW - 26, 28.5, `800 11px ${EN}`, C.sub, 'right', 'middle', '2px');
     k.font = F; k.letterSpacing = '1px'; const ws = LINKS.map(s => k.measureText(s).width); k.letterSpacing = '0px';
     let x = (VW - ws.reduce((a, b) => a + b, 0) - GAP * (LINKS.length - 1)) / 2;
     LINKS.forEach((s, i) => {

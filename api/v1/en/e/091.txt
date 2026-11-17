@@ -18,10 +18,9 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 19
-// 19 無限スクロール（いちばん下まで来ると読み込み表示が出て、続きが足される）
 CELLS[18] = (k, w, h, u) => {
   frame(k);
-  // 1周期で 3件（156px）ぶん進む。周期の終わりは始まりと同じ見た目（内容は3件ごとにくり返す）
+  // 每轮滚动 3 条（156 像素）。列表每 3 条重复，保证循环首尾一致。
   const PITCH = 52, BATCH = 3, L0 = 6, TL = 2.6;
   const y = steps([[0.25, 38], [0.85, 116], [1.15, 116], [1.75, 194], [4.8, 194]], u);
   const n = u < TL ? L0 : L0 + BATCH, end = 10 + n * PITCH;

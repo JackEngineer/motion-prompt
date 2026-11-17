@@ -6,7 +6,7 @@
 
 Encuentra el nombre y díselo a tu IA. Si agregas cuánto dura, con qué intensidad y qué se mueve, el resultado se acerca más a lo que imaginabas.
 
-![Movimientos de cámara y transiciones, parte 2 — muestra](../../assets/preview-camera2.gif)
+![Movimientos de cámara y transiciones, parte 2 muestra](../../assets/preview-camera2.gif)
 
 ## Movimientos de cámara
 

@@ -18,7 +18,6 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 15
-// 15 ステッパー（Stepper (+/−)）
 CELLS[14] = ui((w, h, t) => {
   bar(171, 24, 90, C.line2, 10);
   const plus = [.9, 1.35, 1.8], minus = [2.8, 3.25, 3.7];

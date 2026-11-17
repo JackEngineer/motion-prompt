@@ -6,7 +6,7 @@
 
 Encuentra el nombre y díselo a tu IA. Si agregas cuánto dura, con qué intensidad y qué se mueve, el resultado se acerca más a lo que imaginabas.
 
-![Movimientos de motion graphics — muestra](../../assets/preview-motion.gif)
+![Movimientos de motion graphics muestra](../../assets/preview-motion.gif)
 
 ## Entradas y texto
 

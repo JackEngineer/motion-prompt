@@ -18,7 +18,6 @@
 // Element code starts here. CELLS, constants and helpers live in the kit.
 
 // @element 21
-// 21 スケルトン（Skeleton screen）
 CELLS[20] = ui((w, h, t) => {
   const sk = seg(t, 1.05, 1.2) * (1 - seg(t, 3.0, 3.3));
   ring(w - 40, 26, 14, C.line2, 1.8); X.beginPath(); X.arc(w - 40, 26, 7, -Math.PI * .1, Math.PI * 1.4); X.strokeStyle = '#666'; X.lineWidth = 2.2; X.stroke();
@@ -29,7 +28,6 @@ CELLS[20] = ui((w, h, t) => {
     if (sk > 0) {
       X.save(); X.globalAlpha = sk; const g = '#e9e7e5';
       fillRR(24, y, 96, 56, 8, g); fillRR(136, y + 4, 200, 14, 7, g); fillRR(136, y + 26, 340, 10, 5, g); fillRR(136, y + 42, 260, 10, 5, g);
-      // 光が横に流れる
       const sx = -200 + ((t - 1.1) % 0.9) / 0.9 * (w + 400);
       X.globalCompositeOperation = 'source-atop';
       const gr = X.createLinearGradient(sx - 80, 0, sx + 80, 0); gr.addColorStop(0, 'rgba(255,255,255,0)'); gr.addColorStop(.5, 'rgba(255,255,255,.75)'); gr.addColorStop(1, 'rgba(255,255,255,0)');

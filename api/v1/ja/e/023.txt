@@ -20,12 +20,11 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 23
-// 23 グリッチ（文字が横にずれ、色がずれ、帯が走る。明るさの点滅はさせない）
 const TMP = mkCanvas(CW, CH), TK = TMP.getContext('2d');
 const GL = (() => { const R = rand(231), st = []; for (let s = 0; s < 12; s++) { const sl = [], n = 2 + Math.floor(R() * 3); for (let i = 0; i < n; i++) sl.push({ y: Math.floor(40 + R() * 110), h: 10 + Math.floor(R() * 26), dx: Math.round((R() < .5 ? -1 : 1) * (18 + R() * 46)) }); const bars = []; for (let i = 0; i < 3; i++) bars.push({ x: 30 + R() * 420, y: 30 + R() * 150, w: 30 + R() * 90, h: 5 + R() * 7, c: i }); st.push({ sl, bars, rgb: 7 + Math.round(R() * 9) }); } return st; })();
 const GLC = mkCanvas(CW, CH), GK = GLC.getContext('2d'), GLT = mkCanvas(CW, CH), GT = GLT.getContext('2d');
 CELLS[22] = (k, w, h, u) => {
-  const content = kk => { txt(kk, 'GLITCH', w / 2, h / 2 + 4, `800 104px ${DISP}`, '#fff', 'center', 'middle', '2px'); };
+  const content = kk => { txt(kk, '画面故障', w / 2, h / 2 + 4, `800 104px ${DISP}`, '#fff', 'center', 'middle', '2px'); };
   const step = 0.14; let si = -1;
   if (u >= 0.55 && u < 0.55 + step * 5) si = Math.floor((u - 0.55) / step);
   else if (u >= 2.9 && u < 2.9 + step * 6) si = 5 + Math.floor((u - 2.9) / step);

@@ -1,21 +1,21 @@
-<!-- 日本語でも英語でもかまいません。 / Japanese or English is fine. -->
+<!-- 欢迎使用简体中文、日语或英语。 -->
 
-## 内容 / What this adds
+## 修改内容
 
-<!-- 分野と言語、パック名、足したもの / Field and language, pack, what you added -->
+<!-- 说明领域、语言、素材包和新增内容。 -->
 
-## 出典 / Where you checked the names
+## 术语来源
 
-<!-- 名前ごとに1行で十分です。自信のない名前には印を付けてください。 / One line per name is enough. Mark the names you are not sure about. -->
+<!-- 每个术语一行即可，不确定的术语请标注。 -->
 
-## 使ったフォント・素材 / Fonts and assets used
+## 字体与素材
 
-<!-- なければ「なし」 / "None" if none -->
+<!-- 未使用额外素材时填写“无”。 -->
 
-## 確認 / Please confirm
+## 请确认
 
-- [ ] 自分で作った物です（または、権利者から公開の許可を得ています。その内容を上に書きました）。 / I made this myself (or the rights holder allowed me to publish it, and I described that above).
-- [ ] 他人の画像・動画・フォント・ロゴ・写っている人物を含みません（含む場合は、許可の内容を上に書きました）。 / It contains no images, videos, fonts, logos or people from anyone else (or I described the permission above).
-- [ ] MIT License で公開することに同意します。 / I agree to release it under the MIT License.
-- [ ] 公開したあとはライセンスを取り消せないことを理解しています。 / I understand that the license cannot be withdrawn after it is published.
-- [ ] `node tools/build.mjs` がエラーなく終わります（パックを変えた場合）。 / `node tools/build.mjs` finishes without errors (if you changed a pack).
+- [ ] 内容由我制作，或已获权利人公开授权，并在上文说明。
+- [ ] 未包含他人的图片、视频、字体、标志或人物；如包含，已在上文说明授权情况。
+- [ ] 我同意按 MIT License 发布。
+- [ ] 我理解发布后无法撤回该许可证。
+- [ ] 若修改了素材包，`node tools/build.mjs` 可无错误完成。

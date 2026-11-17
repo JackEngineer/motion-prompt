@@ -19,19 +19,18 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 18
-// 18 モーフカット: 同じ人物の2テイクを、位置と姿勢をなめらかに補間してつなぐ（#041 ジャンプカットは飛ぶ）
 CELLS[17] = shot((k, w, h, u) => {
   const T0 = 2.0, T1 = 2.45, r = P(u, CYC - RESET, CYC);
   const draw = (kk, t) => {
     const q = eIOs(P(t, T0, T1));
-    // テイク1とテイク2は姿勢が違う。モーフ中は同じ（補間した）位置に2つの姿勢を重ねて溶かす
+    // 在插值得到的同一位置叠加两种姿势，同时改变它们的不透明度。
     const pose = (k2, m) => world(k2, w, h, cam({ y: 1.45, z: 0 }), { person: { x: lerp(-0.4, 0.35, q), z: 3.3, walk: (m ? 0.55 : -0.45) + 0.12 * Math.sin(t * 3) }, trees: true, buildings: true });
     const bl = Math.sin(q * Math.PI) * 2.2;
     kk.save(); kk.filter = bl > 0.05 ? `blur(${bl.toFixed(2)}px)` : 'none';
     blend(kk, k2 => pose(k2, false), k2 => pose(k2, true), q);
     kk.restore();
-    strip(kk, w, h, [[0, T0, 'テイク1', C.g2], [T0, T1, '', C.blue], [T1, CYC, 'テイク2', C.g2]], t);
+    strip(kk, w, h, [[0, T0, '镜次 1', C.g2], [T0, T1, '', C.blue], [T1, CYC, '镜次 2', C.g2]], t);
   };
   blend(k, kk => draw(kk, u), kk => draw(kk, 0), eIOs(r));
-  return r > .5 || u < T0 ? 'TAKE 1' : u < T1 ? 'MORPH' : 'TAKE 2';
+  return r > .5 || u < T0 ? '拍摄 1' : u < T1 ? '变形' : '拍摄 2';
 });

@@ -20,5 +20,4 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 12
-// 12 ダッチアングル
 CELLS[11] = shot(camCell((k, w, h, p) => world(k, w, h, cam({ roll: lerp(0, 0.36, p) }), { person: { z: 7 } }), p => `∠ ${Math.round(lerp(0, 0.36, p) * 57.3)}°`, 0.6, 2.2));

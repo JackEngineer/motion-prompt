@@ -19,6 +19,5 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 10
-// 10 ハイアングル: カメラを高い位置へ上げ、見下ろす。人物が小さく見える（#031 クレーンアップは上がり続けて全体を見せる）
 CELLS[9] = shot(camCell((k, w, h, p) => world(k, w, h, cam({ y: lerp(1.5, 4.5, p), pitch: lerp(0, -0.5, p) }), { person: { z: 5 } }),
   p => `↘ ${Math.round(lerp(0, 0.5, p) * 57.3)}° · ${lerp(1.5, 4.5, p).toFixed(1)}m`, 0.6, 2.2));

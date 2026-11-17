@@ -19,10 +19,9 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 12
-// 12 オーバーザショルダー: 手前の人物の肩と後頭部を画面の端に入れ、肩越しに相手を撮る。手前はぼけ、相手にピント
 CELLS[11] = shot(camCell((k, w, h, p, u) => {
   world(k, w, h, cam({ z: lerp(0, 0.35, p), y: 1.55, yaw: 0.05 }), {
     person: { x: 0.32, z: 3.1, walk: 0.35 * Math.sin(u * 5) }, blurFg: 2.6,
     extra: [[-0.62, 0, 1.15, (kk) => { kk.fillStyle = C.g4; kk.beginPath(); kk.arc(0, 1.63, 0.17, 0, 7); kk.fill(); rr(kk, -0.34, 0.9, 0.68, 0.6, 0.14); kk.fill(); }, true]]
   });
-}, p => 'OTS'));
+}, p => '过肩'));

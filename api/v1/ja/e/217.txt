@@ -19,7 +19,6 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 01
-// 01 ベン図: two circles slide in from the sides and overlap; only the shared part turns blue
 function venn(k, w, h, u) {
   bg(k, w, h);
   const app = easeOut(P(u, 0.3, 0.7)), m = easeInOut(P(u, 0.5, 1.6));
@@ -28,7 +27,7 @@ function venn(k, w, h, u) {
   k.save(); k.globalAlpha = fade(u) * app;
   k.fillStyle = C.blueL; k.beginPath(); k.arc(ax, cy, r, 0, TAU); k.fill();
   k.fillStyle = C.g2; k.beginPath(); k.arc(bx, cy, r, 0, TAU); k.fill();
-  // shared part: B inside A
+  // 将 B 裁剪到 A 的范围内，只为交集着色。
   k.save(); k.beginPath(); k.arc(ax, cy, r, 0, TAU); k.clip();
   k.fillStyle = C.blue; k.beginPath(); k.arc(bx, cy, r, 0, TAU); k.fill(); k.restore();
   pen(k, C.blueM, 3); k.beginPath(); k.arc(ax, cy, r, 0, TAU); k.stroke();

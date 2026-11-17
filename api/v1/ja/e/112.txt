@@ -18,11 +18,10 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 16
-// 周辺減光（ビネット）: 四隅だけがなだらかに暗くなり、中央の人物に目が集まる
 CELLS[15] = cell((k, u) => {
   const a = env(u);
   stageStreet(k, BASE);
-  // 楕円の放射グラデーション: 半径の45%までは素通し、外へ向かって 0 → 70% の濃さ
+  // 椭圆径向渐变在半径的 45% 以内完全透明，向外增加到 70% 不透明度。
   k.save(); k.translate(CW / 2, CH / 2); k.scale(1, CH / CW * 1.35);
   const g = k.createRadialGradient(0, 0, CW * 0.45 * 0.62, 0, 0, CW * 0.62);
   g.addColorStop(0, 'rgba(32,35,43,0)'); g.addColorStop(1, `rgba(32,35,43,${(0.7 * a).toFixed(3)})`);

@@ -18,7 +18,6 @@
 // ここから要素のコード。CELLS や定数・補助関数は kit にある。
 
 // @element 21
-// ティール＆オレンジ: 空と影を青緑、日の当たる肌と太陽を橙に寄せる
 CELLS[20] = cell((k, u) => {
   const a = env(u);
   const TO = {

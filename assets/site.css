@@ -301,3 +301,15 @@ html.has-tray { scroll-padding-bottom: calc(var(--tray-h, 0px) + 16px); }
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
+
+:lang(zh-Hans) { --font: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", system-ui, sans-serif; }
+:lang(zh-Hans) h1 { line-height: 1.2; letter-spacing: -.02em; word-break: normal; }
+:lang(zh-Hans) h1 { text-wrap: balance; }
+@media (max-width: 480px) {
+  :root { --top-h: 90px; }
+  .top-in { height: auto; min-height: var(--top-h); flex-wrap: wrap; justify-content: center; gap: 4px; padding-block: 8px; }
+  .logo { width: 100%; text-align: center; }
+}
+@media (max-width: 480px) {
+  .copyfield code { white-space: normal; overflow-wrap: anywhere; }
+}
